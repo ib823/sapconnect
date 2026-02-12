@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAP Connect - Toolkit</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: '72', 'Segoe UI', Arial, sans-serif;
+      background: #f5f6f7;
+      color: #32363a;
+    }
+    .header {
+      background: #354a5f;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    .header h1 { font-size: 1.8rem; font-weight: 300; }
+    .header p { opacity: 0.8; margin-top: 0.5rem; }
+    .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+    .section { margin-bottom: 2rem; }
+    .section h2 {
+      font-size: 1.1rem;
+      color: #6a6d70;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      transition: box-shadow 0.2s;
+    }
+    .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .card p { font-size: 0.85rem; color: #6a6d70; margin-bottom: 1rem; }
+    .card a {
+      display: inline-block;
+      background: #0a6ed1;
+      color: white;
+      text-decoration: none;
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+    .card a:hover { background: #0854a0; }
+    .badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      margin-bottom: 0.5rem;
+    }
+    .badge-app { background: #e8f4fd; color: #0a6ed1; }
+    .badge-api { background: #f1f8e9; color: #2e7d32; }
+    .badge-tool { background: #fff3e0; color: #e65100; }
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      color: #6a6d70;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>SAP Connect</h1>
+    <p>Demo &amp; Pitch Toolkit for SAP Public Cloud External Development</p>
+  </div>
+
+  <div class="container">
+    <div class="section">
+      <h2>Applications</h2>
+      <div class="cards">
+        <div class="card">
+          <span class="badge badge-app">Fiori App</span>
+          <h3>Manage Customers</h3>
+          <p>Fiori Elements List Report + Object Page for customer and project management.</p>
+          <a href="/customers/webapp/index.html">Open App</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>APIs</h2>
+      <div class="cards">
+        <div class="card">
+          <span class="badge badge-api">OData V4</span>
+          <h3>Customer Service</h3>
+          <p>Customers, Projects, and project statistics. Supports draft editing.</p>
+          <a href="/api/customers/$metadata">Metadata</a>
+        </div>
+        <div class="card">
+          <span class="badge badge-api">External Stub</span>
+          <h3>Business Partner API</h3>
+          <p>Stubbed SAP S/4HANA Business Partner API showing the import pattern.</p>
+          <a href="/api/customers/Customers">Browse Data</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Tools</h2>
+      <div class="cards">
+        <div class="card">
+          <span class="badge badge-tool">CLI</span>
+          <h3>API Discovery</h3>
+          <p>Scan an SAP system for available APIs, events, and extension points.</p>
+          <a href="/discovery/README.md">Documentation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    SAP Connect Toolkit &middot; Clean Core &middot; Public Cloud Ready
+  </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "SAP Connect",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:22",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {}
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "forwardPorts": [4004],
+  "portsAttributes": {
+    "4004": {
+      "label": "CAP Server",
+      "onAutoForward": "openBrowser"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "SAPSE.vscode-cds",
+        "SAPSE.sap-ux-fiori-tools-extension-pack",
+        "humao.rest-client",
+        "dbaeumer.vscode-eslint"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}

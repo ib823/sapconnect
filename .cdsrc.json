@@ -1,0 +1,35 @@
+{
+  "build": {
+    "target": "gen",
+    "tasks": [
+      { "for": "node-cf", "src": "srv" },
+      { "for": "hana", "src": "db" }
+    ]
+  },
+  "odata": {
+    "version": "v4"
+  },
+  "features": {
+    "fiori_preview": true
+  },
+  "[development]": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "database": ":memory:"
+        }
+      }
+    }
+  },
+  "[demo]": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "database": ":memory:"
+        }
+      }
+    }
+  }
+}

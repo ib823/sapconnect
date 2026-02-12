@@ -1,0 +1,169 @@
+{
+  "system": {
+    "type": "SAP S/4HANA Public Cloud",
+    "version": "2502",
+    "tenant": "demo-tenant.s4hana.cloud.sap",
+    "scannedAt": "2025-06-15T10:30:00Z"
+  },
+  "communicationScenarios": [
+    {
+      "id": "SAP_COM_0008",
+      "name": "Business Partner Integration",
+      "description": "Inbound/outbound integration for business partner master data",
+      "category": "Master Data",
+      "apis": ["API_BUSINESS_PARTNER"],
+      "direction": "both"
+    },
+    {
+      "id": "SAP_COM_0009",
+      "name": "Sales Order Integration",
+      "description": "Create, read, and update sales orders",
+      "category": "Sales",
+      "apis": ["API_SALES_ORDER_SRV"],
+      "direction": "both"
+    },
+    {
+      "id": "SAP_COM_0053",
+      "name": "Purchase Order Integration",
+      "description": "Create and manage purchase orders",
+      "category": "Procurement",
+      "apis": ["API_PURCHASEORDER_PROCESS_SRV"],
+      "direction": "both"
+    },
+    {
+      "id": "SAP_COM_0109",
+      "name": "Product Master Integration",
+      "description": "Read and maintain product master data",
+      "category": "Master Data",
+      "apis": ["API_PRODUCT_SRV"],
+      "direction": "both"
+    },
+    {
+      "id": "SAP_COM_0289",
+      "name": "Bank Statement Integration",
+      "description": "Import bank statements for cash management",
+      "category": "Finance",
+      "apis": ["API_BANKSTATEMENT_SRV"],
+      "direction": "inbound"
+    }
+  ],
+  "releasedAPIs": [
+    {
+      "name": "API_BUSINESS_PARTNER",
+      "title": "Business Partner (A2X)",
+      "protocol": "OData V2",
+      "releaseStatus": "released",
+      "category": "Master Data",
+      "entities": [
+        "A_BusinessPartner",
+        "A_BusinessPartnerAddress",
+        "A_BusinessPartnerBank",
+        "A_BusinessPartnerContact",
+        "A_BusinessPartnerRole"
+      ],
+      "operations": ["read", "create", "update", "delete"],
+      "documentation": "https://api.sap.com/api/API_BUSINESS_PARTNER/overview"
+    },
+    {
+      "name": "API_SALES_ORDER_SRV",
+      "title": "Sales Order (A2X)",
+      "protocol": "OData V2",
+      "releaseStatus": "released",
+      "category": "Sales",
+      "entities": [
+        "A_SalesOrder",
+        "A_SalesOrderItem",
+        "A_SalesOrderScheduleLine",
+        "A_SalesOrderHeaderPartner"
+      ],
+      "operations": ["read", "create", "update"],
+      "documentation": "https://api.sap.com/api/API_SALES_ORDER_SRV/overview"
+    },
+    {
+      "name": "API_PURCHASEORDER_PROCESS_SRV",
+      "title": "Purchase Order (A2X)",
+      "protocol": "OData V2",
+      "releaseStatus": "released",
+      "category": "Procurement",
+      "entities": [
+        "A_PurchaseOrder",
+        "A_PurchaseOrderItem",
+        "A_PurchaseOrderScheduleLine"
+      ],
+      "operations": ["read", "create", "update"],
+      "documentation": "https://api.sap.com/api/API_PURCHASEORDER_PROCESS_SRV/overview"
+    },
+    {
+      "name": "API_PRODUCT_SRV",
+      "title": "Product Master (A2X)",
+      "protocol": "OData V4",
+      "releaseStatus": "released",
+      "category": "Master Data",
+      "entities": [
+        "A_Product",
+        "A_ProductDescription",
+        "A_ProductPlant",
+        "A_ProductSalesDelivery"
+      ],
+      "operations": ["read", "create", "update"],
+      "documentation": "https://api.sap.com/api/API_PRODUCT_SRV/overview"
+    },
+    {
+      "name": "CE_APIFORBUSINESSEVENTS_0001",
+      "title": "Business Events",
+      "protocol": "REST",
+      "releaseStatus": "released",
+      "category": "Events",
+      "entities": [],
+      "operations": ["read"],
+      "documentation": "https://api.sap.com/event/CE_APIFORBUSINESSEVENTS_0001/overview"
+    }
+  ],
+  "events": [
+    {
+      "topic": "sap/s4/beh/businesspartner/v1/BusinessPartner/Created/v1",
+      "description": "Triggered when a business partner is created",
+      "category": "Master Data"
+    },
+    {
+      "topic": "sap/s4/beh/businesspartner/v1/BusinessPartner/Changed/v1",
+      "description": "Triggered when a business partner is changed",
+      "category": "Master Data"
+    },
+    {
+      "topic": "sap/s4/beh/salesorder/v1/SalesOrder/Created/v1",
+      "description": "Triggered when a sales order is created",
+      "category": "Sales"
+    },
+    {
+      "topic": "sap/s4/beh/salesorder/v1/SalesOrder/Changed/v1",
+      "description": "Triggered when a sales order is changed",
+      "category": "Sales"
+    },
+    {
+      "topic": "sap/s4/beh/purchaseorder/v1/PurchaseOrder/Created/v1",
+      "description": "Triggered when a purchase order is created",
+      "category": "Procurement"
+    }
+  ],
+  "extensionPoints": [
+    {
+      "type": "Custom Fields",
+      "description": "Add custom fields to standard business objects via Key User Tools",
+      "objects": ["BusinessPartner", "SalesOrder", "PurchaseOrder", "Product"],
+      "method": "Key User Extensibility"
+    },
+    {
+      "type": "Custom Logic",
+      "description": "Add custom ABAP logic at defined extension points",
+      "objects": ["BAdI implementations", "Determination", "Validation"],
+      "method": "Developer Extensibility (ABAP Cloud)"
+    },
+    {
+      "type": "Custom CDS Views",
+      "description": "Create custom CDS views on released objects for reporting",
+      "objects": ["I_BusinessPartner", "I_SalesOrder", "I_PurchaseOrder"],
+      "method": "Developer Extensibility (ABAP Cloud)"
+    }
+  ]
+}

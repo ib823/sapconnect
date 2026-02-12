@@ -1,0 +1,12 @@
+{
+  "_comment": "BTP Destination configuration - copy to default-env.json in project root",
+  "destinations": [
+    {
+      "name": "S4HANA",
+      "url": "https://<your-tenant>.s4hana.cloud.sap",
+      "authentication": "BasicAuthentication",
+      "username": "<comm-user>",
+      "password": "<comm-password>"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+ID;title;description;customer_ID;status_code;scenario;startDate;endDate;budget;currency
+e1a2b3c4-0001-4000-8000-000000000001;S/4HANA Business Partner Sync;Real-time sync of customer master data between S/4HANA and external CRM via API;d1a2b3c4-0001-4000-8000-000000000001;in-progress;Public Cloud API;2025-03-01;;150000;USD
+e1a2b3c4-0002-4000-8000-000000000002;Purchase Order Event Integration;Event-driven PO processing using SAP Event Mesh and custom microservice;d1a2b3c4-0001-4000-8000-000000000001;discovery;Public Cloud Events;2025-06-01;;85000;USD
+e1a2b3c4-0003-4000-8000-000000000003;Nordic Inventory Dashboard;Custom Fiori Elements app for real-time inventory visibility across warehouses;d1a2b3c4-0002-4000-8000-000000000002;testing;BTP Extension;2025-01-15;2025-07-30;120000;EUR
+e1a2b3c4-0004-4000-8000-000000000004;TechFlow API Gateway;API management layer for SAP and non-SAP system integration;d1a2b3c4-0003-4000-8000-000000000003;in-progress;BTP Integration Suite;2025-04-01;;95000;EUR

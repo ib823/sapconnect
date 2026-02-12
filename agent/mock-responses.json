@@ -1,0 +1,397 @@
+{
+  "sapSystem": {
+    "type": "SAP ECC 6.0",
+    "version": "EHP8",
+    "client": "100",
+    "systemId": "DEV",
+    "description": "Development System (Mock)"
+  },
+  "abapSources": {
+    "ZCL_VENDOR_RATING": {
+      "objectType": "CLAS",
+      "package": "ZVENDOR_RATING",
+      "description": "Vendor Rating Manager",
+      "source": [
+        "CLASS zcl_vendor_rating DEFINITION",
+        "  PUBLIC",
+        "  FINAL",
+        "  CREATE PUBLIC.",
+        "",
+        "  PUBLIC SECTION.",
+        "    TYPES:",
+        "      BEGIN OF ty_vendor_rating,",
+        "        vendor_id   TYPE lifnr,",
+        "        rating      TYPE zvendor_rating_value,",
+        "        rated_by    TYPE syuname,",
+        "        rated_on    TYPE sydatum,",
+        "        comment     TYPE string,",
+        "      END OF ty_vendor_rating.",
+        "",
+        "    METHODS get_rating",
+        "      IMPORTING iv_vendor_id     TYPE lifnr",
+        "      RETURNING VALUE(rs_rating) TYPE ty_vendor_rating",
+        "      RAISING   zcx_vendor_rating.",
+        "",
+        "    METHODS set_rating",
+        "      IMPORTING iv_vendor_id TYPE lifnr",
+        "                iv_rating    TYPE zvendor_rating_value",
+        "                iv_comment   TYPE string OPTIONAL",
+        "      RAISING   zcx_vendor_rating.",
+        "",
+        "    METHODS get_ratings_for_po",
+        "      IMPORTING iv_po_number      TYPE ebeln",
+        "      RETURNING VALUE(rt_ratings) TYPE TABLE OF ty_vendor_rating",
+        "      RAISING   zcx_vendor_rating.",
+        "",
+        "  PRIVATE SECTION.",
+        "    METHODS validate_rating",
+        "      IMPORTING iv_rating TYPE zvendor_rating_value",
+        "      RAISING   zcx_vendor_rating.",
+        "",
+        "ENDCLASS.",
+        "",
+        "CLASS zcl_vendor_rating IMPLEMENTATION.",
+        "",
+        "  METHOD get_rating.",
+        "    SELECT SINGLE vendor_id rating rated_by rated_on comment",
+        "      FROM zvendor_rating",
+        "      INTO rs_rating",
+        "      WHERE vendor_id = iv_vendor_id.",
+        "    IF sy-subrc <> 0.",
+        "      RAISE EXCEPTION TYPE zcx_vendor_rating",
+        "        EXPORTING textid = zcx_vendor_rating=>vendor_not_found.",
+        "    ENDIF.",
+        "  ENDMETHOD.",
+        "",
+        "  METHOD set_rating.",
+        "    validate_rating( iv_rating ).",
+        "    DATA(ls_rating) = VALUE ty_vendor_rating(",
+        "      vendor_id = iv_vendor_id",
+        "      rating    = iv_rating",
+        "      rated_by  = sy-uname",
+        "      rated_on  = sy-datum",
+        "      comment   = iv_comment",
+        "    ).",
+        "    MODIFY zvendor_rating FROM ls_rating.",
+        "    IF sy-subrc <> 0.",
+        "      RAISE EXCEPTION TYPE zcx_vendor_rating",
+        "        EXPORTING textid = zcx_vendor_rating=>update_failed.",
+        "    ENDIF.",
+        "  ENDMETHOD.",
+        "",
+        "  METHOD get_ratings_for_po.",
+        "    SELECT ekko~ebeln ekko~lifnr zv~rating zv~rated_by zv~rated_on zv~comment",
+        "      FROM ekko",
+        "      INNER JOIN zvendor_rating AS zv ON ekko~lifnr = zv~vendor_id",
+        "      INTO TABLE rt_ratings",
+        "      WHERE ekko~ebeln = iv_po_number.",
+        "  ENDMETHOD.",
+        "",
+        "  METHOD validate_rating.",
+        "    IF iv_rating < 1 OR iv_rating > 5.",
+        "      RAISE EXCEPTION TYPE zcx_vendor_rating",
+        "        EXPORTING textid = zcx_vendor_rating=>invalid_rating.",
+        "    ENDIF.",
+        "  ENDMETHOD.",
+        "",
+        "ENDCLASS."
+      ]
+    },
+    "ZCX_VENDOR_RATING": {
+      "objectType": "CLAS",
+      "package": "ZVENDOR_RATING",
+      "description": "Vendor Rating Exception Class",
+      "source": [
+        "CLASS zcx_vendor_rating DEFINITION",
+        "  PUBLIC",
+        "  INHERITING FROM cx_static_check",
+        "  FINAL",
+        "  CREATE PUBLIC.",
+        "",
+        "  PUBLIC SECTION.",
+        "    CONSTANTS:",
+        "      BEGIN OF vendor_not_found,",
+        "        msgid TYPE symsgid VALUE 'ZVRAT',",
+        "        msgno TYPE symsgno VALUE '001',",
+        "        attr1 TYPE scx_attrname VALUE 'VENDOR_ID',",
+        "      END OF vendor_not_found,",
+        "      BEGIN OF invalid_rating,",
+        "        msgid TYPE symsgid VALUE 'ZVRAT',",
+        "        msgno TYPE symsgno VALUE '002',",
+        "        attr1 TYPE scx_attrname VALUE '',",
+        "      END OF invalid_rating,",
+        "      BEGIN OF update_failed,",
+        "        msgid TYPE symsgid VALUE 'ZVRAT',",
+        "        msgno TYPE symsgno VALUE '003',",
+        "        attr1 TYPE scx_attrname VALUE '',",
+        "      END OF update_failed.",
+        "",
+        "    DATA vendor_id TYPE lifnr READ-ONLY.",
+        "",
+        "ENDCLASS.",
+        "",
+        "CLASS zcx_vendor_rating IMPLEMENTATION.",
+        "ENDCLASS."
+      ]
+    }
+  },
+  "packageObjects": {
+    "ZVENDOR_RATING": {
+      "description": "Vendor Rating Components",
+      "objects": [
+        { "name": "ZCL_VENDOR_RATING", "type": "CLAS", "description": "Vendor Rating Manager" },
+        { "name": "ZCX_VENDOR_RATING", "type": "CLAS", "description": "Vendor Rating Exception Class" },
+        { "name": "ZVENDOR_RATING", "type": "TABL", "description": "Vendor Rating Data Table" },
+        { "name": "ZVENDOR_RATING_VALUE", "type": "DTEL", "description": "Vendor Rating Value (1-5)" },
+        { "name": "ZIF_VENDOR_RATING", "type": "INTF", "description": "Vendor Rating Interface" }
+      ]
+    },
+    "$TMP": {
+      "description": "Local Objects (Temporary)",
+      "objects": []
+    }
+  },
+  "dataDictionary": {
+    "ZVENDOR_RATING": {
+      "type": "TABLE",
+      "description": "Vendor Rating Data",
+      "category": "Transparent Table",
+      "fields": [
+        { "name": "MANDT", "type": "CLNT", "length": 3, "key": true, "description": "Client" },
+        { "name": "VENDOR_ID", "type": "LIFNR", "length": 10, "key": true, "description": "Vendor Number" },
+        { "name": "RATING", "type": "ZVENDOR_RATING_VALUE", "length": 1, "key": false, "description": "Rating (1-5)" },
+        { "name": "RATED_BY", "type": "SYUNAME", "length": 12, "key": false, "description": "Rated By User" },
+        { "name": "RATED_ON", "type": "SYDATUM", "length": 8, "key": false, "description": "Rating Date" },
+        { "name": "COMMENT", "type": "STRING", "length": 0, "key": false, "description": "Rating Comment" }
+      ]
+    },
+    "EKKO": {
+      "type": "TABLE",
+      "description": "Purchasing Document Header",
+      "category": "SAP Standard Table",
+      "fields": [
+        { "name": "MANDT", "type": "CLNT", "length": 3, "key": true, "description": "Client" },
+        { "name": "EBELN", "type": "EBELN", "length": 10, "key": true, "description": "Purchasing Document Number" },
+        { "name": "BUKRS", "type": "BUKRS", "length": 4, "key": false, "description": "Company Code" },
+        { "name": "BSTYP", "type": "BSTYP", "length": 1, "key": false, "description": "Purchasing Document Category" },
+        { "name": "BSART", "type": "BSART", "length": 4, "key": false, "description": "Purchasing Document Type" },
+        { "name": "LIFNR", "type": "LIFNR", "length": 10, "key": false, "description": "Vendor Number" },
+        { "name": "EKORG", "type": "EKORG", "length": 4, "key": false, "description": "Purchasing Organization" },
+        { "name": "EKGRP", "type": "EKGRP", "length": 3, "key": false, "description": "Purchasing Group" }
+      ]
+    }
+  },
+  "searchResults": {
+    "vendor_rating": [
+      { "object": "ZCL_VENDOR_RATING", "type": "CLAS", "package": "ZVENDOR_RATING", "match": "CLASS zcl_vendor_rating DEFINITION" },
+      { "object": "ZCX_VENDOR_RATING", "type": "CLAS", "package": "ZVENDOR_RATING", "match": "CLASS zcx_vendor_rating DEFINITION" },
+      { "object": "ZVENDOR_RATING", "type": "TABL", "package": "ZVENDOR_RATING", "match": "Vendor Rating Data Table" }
+    ]
+  },
+  "syntaxCheck": {
+    "ZCL_VENDOR_RATING": {
+      "status": "OK",
+      "errors": [],
+      "warnings": []
+    }
+  },
+  "unitTests": {
+    "ZCL_VENDOR_RATING": {
+      "status": "PASSED",
+      "totalTests": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "duration": "0.42s",
+      "coverage": {
+        "statement": 87,
+        "branch": 75,
+        "procedure": 100
+      },
+      "tests": [
+        {
+          "class": "ZCL_VENDOR_RATING_TEST",
+          "method": "test_get_rating",
+          "status": "PASSED",
+          "duration": "0.12s"
+        },
+        {
+          "class": "ZCL_VENDOR_RATING_TEST",
+          "method": "test_set_rating_valid",
+          "status": "PASSED",
+          "duration": "0.15s"
+        },
+        {
+          "class": "ZCL_VENDOR_RATING_TEST",
+          "method": "test_set_rating_invalid",
+          "status": "PASSED",
+          "duration": "0.15s"
+        }
+      ]
+    }
+  },
+  "agentOutputs": {
+    "planner": {
+      "role": "planner",
+      "title": "Implementation Scope Analysis",
+      "sections": [
+        {
+          "heading": "Requirement Summary",
+          "content": "Add a custom vendor rating field (1-5 scale) to purchase orders, allowing procurement users to rate vendor performance directly from the PO workflow."
+        },
+        {
+          "heading": "Affected Objects",
+          "table": {
+            "headers": ["Object", "Type", "Action", "Package"],
+            "rows": [
+              ["ZVENDOR_RATING", "TABL", "CREATE", "ZVENDOR_RATING"],
+              ["ZVENDOR_RATING_VALUE", "DTEL", "CREATE", "ZVENDOR_RATING"],
+              ["ZCL_VENDOR_RATING", "CLAS", "CREATE", "ZVENDOR_RATING"],
+              ["ZCX_VENDOR_RATING", "CLAS", "CREATE", "ZVENDOR_RATING"],
+              ["ZIF_VENDOR_RATING", "INTF", "CREATE", "ZVENDOR_RATING"],
+              ["EKKO", "TABL", "READ ONLY", "SAP Standard"]
+            ]
+          }
+        },
+        {
+          "heading": "Clean Core Assessment",
+          "content": "This implementation follows Clean Core principles:\n- Uses only released SAP APIs for purchase order data (EKKO read access)\n- Custom objects are isolated in package ZVENDOR_RATING\n- No modifications to SAP standard code\n- Exception class follows SAP best practices (CX_STATIC_CHECK inheritance)\n- Rating data stored in custom Z-table, not appended to standard tables"
+        },
+        {
+          "heading": "Risk Analysis",
+          "table": {
+            "headers": ["Risk", "Severity", "Mitigation"],
+            "rows": [
+              ["Performance impact on PO display", "LOW", "Rating lookup is indexed on VENDOR_ID"],
+              ["Data volume growth", "LOW", "One row per vendor, not per PO"],
+              ["Upgrade compatibility", "NONE", "No standard object modifications"]
+            ]
+          }
+        },
+        {
+          "heading": "Estimated Effort",
+          "content": "Development: 2-3 days | Testing: 1 day | Documentation: 0.5 days"
+        }
+      ]
+    },
+    "designer": {
+      "role": "designer",
+      "title": "Technical Design Document",
+      "sections": [
+        {
+          "heading": "Data Model",
+          "content": "Custom table ZVENDOR_RATING stores one rating per vendor:\n- Primary key: MANDT + VENDOR_ID\n- Rating value: ZVENDOR_RATING_VALUE data element (INT1, domain 1-5)\n- Audit fields: RATED_BY (sy-uname), RATED_ON (sy-datum)\n- Free-text COMMENT field for qualitative feedback"
+        },
+        {
+          "heading": "Class Design",
+          "content": "ZCL_VENDOR_RATING (main class):\n- get_rating( vendor_id ) -> rating structure\n- set_rating( vendor_id, rating, comment? ) -> void\n- get_ratings_for_po( po_number ) -> rating table\n- validate_rating( rating ) -> void [private]\n\nZCX_VENDOR_RATING (exception class):\n- VENDOR_NOT_FOUND (message 001)\n- INVALID_RATING (message 002)\n- UPDATE_FAILED (message 003)"
+        },
+        {
+          "heading": "Interface Design",
+          "content": "ZIF_VENDOR_RATING defines the public contract:\n- Allows future alternative implementations\n- Enables unit test mocking via test doubles\n- Methods mirror ZCL_VENDOR_RATING public section"
+        },
+        {
+          "heading": "Error Handling Strategy",
+          "content": "All exceptions inherit from CX_STATIC_CHECK:\n- Caller is forced to handle exceptions at compile time\n- Message class ZVRAT provides translatable error texts\n- Each exception carries context (e.g., vendor_id for NOT_FOUND)"
+        },
+        {
+          "heading": "Integration Points",
+          "content": "- READ access to EKKO (standard table) to resolve PO -> Vendor mapping\n- No BAdI or enhancement implementation needed\n- Can be consumed by Fiori Elements via CDS View exposure (future phase)"
+        }
+      ]
+    },
+    "implementer": {
+      "role": "implementer",
+      "title": "Generated ABAP Implementation",
+      "sections": [
+        {
+          "heading": "Objects Created",
+          "table": {
+            "headers": ["Object", "Type", "Status"],
+            "rows": [
+              ["ZVENDOR_RATING", "TABL", "CREATED"],
+              ["ZVENDOR_RATING_VALUE", "DTEL", "CREATED"],
+              ["ZCL_VENDOR_RATING", "CLAS", "CREATED"],
+              ["ZCX_VENDOR_RATING", "CLAS", "CREATED"]
+            ]
+          }
+        },
+        {
+          "heading": "Source Code: ZCL_VENDOR_RATING",
+          "content": "Complete ABAP class with 4 methods:\n- get_rating: SELECT SINGLE from ZVENDOR_RATING\n- set_rating: Validates then MODIFY ZVENDOR_RATING\n- get_ratings_for_po: JOIN EKKO with ZVENDOR_RATING\n- validate_rating: Check range 1-5\n\nTotal: 85 lines of ABAP code generated"
+        },
+        {
+          "heading": "Activation",
+          "content": "All objects activated successfully. No syntax errors detected."
+        }
+      ]
+    },
+    "tester": {
+      "role": "tester",
+      "title": "Test Execution Report",
+      "sections": [
+        {
+          "heading": "Test Class: ZCL_VENDOR_RATING_TEST",
+          "content": "ABAP Unit test class with FOR TESTING risk level HARMLESS duration SHORT."
+        },
+        {
+          "heading": "Test Results",
+          "table": {
+            "headers": ["Test Method", "Status", "Duration"],
+            "rows": [
+              ["test_get_rating", "PASSED", "0.12s"],
+              ["test_set_rating_valid", "PASSED", "0.15s"],
+              ["test_set_rating_invalid", "PASSED", "0.15s"]
+            ]
+          }
+        },
+        {
+          "heading": "Summary",
+          "content": "3/3 tests passed | 0 failures | 0 skipped\nExecution time: 0.42s"
+        },
+        {
+          "heading": "Code Coverage",
+          "table": {
+            "headers": ["Metric", "Value"],
+            "rows": [
+              ["Statement Coverage", "87%"],
+              ["Branch Coverage", "75%"],
+              ["Procedure Coverage", "100%"]
+            ]
+          }
+        }
+      ]
+    },
+    "reviewer": {
+      "role": "reviewer",
+      "title": "Code Review Report",
+      "sections": [
+        {
+          "heading": "Review Summary",
+          "content": "Reviewed ZCL_VENDOR_RATING and ZCX_VENDOR_RATING for Clean Core compliance, coding standards, performance, and security."
+        },
+        {
+          "heading": "Findings",
+          "table": {
+            "headers": ["#", "Severity", "Object", "Finding", "Recommendation"],
+            "rows": [
+              ["1", "WARNING", "ZCL_VENDOR_RATING", "Missing authority check before set_rating", "Add AUTHORITY-CHECK for S_VENDOR"],
+              ["2", "WARNING", "ZCL_VENDOR_RATING", "No buffering configured on ZVENDOR_RATING table", "Enable single-record buffering"],
+              ["3", "INFO", "ZCL_VENDOR_RATING", "Consider adding ALV-friendly output method", "Add to_alv_table() for report consumption"],
+              ["4", "INFO", "ZCX_VENDOR_RATING", "Exception texts not yet maintained in SE91", "Create message class ZVRAT with texts"],
+              ["5", "INFO", "ZCL_VENDOR_RATING", "get_ratings_for_po uses SELECT *-style", "Explicitly list fields for forward compatibility"]
+            ]
+          }
+        },
+        {
+          "heading": "Clean Core Compliance",
+          "content": "PASSED - No standard object modifications. All custom objects in Z-namespace. Uses only released APIs for SAP standard data access."
+        },
+        {
+          "heading": "Verdict",
+          "content": "APPROVED with recommendations. 2 warnings should be addressed before transport to quality system. 3 informational findings are suggested improvements."
+        }
+      ]
+    }
+  }
+}

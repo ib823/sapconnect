@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "SAPSE.vscode-cds",
+    "SAPSE.sap-ux-fiori-tools-extension-pack",
+    "humao.rest-client",
+    "dbaeumer.vscode-eslint"
+  ]
+}

@@ -1,0 +1,6 @@
+ID;name;sapId;tier_code;industry;country;city;contactEmail;contactPhone;activeProjects
+d1a2b3c4-0001-4000-8000-000000000001;Acme Manufacturing;1000001;strategic;Manufacturing;US;Chicago;sarah.chen@acme-mfg.example.com;+1-312-555-0100;2
+d1a2b3c4-0002-4000-8000-000000000002;Nordic Retail Group;1000002;enterprise;Retail;SE;Stockholm;erik.johansson@nordicretail.example.com;+46-8-555-0200;1
+d1a2b3c4-0003-4000-8000-000000000003;TechFlow Solutions;1000003;mid-market;Technology;DE;Berlin;maria.schmidt@techflow.example.com;+49-30-555-0300;1
+d1a2b3c4-0004-4000-8000-000000000004;Pacific Logistics;1000004;enterprise;Logistics;AU;Sydney;james.wu@pacificlog.example.com;+61-2-555-0400;0
+d1a2b3c4-0005-4000-8000-000000000005;Green Energy Corp;1000005;starter;Energy;CA;Toronto;priya.patel@greenenergy.example.com;+1-416-555-0500;0

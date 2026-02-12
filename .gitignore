@@ -1,0 +1,11 @@
+node_modules/
+*.db
+*.sqlite
+default-env.json
+.env
+mta_archives/
+gen/
+resources/
+dist/
+*.mtar
+connection.properties

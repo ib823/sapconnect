@@ -1,0 +1,7 @@
+{
+  "name": "sapconnect-customers",
+  "version": "1.0.0",
+  "description": "SAP Connect - Customer Management Fiori App",
+  "private": true,
+  "sapux": true
+}
