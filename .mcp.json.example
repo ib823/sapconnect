@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "abap-adt": {
+      "command": "/path/to/vsp",
+      "env": {
+        "SAP_URL": "https://your-sap-host:44300",
+        "SAP_USER": "your-username",
+        "SAP_PASSWORD": "your-password",
+        "SAP_CLIENT": "001"
+      }
+    }
+  }
+}
