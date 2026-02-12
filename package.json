@@ -22,6 +22,7 @@
     "demo": "cds watch --profile demo",
     "discover": "node discovery/discover.js",
     "agent": "node agent/agent.js",
+    "assess": "node migration/assess.js",
     "test": "echo \"No tests yet\" && exit 0"
   },
   "cds": {

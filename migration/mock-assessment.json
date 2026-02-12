@@ -1,0 +1,108 @@
+{
+  "stats": {
+    "packages": 4,
+    "objects": 26,
+    "sourcesRead": 12,
+    "errors": 0
+  },
+  "packages": [
+    { "name": "ZFI_CUSTOM", "description": "Custom Finance Reports & Extensions" },
+    { "name": "ZMM_PURCHASING", "description": "Custom Purchasing Extensions" },
+    { "name": "ZSD_SALES", "description": "Custom Sales & Distribution" },
+    { "name": "ZHR_PAYROLL", "description": "Custom HR/Payroll Interfaces" }
+  ],
+  "objects": [
+    { "name": "ZCL_FI_JOURNAL_POST", "type": "CLAS", "description": "Custom journal posting helper", "package": "ZFI_CUSTOM" },
+    { "name": "ZCL_FI_VENDOR_BALANCE", "type": "CLAS", "description": "Vendor balance reporting class", "package": "ZFI_CUSTOM" },
+    { "name": "ZCL_FI_CUSTOMER_AGING", "type": "CLAS", "description": "Customer aging report", "package": "ZFI_CUSTOM" },
+    { "name": "ZCL_FI_CREDIT_CHECK", "type": "CLAS", "description": "Custom credit check logic", "package": "ZFI_CUSTOM" },
+    { "name": "ZIF_FI_POSTING", "type": "INTF", "description": "Posting interface", "package": "ZFI_CUSTOM" },
+    { "name": "ZVENDOR_BALANCE_T", "type": "TABL", "description": "Vendor balance staging table", "package": "ZFI_CUSTOM" },
+    { "name": "ZCUSTOMER_AGING_T", "type": "TABL", "description": "Customer aging data table", "package": "ZFI_CUSTOM" },
+
+    { "name": "ZCL_MM_PO_ENHANCE", "type": "CLAS", "description": "Purchase order enhancement", "package": "ZMM_PURCHASING" },
+    { "name": "ZCL_MM_VENDOR_EVAL", "type": "CLAS", "description": "Vendor evaluation custom logic", "package": "ZMM_PURCHASING" },
+    { "name": "ZFG_MM_CUSTOM_BADI", "type": "FUGR", "description": "MM BAdI implementations", "package": "ZMM_PURCHASING" },
+    { "name": "ZMM_PO_HISTORY", "type": "TABL", "description": "Custom PO history table", "package": "ZMM_PURCHASING" },
+    { "name": "ZMM_MATERIAL_EXT", "type": "TABL", "description": "Material master extension", "package": "ZMM_PURCHASING" },
+
+    { "name": "ZCL_SD_ORDER_PROC", "type": "CLAS", "description": "Sales order processing", "package": "ZSD_SALES" },
+    { "name": "ZCL_SD_PRICING", "type": "CLAS", "description": "Custom pricing logic", "package": "ZSD_SALES" },
+    { "name": "ZCL_SD_OUTPUT_MGR", "type": "CLAS", "description": "Output management wrapper", "package": "ZSD_SALES" },
+    { "name": "ZCL_SD_DELIVERY", "type": "CLAS", "description": "Delivery processing helper", "package": "ZSD_SALES" },
+    { "name": "ZSD_CUST_PRICING", "type": "TABL", "description": "Custom pricing conditions", "package": "ZSD_SALES" },
+    { "name": "ZRP_SD_BACKLOG", "type": "PROG", "description": "Sales backlog report", "package": "ZSD_SALES" },
+
+    { "name": "ZCL_HR_PAYROLL_IF", "type": "CLAS", "description": "Payroll interface class", "package": "ZHR_PAYROLL" },
+    { "name": "ZCL_HR_EMPLOYEE_RPT", "type": "CLAS", "description": "Employee reporting helper", "package": "ZHR_PAYROLL" },
+    { "name": "ZHR_PAYROLL_LOG", "type": "TABL", "description": "Payroll run log table", "package": "ZHR_PAYROLL" },
+
+    { "name": "ZREP_FI_MONTHLY", "type": "PROG", "description": "Monthly financial report", "package": "ZFI_CUSTOM" },
+    { "name": "ZREP_MM_SPEND", "type": "PROG", "description": "Spend analysis report", "package": "ZMM_PURCHASING" },
+    { "name": "ZREP_SD_REVENUE", "type": "PROG", "description": "Revenue analysis report", "package": "ZSD_SALES" },
+    { "name": "ZCL_WM_STOCK_CHECK", "type": "CLAS", "description": "Warehouse stock check utility", "package": "ZMM_PURCHASING" },
+    { "name": "ZENH_SD_PRICING", "type": "ENHO", "description": "SD pricing enhancement", "package": "ZSD_SALES" }
+  ],
+  "sources": {
+    "ZCL_FI_JOURNAL_POST": {
+      "type": "CLAS",
+      "source": "CLASS zcl_fi_journal_post DEFINITION PUBLIC FINAL CREATE PUBLIC.\n  PUBLIC SECTION.\n    METHODS post_journal\n      IMPORTING iv_bukrs TYPE bukrs\n                iv_blart TYPE blart\n                it_items TYPE zfi_journal_items_t\n      RETURNING VALUE(rv_belnr) TYPE belnr_d.\n    METHODS reverse_document\n      IMPORTING iv_bukrs TYPE bukrs\n                iv_belnr TYPE belnr_d\n                iv_gjahr TYPE gjahr.\n  PRIVATE SECTION.\n    METHODS validate_items\n      IMPORTING it_items TYPE zfi_journal_items_t\n      RETURNING VALUE(rv_valid) TYPE abap_bool.\nENDCLASS.\n\nCLASS zcl_fi_journal_post IMPLEMENTATION.\n  METHOD post_journal.\n    DATA: lt_bseg TYPE TABLE OF bseg.\n    SELECT * FROM bseg INTO TABLE lt_bseg\n      WHERE bukrs = iv_bukrs AND gjahr = sy-datum(4).\n    \" Process journal items\n    rv_belnr = '0000000001'.\n  ENDMETHOD.\n  METHOD reverse_document.\n    SELECT SINGLE * FROM bkpf WHERE bukrs = iv_bukrs AND belnr = iv_belnr AND gjahr = iv_gjahr.\n  ENDMETHOD.\n  METHOD validate_items.\n    rv_valid = abap_true.\n  ENDMETHOD.\nENDCLASS.",
+      "lines": 30
+    },
+    "ZCL_FI_VENDOR_BALANCE": {
+      "type": "CLAS",
+      "source": "CLASS zcl_fi_vendor_balance DEFINITION PUBLIC FINAL CREATE PUBLIC.\n  PUBLIC SECTION.\n    METHODS get_open_items\n      IMPORTING iv_lifnr TYPE lifnr\n                iv_bukrs TYPE bukrs\n      EXPORTING et_items TYPE zfi_open_items_t.\n    METHODS get_cleared_items\n      IMPORTING iv_lifnr TYPE lifnr\n                iv_bukrs TYPE bukrs\n      EXPORTING et_items TYPE zfi_cleared_items_t.\nENDCLASS.\n\nCLASS zcl_fi_vendor_balance IMPLEMENTATION.\n  METHOD get_open_items.\n    SELECT * FROM bsik INTO TABLE et_items\n      WHERE lifnr = iv_lifnr AND bukrs = iv_bukrs.\n  ENDMETHOD.\n  METHOD get_cleared_items.\n    SELECT * FROM bsak INTO TABLE et_items\n      WHERE lifnr = iv_lifnr AND bukrs = iv_bukrs.\n  ENDMETHOD.\nENDCLASS.",
+      "lines": 22
+    },
+    "ZCL_FI_CUSTOMER_AGING": {
+      "type": "CLAS",
+      "source": "CLASS zcl_fi_customer_aging DEFINITION PUBLIC FINAL CREATE PUBLIC.\n  PUBLIC SECTION.\n    METHODS calculate_aging\n      IMPORTING iv_kunnr TYPE kunnr\n                iv_bukrs TYPE bukrs\n      RETURNING VALUE(rs_aging) TYPE zfi_aging_result.\nENDCLASS.\n\nCLASS zcl_fi_customer_aging IMPLEMENTATION.\n  METHOD calculate_aging.\n    DATA: lt_open TYPE TABLE OF bsid,\n          lt_cleared TYPE TABLE OF bsad.\n    SELECT * FROM bsid INTO TABLE lt_open\n      WHERE kunnr = iv_kunnr AND bukrs = iv_bukrs.\n    SELECT * FROM bsad INTO TABLE lt_cleared\n      WHERE kunnr = iv_kunnr AND bukrs = iv_bukrs.\n    \" Customer master lookup\n    SELECT SINGLE * FROM kna1 WHERE kunnr = iv_kunnr.\n    rs_aging-total_open = lines( lt_open ).\n  ENDMETHOD.\nENDCLASS.",
+      "lines": 20
+    },
+    "ZCL_FI_CREDIT_CHECK": {
+      "type": "CLAS",
+      "source": "CLASS zcl_fi_credit_check DEFINITION PUBLIC FINAL CREATE PUBLIC.\n  PUBLIC SECTION.\n    METHODS check_credit_limit\n      IMPORTING iv_kunnr TYPE kunnr\n                iv_amount TYPE wrbtr\n      RETURNING VALUE(rv_ok) TYPE abap_bool.\nENDCLASS.\n\nCLASS zcl_fi_credit_check IMPLEMENTATION.\n  METHOD check_credit_limit.\n    DATA: lv_limit TYPE ukmbp_cms-credit_limit.\n    SELECT SINGLE credit_limit FROM ukmbp_cms INTO lv_limit\n      WHERE partner = iv_kunnr.\n    IF iv_amount <= lv_limit.\n      rv_ok = abap_true.\n    ENDIF.\n  ENDMETHOD.\nENDCLASS.",
+      "lines": 18
+    },
+    "ZCL_MM_PO_ENHANCE": {
+      "type": "CLAS",
+      "source": "CLASS zcl_mm_po_enhance DEFINITION PUBLIC FINAL CREATE PUBLIC.\n  PUBLIC SECTION.\n    METHODS enhance_po\n      IMPORTING iv_ebeln TYPE ebeln\n      CHANGING cs_ekko TYPE ekko.\n    METHODS get_vendor_info\n      IMPORTING iv_lifnr TYPE lifnr\n      RETURNING VALUE(rs_vendor) TYPE lfa1.\nENDCLASS.\n\nCLASS zcl_mm_po_enhance IMPLEMENTATION.\n  METHOD enhance_po.\n    SELECT * FROM ekko WHERE ebeln = iv_ebeln.\n      cs_ekko = ekko.\n    ENDSELECT.\n    \" Also check vendor\n    DATA: ls_vendor TYPE lfa1.\n    SELECT SINGLE * FROM lfa1 INTO ls_vendor WHERE lifnr = cs_ekko-lifnr.\n    \" User exit hook for custom fields\n    CALL CUSTOMER-FUNCTION '001'\n      EXPORTING iv_ebeln = iv_ebeln\n      CHANGING cs_ekko = cs_ekko.\n  ENDMETHOD.\n  METHOD get_vendor_info.\n    SELECT SINGLE * FROM lfa1 INTO rs_vendor WHERE lifnr = iv_lifnr.\n    \" Also get bank details\n    SELECT SINGLE * FROM lfbk WHERE lifnr = iv_lifnr.\n  ENDMETHOD.\nENDCLASS.",
+      "lines": 28
+    },
+    "ZCL_MM_VENDOR_EVAL": {
+      "type": "CLAS",
+      "source": "CLASS zcl_mm_vendor_eval DEFINITION PUBLIC FINAL CREATE PUBLIC.\n  PUBLIC SECTION.\n    TYPES: BEGIN OF ty_vendor_score,\n             lifnr TYPE lifnr,\n             score TYPE i,\n             grade TYPE c LENGTH 1,\n           END OF ty_vendor_score.\n    METHODS evaluate_vendor\n      IMPORTING iv_lifnr TYPE lifnr\n      RETURNING VALUE(rs_score) TYPE ty_vendor_score.\nENDCLASS.\n\nCLASS zcl_mm_vendor_eval IMPLEMENTATION.\n  METHOD evaluate_vendor.\n    DATA: lt_po_hist TYPE TABLE OF ekko.\n    SELECT * FROM ekko INTO TABLE lt_po_hist WHERE lifnr = iv_lifnr.\n    \" Legacy table approach\n    DATA: lt_vendor_data TYPE lfa1 OCCURS 10.\n    CALL FUNCTION 'BAPI_VENDOR_GETDETAIL'\n      EXPORTING vendorno = iv_lifnr\n      TABLES   return   = lt_return.\n    rs_score-lifnr = iv_lifnr.\n    rs_score-score = lines( lt_po_hist ).\n  ENDMETHOD.\nENDCLASS.",
+      "lines": 24
+    },
+    "ZCL_SD_ORDER_PROC": {
+      "type": "CLAS",
+      "source": "CLASS zcl_sd_order_proc DEFINITION PUBLIC FINAL CREATE PUBLIC.\n  PUBLIC SECTION.\n    METHODS create_order\n      IMPORTING is_header TYPE zsd_order_header\n                it_items TYPE zsd_order_items_t\n      RETURNING VALUE(rv_vbeln) TYPE vbeln.\n    METHODS update_order\n      IMPORTING iv_vbeln TYPE vbeln\n                it_changes TYPE zsd_changes_t.\nENDCLASS.\n\nCLASS zcl_sd_order_proc IMPLEMENTATION.\n  METHOD create_order.\n    \" Direct customer master access\n    DATA: ls_customer TYPE kna1.\n    SELECT SINGLE * FROM kna1 INTO ls_customer WHERE kunnr = is_header-kunnr.\n    DATA: ls_knvv TYPE knvv.\n    SELECT SINGLE * FROM knvv INTO ls_knvv WHERE kunnr = is_header-kunnr.\n    \" BDC for order creation\n    CALL TRANSACTION 'VA01' USING lt_bdcdata MODE 'N'.\n    rv_vbeln = '0000000001'.\n  ENDMETHOD.\n  METHOD update_order.\n    CALL TRANSACTION 'VA02' USING lt_bdcdata MODE 'N'.\n  ENDMETHOD.\nENDCLASS.",
+      "lines": 24
+    },
+    "ZCL_SD_OUTPUT_MGR": {
+      "type": "CLAS",
+      "source": "CLASS zcl_sd_output_mgr DEFINITION PUBLIC FINAL CREATE PUBLIC.\n  PUBLIC SECTION.\n    METHODS send_output\n      IMPORTING iv_vbeln TYPE vbeln\n                iv_kschl TYPE kschl.\n    METHODS get_output_status\n      IMPORTING iv_vbeln TYPE vbeln\n      RETURNING VALUE(rt_status) TYPE zsd_output_status_t.\nENDCLASS.\n\nCLASS zcl_sd_output_mgr IMPLEMENTATION.\n  METHOD send_output.\n    DATA: ls_nast TYPE nast.\n    SELECT SINGLE * FROM nast INTO ls_nast\n      WHERE objky = iv_vbeln AND kschl = iv_kschl.\n    \" Get processing routine from TNAPR\n    DATA: ls_tnapr TYPE tnapr.\n    SELECT SINGLE * FROM tnapr INTO ls_tnapr WHERE kschl = iv_kschl.\n  ENDMETHOD.\n  METHOD get_output_status.\n    SELECT * FROM nast INTO TABLE rt_status\n      WHERE objky = iv_vbeln.\n  ENDMETHOD.\nENDCLASS.",
+      "lines": 22
+    },
+    "ZCL_SD_DELIVERY": {
+      "type": "CLAS",
+      "source": "CLASS zcl_sd_delivery DEFINITION PUBLIC FINAL CREATE PUBLIC.\n  PUBLIC SECTION.\n    METHODS create_delivery\n      IMPORTING iv_vbeln TYPE vbeln\n      RETURNING VALUE(rv_vbeln_vl) TYPE vbeln_vl.\n    METHODS check_warehouse\n      IMPORTING iv_lgnum TYPE lgnum\n                iv_matnr TYPE matnr.\nENDCLASS.\n\nCLASS zcl_sd_delivery IMPLEMENTATION.\n  METHOD create_delivery.\n    \" Use BAPI for delivery\n    CALL FUNCTION 'BAPI_OUTB_DELIVERY_CREATE_SLS'\n      EXPORTING ship_point = 'SP01'.\n    rv_vbeln_vl = '0080000001'.\n  ENDMETHOD.\n  METHOD check_warehouse.\n    \" Classic WM stock check\n    DATA: lt_stock TYPE TABLE OF lagp.\n    SELECT * FROM lagp INTO TABLE lt_stock\n      WHERE lgnum = iv_lgnum AND matnr = iv_matnr.\n    DATA: lt_quants TYPE TABLE OF lqua.\n    SELECT * FROM lqua INTO TABLE lt_quants\n      WHERE lgnum = iv_lgnum AND matnr = iv_matnr.\n  ENDMETHOD.\nENDCLASS.",
+      "lines": 26
+    },
+    "ZREP_FI_MONTHLY": {
+      "type": "PROG",
+      "source": "REPORT zrep_fi_monthly.\n\nTABLES: bkpf, bseg, bsis, kna1.\n\nDATA: lt_items TYPE bseg OCCURS 100,\n      lt_gl_items TYPE TABLE OF bsis.\n\nSELECT-OPTIONS: s_bukrs FOR bkpf-bukrs,\n                 s_gjahr FOR bkpf-gjahr.\n\nSTART-OF-SELECTION.\n  SELECT * FROM bseg INTO TABLE lt_items\n    WHERE bukrs IN s_bukrs AND gjahr IN s_gjahr.\n  SELECT * FROM bsis INTO TABLE lt_gl_items\n    WHERE bukrs IN s_bukrs AND gjahr IN s_gjahr.\n\n  \" Cost element lookup\n  DATA: lt_cska TYPE TABLE OF cska.\n  SELECT * FROM cska INTO TABLE lt_cska.\n\n  WRITE: / 'Monthly Financial Report'.\n  WRITE: / 'Items:', lines( lt_items ).\n  WRITE: / 'GL Items:', lines( lt_gl_items ).",
+      "lines": 22
+    },
+    "ZCL_WM_STOCK_CHECK": {
+      "type": "CLAS",
+      "source": "CLASS zcl_wm_stock_check DEFINITION PUBLIC FINAL CREATE PUBLIC.\n  PUBLIC SECTION.\n    METHODS check_stock\n      IMPORTING iv_lgnum TYPE lgnum\n                iv_matnr TYPE matnr\n      RETURNING VALUE(rv_qty) TYPE menge_d.\nENDCLASS.\n\nCLASS zcl_wm_stock_check IMPLEMENTATION.\n  METHOD check_stock.\n    DATA: lt_lagp TYPE TABLE OF lagp,\n          lt_lqua TYPE TABLE OF lqua,\n          lt_ltap TYPE TABLE OF ltap.\n    SELECT * FROM lagp INTO TABLE lt_lagp\n      WHERE lgnum = iv_lgnum AND matnr = iv_matnr.\n    SELECT * FROM lqua INTO TABLE lt_lqua\n      WHERE lgnum = iv_lgnum AND matnr = iv_matnr.\n    SELECT * FROM ltap INTO TABLE lt_ltap\n      WHERE lgnum = iv_lgnum.\n    \" Create transfer order\n    CALL FUNCTION 'L_TO_CREATE_MOVE_SU'\n      EXPORTING lgnum = iv_lgnum.\n    rv_qty = lines( lt_lqua ).\n  ENDMETHOD.\nENDCLASS.",
+      "lines": 24
+    },
+    "ZRP_SD_BACKLOG": {
+      "type": "PROG",
+      "source": "REPORT zrp_sd_backlog.\n\nTABLES: vbak, vbap, kna1.\n\nDATA: lt_orders TYPE TABLE OF vbak,\n      lt_items TYPE TABLE OF vbap,\n      lv_matnr TYPE c LENGTH 18.\n\nSELECT-OPTIONS: s_vkorg FOR vbak-vkorg.\n\nSTART-OF-SELECTION.\n  SELECT * FROM vbak INTO TABLE lt_orders\n    WHERE vkorg IN s_vkorg.\n  \" Customer name lookup\n  DATA: ls_kna1 TYPE kna1.\n  SELECT SINGLE * FROM kna1 INTO ls_kna1 WHERE kunnr = lt_orders[ 1 ]-kunnr.\n  WRITE: / 'Sales Backlog Report'.\n  WRITE: / 'Orders:', lines( lt_orders ).",
+      "lines": 18
+    }
+  }
+}
