@@ -1,47 +1,38 @@
 # SAP Connect
 
-Demo & Pitch Toolkit for SAP Public Cloud External Development.
+Enterprise-grade SAP S/4HANA migration platform and Clean Core development toolkit.
 
-A GitHub Codespace that provides everything needed to demonstrate SAP integration patterns, discover client APIs, and prototype solutions following **Clean Core** principles.
+Replaces 6-month migration timelines with automated, code-driven execution. Everything runs in a GitHub Codespace — no SAP credentials required for development and testing.
 
-## Architecture
+## Platform Overview
 
 ```mermaid
 graph TB
-    subgraph "GitHub Codespace"
-        subgraph "SAP CAP (Node.js)"
-            CS[Customer Service<br/>OData V4]
-            BP[Business Partner API<br/>Stubbed/Mocked]
-            DB[(SQLite<br/>In-Memory)]
-        end
-        subgraph "Fiori Elements"
-            FE[List Report +<br/>Object Page]
-        end
-        subgraph "API Discovery"
-            DIS[Scanner CLI]
-            CAT[Mock Catalog]
-        end
+    subgraph "Migration Engine (874 rules, 42 objects, 52 processes)"
+        ASSESS[Phase 1: Assess<br/>874 custom code rules<br/>22 SAP modules]
+        REMED[Phase 2: Remediate<br/>Auto-fix suggestions<br/>per rule]
+        PROFILE[Phase 3: Profile<br/>Data quality analysis<br/>Fuzzy duplicate detection]
+        SDT[Phase 4: SDT<br/>52 E2E test scenarios<br/>Auto-generated]
+        CONFIG[Phase 5: Configure<br/>FI/CO/MM/SD configs<br/>Template-driven]
+        PROV[Phase 6: Provision<br/>42 migration objects<br/>1600+ field mappings]
+        TEST[Phase 7: Test<br/>6-check reconciliation<br/>per object]
+        CUT[Phase 8: Cutover<br/>Critical path scheduling<br/>Rollback plan]
     end
 
-    subgraph "SAP S/4HANA Public Cloud"
-        API[Released APIs]
-        EVT[Business Events]
-        EXT[Extension Points]
+    subgraph "Development Toolkit"
+        CAP[CAP Backend<br/>OData V4 + Draft]
+        FE[Fiori Elements UI]
+        DIS[API Discovery Scanner]
+        AG[AI Agent<br/>Claude-powered]
     end
 
-    subgraph "SAP BTP"
-        DEST[Destinations]
-        EM[Event Mesh]
+    subgraph "Infrastructure"
+        ALM[Cloud ALM Connector<br/>5 project templates]
+        DASH[Dashboard API<br/>8 REST endpoints]
+        RPT[Report Generator<br/>JSON + Markdown]
     end
 
-    FE -->|OData V4| CS
-    CS --> DB
-    CS -.->|Mock/Live| BP
-    DIS -.->|Scan| API
-    DIS --> CAT
-    BP -.->|Production| DEST
-    DEST -.-> API
-    EM -.-> EVT
+    ASSESS --> REMED --> PROFILE --> SDT --> CONFIG --> PROV --> TEST --> CUT
 ```
 
 ## Quick Start
@@ -49,8 +40,8 @@ graph TB
 ### In Codespace (recommended)
 1. Click **Code > Codespaces > New codespace** on this repository
 2. Wait for setup to complete (installs SAP tools automatically)
-3. Run `npm run watch` - server starts on port 4004
-4. Open the forwarded port to see the launcher page
+3. Run `npm run watch` — server starts on port 4004
+4. Run `npm test` — 949 tests across 96 files
 
 ### Local Development
 ```bash
@@ -61,16 +52,65 @@ npm install -g @sap/cds-dk
 npm run watch
 ```
 
+### Run Migration Assessment
+```bash
+npm run assess                    # Scan custom code against 874 rules
+npm test                          # Run full test suite (949 tests)
+node -e "
+  const R = require('./migration/objects/registry');
+  const r = new R();
+  r.runAll({ mode: 'mock' }).then(res => console.log(JSON.stringify(res.stats, null, 2)))
+"                                 # Run all 42 migration objects
+```
+
 ## What's Inside
 
-| Component | Description |
-|-----------|-------------|
-| **CAP Backend** | OData V4 service with Customers, Projects, draft support |
-| **Fiori Elements** | Auto-generated UI from annotations (List Report + Object Page) |
-| **API Discovery** | CLI tool to scan SAP systems for available APIs and events |
-| **AI Agent** | Multi-agent ABAP development assistant powered by Claude AI |
-| **Mock Mode** | Everything works without a real SAP system |
-| **Client Configs** | Swap between clients by changing environment files |
+| Component | Scale | Description |
+|-----------|-------|-------------|
+| **Rule Engine** | 874 rules, 21 modules | Custom code analysis: FI(80), ABAP(80), MM(67), SD(65), HR(53), CO(52), PP(47), plus 14 more |
+| **Migration Objects** | 42 objects, 1600+ fields | Full ETLV lifecycle: GL, AR/AP, BP, Material, PO, SO, Assets, PM, PP, EWM, TM, GTS, BW |
+| **Business Processes** | 52 E2E flows, 14 modules | Order-to-Cash, Procure-to-Pay, Payroll, Maintenance, Freight, Compliance, Year-End Close |
+| **Data Quality** | 6 check types | Required fields, exact/fuzzy duplicates, referential integrity, format, range validation |
+| **Reconciliation** | 6 checks per object | Count, key coverage, aggregate, field sample, null analysis, duplicate detection |
+| **Test Engine** | 4 scenario types | Comparison, regression, process, performance — auto-generated from migration metadata |
+| **Dashboard** | 8 REST endpoints | Summary, object detail, rules analysis, reconciliation, run controls, progress tracking |
+| **Cloud ALM** | 5 project templates | Greenfield, brownfield (core/full), selective data, landscape consolidation |
+| **Cutover Planner** | Critical path + rollback | Dependency-aware task scheduling, 15-item go/no-go checklist, 8-step rollback plan |
+| **CAP Backend** | OData V4 | Customer service with draft support, business partner API |
+| **Fiori Elements** | List Report + Object Page | Auto-generated UI from annotations |
+| **API Discovery** | Scanner CLI | Discovers released APIs, events, and extension points |
+| **AI Agent** | Claude-powered | Multi-agent ABAP development assistant |
+
+## 8-Phase Migration Methodology
+
+| Phase | What | How | Output |
+|-------|------|-----|--------|
+| **1. Assess** | Scan custom code + interfaces | 874 rules across 22 modules, interface scanner | Risk score, findings by severity |
+| **2. Remediate** | Fix flagged items | Per-rule remediation guidance, priority ranking | Clean code baseline |
+| **3. Profile** | Analyze data quality | Levenshtein fuzzy matching, referential integrity | Quality report per object |
+| **4. SDT** | Generate test scenarios | Auto-derive from objects + process catalog | 52+ executable test cases |
+| **5. Configure** | Build target config | FI/CO/MM/SD config objects with templates | Migration-ready config records |
+| **6. Provision** | Extract → Transform → Validate → Load | 42 objects with declarative field mappings | Migrated data in S/4HANA format |
+| **7. Test** | Reconcile source vs target | 6-check reconciliation engine | Pass/fail per object |
+| **8. Cutover** | Execute go-live | Critical path scheduling, dependency graph | Cutover plan + rollback |
+
+## Migration Objects (42)
+
+**Finance**: GL Balance, GL Account Master, Customer Open Items, Vendor Open Items, Cost Element, Asset Acquisition, Profitability Segment
+
+**Controlling**: Cost Center, Profit Center, Internal Order, WBS Element, FI/CO/MM/SD Config
+
+**Logistics**: Material Master, Purchase Order, Sales Order, Pricing Conditions, Source List, Scheduling Agreement, Purchase Contract, Batch Master
+
+**Plant Maintenance**: Equipment Master, Functional Location, Work Center, Maintenance Order
+
+**Production**: Production Order, BOM & Routing, Inspection Plan
+
+**Extended**: Warehouse Structure (EWM), Transport Route (TM), Trade Compliance (GTS), BW Extractor (BW)
+
+**Interfaces**: RFC Destination, IDoc Config, Web Service, Batch Job
+
+**HR**: Employee Master, Bank Master
 
 ## Key Commands
 
@@ -78,34 +118,27 @@ npm run watch
 npm run watch        # Start CAP server with live reload
 npm run discover     # Run API Discovery in mock mode
 npm run agent        # Run AI Agent workflow in mock mode
-npm run demo         # Start in demo profile
+npm run assess       # Run migration assessment
+npm test             # Run 949 tests across 96 files
 ```
 
-## Endpoints (port 4004)
+## Project Templates
 
-| Endpoint | Description |
-|----------|-------------|
-| `/` | Launcher page |
-| `/api/customers/Customers` | Customer data (OData) |
-| `/api/customers/Projects` | Project data (OData) |
-| `/api/customers/getProjectStats()` | Project statistics |
+| Template | Modules | Use Case |
+|----------|---------|----------|
+| `greenfield_full` | FI, CO, MM, SD, PP, QM, PM, PS, HR | New S/4HANA implementation |
+| `brownfield_core` | FI, CO | Finance-only conversion |
+| `brownfield_full` | FI, CO, MM, SD, PP, QM, PM, PS | Full system conversion |
+| `selective_data` | FI, CO, MM, SD | Data migration only |
+| `landscape_consolidation` | FI, CO, MM, SD, PP, HR | Multi-system merge |
 
-## Multi-Client Support
+## Tech Stack
 
-SAP Connect supports multiple clients without separate codespaces:
-
-```bash
-# Set up a new client
-cp -r clients/_template clients/my-client
-cp clients/my-client/.env.template .env
-# Edit .env with client details
-
-# Switch clients
-cp clients/other-client/.env.template .env
-npm run watch
-```
-
-See [clients/_template/README.md](clients/_template/README.md) for details.
+- **SAP CAP (Node.js)** — Backend framework
+- **SAP Fiori Elements / UI5** — Frontend
+- **SQLite in-memory** — Local database
+- **vitest** — Test framework (949 tests)
+- **SAP BTP** — Target deployment platform
 
 ## Documentation
 
@@ -117,10 +150,3 @@ See [clients/_template/README.md](clients/_template/README.md) for details.
 - [Demo Script](docs/demo-script.md)
 - [API Discovery](discovery/README.md)
 - [AI Agent](agent/README.md)
-
-## Tech Stack
-
-- **SAP CAP (Node.js)** - Backend framework
-- **SAP Fiori Elements / UI5** - Frontend
-- **SQLite in-memory** - Local database
-- **SAP BTP** - Target deployment platform
