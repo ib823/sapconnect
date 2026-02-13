@@ -99,6 +99,11 @@ class MigrationObjectRegistry {
       PURCHASE_ORDER: require('./purchase-order'),
       SALES_ORDER: require('./sales-order'),
       FIXED_ASSET: require('./fixed-asset'),
+      COST_CENTER: require('./cost-center'),
+      PROFIT_CENTER: require('./profit-center'),
+      INTERNAL_ORDER: require('./internal-order'),
+      WBS_ELEMENT: require('./wbs-element'),
+      INSPECTION_PLAN: require('./inspection-plan'),
     };
     for (const [id, cls] of Object.entries(builtins)) {
       this.registerClass(id, cls);

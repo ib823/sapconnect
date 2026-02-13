@@ -17,6 +17,8 @@ const abapRules = require('./abap-rules');
 const enhancementRules = require('./enhancement-rules');
 const dataModelRules = require('./data-model-rules');
 const removedRules = require('./removed-rules');
+const psRules = require('./ps-rules');
+const qmRules = require('./qm-rules');
 
 class RuleRegistry {
   constructor() {
@@ -94,6 +96,8 @@ registry.registerAll(abapRules);
 registry.registerAll(enhancementRules);
 registry.registerAll(dataModelRules);
 registry.registerAll(removedRules);
+registry.registerAll(psRules);
+registry.registerAll(qmRules);
 
 // Backward-compatible exports
 const RULES = registry.getAll();
