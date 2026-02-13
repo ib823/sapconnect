@@ -1,7 +1,7 @@
 /**
  * Custom Code Extractor
  *
- * Extracts custom code inventory including Z*/Y* objects from the
+ * Extracts custom code inventory including Z and Y namespace objects from the
  * repository, custom programs from TRDIR, table usage cross-references,
  * and include dependencies. In live mode, READ_REPORT FM would be used
  * for source code retrieval; mock mode provides static data.
