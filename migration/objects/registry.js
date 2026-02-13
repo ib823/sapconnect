@@ -112,6 +112,11 @@ class MigrationObjectRegistry {
       CO_CONFIG: require('./co-config'),
       MM_CONFIG: require('./mm-config'),
       SD_CONFIG: require('./sd-config'),
+      WAREHOUSE_STRUCTURE: require('./warehouse-structure'),
+      TRANSPORT_ROUTE: require('./transport-route'),
+      TRADE_COMPLIANCE: require('./trade-compliance'),
+      BOM_ROUTING: require('./bom-routing'),
+      BW_EXTRACTOR: require('./bw-extractor'),
     };
     for (const [id, cls] of Object.entries(builtins)) {
       this.registerClass(id, cls);

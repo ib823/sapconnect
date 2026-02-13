@@ -21,6 +21,11 @@ const psRules = require('./ps-rules');
 const qmRules = require('./qm-rules');
 const interfaceRules = require('./interface-rules');
 const configRules = require('./config-rules');
+const ewmRules = require('./ewm-rules');
+const tmRules = require('./tm-rules');
+const gtsRules = require('./gts-rules');
+const plmRules = require('./plm-rules');
+const bwRules = require('./bw-rules');
 
 class RuleRegistry {
   constructor() {
@@ -102,6 +107,11 @@ registry.registerAll(psRules);
 registry.registerAll(qmRules);
 registry.registerAll(interfaceRules);
 registry.registerAll(configRules);
+registry.registerAll(ewmRules);
+registry.registerAll(tmRules);
+registry.registerAll(gtsRules);
+registry.registerAll(plmRules);
+registry.registerAll(bwRules);
 
 // Backward-compatible exports
 const RULES = registry.getAll();
