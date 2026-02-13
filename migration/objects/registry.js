@@ -104,6 +104,10 @@ class MigrationObjectRegistry {
       INTERNAL_ORDER: require('./internal-order'),
       WBS_ELEMENT: require('./wbs-element'),
       INSPECTION_PLAN: require('./inspection-plan'),
+      RFC_DESTINATION: require('./rfc-destination'),
+      IDOC_CONFIG: require('./idoc-config'),
+      WEB_SERVICE: require('./web-service'),
+      BATCH_JOB: require('./batch-job'),
     };
     for (const [id, cls] of Object.entries(builtins)) {
       this.registerClass(id, cls);

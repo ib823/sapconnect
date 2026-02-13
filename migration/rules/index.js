@@ -19,6 +19,7 @@ const dataModelRules = require('./data-model-rules');
 const removedRules = require('./removed-rules');
 const psRules = require('./ps-rules');
 const qmRules = require('./qm-rules');
+const interfaceRules = require('./interface-rules');
 
 class RuleRegistry {
   constructor() {
@@ -98,6 +99,7 @@ registry.registerAll(dataModelRules);
 registry.registerAll(removedRules);
 registry.registerAll(psRules);
 registry.registerAll(qmRules);
+registry.registerAll(interfaceRules);
 
 // Backward-compatible exports
 const RULES = registry.getAll();
