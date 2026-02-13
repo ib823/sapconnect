@@ -27,6 +27,10 @@ tags:
     description: Health and readiness checks
   - name: Metrics
     description: Observability endpoints
+  - name: Audit
+    description: Audit log query and statistics
+  - name: Info
+    description: Application information
 
 paths:
   /health:
@@ -220,6 +224,96 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+
+  /api/audit:
+    get:
+      tags: [Audit]
+      summary: Query audit log
+      description: Returns filtered audit log entries with pagination.
+      operationId: queryAuditLog
+      parameters:
+        - name: event
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by event type
+        - name: actor
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by actor
+        - name: since
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          description: Filter entries from this timestamp
+        - name: until
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+          description: Filter entries until this timestamp
+        - name: outcome
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [success, failure]
+          description: Filter by outcome
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 100
+          description: Maximum number of entries to return
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: Number of entries to skip
+      responses:
+        '200':
+          description: Audit log query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditQueryResponse'
+
+  /api/audit/stats:
+    get:
+      tags: [Audit]
+      summary: Audit log statistics
+      description: Returns aggregate statistics about audit log entries.
+      operationId: getAuditStats
+      responses:
+        '200':
+          description: Audit log statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditStatsResponse'
+
+  /api/info:
+    get:
+      tags: [Info]
+      summary: Application information
+      description: Returns application metadata including version, environment, and uptime.
+      operationId: getAppInfo
+      responses:
+        '200':
+          description: Application information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfoResponse'
 
 components:
   schemas:
@@ -453,3 +547,111 @@ components:
       properties:
         error:
           type: string
+
+    AuditEntry:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique audit entry identifier
+          example: aud-1700000000000-abc123
+        timestamp:
+          type: string
+          format: date-time
+        event:
+          type: string
+          description: Event type
+          example: api.access
+        actor:
+          type: string
+          description: Actor who performed the action
+          example: system
+        ip:
+          type: string
+          nullable: true
+          description: IP address of the actor
+        resource:
+          type: string
+          nullable: true
+          description: Resource that was accessed
+          example: GET /api/dashboard/summary
+        action:
+          type: string
+          nullable: true
+          description: Action performed
+        outcome:
+          type: string
+          enum: [success, failure, error]
+        metadata:
+          type: object
+          description: Additional event metadata
+
+    AuditQueryResponse:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of matching entries
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditEntry'
+
+    AuditStatsResponse:
+      type: object
+      properties:
+        totalEntries:
+          type: integer
+          description: Total number of audit log entries
+        byEvent:
+          type: object
+          additionalProperties:
+            type: integer
+          description: Entry count grouped by event type
+        byOutcome:
+          type: object
+          properties:
+            success:
+              type: integer
+            failure:
+              type: integer
+            error:
+              type: integer
+          description: Entry count grouped by outcome
+        byActor:
+          type: object
+          additionalProperties:
+            type: integer
+          description: Entry count grouped by actor
+        oldestEntry:
+          type: string
+          format: date-time
+          nullable: true
+          description: Timestamp of the oldest entry
+        newestEntry:
+          type: string
+          format: date-time
+          nullable: true
+          description: Timestamp of the newest entry
+
+    InfoResponse:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Application name
+        version:
+          type: string
+          description: Application version
+        environment:
+          type: string
+          description: Runtime environment
+        migrationMode:
+          type: string
+          description: Current migration mode
+        migrationObjects:
+          type: integer
+          description: Number of registered migration objects
+        uptime:
+          type: integer
+          description: Uptime in seconds

@@ -48,7 +48,7 @@ graph TB
 1. Click **Code > Codespaces > New codespace** on this repository
 2. Wait for setup to complete (installs SAP tools automatically)
 3. Run `npm run watch` — server starts on port 4004
-4. Run `npm test` — 2133 tests across 185 files
+4. Run `npm test` — 2195 tests across 188 files
 
 ### Local Development
 ```bash
@@ -70,7 +70,7 @@ docker compose up
 ### Run Migration Assessment
 ```bash
 npm run assess                    # Scan custom code against 874 rules
-npm test                          # Run full test suite (2133 tests)
+npm test                          # Run full test suite (2195 tests)
 npm run lint                      # ESLint code quality check
 node -e "
   const R = require('./migration/objects/registry');
@@ -168,7 +168,7 @@ npm run watch        # Start CAP server with live reload
 npm run discover     # Run API Discovery in mock mode
 npm run agent        # Run AI Agent workflow in mock mode
 npm run assess       # Run migration assessment
-npm test             # Run 2133 tests across 185 files
+npm test             # Run 2195 tests across 188 files
 npm run lint         # Run ESLint
 npm run format       # Run Prettier
 npm run docker:build # Build Docker image
@@ -189,7 +189,7 @@ npm run docker:build # Build Docker image
 - **SAP CAP (Node.js)** — Backend framework
 - **SAP Fiori Elements / UI5** — Frontend
 - **SQLite in-memory** — Local database
-- **vitest** — Test framework (2133 tests, 185 files)
+- **vitest** — Test framework (2195 tests, 188 files)
 - **ESLint + Prettier** — Code quality
 - **Docker** — Containerization
 - **GitHub Actions** — CI/CD
