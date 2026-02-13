@@ -1,0 +1,30 @@
+{
+  "changeDocuments": {
+    "headers": [
+      { "OBJECTCLAS": "VERKBELEG", "OBJECTID": "0000500001", "CHANGENR": "0000000001", "USERNAME": "JSMITH", "UDATE": "20231015", "UTIME": "143022", "TCODE": "VA01" },
+      { "OBJECTCLAS": "VERKBELEG", "OBJECTID": "0000500001", "CHANGENR": "0000000002", "USERNAME": "JSMITH", "UDATE": "20231016", "UTIME": "091500", "TCODE": "VA02" }
+    ],
+    "items": [
+      { "OBJECTCLAS": "VERKBELEG", "OBJECTID": "0000500001", "CHANGENR": "0000000001", "TABNAME": "VBAK", "FNAME": "AUART", "CHNGIND": "I", "VALUE_NEW": "OR", "VALUE_OLD": "" }
+    ],
+    "objectClasses": [
+      { "OBJECT": "VERKBELEG", "OBTEXT": "Sales Document" },
+      { "OBJECT": "EINKBELEG", "OBTEXT": "Purchasing Document" }
+    ]
+  },
+  "usageStatistics": {
+    "transactionUsage": [
+      { "tcode": "VA01", "executions": 15420, "totalTime": 462600, "avgTime": 30 },
+      { "tcode": "ME21N", "executions": 8900, "totalTime": 267000, "avgTime": 30 },
+      { "tcode": "FB01", "executions": 6200, "totalTime": 186000, "avgTime": 30 }
+    ],
+    "userActivity": [
+      { "user": "JSMITH", "totalExecutions": 12500, "topTcodes": ["VA01", "VA02", "VL01N"] },
+      { "user": "KLEE", "totalExecutions": 9800, "topTcodes": ["ME21N", "ME23N", "MIGO"] }
+    ],
+    "timeDistribution": [
+      { "hour": 9, "executions": 15200 },
+      { "hour": 10, "executions": 18900 }
+    ]
+  }
+}

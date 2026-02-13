@@ -1,0 +1,28 @@
+{
+  "variants": [
+    { "REPORT": "RFITEMGL", "VARIANT": "Z_GL_MONTHLY", "MESSION_DATE": "20230601", "MESSION_USER": "JSMITH", "ESSION": "X", "PROTECTED": "" },
+    { "REPORT": "RFITEMGL", "VARIANT": "Z_GL_YEARLY", "MESSION_DATE": "20230801", "MESSION_USER": "JSMITH", "ESSION": "X", "PROTECTED": "" },
+    { "REPORT": "RFALEPRO", "VARIANT": "Z_ALE_MATMAS", "MESSION_DATE": "20220315", "MESSION_USER": "SYSADMIN", "ESSION": "X", "PROTECTED": "X" },
+    { "REPORT": "RM07MLBS", "VARIANT": "Z_MM_STOCK", "MESSION_DATE": "20230101", "MESSION_USER": "MWILSON", "ESSION": "X", "PROTECTED": "" },
+    { "REPORT": "RVKRED01", "VARIANT": "Z_SD_CREDIT", "MESSION_DATE": "20230901", "MESSION_USER": "ABROWN", "ESSION": "X", "PROTECTED": "" },
+    { "REPORT": "SAPMSSY1", "VARIANT": "Z_BATCH_VAR", "MESSION_DATE": "20240101", "MESSION_USER": "BATCHUSR", "ESSION": "", "PROTECTED": "X" },
+    { "REPORT": "ZFI_REPORT_01", "VARIANT": "DEFAULT", "MESSION_DATE": "20240201", "MESSION_USER": "JSMITH", "ESSION": "X", "PROTECTED": "" }
+  ],
+  "variantTexts": [
+    { "REPORT": "RFITEMGL", "VARIANT": "Z_GL_MONTHLY", "LANGU": "E", "VTEXT": "Monthly GL Line Items" },
+    { "REPORT": "RFITEMGL", "VARIANT": "Z_GL_YEARLY", "LANGU": "E", "VTEXT": "Yearly GL Summary" },
+    { "REPORT": "RFALEPRO", "VARIANT": "Z_ALE_MATMAS", "LANGU": "E", "VTEXT": "ALE Material Master Distribution" },
+    { "REPORT": "RM07MLBS", "VARIANT": "Z_MM_STOCK", "LANGU": "E", "VTEXT": "Stock Overview by Plant" },
+    { "REPORT": "RVKRED01", "VARIANT": "Z_SD_CREDIT", "LANGU": "E", "VTEXT": "Credit Management Report" },
+    { "REPORT": "SAPMSSY1", "VARIANT": "Z_BATCH_VAR", "LANGU": "E", "VTEXT": "Batch Processing Variant" },
+    { "REPORT": "ZFI_REPORT_01", "VARIANT": "DEFAULT", "LANGU": "E", "VTEXT": "Default Variant for Custom FI Report" }
+  ],
+  "selectionVariables": [
+    { "NAME": "ZCLIENT", "TYPE": "P", "NUMB": "0001", "SIGN": "I", "OPTI": "EQ", "LOW": "100", "HIGH": "" },
+    { "NAME": "ZCOMPCODE", "TYPE": "P", "NUMB": "0002", "SIGN": "I", "OPTI": "EQ", "LOW": "1000", "HIGH": "" },
+    { "NAME": "ZFISCYR", "TYPE": "P", "NUMB": "0003", "SIGN": "I", "OPTI": "EQ", "LOW": "2024", "HIGH": "" },
+    { "NAME": "ZPERIOD", "TYPE": "P", "NUMB": "0004", "SIGN": "I", "OPTI": "BT", "LOW": "001", "HIGH": "012" },
+    { "NAME": "ZPLANT", "TYPE": "S", "NUMB": "0005", "SIGN": "I", "OPTI": "EQ", "LOW": "1000", "HIGH": "" },
+    { "NAME": "ZPLANT", "TYPE": "S", "NUMB": "0006", "SIGN": "I", "OPTI": "EQ", "LOW": "2000", "HIGH": "" }
+  ]
+}

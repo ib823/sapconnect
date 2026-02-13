@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const Logger = require('../lib/logger');
 
 /**
  * ECC Custom Code Scanner
@@ -14,12 +15,11 @@ class Scanner {
     this.gateway = gateway;
     this.verbose = options.verbose || false;
     this.mockData = null;
+    this.logger = new Logger('scanner', { level: options.logLevel || 'info' });
   }
 
   _log(msg) {
-    if (this.verbose) {
-      console.log(`  [scanner] ${msg}`);
-    }
+    this.logger.info(msg);
   }
 
   _loadMockData() {

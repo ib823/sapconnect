@@ -1,3 +1,5 @@
+const Logger = require('../lib/logger');
+
 /**
  * Target Data Loader
  *
@@ -10,12 +12,11 @@ class Loader {
     this.verbose = options.verbose || false;
     this.batchSize = options.batchSize || 5000;
     this.targetType = options.targetType || 'public'; // public | private
+    this.logger = new Logger('loader', { level: options.logLevel || 'info' });
   }
 
   _log(msg) {
-    if (this.verbose) {
-      console.log(`  [loader] ${msg}`);
-    }
+    this.logger.info(msg);
   }
 
   /**

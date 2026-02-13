@@ -1,0 +1,48 @@
+{
+  "inspectionLots": [
+    { "PRUESSION": "000100000001", "MATNR": "100-100", "WERKS": "1000", "CHARG": "0001", "ART": "01", "HEESSION": "100-100", "STAT": "INSP", "ERDAT": "20240115" },
+    { "PRUESSION": "000100000002", "MATNR": "100-200", "WERKS": "1000", "CHARG": "0012", "ART": "04", "HEESSION": "100-200", "STAT": "PASS", "ERDAT": "20240120" },
+    { "PRUESSION": "000100000003", "MATNR": "100-300", "WERKS": "1000", "CHARG": "0023", "ART": "04", "HEESSION": "100-300", "STAT": "PASS", "ERDAT": "20240201" },
+    { "PRUESSION": "000100000004", "MATNR": "100-100", "WERKS": "2000", "CHARG": "0005", "ART": "01", "HEESSION": "100-100", "STAT": "REJ", "ERDAT": "20240210" },
+    { "PRUESSION": "000100000005", "MATNR": "100-300", "WERKS": "2000", "CHARG": "0034", "ART": "04", "HEESSION": "100-300", "STAT": "INSP", "ERDAT": "20240301" }
+  ],
+  "sampleRecords": [
+    { "PRUESSION": "000100000001", "VESSION": "001", "PROESSION": "00001", "STESSION": "A" },
+    { "PRUESSION": "000100000001", "VESSION": "002", "PROESSION": "00002", "STESSION": "A" },
+    { "PRUESSION": "000100000002", "VESSION": "001", "PROESSION": "00001", "STESSION": "A" },
+    { "PRUESSION": "000100000003", "VESSION": "001", "PROESSION": "00001", "STESSION": "A" },
+    { "PRUESSION": "000100000004", "VESSION": "001", "PROESSION": "00001", "STESSION": "R" }
+  ],
+  "usageDecisions": [
+    { "PRUESSION": "000100000002", "VESSION": "001", "VCODE": "A", "VDATUM": "20240122", "VZEIT": "083000", "VNAME": "QMUSER01" },
+    { "PRUESSION": "000100000003", "VESSION": "001", "VCODE": "A", "VDATUM": "20240203", "VZEIT": "141500", "VNAME": "QMUSER02" },
+    { "PRUESSION": "000100000004", "VESSION": "001", "VCODE": "R", "VDATUM": "20240212", "VZEIT": "091000", "VNAME": "QMUSER01" }
+  ],
+  "characteristics": [
+    { "PRUESSION": "000100000001", "VESSION": "001", "MERESSION": "0001", "VERWMERKM": "VISCOSITY", "SOLLWERT": "25.00", "TOLERANZ": "2.00" },
+    { "PRUESSION": "000100000001", "VESSION": "001", "MERESSION": "0002", "VERWMERKM": "DENSITY", "SOLLWERT": "1.05", "TOLERANZ": "0.02" },
+    { "PRUESSION": "000100000002", "VESSION": "001", "MERESSION": "0001", "VERWMERKM": "LENGTH", "SOLLWERT": "100.00", "TOLERANZ": "0.50" },
+    { "PRUESSION": "000100000003", "VESSION": "001", "MERESSION": "0001", "VERWMERKM": "WEIGHT", "SOLLWERT": "2.500", "TOLERANZ": "0.025" },
+    { "PRUESSION": "000100000004", "VESSION": "001", "MERESSION": "0001", "VERWMERKM": "VISCOSITY", "SOLLWERT": "25.00", "TOLERANZ": "2.00" }
+  ],
+  "defectItems": [
+    { "QMNUM": "000200000001", "FEESSION": "0001", "FESSION": "PM", "FECOD": "01", "FEESSION_TXT": "Surface scratch on component", "OTESSION": "INT" },
+    { "QMNUM": "000200000001", "FEESSION": "0002", "FESSION": "PM", "FECOD": "03", "FEESSION_TXT": "Dimensional deviation", "OTESSION": "INT" },
+    { "QMNUM": "000200000002", "FEESSION": "0001", "FESSION": "VE", "FECOD": "05", "FEESSION_TXT": "Material contamination", "OTESSION": "EXT" },
+    { "QMNUM": "000200000003", "FEESSION": "0001", "FESSION": "PM", "FECOD": "02", "FEESSION_TXT": "Color mismatch", "OTESSION": "INT" }
+  ],
+  "catalogProfiles": [
+    { "KATESSION": "QM-01", "ART": "D", "KATESSION_TXT": "Defect Catalog - Mechanical" },
+    { "KATESSION": "QM-02", "ART": "D", "KATESSION_TXT": "Defect Catalog - Electrical" },
+    { "KATESSION": "QM-03", "ART": "C", "KATESSION_TXT": "Cause Catalog - Production" },
+    { "KATESSION": "QM-04", "ART": "T", "KATESSION_TXT": "Task Catalog - Corrective Actions" }
+  ],
+  "defectCodes": [
+    { "KATESSION": "QM-01", "CODE": "01", "CODETEXT": "Surface Defect" },
+    { "KATESSION": "QM-01", "CODE": "02", "CODETEXT": "Color Defect" },
+    { "KATESSION": "QM-01", "CODE": "03", "CODETEXT": "Dimensional Defect" },
+    { "KATESSION": "QM-01", "CODE": "04", "CODETEXT": "Structural Defect" },
+    { "KATESSION": "QM-02", "CODE": "05", "CODETEXT": "Material Contamination" },
+    { "KATESSION": "QM-02", "CODE": "06", "CODETEXT": "Insulation Failure" }
+  ]
+}

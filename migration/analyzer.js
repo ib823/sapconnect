@@ -1,4 +1,5 @@
 const { checkSource, severityWeight, getAllRules } = require('./rules');
+const Logger = require('../lib/logger');
 
 /**
  * S/4HANA Compatibility Analyzer
@@ -10,12 +11,11 @@ const { checkSource, severityWeight, getAllRules } = require('./rules');
 class Analyzer {
   constructor(options = {}) {
     this.verbose = options.verbose || false;
+    this.logger = new Logger('analyzer', { level: options.logLevel || 'info' });
   }
 
   _log(msg) {
-    if (this.verbose) {
-      console.log(`  [analyzer] ${msg}`);
-    }
+    this.logger.info(msg);
   }
 
   /**

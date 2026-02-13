@@ -1,0 +1,33 @@
+{
+  "warehouseNumbers": [
+    { "LGNUM": "100", "LGBKZ": "X", "LGNUMTEXT": "Main Warehouse" },
+    { "LGNUM": "200", "LGBKZ": "", "LGNUMTEXT": "Distribution Center" }
+  ],
+  "storageTypes": [
+    { "LGNUM": "100", "LGTYP": "001", "LTYPT": "High Rack" },
+    { "LGNUM": "100", "LGTYP": "002", "LTYPT": "Block Storage" },
+    { "LGNUM": "200", "LGTYP": "001", "LTYPT": "Shelf Storage" }
+  ],
+  "storageSections": [
+    { "LGNUM": "100", "LGTYP": "001", "LGBER": "001", "LBERT": "Section A" },
+    { "LGNUM": "100", "LGTYP": "001", "LGBER": "002", "LBERT": "Section B" }
+  ],
+  "storageBins": [
+    { "LGNUM": "100", "LGTYP": "001", "LGPLA": "01-01-01" },
+    { "LGNUM": "100", "LGTYP": "001", "LGPLA": "01-01-02" }
+  ],
+  "quants": [
+    { "LGNUM": "100", "LGTYP": "001", "LGPLA": "01-01-01", "MATNR": "MAT001", "GESME": "500.000", "MEINS": "EA" },
+    { "LGNUM": "100", "LGTYP": "001", "LGPLA": "01-01-02", "MATNR": "MAT002", "GESME": "1200.000", "MEINS": "KG" }
+  ],
+  "transferOrders": [
+    { "LGNUM": "100", "TANUM": "0000001001", "BWLVS": "100", "BDATU": "20231015" },
+    { "LGNUM": "100", "TANUM": "0000001002", "BWLVS": "200", "BDATU": "20231016" }
+  ],
+  "putAwayStrategies": [
+    { "LGNUM": "100", "LGTYP": "001", "LPRIO": "1", "STRATEGY": "FIFO" }
+  ],
+  "stockRemovalStrategies": [
+    { "LGNUM": "100", "LGTYP": "001", "EPRIO": "1", "STRATEGY": "FIFO" }
+  ]
+}

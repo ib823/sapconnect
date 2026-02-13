@@ -19,6 +19,12 @@ graph TB
         CUT[Phase 8: Cutover<br/>Critical path scheduling<br/>Rollback plan]
     end
 
+    subgraph "Enterprise Infrastructure"
+        SEC[Security Layer<br/>Input validation, Rate limiting<br/>Audit logging, CORS, Headers]
+        MON[Monitoring<br/>Health checks, Metrics<br/>Prometheus export]
+        CICD[CI/CD<br/>GitHub Actions, Docker<br/>Multi-node matrix]
+    end
+
     subgraph "Development Toolkit"
         CAP[CAP Backend<br/>OData V4 + Draft]
         FE[Fiori Elements UI]
@@ -26,10 +32,11 @@ graph TB
         AG[AI Agent<br/>Claude-powered]
     end
 
-    subgraph "Infrastructure"
-        ALM[Cloud ALM Connector<br/>5 project templates]
-        DASH[Dashboard API<br/>8 REST endpoints]
-        RPT[Report Generator<br/>JSON + Markdown]
+    subgraph "Connectivity"
+        ODATA[OData Client<br/>V2/V4, CSRF, Batch<br/>Retry + Pagination]
+        RFC[RFC Client<br/>Connection pool<br/>Table reader]
+        ALM[Cloud ALM<br/>5 project templates<br/>Live + Mock modes]
+        LIVE[Live Connector<br/>18 SAP service mappings<br/>Extract + Load]
     end
 
     ASSESS --> REMED --> PROFILE --> SDT --> CONFIG --> PROV --> TEST --> CUT
@@ -41,7 +48,7 @@ graph TB
 1. Click **Code > Codespaces > New codespace** on this repository
 2. Wait for setup to complete (installs SAP tools automatically)
 3. Run `npm run watch` — server starts on port 4004
-4. Run `npm test` — 949 tests across 96 files
+4. Run `npm test` — 1137 tests across 118 files
 
 ### Local Development
 ```bash
@@ -52,10 +59,19 @@ npm install -g @sap/cds-dk
 npm run watch
 ```
 
+### Docker
+```bash
+docker build -t sapconnect .
+docker run -p 4004:4004 sapconnect
+# Or with docker compose:
+docker compose up
+```
+
 ### Run Migration Assessment
 ```bash
 npm run assess                    # Scan custom code against 874 rules
-npm test                          # Run full test suite (949 tests)
+npm test                          # Run full test suite (1137 tests)
+npm run lint                      # ESLint code quality check
 node -e "
   const R = require('./migration/objects/registry');
   const r = new R();
@@ -73,9 +89,15 @@ node -e "
 | **Data Quality** | 6 check types | Required fields, exact/fuzzy duplicates, referential integrity, format, range validation |
 | **Reconciliation** | 6 checks per object | Count, key coverage, aggregate, field sample, null analysis, duplicate detection |
 | **Test Engine** | 4 scenario types | Comparison, regression, process, performance — auto-generated from migration metadata |
-| **Dashboard** | 8 REST endpoints | Summary, object detail, rules analysis, reconciliation, run controls, progress tracking |
+| **Dashboard API** | 8 REST endpoints | Summary, object detail, rules analysis, reconciliation, run controls, progress tracking |
 | **Cloud ALM** | 5 project templates | Greenfield, brownfield (core/full), selective data, landscape consolidation |
 | **Cutover Planner** | Critical path + rollback | Dependency-aware task scheduling, 15-item go/no-go checklist, 8-step rollback plan |
+| **Security** | 5 modules | Input validation, rate limiting, audit logging, security headers, CORS |
+| **Monitoring** | 4 modules | Health/readiness probes, Prometheus metrics, request correlation IDs |
+| **Live Connectivity** | 18 service mappings | OData V2/V4 with CSRF, batch, retry, pagination; RFC pool + table reader |
+| **Dependency Graph** | 42 objects | Topological sort, execution waves, circular detection |
+| **Checkpoint/Resume** | File-based | Save/restore migration state, crash recovery, cleanup |
+| **CI/CD** | GitHub Actions | Lint + test + security + Docker build, multi-node matrix (18/20/22) |
 | **CAP Backend** | OData V4 | Customer service with draft support, business partner API |
 | **Fiori Elements** | List Report + Object Page | Auto-generated UI from annotations |
 | **API Discovery** | Scanner CLI | Discovers released APIs, events, and extension points |
@@ -112,6 +134,33 @@ node -e "
 
 **HR**: Employee Master, Bank Master
 
+## Enterprise Infrastructure
+
+### Security
+- **Input Validation** — Schema-based validation for all API inputs with sanitization
+- **Rate Limiting** — Sliding window rate limiter with per-IP tracking and Retry-After headers
+- **Audit Logging** — Immutable audit trail with query/filter/stats, file or memory storage
+- **Security Headers** — OWASP headers (CSP, HSTS, X-Frame-Options, etc.)
+- **CORS** — Configurable origin whitelist with preflight support
+
+### Monitoring & Observability
+- **Health Checks** — `/health` (liveness) and `/ready` (readiness) probes
+- **Metrics** — Counters, gauges, histograms with Prometheus text export at `/metrics`
+- **Request Context** — Correlation IDs via X-Request-ID/X-Correlation-ID propagation
+- **Structured Logging** — JSON or text format, log levels, child loggers
+
+### CI/CD Pipeline
+- **GitHub Actions** — Lint, test (Node 18/20/22 matrix), security audit, Docker build
+- **Docker** — Multi-stage build, non-root user, health checks, < 200MB image
+- **Code Quality** — ESLint + Prettier with pre-commit enforcement
+
+### Live SAP Connectivity
+- **OData Client** — V2/V4, CSRF token management, batch operations, auto-pagination, retry with backoff
+- **RFC Client** — Connection pool with acquire/release, timeout, drain
+- **Table Reader** — RFC_READ_TABLE with FM fallback, streaming, WHERE clause splitting
+- **SAP Client Factory** — 20+ pre-configured SAP service paths, multi-system support
+- **Live Connector** — Extract/load for 18 mapped objects with batch processing
+
 ## Key Commands
 
 ```bash
@@ -119,7 +168,10 @@ npm run watch        # Start CAP server with live reload
 npm run discover     # Run API Discovery in mock mode
 npm run agent        # Run AI Agent workflow in mock mode
 npm run assess       # Run migration assessment
-npm test             # Run 949 tests across 96 files
+npm test             # Run 1137 tests across 118 files
+npm run lint         # Run ESLint
+npm run format       # Run Prettier
+npm run docker:build # Build Docker image
 ```
 
 ## Project Templates
@@ -137,11 +189,15 @@ npm test             # Run 949 tests across 96 files
 - **SAP CAP (Node.js)** — Backend framework
 - **SAP Fiori Elements / UI5** — Frontend
 - **SQLite in-memory** — Local database
-- **vitest** — Test framework (949 tests)
+- **vitest** — Test framework (1137 tests, 118 files)
+- **ESLint + Prettier** — Code quality
+- **Docker** — Containerization
+- **GitHub Actions** — CI/CD
 - **SAP BTP** — Target deployment platform
 
-## Documentation
+## API Documentation
 
+- [OpenAPI Spec](docs/openapi.yaml) — Full REST API specification
 - [Architecture Overview](docs/architecture-overview.md)
 - [Getting Started](docs/getting-started.md)
 - [Clean Core Guide](docs/clean-core-guide.md)

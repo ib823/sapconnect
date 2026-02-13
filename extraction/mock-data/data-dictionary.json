@@ -1,0 +1,72 @@
+{
+  "tables": {
+    "T001": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Company Codes", "fieldCount": 85 },
+    "T001B": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Permitted Posting Periods", "fieldCount": 8 },
+    "T003": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Document Types", "fieldCount": 42 },
+    "T004": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Chart of Accounts", "fieldCount": 12 },
+    "BKPF": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Accounting Document Header", "fieldCount": 120 },
+    "BSEG": { "TABCLASS": "CLUSTER", "AS4LOCAL": "A", "description": "Accounting Document Segment (Cluster)", "fieldCount": 300 },
+    "SKA1": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "GL Account Master (Chart of Accounts)", "fieldCount": 45 },
+    "KNA1": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Customer Master General Data", "fieldCount": 120 },
+    "LFA1": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Vendor Master General Data", "fieldCount": 95 },
+    "MARA": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Material Master General Data", "fieldCount": 250 },
+    "EKKO": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Purchasing Document Header", "fieldCount": 180 },
+    "VBAK": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Sales Document Header", "fieldCount": 200 },
+    "AUFK": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Order Master Data", "fieldCount": 150 },
+    "USR02": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "User Logon Data", "fieldCount": 30 },
+    "RFCDES": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "RFC Destinations", "fieldCount": 40 },
+    "TADIR": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Repository Objects Directory", "fieldCount": 18 },
+    "TRDIR": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Program Attributes", "fieldCount": 72 },
+    "E070": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Transport Request/Task", "fieldCount": 20 },
+    "CDHDR": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Change Document Header", "fieldCount": 12 },
+    "CDPOS": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Change Document Items", "fieldCount": 15 },
+    "DD02L": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "SAP Tables", "fieldCount": 18 },
+    "DD03L": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Table Fields", "fieldCount": 35 },
+    "DD04L": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Data Elements", "fieldCount": 25 },
+    "TKA01": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Controlling Areas", "fieldCount": 30 },
+    "ACDOCA": { "TABCLASS": "TRANSP", "AS4LOCAL": "A", "description": "Universal Journal (S/4HANA)", "fieldCount": 400 }
+  },
+  "fields": {
+    "T001": [
+      { "FIELDNAME": "MANDT", "DATATYPE": "CLNT", "LENG": 3, "ROLLNAME": "MANDT" },
+      { "FIELDNAME": "BUKRS", "DATATYPE": "CHAR", "LENG": 4, "ROLLNAME": "BUKRS" },
+      { "FIELDNAME": "BUTXT", "DATATYPE": "CHAR", "LENG": 25, "ROLLNAME": "BUTXT" },
+      { "FIELDNAME": "ORT01", "DATATYPE": "CHAR", "LENG": 25, "ROLLNAME": "ORT01" },
+      { "FIELDNAME": "LAND1", "DATATYPE": "CHAR", "LENG": 3, "ROLLNAME": "LAND1" },
+      { "FIELDNAME": "WAERS", "DATATYPE": "CUKY", "LENG": 5, "ROLLNAME": "WAERS" },
+      { "FIELDNAME": "KTOPL", "DATATYPE": "CHAR", "LENG": 4, "ROLLNAME": "KTOPL" }
+    ]
+  },
+  "dataElements": {
+    "BUKRS": { "DOMNAME": "BUKRS", "DATATYPE": "CHAR", "LENG": 4, "DDTEXT": "Company Code" },
+    "BUTXT": { "DOMNAME": "BUTXT", "DATATYPE": "CHAR", "LENG": 25, "DDTEXT": "Name of Company Code" },
+    "WAERS": { "DOMNAME": "WAERS", "DATATYPE": "CUKY", "LENG": 5, "DDTEXT": "Currency Key" },
+    "MATNR": { "DOMNAME": "MATNR", "DATATYPE": "CHAR", "LENG": 40, "DDTEXT": "Material Number" },
+    "KUNNR": { "DOMNAME": "KUNNR", "DATATYPE": "CHAR", "LENG": 10, "DDTEXT": "Customer Number" },
+    "LIFNR": { "DOMNAME": "LIFNR", "DATATYPE": "CHAR", "LENG": 10, "DDTEXT": "Vendor Number" }
+  },
+  "domains": {
+    "BUKRS": { "DATATYPE": "CHAR", "LENG": 4, "fixedValues": [] },
+    "WAERS": { "DATATYPE": "CUKY", "LENG": 5, "fixedValues": ["USD", "EUR", "GBP", "JPY", "CHF", "CAD", "AUD"] },
+    "LAND1": { "DATATYPE": "CHAR", "LENG": 3, "fixedValues": [] }
+  },
+  "relationships": [
+    { "TABNAME": "T001", "FIELDNAME": "LAND1", "CHECKTABLE": "T005", "CHECKFIELD": "LAND1" },
+    { "TABNAME": "T001", "FIELDNAME": "WAERS", "CHECKTABLE": "TCURC", "CHECKFIELD": "WAERS" },
+    { "TABNAME": "T001", "FIELDNAME": "KTOPL", "CHECKTABLE": "T004", "CHECKFIELD": "KTOPL" },
+    { "TABNAME": "BKPF", "FIELDNAME": "BUKRS", "CHECKTABLE": "T001", "CHECKFIELD": "BUKRS" },
+    { "TABNAME": "SKA1", "FIELDNAME": "KTOPL", "CHECKTABLE": "T004", "CHECKFIELD": "KTOPL" }
+  ],
+  "views": {
+    "V_T001": { "baseTables": ["T001", "T001T"], "description": "Company Code View" }
+  },
+  "stats": {
+    "totalTables": 98500,
+    "transparentTables": 72300,
+    "clusterTables": 5200,
+    "poolTables": 800,
+    "customTables": 3450,
+    "totalDataElements": 145000,
+    "totalDomains": 68000
+  }
+}

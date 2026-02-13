@@ -1,0 +1,93 @@
+{
+  "glAccounts": {
+    "chartLevel": [
+      { "KTOPL": "CAUS", "SAKNR": "0000100000", "KTOKS": "SAP", "XBILK": "X", "GVTYP": "X" },
+      { "KTOPL": "CAUS", "SAKNR": "0000113100", "KTOKS": "SAP", "XBILK": "X", "GVTYP": "" },
+      { "KTOPL": "CAUS", "SAKNR": "0000300000", "KTOKS": "MAT", "XBILK": "X", "GVTYP": "" },
+      { "KTOPL": "CAUS", "SAKNR": "0000400000", "KTOKS": "REV", "XBILK": "", "GVTYP": "X" },
+      { "KTOPL": "CAUS", "SAKNR": "0000476000", "KTOKS": "EXP", "XBILK": "", "GVTYP": "X" },
+      { "KTOPL": "CAUS", "SAKNR": "0000800000", "KTOKS": "EXP", "XBILK": "", "GVTYP": "X" }
+    ],
+    "chartTexts": [
+      { "SPRAS": "E", "KTOPL": "CAUS", "SAKNR": "0000100000", "TXT20": "Cash - Bank", "TXT50": "Cash at Bank - Main Operating" },
+      { "SPRAS": "E", "KTOPL": "CAUS", "SAKNR": "0000113100", "TXT20": "Accounts Receivable", "TXT50": "Accounts Receivable - Domestic" },
+      { "SPRAS": "E", "KTOPL": "CAUS", "SAKNR": "0000300000", "TXT20": "Raw Materials", "TXT50": "Raw Materials Inventory" },
+      { "SPRAS": "E", "KTOPL": "CAUS", "SAKNR": "0000400000", "TXT20": "Revenue - Domestic", "TXT50": "Revenue from Domestic Sales" },
+      { "SPRAS": "E", "KTOPL": "CAUS", "SAKNR": "0000476000", "TXT20": "COGS", "TXT50": "Cost of Goods Sold" },
+      { "SPRAS": "E", "KTOPL": "CAUS", "SAKNR": "0000800000", "TXT20": "Depreciation Exp", "TXT50": "Depreciation Expense" }
+    ],
+    "companyCodeLevel": [
+      { "BUKRS": "1000", "SAKNR": "0000100000", "BEGRU": "0001", "FDLEV": "A1", "MITKZ": "" },
+      { "BUKRS": "1000", "SAKNR": "0000113100", "BEGRU": "0001", "FDLEV": "A2", "MITKZ": "D" },
+      { "BUKRS": "1000", "SAKNR": "0000300000", "BEGRU": "0001", "FDLEV": "", "MITKZ": "" },
+      { "BUKRS": "1000", "SAKNR": "0000400000", "BEGRU": "0001", "FDLEV": "", "MITKZ": "" },
+      { "BUKRS": "1000", "SAKNR": "0000476000", "BEGRU": "0001", "FDLEV": "", "MITKZ": "" }
+    ]
+  },
+  "customers": {
+    "general": [
+      { "KUNNR": "0000001000", "NAME1": "Acme Corporation", "LAND1": "US", "ORT01": "Chicago", "STRAS": "100 Main St", "PSTLZ": "60601", "KTOKD": "0001" },
+      { "KUNNR": "0000001001", "NAME1": "TechStar Industries", "LAND1": "US", "ORT01": "San Jose", "STRAS": "200 Tech Blvd", "PSTLZ": "95110", "KTOKD": "0001" },
+      { "KUNNR": "0000001002", "NAME1": "EuroTrade GmbH", "LAND1": "DE", "ORT01": "Munich", "STRAS": "Berliner Str. 55", "PSTLZ": "80331", "KTOKD": "0002" },
+      { "KUNNR": "0000001003", "NAME1": "Pacific Rim Ltd", "LAND1": "JP", "ORT01": "Tokyo", "STRAS": "Shibuya 1-2-3", "PSTLZ": "150-0002", "KTOKD": "0002" }
+    ],
+    "companyCode": [
+      { "KUNNR": "0000001000", "BUKRS": "1000", "AKONT": "0000113100", "ZUESSION": "0001", "ZWELS": "CT" },
+      { "KUNNR": "0000001001", "BUKRS": "1000", "AKONT": "0000113100", "ZUESSION": "0001", "ZWELS": "CT" },
+      { "KUNNR": "0000001002", "BUKRS": "2000", "AKONT": "0000113100", "ZUESSION": "0002", "ZWELS": "U" },
+      { "KUNNR": "0000001003", "BUKRS": "3000", "AKONT": "0000113100", "ZUESSION": "0003", "ZWELS": "T" }
+    ],
+    "salesArea": [
+      { "KUNNR": "0000001000", "VKORG": "1000", "VTWEG": "10", "SPART": "00", "KDGRP": "01" },
+      { "KUNNR": "0000001001", "VKORG": "1000", "VTWEG": "10", "SPART": "00", "KDGRP": "01" },
+      { "KUNNR": "0000001002", "VKORG": "2000", "VTWEG": "10", "SPART": "00", "KDGRP": "02" }
+    ],
+    "partnerFunctions": [
+      { "KUNNR": "0000001000", "VKORG": "1000", "VTWEG": "10", "SPART": "00", "PARVW": "AG", "KUNN2": "0000001000" },
+      { "KUNNR": "0000001000", "VKORG": "1000", "VTWEG": "10", "SPART": "00", "PARVW": "RE", "KUNN2": "0000001000" },
+      { "KUNNR": "0000001001", "VKORG": "1000", "VTWEG": "10", "SPART": "00", "PARVW": "AG", "KUNN2": "0000001001" }
+    ]
+  },
+  "vendors": {
+    "general": [
+      { "LIFNR": "0000002000", "NAME1": "Steel Suppliers Inc", "LAND1": "US", "ORT01": "Pittsburgh", "STRAS": "500 Iron Way", "PSTLZ": "15201", "KTOKK": "0001" },
+      { "LIFNR": "0000002001", "NAME1": "Global Parts GmbH", "LAND1": "DE", "ORT01": "Stuttgart", "STRAS": "Industriestr. 10", "PSTLZ": "70173", "KTOKK": "0002" },
+      { "LIFNR": "0000002002", "NAME1": "Quick Logistics Corp", "LAND1": "US", "ORT01": "Memphis", "STRAS": "1 Express Way", "PSTLZ": "38101", "KTOKK": "0001" },
+      { "LIFNR": "0000002003", "NAME1": "Asia Components Ltd", "LAND1": "JP", "ORT01": "Osaka", "STRAS": "Namba 5-6-7", "PSTLZ": "542-0076", "KTOKK": "0003" }
+    ],
+    "companyCode": [
+      { "LIFNR": "0000002000", "BUKRS": "1000", "AKONT": "0000160000", "ZUESSION": "0001", "ZWELS": "CT" },
+      { "LIFNR": "0000002001", "BUKRS": "2000", "AKONT": "0000160000", "ZUESSION": "0002", "ZWELS": "U" },
+      { "LIFNR": "0000002002", "BUKRS": "1000", "AKONT": "0000160000", "ZUESSION": "0001", "ZWELS": "CT" },
+      { "LIFNR": "0000002003", "BUKRS": "3000", "AKONT": "0000160000", "ZUESSION": "0003", "ZWELS": "T" }
+    ],
+    "purchasingOrg": [
+      { "LIFNR": "0000002000", "EKORG": "1000", "WAERS": "USD", "WEESSION": "0001" },
+      { "LIFNR": "0000002001", "EKORG": "2000", "WAERS": "EUR", "WEESSION": "0002" },
+      { "LIFNR": "0000002002", "EKORG": "1000", "WAERS": "USD", "WEESSION": "0001" }
+    ]
+  },
+  "assets": {
+    "general": [
+      { "BUKRS": "1000", "ANLN1": "000000000100", "ANLN2": "0000", "ANLKL": "1000", "TXT50": "Office Building - HQ", "AKTIV": "20180101" },
+      { "BUKRS": "1000", "ANLN1": "000000000200", "ANLN2": "0000", "ANLKL": "2000", "TXT50": "CNC Machine Line 1", "AKTIV": "20190315" },
+      { "BUKRS": "1000", "ANLN1": "000000000300", "ANLN2": "0000", "ANLKL": "3000", "TXT50": "Fleet Vehicle - Truck 001", "AKTIV": "20200601" },
+      { "BUKRS": "2000", "ANLN1": "000000000400", "ANLN2": "0000", "ANLKL": "2000", "TXT50": "Production Equipment DE", "AKTIV": "20200715" }
+    ],
+    "depreciation": [
+      { "BUKRS": "1000", "ANLN1": "000000000100", "ANLN2": "0000", "AFESSION": "01", "NDJAR": 40, "AFESSION_NAME": "Straight Line" },
+      { "BUKRS": "1000", "ANLN1": "000000000200", "ANLN2": "0000", "AFESSION": "01", "NDJAR": 10, "AFESSION_NAME": "Straight Line" },
+      { "BUKRS": "1000", "ANLN1": "000000000300", "ANLN2": "0000", "AFESSION": "01", "NDJAR": 5, "AFESSION_NAME": "Declining Balance" }
+    ],
+    "values": [
+      { "BUKRS": "1000", "ANLN1": "000000000100", "ANLN2": "0000", "AFESSION": "01", "GJAHR": "2024", "KANSW": 5000000.00, "KNAFA": 500000.00 },
+      { "BUKRS": "1000", "ANLN1": "000000000200", "ANLN2": "0000", "AFESSION": "01", "GJAHR": "2024", "KANSW": 1200000.00, "KNAFA": 600000.00 },
+      { "BUKRS": "1000", "ANLN1": "000000000300", "ANLN2": "0000", "AFESSION": "01", "GJAHR": "2024", "KANSW": 85000.00, "KNAFA": 51000.00 }
+    ],
+    "timeDependent": [
+      { "BUKRS": "1000", "ANLN1": "000000000100", "ANLN2": "0000", "KOSTL": "1000", "GSBER": "1000", "PRCTR": "1000" },
+      { "BUKRS": "1000", "ANLN1": "000000000200", "ANLN2": "0000", "KOSTL": "2000", "GSBER": "1000", "PRCTR": "2000" },
+      { "BUKRS": "1000", "ANLN1": "000000000300", "ANLN2": "0000", "KOSTL": "3000", "GSBER": "2000", "PRCTR": "3000" }
+    ]
+  }
+}

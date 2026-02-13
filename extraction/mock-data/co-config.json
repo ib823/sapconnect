@@ -1,0 +1,102 @@
+{
+  "controllingAreas": {
+    "master": [
+      { "KOKRS": "1000", "BEZEI": "Controlling Area US", "KTOPL": "CAUS", "WAESSION": "USD", "GSESSION": "01" },
+      { "KOKRS": "2000", "BEZEI": "Controlling Area DE", "KTOPL": "CADE", "WAESSION": "EUR", "GSESSION": "01" }
+    ],
+    "assignments": [
+      { "KOKRS": "1000", "BUKRS": "1000" },
+      { "KOKRS": "2000", "BUKRS": "2000" },
+      { "KOKRS": "2000", "BUKRS": "3000" }
+    ],
+    "settings": [
+      { "KOKRS": "1000", "VERSN": "000", "KSTAR_FROM": "0000400000", "KSTAR_TO": "0000999999" },
+      { "KOKRS": "2000", "VERSN": "000", "KSTAR_FROM": "0000400000", "KSTAR_TO": "0000999999" }
+    ]
+  },
+  "versions": [
+    { "KOKRS": "1000", "VERSN": "000", "BEZEI": "Plan/Actual Version", "AKTIV": "X" },
+    { "KOKRS": "1000", "VERSN": "001", "BEZEI": "Forecast Version", "AKTIV": "X" },
+    { "KOKRS": "2000", "VERSN": "000", "BEZEI": "Plan/Actual Version", "AKTIV": "X" }
+  ],
+  "allocationSchemes": [
+    { "KOKRS": "1000", "CYCLE": "ZCYCL01", "SESSION": "01", "DESCR": "IT Cost Distribution" },
+    { "KOKRS": "1000", "CYCLE": "ZCYCL02", "SESSION": "01", "DESCR": "Facility Cost Assessment" },
+    { "KOKRS": "2000", "CYCLE": "ZCYCL03", "SESSION": "01", "DESCR": "Admin Cost Allocation" }
+  ],
+  "hierarchySets": {
+    "headers": [
+      { "SETCLASS": "0101", "SUBCLASS": "1000", "SETNAME": "ZSTKOSTL01", "DESSION": "Standard Cost Center Hierarchy" },
+      { "SETCLASS": "0101", "SUBCLASS": "1000", "SETNAME": "ZSTPRCTR01", "DESSION": "Standard Profit Center Hierarchy" },
+      { "SETCLASS": "0102", "SUBCLASS": "2000", "SETNAME": "ZSTKOSTL02", "DESSION": "DE Cost Center Hierarchy" }
+    ],
+    "nodes": [
+      { "SETCLASS": "0101", "SUBCLASS": "1000", "SETNAME": "ZSTKOSTL01", "SUBSETNAME": "ZSTKOSTL01_MFG", "SEQNR": 1 },
+      { "SETCLASS": "0101", "SUBCLASS": "1000", "SETNAME": "ZSTKOSTL01", "SUBSETNAME": "ZSTKOSTL01_ADM", "SEQNR": 2 },
+      { "SETCLASS": "0101", "SUBCLASS": "1000", "SETNAME": "ZSTKOSTL01", "SUBSETNAME": "ZSTKOSTL01_SLS", "SEQNR": 3 }
+    ],
+    "leaves": [
+      { "SETCLASS": "0101", "SUBCLASS": "1000", "SETNAME": "ZSTKOSTL01_MFG", "VESSION_FROM": "1000", "VESSION_TO": "1000", "SEQNR": 1 },
+      { "SETCLASS": "0101", "SUBCLASS": "1000", "SETNAME": "ZSTKOSTL01_MFG", "VESSION_FROM": "1100", "VESSION_TO": "1100", "SEQNR": 2 },
+      { "SETCLASS": "0101", "SUBCLASS": "1000", "SETNAME": "ZSTKOSTL01_ADM", "VESSION_FROM": "2000", "VESSION_TO": "2000", "SEQNR": 1 },
+      { "SETCLASS": "0101", "SUBCLASS": "1000", "SETNAME": "ZSTKOSTL01_SLS", "VESSION_FROM": "3000", "VESSION_TO": "3000", "SEQNR": 1 }
+    ]
+  },
+  "planningProfiles": [
+    { "KOKRS": "1000", "PROFIL": "ZPLAN01", "DESCR": "Cost Center Planning Standard", "VERSN": "000" },
+    { "KOKRS": "1000", "PROFIL": "ZPLAN02", "DESCR": "Internal Order Planning", "VERSN": "000" },
+    { "KOKRS": "2000", "PROFIL": "ZPLAN03", "DESCR": "DE Cost Center Planning", "VERSN": "000" }
+  ],
+  "costElements": {
+    "master": [
+      { "KTOPL": "CAUS", "KSTAR": "0000400000", "KATYP": "1", "DATBI": "99991231" },
+      { "KTOPL": "CAUS", "KSTAR": "0000476000", "KATYP": "1", "DATBI": "99991231" },
+      { "KTOPL": "CAUS", "KSTAR": "0000800000", "KATYP": "1", "DATBI": "99991231" },
+      { "KTOPL": "CAUS", "KSTAR": "0000900000", "KATYP": "41", "DATBI": "99991231" },
+      { "KTOPL": "CAUS", "KSTAR": "0000910000", "KATYP": "42", "DATBI": "99991231" }
+    ],
+    "texts": [
+      { "SPRAS": "E", "KTOPL": "CAUS", "KSTAR": "0000400000", "KTEXT": "Revenue", "LTEXT": "Revenue from Sales" },
+      { "SPRAS": "E", "KTOPL": "CAUS", "KSTAR": "0000476000", "KTEXT": "COGS", "LTEXT": "Cost of Goods Sold" },
+      { "SPRAS": "E", "KTOPL": "CAUS", "KSTAR": "0000800000", "KTEXT": "Depreciation", "LTEXT": "Depreciation Expense" },
+      { "SPRAS": "E", "KTOPL": "CAUS", "KSTAR": "0000900000", "KTEXT": "Assessment", "LTEXT": "Assessment Cost Element" },
+      { "SPRAS": "E", "KTOPL": "CAUS", "KSTAR": "0000910000", "KTEXT": "Distribution", "LTEXT": "Distribution Cost Element" }
+    ]
+  },
+  "costCenters": {
+    "master": [
+      { "KOKRS": "1000", "KOSTL": "1000", "DATBI": "99991231", "BUKRS": "1000", "KOSAR": "H", "PRCTR": "1000", "AESSION": "PRDN" },
+      { "KOKRS": "1000", "KOSTL": "1100", "DATBI": "99991231", "BUKRS": "1000", "KOSAR": "H", "PRCTR": "1000", "AESSION": "PRDN" },
+      { "KOKRS": "1000", "KOSTL": "2000", "DATBI": "99991231", "BUKRS": "1000", "KOSAR": "F", "PRCTR": "2000", "AESSION": "ADMN" },
+      { "KOKRS": "1000", "KOSTL": "3000", "DATBI": "99991231", "BUKRS": "1000", "KOSAR": "V", "PRCTR": "3000", "AESSION": "SALE" },
+      { "KOKRS": "2000", "KOSTL": "4000", "DATBI": "99991231", "BUKRS": "2000", "KOSAR": "H", "PRCTR": "4000", "AESSION": "PRDN" }
+    ],
+    "texts": [
+      { "SPRAS": "E", "KOKRS": "1000", "KOSTL": "1000", "KTEXT": "Production CC1", "LTEXT": "Production Cost Center 1" },
+      { "SPRAS": "E", "KOKRS": "1000", "KOSTL": "1100", "KTEXT": "Production CC2", "LTEXT": "Production Cost Center 2" },
+      { "SPRAS": "E", "KOKRS": "1000", "KOSTL": "2000", "KTEXT": "Administration", "LTEXT": "Administration Cost Center" },
+      { "SPRAS": "E", "KOKRS": "1000", "KOSTL": "3000", "KTEXT": "Sales", "LTEXT": "Sales Cost Center" },
+      { "SPRAS": "E", "KOKRS": "2000", "KOSTL": "4000", "KTEXT": "DE Production", "LTEXT": "Germany Production Cost Center" }
+    ]
+  },
+  "profitCenters": {
+    "master": [
+      { "KOKRS": "1000", "PRCTR": "1000", "DATBI": "99991231", "BUKRS": "1000" },
+      { "KOKRS": "1000", "PRCTR": "2000", "DATBI": "99991231", "BUKRS": "1000" },
+      { "KOKRS": "1000", "PRCTR": "3000", "DATBI": "99991231", "BUKRS": "1000" },
+      { "KOKRS": "2000", "PRCTR": "4000", "DATBI": "99991231", "BUKRS": "2000" }
+    ],
+    "texts": [
+      { "SPRAS": "E", "KOKRS": "1000", "PRCTR": "1000", "KTEXT": "Manufacturing", "LTEXT": "Manufacturing Profit Center" },
+      { "SPRAS": "E", "KOKRS": "1000", "PRCTR": "2000", "KTEXT": "Admin Services", "LTEXT": "Administrative Services" },
+      { "SPRAS": "E", "KOKRS": "1000", "PRCTR": "3000", "KTEXT": "Sales Division", "LTEXT": "Sales Division Profit Center" },
+      { "SPRAS": "E", "KOKRS": "2000", "PRCTR": "4000", "KTEXT": "DE Operations", "LTEXT": "Germany Operations Profit Center" }
+    ]
+  },
+  "internalOrders": [
+    { "AUFNR": "000000800100", "AUTYP": "01", "AUART": "0400", "BUKRS": "1000", "KOKRS": "1000", "KTEXT": "Office Renovation 2024", "USER0": "CAPEX", "PRCTR": "2000" },
+    { "AUFNR": "000000800200", "AUTYP": "01", "AUART": "0400", "BUKRS": "1000", "KOKRS": "1000", "KTEXT": "IT Infrastructure Upgrade", "USER0": "CAPEX", "PRCTR": "2000" },
+    { "AUFNR": "000000800300", "AUTYP": "01", "AUART": "0100", "BUKRS": "1000", "KOKRS": "1000", "KTEXT": "Marketing Campaign Q1", "USER0": "OPEX", "PRCTR": "3000" },
+    { "AUFNR": "000000800400", "AUTYP": "01", "AUART": "0100", "BUKRS": "2000", "KOKRS": "2000", "KTEXT": "Trade Fair Hannover", "USER0": "OPEX", "PRCTR": "4000" }
+  ]
+}

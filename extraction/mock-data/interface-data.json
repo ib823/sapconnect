@@ -1,0 +1,58 @@
+{
+  "rfcDestinations": [
+    { "RFCDEST": "ECD_100_CLNT", "RFCTYPE": "3", "RFCOPTIONS": "H=sapecd01&S=sapgw00", "RFCHOST": "sapecd01", "RFCSYSID": "ECD", "RFCSAMEUSR": "X", "RFCSNC": "", "DESCRIPTION": "Local system RFC loopback" },
+    { "RFCDEST": "EQD_RFC", "RFCTYPE": "3", "RFCOPTIONS": "H=sapeqd01&S=sapgw00", "RFCHOST": "sapeqd01", "RFCSYSID": "EQD", "RFCSAMEUSR": "", "RFCSNC": "", "DESCRIPTION": "Quality system RFC connection" },
+    { "RFCDEST": "PRD_RFC", "RFCTYPE": "3", "RFCOPTIONS": "H=sapprd01&S=sapgw00", "RFCHOST": "sapprd01", "RFCSYSID": "PRD", "RFCSAMEUSR": "", "RFCSNC": "X", "DESCRIPTION": "Production system RFC connection" },
+    { "RFCDEST": "BW_RFC", "RFCTYPE": "3", "RFCOPTIONS": "H=sapbw01&S=sapgw00", "RFCHOST": "sapbw01", "RFCSYSID": "BWP", "RFCSAMEUSR": "", "RFCSNC": "", "DESCRIPTION": "BW extraction RFC destination" },
+    { "RFCDEST": "HTTP_EXT_CRM", "RFCTYPE": "G", "RFCOPTIONS": "", "RFCHOST": "crm.external.com", "RFCSYSID": "", "RFCSAMEUSR": "", "RFCSNC": "", "DESCRIPTION": "HTTP connection to external CRM" }
+  ],
+  "trustedSystems": [
+    { "RFCSYSID": "EQD", "RFCTRUSTSY": "ECD", "RFCSLOPT": "", "RFCMSGSRV": "sapeqd01", "RFCSYSNO": "00" },
+    { "RFCSYSID": "PRD", "RFCTRUSTSY": "ECD", "RFCSLOPT": "", "RFCMSGSRV": "sapprd01", "RFCSYSNO": "00" }
+  ],
+  "idocOutbound": [
+    { "RCVPRN": "LS_EQD", "MESTYP": "MATMAS", "RCVPRT": "LS", "RCVPFC": "", "SNDPRN": "ECD100", "SNDPRT": "LS" },
+    { "RCVPRN": "LS_EQD", "MESTYP": "DEBMAS", "RCVPRT": "LS", "RCVPFC": "", "SNDPRN": "ECD100", "SNDPRT": "LS" },
+    { "RCVPRN": "LS_BW", "MESTYP": "HRMD_A", "RCVPRT": "LS", "RCVPFC": "", "SNDPRN": "ECD100", "SNDPRT": "LS" }
+  ],
+  "idocInbound": [
+    { "SNDPRN": "LS_EQD", "MESTYP": "ORDERS", "SNDPRT": "LS", "SNDPFC": "", "RCVPRN": "ECD100", "RCVPRT": "LS" },
+    { "SNDPRN": "LS_EXT", "MESTYP": "INVOIC", "SNDPRT": "LS", "SNDPFC": "", "RCVPRN": "ECD100", "RCVPRT": "LS" }
+  ],
+  "partnerProfiles": [
+    { "PARNUM": "LS_EQD", "PARTYP": "LS", "PARTNR": "LS_EQD", "PARROL": "", "RTEFIND": "" },
+    { "PARNUM": "LS_BW", "PARTYP": "LS", "PARTNR": "LS_BW", "PARROL": "", "RTEFIND": "" },
+    { "PARNUM": "LS_EXT", "PARTYP": "LS", "PARTNR": "LS_EXT", "PARROL": "", "RTEFIND": "" }
+  ],
+  "idocStatistics": [
+    { "DOCNUM": "0000000001001", "MESTYP": "MATMAS", "DIRECT": "1", "STATUS": "03", "CREDAT": "20240301", "CRETIM": "101500", "RCVPRN": "LS_EQD" },
+    { "DOCNUM": "0000000001002", "MESTYP": "MATMAS", "DIRECT": "1", "STATUS": "03", "CREDAT": "20240302", "CRETIM": "091200", "RCVPRN": "LS_EQD" },
+    { "DOCNUM": "0000000001003", "MESTYP": "DEBMAS", "DIRECT": "1", "STATUS": "12", "CREDAT": "20240301", "CRETIM": "143000", "RCVPRN": "LS_EQD" },
+    { "DOCNUM": "0000000002001", "MESTYP": "ORDERS", "DIRECT": "2", "STATUS": "53", "CREDAT": "20240301", "CRETIM": "160000", "RCVPRN": "ECD100" },
+    { "DOCNUM": "0000000002002", "MESTYP": "INVOIC", "DIRECT": "2", "STATUS": "51", "CREDAT": "20240302", "CRETIM": "080500", "RCVPRN": "ECD100" }
+  ],
+  "messageTypes": [
+    { "MESTYP": "MATMAS", "MESSION_TEXT": "Material Master Distribution" },
+    { "MESTYP": "DEBMAS", "MESSION_TEXT": "Customer Master Distribution" },
+    { "MESTYP": "ORDERS", "MESSION_TEXT": "Purchase Order" },
+    { "MESTYP": "INVOIC", "MESSION_TEXT": "Invoice / Billing" },
+    { "MESTYP": "HRMD_A", "MESSION_TEXT": "HR Master Data Distribution" }
+  ],
+  "segments": [
+    { "SEGTYP": "E1MARAM", "SEGDEF": "MATMAS05", "PARSEG": "", "QUALIFIER": "", "DESCRP": "Material General Data" },
+    { "SEGTYP": "E1MARCM", "SEGDEF": "MATMAS05", "PARSEG": "E1MARAM", "QUALIFIER": "", "DESCRP": "Material Plant Data" },
+    { "SEGTYP": "E1KNA1M", "SEGDEF": "DEBMAS07", "PARSEG": "", "QUALIFIER": "", "DESCRP": "Customer General Data" }
+  ],
+  "logicalSystems": [
+    { "LOGSYS": "ECD100", "SYSNAM": "ECD", "STEXT": "ECC Development Client 100" },
+    { "LOGSYS": "EQD100", "SYSNAM": "EQD", "STEXT": "ECC Quality Client 100" },
+    { "LOGSYS": "PRD100", "SYSNAM": "PRD", "STEXT": "ECC Production Client 100" },
+    { "LOGSYS": "BWP100", "SYSNAM": "BWP", "STEXT": "BW Production Client 100" }
+  ],
+  "httpServices": [
+    { "ICF_NAME": "/sap/bc/soap/rfc", "ICF_DOCU": "SOAP RFC Gateway", "ICFACTIVE": "X", "ICFPARGUID": "0001" },
+    { "ICF_NAME": "/sap/bc/srt/rfc", "ICF_DOCU": "Web Service Runtime", "ICFACTIVE": "X", "ICFPARGUID": "0002" },
+    { "ICF_NAME": "/sap/opu/odata", "ICF_DOCU": "OData Service Gateway", "ICFACTIVE": "X", "ICFPARGUID": "0003" },
+    { "ICF_NAME": "/sap/bc/webdynpro", "ICF_DOCU": "Web Dynpro Runtime", "ICFACTIVE": "X", "ICFPARGUID": "0004" }
+  ]
+}

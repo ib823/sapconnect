@@ -1,6 +1,7 @@
 const Scanner = require('./scanner');
 const Analyzer = require('./analyzer');
 const { getTransform, hasTransform } = require('./transforms');
+const Logger = require('../lib/logger');
 
 /**
  * Custom Code Remediator
@@ -13,12 +14,11 @@ class Remediator {
     this.gateway = gateway;
     this.verbose = options.verbose || false;
     this.dryRun = options.dryRun !== undefined ? options.dryRun : true;
+    this.logger = new Logger('remediator', { level: options.logLevel || 'info' });
   }
 
   _log(msg) {
-    if (this.verbose) {
-      console.log(`  [remediator] ${msg}`);
-    }
+    this.logger.info(msg);
   }
 
   /**

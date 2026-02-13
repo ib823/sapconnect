@@ -1,0 +1,32 @@
+{
+  "plantParams": [
+    { "WERKS": "1000", "DISKZ": "1", "DTEFIXED": "001", "MRPPP1": "X", "MRPPP2": "", "MRPPP3": "" },
+    { "WERKS": "2000", "DISKZ": "1", "DTEFIXED": "001", "MRPPP1": "X", "MRPPP2": "X", "MRPPP3": "" },
+    { "WERKS": "3000", "DISKZ": "2", "DTEFIXED": "002", "MRPPP1": "X", "MRPPP2": "", "MRPPP3": "" }
+  ],
+  "mrpControllers": [
+    { "WERKS": "1000", "DTEFIXED": "001", "DSNAM": "MRP Controller Raw Materials" },
+    { "WERKS": "1000", "DTEFIXED": "002", "DSNAM": "MRP Controller Semi-Finished" },
+    { "WERKS": "2000", "DTEFIXED": "001", "DSNAM": "MRP Controller Production" },
+    { "WERKS": "2000", "DTEFIXED": "003", "DSNAM": "MRP Controller Spare Parts" },
+    { "WERKS": "3000", "DTEFIXED": "001", "DSNAM": "MRP Controller Assembly" }
+  ],
+  "mrpProfiles": [
+    { "DPROFIL": "0001", "DPROTEXT": "Standard MRP Profile", "DISMM": "PD", "DISPO": "001" },
+    { "DPROFIL": "0002", "DPROTEXT": "Reorder Point Planning", "DISMM": "VB", "DISPO": "001" },
+    { "DPROFIL": "0003", "DPROTEXT": "Forecast-Based Planning", "DISMM": "VV", "DISPO": "002" },
+    { "DPROFIL": "0004", "DPROTEXT": "Manual Reorder Point", "DISMM": "VM", "DISPO": "001" }
+  ],
+  "orderTypes": [
+    { "AUART": "PP01", "AUTEXT": "Production Order - Standard", "AUTYP": "10" },
+    { "AUART": "PP02", "AUTEXT": "Production Order - Rework", "AUTYP": "10" },
+    { "AUART": "PP03", "AUTEXT": "Process Order", "AUTYP": "40" },
+    { "AUART": "PI01", "AUTEXT": "Process Order - Batch", "AUTYP": "40" }
+  ],
+  "productionSchedulers": [
+    { "WERKS": "1000", "FEESSION": "001", "FEESSION_TXT": "Production Scheduler Line 1" },
+    { "WERKS": "1000", "FEESSION": "002", "FEESSION_TXT": "Production Scheduler Line 2" },
+    { "WERKS": "2000", "FEESSION": "001", "FEESSION_TXT": "Production Scheduler Main" },
+    { "WERKS": "3000", "FEESSION": "001", "FEESSION_TXT": "Assembly Scheduler" }
+  ]
+}

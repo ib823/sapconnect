@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { WORKFLOW_ORDER, getAgent } = require('./agents');
+const Logger = require('../lib/logger');
 
 /**
  * AgentResult - Formats agent output for terminal or markdown display
@@ -125,6 +126,7 @@ class Orchestrator {
     this.verbose = options.verbose || false;
     this.gateway = options.gateway || null;
     this.mockData = null;
+    this.logger = new Logger('orchestrator', { level: options.logLevel || 'info' });
   }
 
   /** Load mock agent outputs */
@@ -138,9 +140,7 @@ class Orchestrator {
   }
 
   _log(msg) {
-    if (this.verbose) {
-      console.log(`  [orchestrator] ${msg}`);
-    }
+    this.logger.info(msg);
   }
 
   /**
@@ -220,14 +220,14 @@ class Orchestrator {
    * Live agent execution - calls Claude API (not yet implemented)
    */
   async _runLiveAgent(agent, requirement, context) {
-    console.log(`  [orchestrator] Live mode requires ANTHROPIC_API_KEY.`);
-    console.log('  [orchestrator] To implement, add Claude API calls:');
-    console.log('    - npm install @anthropic-ai/sdk');
-    console.log('    - Use agent.systemPrompt as the system message');
-    console.log('    - Pass requirement + context as user message');
-    console.log('    - Register agent.tools for function calling');
-    console.log('    - Route tool calls through SapGateway');
-    console.log('  [orchestrator] Falling back to mock output.\n');
+    this.logger.warn('Live mode requires ANTHROPIC_API_KEY.');
+    this.logger.info('To implement, add Claude API calls:');
+    this.logger.info('  - npm install @anthropic-ai/sdk');
+    this.logger.info('  - Use agent.systemPrompt as the system message');
+    this.logger.info('  - Pass requirement + context as user message');
+    this.logger.info('  - Register agent.tools for function calling');
+    this.logger.info('  - Route tool calls through SapGateway');
+    this.logger.warn('Falling back to mock output.');
     return this._runMockAgent(agent, requirement);
   }
 }

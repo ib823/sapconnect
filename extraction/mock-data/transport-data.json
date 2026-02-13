@@ -1,0 +1,50 @@
+{
+  "requests": [
+    { "TRKORR": "ECDK900001", "TRFUNCTION": "K", "TRSTATUS": "R", "TARSYSTEM": "EQD", "AS4USER": "JSMITH", "AS4DATE": "20240301", "AS4TIME": "101500", "STRKORR": "" },
+    { "TRKORR": "ECDK900002", "TRFUNCTION": "K", "TRSTATUS": "R", "TARSYSTEM": "EQD", "AS4USER": "ABROWN", "AS4DATE": "20240305", "AS4TIME": "143000", "STRKORR": "" },
+    { "TRKORR": "ECDK900003", "TRFUNCTION": "K", "TRSTATUS": "D", "TARSYSTEM": "EQD", "AS4USER": "MWILSON", "AS4DATE": "20240310", "AS4TIME": "091200", "STRKORR": "" },
+    { "TRKORR": "ECDK900004", "TRFUNCTION": "W", "TRSTATUS": "R", "TARSYSTEM": "EQD", "AS4USER": "JSMITH", "AS4DATE": "20240312", "AS4TIME": "160000", "STRKORR": "ECDK900001" },
+    { "TRKORR": "ECDK900005", "TRFUNCTION": "K", "TRSTATUS": "R", "TARSYSTEM": "EQD", "AS4USER": "ABROWN", "AS4DATE": "20240315", "AS4TIME": "080000", "STRKORR": "" },
+    { "TRKORR": "ECDK900006", "TRFUNCTION": "K", "TRSTATUS": "D", "TARSYSTEM": "EQD", "AS4USER": "SYSADMIN", "AS4DATE": "20240318", "AS4TIME": "110000", "STRKORR": "" },
+    { "TRKORR": "ECDK900007", "TRFUNCTION": "T", "TRSTATUS": "R", "TARSYSTEM": "EQD", "AS4USER": "SYSADMIN", "AS4DATE": "20240319", "AS4TIME": "093000", "STRKORR": "" },
+    { "TRKORR": "ECDK900008", "TRFUNCTION": "K", "TRSTATUS": "D", "TARSYSTEM": "EQD", "AS4USER": "MWILSON", "AS4DATE": "20240320", "AS4TIME": "150000", "STRKORR": "" }
+  ],
+  "objectEntries": [
+    { "TRKORR": "ECDK900001", "AS4POS": "000001", "PGMID": "R3TR", "OBJECT": "PROG", "OBJ_NAME": "ZFI_REPORT_01", "OBJFUNC": "K", "LOCKFLAG": "" },
+    { "TRKORR": "ECDK900001", "AS4POS": "000002", "PGMID": "R3TR", "OBJECT": "TABL", "OBJ_NAME": "ZFI_CUSTOM_TAB", "OBJFUNC": "K", "LOCKFLAG": "" },
+    { "TRKORR": "ECDK900002", "AS4POS": "000001", "PGMID": "R3TR", "OBJECT": "FUGR", "OBJ_NAME": "ZMM_PURCHASE", "OBJFUNC": "K", "LOCKFLAG": "" },
+    { "TRKORR": "ECDK900003", "AS4POS": "000001", "PGMID": "R3TR", "OBJECT": "PROG", "OBJ_NAME": "ZSD_PRICING_RPT", "OBJFUNC": "K", "LOCKFLAG": "X" },
+    { "TRKORR": "ECDK900003", "AS4POS": "000002", "PGMID": "R3TR", "OBJECT": "DOMA", "OBJ_NAME": "ZSD_STATUS", "OBJFUNC": "K", "LOCKFLAG": "X" },
+    { "TRKORR": "ECDK900005", "AS4POS": "000001", "PGMID": "R3TR", "OBJECT": "CLAS", "OBJ_NAME": "ZCL_FI_HELPER", "OBJFUNC": "K", "LOCKFLAG": "" },
+    { "TRKORR": "ECDK900006", "AS4POS": "000001", "PGMID": "R3TR", "OBJECT": "PROG", "OBJ_NAME": "ZHR_PAYROLL_FIX", "OBJFUNC": "K", "LOCKFLAG": "X" },
+    { "TRKORR": "ECDK900007", "AS4POS": "000001", "PGMID": "CUST", "OBJECT": "TABU", "OBJ_NAME": "T001", "OBJFUNC": "K", "LOCKFLAG": "" },
+    { "TRKORR": "ECDK900007", "AS4POS": "000002", "PGMID": "CUST", "OBJECT": "TABU", "OBJ_NAME": "T001B", "OBJFUNC": "K", "LOCKFLAG": "" },
+    { "TRKORR": "ECDK900008", "AS4POS": "000001", "PGMID": "R3TR", "OBJECT": "PROG", "OBJ_NAME": "ZPP_ROUTING_RPT", "OBJFUNC": "K", "LOCKFLAG": "X" }
+  ],
+  "requestTexts": [
+    { "TRKORR": "ECDK900001", "AS4TEXT": "FI custom report and table" },
+    { "TRKORR": "ECDK900002", "AS4TEXT": "MM purchase order function group" },
+    { "TRKORR": "ECDK900003", "AS4TEXT": "SD pricing report and domain" },
+    { "TRKORR": "ECDK900004", "AS4TEXT": "Task for FI report correction" },
+    { "TRKORR": "ECDK900005", "AS4TEXT": "FI helper ABAP OO class" },
+    { "TRKORR": "ECDK900006", "AS4TEXT": "HR payroll fix for retro calc" },
+    { "TRKORR": "ECDK900007", "AS4TEXT": "Customizing transport: company codes" },
+    { "TRKORR": "ECDK900008", "AS4TEXT": "PP routing report enhancements" }
+  ],
+  "clientAttributes": [
+    { "TRKORR": "ECDK900001", "CLIENTID": "100", "INTSYS": "", "CATEGORY": "P" },
+    { "TRKORR": "ECDK900002", "CLIENTID": "100", "INTSYS": "", "CATEGORY": "P" },
+    { "TRKORR": "ECDK900007", "CLIENTID": "100", "INTSYS": "", "CATEGORY": "P" }
+  ],
+  "importQueue": [
+    { "TRKORR": "ECDK900001", "TARSYSTEM": "EQD", "TRFUNCTION": "K", "RETCODE": "0000", "IMPTED": "20240302" },
+    { "TRKORR": "ECDK900002", "TARSYSTEM": "EQD", "TRFUNCTION": "K", "RETCODE": "0000", "IMPTED": "20240306" },
+    { "TRKORR": "ECDK900005", "TARSYSTEM": "EQD", "TRFUNCTION": "K", "RETCODE": "0000", "IMPTED": "20240316" },
+    { "TRKORR": "ECDK900007", "TARSYSTEM": "EQD", "TRFUNCTION": "T", "RETCODE": "0000", "IMPTED": "20240320" }
+  ],
+  "stats": {
+    "totalTransports": 8,
+    "unreleasedCount": 3,
+    "objectsPerTransport": 1.25
+  }
+}

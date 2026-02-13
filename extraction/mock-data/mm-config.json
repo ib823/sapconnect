@@ -1,0 +1,69 @@
+{
+  "purchasingOrgs": [
+    { "EKORG": "1000", "EKOTX": "Central Purchasing Org", "BUKRS": "1000" },
+    { "EKORG": "2000", "EKOTX": "Regional Purchasing Org East", "BUKRS": "2000" },
+    { "EKORG": "3000", "EKOTX": "Regional Purchasing Org West", "BUKRS": "1000" }
+  ],
+  "purchasingGroups": [
+    { "EKGRP": "001", "EKNAM": "Raw Materials Buyer" },
+    { "EKGRP": "002", "EKNAM": "MRO Purchasing" },
+    { "EKGRP": "003", "EKNAM": "Services Procurement" },
+    { "EKGRP": "004", "EKNAM": "Capital Equipment Buyer" }
+  ],
+  "movementTypes": [
+    { "BWART": "101", "XAUTO": "", "KZBEW": "B", "KZZUG": "" },
+    { "BWART": "102", "XAUTO": "", "KZBEW": "B", "KZZUG": "" },
+    { "BWART": "201", "XAUTO": "", "KZBEW": "", "KZZUG": "" },
+    { "BWART": "261", "XAUTO": "", "KZBEW": "", "KZZUG": "" },
+    { "BWART": "301", "XAUTO": "", "KZBEW": "W", "KZZUG": "" },
+    { "BWART": "501", "XAUTO": "", "KZBEW": "", "KZZUG": "" }
+  ],
+  "docTypes": [
+    { "BSART": "NB", "BSTYP": "F", "BATXT": "Standard PO" },
+    { "BSART": "FO", "BSTYP": "F", "BATXT": "Framework Order" },
+    { "BSART": "UB", "BSTYP": "F", "BATXT": "Stock Transport Order" },
+    { "BSART": "ZNB", "BSTYP": "F", "BATXT": "Custom Standard PO" }
+  ],
+  "plants": [
+    { "WERKS": "1000", "NAME1": "Main Plant Hamburg", "BUKRS": "1000", "FABKL": "01" },
+    { "WERKS": "1100", "NAME1": "Distribution Center Berlin", "BUKRS": "1000", "FABKL": "01" },
+    { "WERKS": "2000", "NAME1": "Manufacturing Plant Munich", "BUKRS": "2000", "FABKL": "02" },
+    { "WERKS": "3000", "NAME1": "Assembly Plant Stuttgart", "BUKRS": "1000", "FABKL": "01" }
+  ],
+  "storageLocations": [
+    { "WERKS": "1000", "LGORT": "0001", "LGOBE": "Main Warehouse" },
+    { "WERKS": "1000", "LGORT": "0002", "LGOBE": "Quality Inspection" },
+    { "WERKS": "1000", "LGORT": "0003", "LGOBE": "Blocked Stock" },
+    { "WERKS": "1100", "LGORT": "0001", "LGOBE": "Distribution Warehouse" },
+    { "WERKS": "2000", "LGORT": "0001", "LGOBE": "Raw Materials Store" },
+    { "WERKS": "2000", "LGORT": "0002", "LGOBE": "Finished Goods" }
+  ],
+  "itemCategories": [
+    { "PSTYP": "0", "PTEXT": "Standard" },
+    { "PSTYP": "2", "PTEXT": "Consignment" },
+    { "PSTYP": "3", "PTEXT": "Subcontracting" },
+    { "PSTYP": "5", "PTEXT": "Service" },
+    { "PSTYP": "9", "PTEXT": "Stock Transport" }
+  ],
+  "materialGroups": [
+    { "MATKL": "001", "WGBEZ": "Raw Materials" },
+    { "MATKL": "002", "WGBEZ": "Semi-Finished Goods" },
+    { "MATKL": "003", "WGBEZ": "Finished Products" },
+    { "MATKL": "004", "WGBEZ": "Operating Supplies" },
+    { "MATKL": "005", "WGBEZ": "Spare Parts" },
+    { "MATKL": "006", "WGBEZ": "Packaging Materials" }
+  ],
+  "mrpControllers": [
+    { "WERKS": "1000", "DTEFIXED": "001", "DSNAM": "MRP Controller Raw Mat" },
+    { "WERKS": "1000", "DTEFIXED": "002", "DSNAM": "MRP Controller Semi-FG" },
+    { "WERKS": "2000", "DTEFIXED": "001", "DSNAM": "MRP Controller Production" },
+    { "WERKS": "2000", "DTEFIXED": "003", "DSNAM": "MRP Controller Packaging" }
+  ],
+  "tolerances": [
+    { "TOESSION": "AN", "TOESSION_TXT": "Blanket PO price variance" },
+    { "TOESSION": "BD", "TOESSION_TXT": "Overdelivery tolerance" },
+    { "TOESSION": "DQ", "TOESSION_TXT": "Delivery quantity tolerance" },
+    { "TOESSION": "PP", "TOESSION_TXT": "Price variance" },
+    { "TOESSION": "ST", "TOESSION_TXT": "Schedule date tolerance" }
+  ]
+}

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const Logger = require('../lib/logger');
 
 /**
  * Data Profiling Engine
@@ -13,12 +14,11 @@ class Profiler {
     this.verbose = options.verbose || false;
     this.modules = options.modules || null; // null = all modules
     this.mockData = null;
+    this.logger = new Logger('profiler', { level: options.logLevel || 'info' });
   }
 
   _log(msg) {
-    if (this.verbose) {
-      console.log(`  [profiler] ${msg}`);
-    }
+    this.logger.info(msg);
   }
 
   _loadMockData() {
@@ -75,8 +75,8 @@ class Profiler {
 
   async _profileLive() {
     this._log('Live profiling not yet implemented, falling back to mock...');
-    console.log('  [profiler] Live data profiling requires RFC_READ_TABLE or CDS access.');
-    console.log('  [profiler] Falling back to mock data.\n');
+    this.logger.warn('Live data profiling requires RFC_READ_TABLE or CDS access.');
+    this.logger.warn('Falling back to mock data.');
     return this._profileMock();
   }
 

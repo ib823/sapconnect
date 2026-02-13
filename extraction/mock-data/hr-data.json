@@ -1,0 +1,70 @@
+{
+  "orgAssignment": [
+    { "PERNR": "00010001", "BEGDA": "20220101", "ENDDA": "99991231", "BUKRS": "1000", "WERKS": "1000", "BTRTL": "0001", "PERSG": "1", "PERSK": "U1", "ORGEH": "50000001", "STELL": "50000100", "PLANS": "50000200" },
+    { "PERNR": "00010002", "BEGDA": "20220301", "ENDDA": "99991231", "BUKRS": "1000", "WERKS": "1000", "BTRTL": "0001", "PERSG": "1", "PERSK": "U2", "ORGEH": "50000002", "STELL": "50000101", "PLANS": "50000201" },
+    { "PERNR": "00010003", "BEGDA": "20210601", "ENDDA": "99991231", "BUKRS": "2000", "WERKS": "2000", "BTRTL": "0002", "PERSG": "1", "PERSK": "U3", "ORGEH": "50000003", "STELL": "50000102", "PLANS": "50000202" },
+    { "PERNR": "00010004", "BEGDA": "20230115", "ENDDA": "99991231", "BUKRS": "1000", "WERKS": "1000", "BTRTL": "0003", "PERSG": "2", "PERSK": "U1", "ORGEH": "50000001", "STELL": "50000103", "PLANS": "50000203" }
+  ],
+  "personalData": [
+    { "PERNR": "00010001", "BEGDA": "20220101", "ENDDA": "99991231", "NACHN": "Mueller", "VORNA": "Hans", "GBDAT": "19850315", "SPRSL": "DE", "ANRED": "1", "GESCH": "1" },
+    { "PERNR": "00010002", "BEGDA": "20220301", "ENDDA": "99991231", "NACHN": "Schmidt", "VORNA": "Anna", "GBDAT": "19900722", "SPRSL": "DE", "ANRED": "2", "GESCH": "2" },
+    { "PERNR": "00010003", "BEGDA": "20210601", "ENDDA": "99991231", "NACHN": "Johnson", "VORNA": "Robert", "GBDAT": "19780510", "SPRSL": "EN", "ANRED": "1", "GESCH": "1" },
+    { "PERNR": "00010004", "BEGDA": "20230115", "ENDDA": "99991231", "NACHN": "Garcia", "VORNA": "Maria", "GBDAT": "19920830", "SPRSL": "ES", "ANRED": "2", "GESCH": "2" }
+  ],
+  "addresses": [
+    { "PERNR": "00010001", "BEGDA": "20220101", "ENDDA": "99991231", "ANSSA": "1", "STRAS": "Hauptstrasse 42", "ORT01": "Frankfurt", "PSTLZ": "60311", "LAND1": "DE" },
+    { "PERNR": "00010002", "BEGDA": "20220301", "ENDDA": "99991231", "ANSSA": "1", "STRAS": "Berliner Allee 17", "ORT01": "Berlin", "PSTLZ": "10115", "LAND1": "DE" },
+    { "PERNR": "00010003", "BEGDA": "20210601", "ENDDA": "99991231", "ANSSA": "1", "STRAS": "123 Main Street", "ORT01": "New York", "PSTLZ": "10001", "LAND1": "US" }
+  ],
+  "basicPay": [
+    { "PERNR": "00010001", "BEGDA": "20220101", "ENDDA": "99991231", "TRFAR": "01", "TRFGB": "01", "TRFGR": "E13", "TRFST": "4", "ANSAL": "72000.00", "WAERS": "EUR" },
+    { "PERNR": "00010002", "BEGDA": "20220301", "ENDDA": "99991231", "TRFAR": "01", "TRFGB": "01", "TRFGR": "E11", "TRFST": "3", "ANSAL": "58000.00", "WAERS": "EUR" },
+    { "PERNR": "00010003", "BEGDA": "20210601", "ENDDA": "99991231", "TRFAR": "01", "TRFGB": "02", "TRFGR": "G15", "TRFST": "5", "ANSAL": "95000.00", "WAERS": "USD" },
+    { "PERNR": "00010004", "BEGDA": "20230115", "ENDDA": "99991231", "TRFAR": "01", "TRFGB": "01", "TRFGR": "E10", "TRFST": "2", "ANSAL": "48000.00", "WAERS": "EUR" }
+  ],
+  "recurringPayments": [
+    { "PERNR": "00010001", "BEGDA": "20220101", "ENDDA": "99991231", "LGART": "4010", "BETRG": "250.00", "WAERS": "EUR" },
+    { "PERNR": "00010002", "BEGDA": "20220301", "ENDDA": "99991231", "LGART": "4010", "BETRG": "200.00", "WAERS": "EUR" },
+    { "PERNR": "00010003", "BEGDA": "20210601", "ENDDA": "99991231", "LGART": "4010", "BETRG": "350.00", "WAERS": "USD" }
+  ],
+  "additionalPayments": [
+    { "PERNR": "00010001", "BEGDA": "20231201", "ENDDA": "20231231", "LGART": "1500", "BETRG": "5000.00", "WAERS": "EUR" },
+    { "PERNR": "00010002", "BEGDA": "20231201", "ENDDA": "20231231", "LGART": "1500", "BETRG": "3000.00", "WAERS": "EUR" },
+    { "PERNR": "00010003", "BEGDA": "20231201", "ENDDA": "20231231", "LGART": "1500", "BETRG": "8000.00", "WAERS": "USD" }
+  ],
+  "orgObjects": [
+    { "PLVAR": "01", "OTYPE": "O", "OBJID": "50000001", "BEGDA": "20200101", "ENDDA": "99991231", "STEXT": "Finance Department", "LANGU": "EN" },
+    { "PLVAR": "01", "OTYPE": "O", "OBJID": "50000002", "BEGDA": "20200101", "ENDDA": "99991231", "STEXT": "IT Department", "LANGU": "EN" },
+    { "PLVAR": "01", "OTYPE": "O", "OBJID": "50000003", "BEGDA": "20200101", "ENDDA": "99991231", "STEXT": "Sales Department", "LANGU": "EN" },
+    { "PLVAR": "01", "OTYPE": "S", "OBJID": "50000100", "BEGDA": "20200101", "ENDDA": "99991231", "STEXT": "Finance Manager", "LANGU": "EN" },
+    { "PLVAR": "01", "OTYPE": "S", "OBJID": "50000101", "BEGDA": "20200101", "ENDDA": "99991231", "STEXT": "Software Developer", "LANGU": "EN" }
+  ],
+  "orgRelationships": [
+    { "PLVAR": "01", "OTYPE": "O", "OBJID": "50000001", "RSIGN": "A", "RELAT": "002", "SCLAS": "O", "SOBID": "00000001", "BEGDA": "20200101", "ENDDA": "99991231" },
+    { "PLVAR": "01", "OTYPE": "S", "OBJID": "50000100", "RSIGN": "A", "RELAT": "003", "SCLAS": "O", "SOBID": "50000001", "BEGDA": "20200101", "ENDDA": "99991231" },
+    { "PLVAR": "01", "OTYPE": "S", "OBJID": "50000101", "RSIGN": "A", "RELAT": "003", "SCLAS": "O", "SOBID": "50000002", "BEGDA": "20200101", "ENDDA": "99991231" },
+    { "PLVAR": "01", "OTYPE": "P", "OBJID": "00010001", "RSIGN": "B", "RELAT": "008", "SCLAS": "S", "SOBID": "50000100", "BEGDA": "20220101", "ENDDA": "99991231" }
+  ],
+  "personnelAreas": [
+    { "PERSA": "1000", "NAME1": "Main Plant Frankfurt", "BUKRS": "1000", "LAND1": "DE", "MOLGA": "01" },
+    { "PERSA": "2000", "NAME1": "US Branch Office", "BUKRS": "2000", "LAND1": "US", "MOLGA": "10" },
+    { "PERSA": "3000", "NAME1": "Spain Office", "BUKRS": "3000", "LAND1": "ES", "MOLGA": "04" }
+  ],
+  "personnelSubareas": [
+    { "WERKS": "1000", "BTRTL": "0001", "BTEXT": "Administration", "LAND1": "DE" },
+    { "WERKS": "1000", "BTRTL": "0002", "BTEXT": "Production", "LAND1": "DE" },
+    { "WERKS": "1000", "BTRTL": "0003", "BTEXT": "Research", "LAND1": "DE" },
+    { "WERKS": "2000", "BTRTL": "0001", "BTEXT": "US Administration", "LAND1": "US" }
+  ],
+  "employeeGroups": [
+    { "PERSG": "1", "PERSK": "U1", "PTEXT": "Active Employee - Salaried" },
+    { "PERSG": "1", "PERSK": "U2", "PTEXT": "Active Employee - Hourly" },
+    { "PERSG": "1", "PERSK": "U3", "PTEXT": "Active Employee - Executive" },
+    { "PERSG": "2", "PERSK": "U1", "PTEXT": "External Contractor" }
+  ],
+  "payScaleAreas": [
+    { "MOLGA": "01", "TRFAR": "01", "TRFGB": "01", "TRFKZ": "M", "BTEFG": "12" },
+    { "MOLGA": "01", "TRFAR": "01", "TRFGB": "02", "TRFKZ": "M", "BTEFG": "12" },
+    { "MOLGA": "10", "TRFAR": "01", "TRFGB": "02", "TRFKZ": "B", "BTEFG": "26" }
+  ]
+}

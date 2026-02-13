@@ -1,0 +1,45 @@
+{
+  "materials": [
+    { "MATNR": "100-100", "MTART": "ROH", "MATKL": "001", "MEINS": "KG", "MBRSH": "M", "MSTAE": "", "ERSDA": "20210115" },
+    { "MATNR": "100-200", "MTART": "HALB", "MATKL": "002", "MEINS": "EA", "MBRSH": "M", "MSTAE": "", "ERSDA": "20210220" },
+    { "MATNR": "100-300", "MTART": "FERT", "MATKL": "003", "MEINS": "EA", "MBRSH": "M", "MSTAE": "", "ERSDA": "20210305" },
+    { "MATNR": "200-100", "MTART": "HIBE", "MATKL": "004", "MEINS": "EA", "MBRSH": "M", "MSTAE": "", "ERSDA": "20210410" },
+    { "MATNR": "300-100", "MTART": "VERP", "MATKL": "006", "MEINS": "EA", "MBRSH": "M", "MSTAE": "", "ERSDA": "20210512" }
+  ],
+  "plantData": [
+    { "MATNR": "100-100", "WERKS": "1000", "DISMM": "VB", "DISPO": "001", "EKGRP": "001", "LADGR": "0001", "PLIFZ": "5" },
+    { "MATNR": "100-200", "WERKS": "1000", "DISMM": "PD", "DISPO": "002", "EKGRP": "001", "LADGR": "0001", "PLIFZ": "3" },
+    { "MATNR": "100-300", "WERKS": "1000", "DISMM": "PD", "DISPO": "002", "EKGRP": "002", "LADGR": "0002", "PLIFZ": "0" },
+    { "MATNR": "100-100", "WERKS": "2000", "DISMM": "VB", "DISPO": "001", "EKGRP": "001", "LADGR": "0001", "PLIFZ": "7" },
+    { "MATNR": "200-100", "WERKS": "1000", "DISMM": "ND", "DISPO": "001", "EKGRP": "003", "LADGR": "0001", "PLIFZ": "10" }
+  ],
+  "storageData": [
+    { "MATNR": "100-100", "WERKS": "1000", "LGORT": "0001", "LABST": "5000.000", "INSME": "0.000", "SPEME": "0.000" },
+    { "MATNR": "100-200", "WERKS": "1000", "LGORT": "0001", "LABST": "1200.000", "INSME": "50.000", "SPEME": "0.000" },
+    { "MATNR": "100-300", "WERKS": "1000", "LGORT": "0002", "LABST": "300.000", "INSME": "0.000", "SPEME": "10.000" },
+    { "MATNR": "200-100", "WERKS": "1000", "LGORT": "0001", "LABST": "800.000", "INSME": "0.000", "SPEME": "0.000" }
+  ],
+  "salesData": [
+    { "MATNR": "100-300", "VKORG": "1000", "VTWEG": "10", "DWERK": "1000", "KONDM": "01", "KTGRM": "01" },
+    { "MATNR": "100-300", "VKORG": "1000", "VTWEG": "20", "DWERK": "1100", "KONDM": "01", "KTGRM": "01" },
+    { "MATNR": "100-200", "VKORG": "2000", "VTWEG": "10", "DWERK": "2000", "KONDM": "02", "KTGRM": "02" }
+  ],
+  "valuationData": [
+    { "MATNR": "100-100", "BWKEY": "1000", "VPRSV": "V", "VERPR": "12.50", "STPRS": "12.00", "PEINH": "1", "BKLAS": "3000" },
+    { "MATNR": "100-200", "BWKEY": "1000", "VPRSV": "S", "VERPR": "45.00", "STPRS": "45.00", "PEINH": "1", "BKLAS": "7920" },
+    { "MATNR": "100-300", "BWKEY": "1000", "VPRSV": "S", "VERPR": "120.00", "STPRS": "120.00", "PEINH": "1", "BKLAS": "7920" },
+    { "MATNR": "200-100", "BWKEY": "1000", "VPRSV": "V", "VERPR": "3.75", "STPRS": "3.50", "PEINH": "1", "BKLAS": "3100" }
+  ],
+  "purchasingInfoRecords": [
+    { "INFNR": "5300000001", "MATNR": "100-100", "LIFNR": "0000001000", "LOEKZ": "" },
+    { "INFNR": "5300000002", "MATNR": "100-100", "LIFNR": "0000001001", "LOEKZ": "" },
+    { "INFNR": "5300000003", "MATNR": "200-100", "LIFNR": "0000001000", "LOEKZ": "" },
+    { "INFNR": "5300000004", "MATNR": "300-100", "LIFNR": "0000001002", "LOEKZ": "X" }
+  ],
+  "conditions": [
+    { "KAPPL": "M", "KSCHL": "PB00", "LIFNR": "0000001000", "MATNR": "100-100", "EKORG": "1000", "KNUMH": "0000012345" },
+    { "KAPPL": "M", "KSCHL": "PB00", "LIFNR": "0000001001", "MATNR": "100-100", "EKORG": "1000", "KNUMH": "0000012346" },
+    { "KAPPL": "M", "KSCHL": "RA01", "LIFNR": "0000001000", "MATNR": "100-100", "EKORG": "1000", "KNUMH": "0000012347" },
+    { "KAPPL": "M", "KSCHL": "PB00", "LIFNR": "0000001000", "MATNR": "200-100", "EKORG": "1000", "KNUMH": "0000012348" }
+  ]
+}

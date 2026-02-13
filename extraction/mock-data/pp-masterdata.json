@@ -1,0 +1,49 @@
+{
+  "bomLinks": [
+    { "MATNR": "100-300", "WERKS": "1000", "STLAN": "1", "STLNR": "00000001", "STLAL": "01" },
+    { "MATNR": "100-300", "WERKS": "2000", "STLAN": "1", "STLNR": "00000002", "STLAL": "01" },
+    { "MATNR": "100-200", "WERKS": "1000", "STLAN": "1", "STLNR": "00000003", "STLAL": "01" },
+    { "MATNR": "100-200", "WERKS": "1000", "STLAN": "1", "STLNR": "00000003", "STLAL": "02" }
+  ],
+  "bomHeaders": [
+    { "STLNR": "00000001", "STLAL": "01", "STTXT": "FG Assembly BOM Variant 1", "BMENG": "1.000", "BMEIN": "EA", "STLST": "1", "DATEFROM": "20210101" },
+    { "STLNR": "00000002", "STLAL": "01", "STTXT": "FG Assembly BOM Plant 2000", "BMENG": "1.000", "BMEIN": "EA", "STLST": "1", "DATEFROM": "20210301" },
+    { "STLNR": "00000003", "STLAL": "01", "STTXT": "Semi-FG BOM Standard", "BMENG": "1.000", "BMEIN": "EA", "STLST": "1", "DATEFROM": "20210101" },
+    { "STLNR": "00000003", "STLAL": "02", "STTXT": "Semi-FG BOM Alternative", "BMENG": "1.000", "BMEIN": "EA", "STLST": "1", "DATEFROM": "20220601" }
+  ],
+  "bomItems": [
+    { "STLNR": "00000001", "STLKN": "0001", "IDNRK": "100-200", "MENGE": "2.000", "MEINS": "EA", "POSTP": "L", "AUSCH": "0.00" },
+    { "STLNR": "00000001", "STLKN": "0002", "IDNRK": "200-100", "MENGE": "4.000", "MEINS": "EA", "POSTP": "L", "AUSCH": "2.00" },
+    { "STLNR": "00000001", "STLKN": "0003", "IDNRK": "300-100", "MENGE": "1.000", "MEINS": "EA", "POSTP": "L", "AUSCH": "0.00" },
+    { "STLNR": "00000002", "STLKN": "0001", "IDNRK": "100-200", "MENGE": "2.000", "MEINS": "EA", "POSTP": "L", "AUSCH": "0.00" },
+    { "STLNR": "00000003", "STLKN": "0001", "IDNRK": "100-100", "MENGE": "5.000", "MEINS": "KG", "POSTP": "L", "AUSCH": "1.50" },
+    { "STLNR": "00000003", "STLKN": "0002", "IDNRK": "200-100", "MENGE": "2.000", "MEINS": "EA", "POSTP": "L", "AUSCH": "0.00" }
+  ],
+  "routingHeaders": [
+    { "PLNTY": "N", "PLNNR": "0000000010", "PLNAL": "01", "LOESSION": "", "WERKS": "1000", "VERWE": "1", "STATU": "4" },
+    { "PLNTY": "N", "PLNNR": "0000000020", "PLNAL": "01", "LOESSION": "", "WERKS": "2000", "VERWE": "1", "STATU": "4" },
+    { "PLNTY": "N", "PLNNR": "0000000030", "PLNAL": "01", "LOESSION": "", "WERKS": "1000", "VERWE": "1", "STATU": "4" },
+    { "PLNTY": "N", "PLNNR": "0000000030", "PLNAL": "02", "LOESSION": "", "WERKS": "1000", "VERWE": "1", "STATU": "3" }
+  ],
+  "routingOperations": [
+    { "PLNTY": "N", "PLNNR": "0000000010", "PLNAL": "01", "VORNR": "0010", "ARBID": "00001000", "STEUS": "PP01", "VGW01": "15.000", "VGE01": "MIN" },
+    { "PLNTY": "N", "PLNNR": "0000000010", "PLNAL": "01", "VORNR": "0020", "ARBID": "00001001", "STEUS": "PP01", "VGW01": "30.000", "VGE01": "MIN" },
+    { "PLNTY": "N", "PLNNR": "0000000010", "PLNAL": "01", "VORNR": "0030", "ARBID": "00001002", "STEUS": "PP02", "VGW01": "10.000", "VGE01": "MIN" },
+    { "PLNTY": "N", "PLNNR": "0000000020", "PLNAL": "01", "VORNR": "0010", "ARBID": "00002000", "STEUS": "PP01", "VGW01": "20.000", "VGE01": "MIN" },
+    { "PLNTY": "N", "PLNNR": "0000000020", "PLNAL": "01", "VORNR": "0020", "ARBID": "00002001", "STEUS": "PP01", "VGW01": "45.000", "VGE01": "MIN" },
+    { "PLNTY": "N", "PLNNR": "0000000030", "PLNAL": "01", "VORNR": "0010", "ARBID": "00001000", "STEUS": "PP01", "VGW01": "10.000", "VGE01": "MIN" }
+  ],
+  "workCenters": [
+    { "OBJID": "00001000", "OBJTY": "A", "ARBPL": "ASSY-01", "WERKS": "1000", "VERWE": "0007" },
+    { "OBJID": "00001001", "OBJTY": "A", "ARBPL": "WELD-01", "WERKS": "1000", "VERWE": "0007" },
+    { "OBJID": "00001002", "OBJTY": "A", "ARBPL": "QC-01", "WERKS": "1000", "VERWE": "0007" },
+    { "OBJID": "00002000", "OBJTY": "A", "ARBPL": "ASSY-M1", "WERKS": "2000", "VERWE": "0007" },
+    { "OBJID": "00002001", "OBJTY": "A", "ARBPL": "PACK-01", "WERKS": "2000", "VERWE": "0007" }
+  ],
+  "taskListAssignments": [
+    { "MATNR": "100-300", "WERKS": "1000", "PLNTY": "N", "PLNNR": "0000000010", "PLNAL": "01", "ZKESSION": "00000001" },
+    { "MATNR": "100-300", "WERKS": "2000", "PLNTY": "N", "PLNNR": "0000000020", "PLNAL": "01", "ZKESSION": "00000002" },
+    { "MATNR": "100-200", "WERKS": "1000", "PLNTY": "N", "PLNNR": "0000000030", "PLNAL": "01", "ZKESSION": "00000003" },
+    { "MATNR": "100-200", "WERKS": "1000", "PLNTY": "N", "PLNNR": "0000000030", "PLNAL": "02", "ZKESSION": "00000004" }
+  ]
+}

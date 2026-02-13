@@ -1,3 +1,5 @@
+const Logger = require('../lib/logger');
+
 /**
  * Target Configuration Writer
  *
@@ -12,12 +14,11 @@ class ConfigWriter {
     this.verbose = options.verbose || false;
     this.targetType = options.targetType || 'public'; // public | private
     this.dryRun = options.dryRun !== undefined ? options.dryRun : true;
+    this.logger = new Logger('config-writer', { level: options.logLevel || 'info' });
   }
 
   _log(msg) {
-    if (this.verbose) {
-      console.log(`  [config-writer] ${msg}`);
-    }
+    this.logger.info(msg);
   }
 
   /**

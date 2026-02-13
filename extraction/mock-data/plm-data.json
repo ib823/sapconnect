@@ -1,0 +1,35 @@
+{
+  "documentInfoRecords": [
+    { "DOKNR": "DOC-000001", "DOKAR": "DRW", "DOKVR": "01", "DOKTL": "000", "DKTXT": "Assembly Drawing - Pump Housing", "LABOR": "ME", "DOKST": "RL", "DWNAM": "ENGUSER01" },
+    { "DOKNR": "DOC-000002", "DOKAR": "DRW", "DOKVR": "02", "DOKTL": "000", "DKTXT": "Circuit Board Layout Rev B", "LABOR": "EE", "DOKST": "RL", "DWNAM": "ENGUSER02" },
+    { "DOKNR": "DOC-000003", "DOKAR": "SPE", "DOKVR": "01", "DOKTL": "000", "DKTXT": "Material Specification - Steel Alloy X42", "LABOR": "QA", "DOKST": "FR", "DWNAM": "QAUSER01" },
+    { "DOKNR": "DOC-000004", "DOKAR": "CAD", "DOKVR": "03", "DOKTL": "000", "DKTXT": "3D Model - Valve Assembly", "LABOR": "ME", "DOKST": "IA", "DWNAM": "ENGUSER03" },
+    { "DOKNR": "DOC-000005", "DOKAR": "TST", "DOKVR": "01", "DOKTL": "000", "DKTXT": "Test Protocol - Pressure Test P-200", "LABOR": "QA", "DOKST": "RL", "DWNAM": "QAUSER02" }
+  ],
+  "documentContent": [
+    { "TDOBJECT": "DRAW", "TDNAME": "DOC-000001", "TDID": "LTXT", "TDSPRAS": "EN", "TDTEXTTYPE": "SAPscript", "TDVERSION": "001" },
+    { "TDOBJECT": "DRAW", "TDNAME": "DOC-000002", "TDID": "LTXT", "TDSPRAS": "EN", "TDTEXTTYPE": "SAPscript", "TDVERSION": "002" },
+    { "TDOBJECT": "DRAW", "TDNAME": "DOC-000003", "TDID": "LTXT", "TDSPRAS": "EN", "TDTEXTTYPE": "SAPscript", "TDVERSION": "001" },
+    { "TDOBJECT": "DRAW", "TDNAME": "DOC-000005", "TDID": "LTXT", "TDSPRAS": "EN", "TDTEXTTYPE": "SAPscript", "TDVERSION": "001" }
+  ],
+  "classification": [
+    { "OBJEK": "MAT-10001", "ATINN": "0000000001", "ATZHL": "001", "MESSION": "", "KLART": "001", "ATWRT": "STEEL", "ATFLV": "" },
+    { "OBJEK": "MAT-10001", "ATINN": "0000000002", "ATZHL": "001", "MESSION": "", "KLART": "001", "ATWRT": "", "ATFLV": "12.500" },
+    { "OBJEK": "MAT-10002", "ATINN": "0000000001", "ATZHL": "001", "MESSION": "", "KLART": "001", "ATWRT": "ALUMINUM", "ATFLV": "" },
+    { "OBJEK": "MAT-10003", "ATINN": "0000000003", "ATZHL": "001", "MESSION": "", "KLART": "023", "ATWRT": "CLASS_A", "ATFLV": "" }
+  ],
+  "characteristics": [
+    { "ATINN": "0000000001", "ATNAM": "MATERIAL_TYPE", "ATFOR": "CHAR", "ANZST": "20", "ATSCH": "X", "ADZHL": "001" },
+    { "ATINN": "0000000002", "ATNAM": "WALL_THICKNESS", "ATFOR": "NUM", "ANZST": "8", "ATSCH": "", "ADZHL": "002" },
+    { "ATINN": "0000000003", "ATNAM": "HAZARD_CLASS", "ATFOR": "CHAR", "ANZST": "10", "ATSCH": "X", "ADZHL": "003" },
+    { "ATINN": "0000000004", "ATNAM": "OPERATING_TEMP", "ATFOR": "NUM", "ANZST": "6", "ATSCH": "", "ADZHL": "004" },
+    { "ATINN": "0000000005", "ATNAM": "SURFACE_FINISH", "ATFOR": "CHAR", "ANZST": "15", "ATSCH": "X", "ADZHL": "005" }
+  ],
+  "characteristicValues": [
+    { "ATINN": "0000000001", "ATZHL": "001", "ATWRT": "STEEL", "ATCOD": "01", "ATAWE": "", "ATAW1": "" },
+    { "ATINN": "0000000001", "ATZHL": "002", "ATWRT": "ALUMINUM", "ATCOD": "02", "ATAWE": "", "ATAW1": "" },
+    { "ATINN": "0000000001", "ATZHL": "003", "ATWRT": "COPPER", "ATCOD": "03", "ATAWE": "", "ATAW1": "" },
+    { "ATINN": "0000000003", "ATZHL": "001", "ATWRT": "CLASS_A", "ATCOD": "01", "ATAWE": "", "ATAW1": "" },
+    { "ATINN": "0000000003", "ATZHL": "002", "ATWRT": "CLASS_B", "ATCOD": "02", "ATAWE": "", "ATAW1": "" }
+  ]
+}

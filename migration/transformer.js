@@ -1,3 +1,5 @@
+const Logger = require('../lib/logger');
+
 /**
  * Source-to-Target Data Transformer
  *
@@ -7,12 +9,11 @@
 class Transformer {
   constructor(options = {}) {
     this.verbose = options.verbose || false;
+    this.logger = new Logger('transformer', { level: options.logLevel || 'info' });
   }
 
   _log(msg) {
-    if (this.verbose) {
-      console.log(`  [transformer] ${msg}`);
-    }
+    this.logger.info(msg);
   }
 
   /**

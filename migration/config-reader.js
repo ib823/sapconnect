@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const Logger = require('../lib/logger');
 
 /**
  * Source ECC Configuration Reader
@@ -11,12 +12,11 @@ class ConfigReader {
   constructor(gateway, options = {}) {
     this.gateway = gateway;
     this.verbose = options.verbose || false;
+    this.logger = new Logger('config-reader', { level: options.logLevel || 'info' });
   }
 
   _log(msg) {
-    if (this.verbose) {
-      console.log(`  [config-reader] ${msg}`);
-    }
+    this.logger.info(msg);
   }
 
   /**
@@ -113,8 +113,8 @@ class ConfigReader {
 
   async _readLive() {
     this._log('Live config reading not yet implemented, falling back to mock...');
-    console.log('  [config-reader] Live config requires SPRO/customizing table access.');
-    console.log('  [config-reader] Falling back to mock data.\n');
+    this.logger.warn('Live config requires SPRO/customizing table access.');
+    this.logger.warn('Falling back to mock data.');
     return this._readMock();
   }
 }

@@ -1,3 +1,5 @@
+const Logger = require('../lib/logger');
+
 /**
  * BTP Service Provisioner
  *
@@ -10,12 +12,11 @@ class Provisioner {
     this.verbose = options.verbose || false;
     this.landscape = options.landscape || 'cf-us10';
     this.tier = options.tier || 'standard';
+    this.logger = new Logger('provisioner', { level: options.logLevel || 'info' });
   }
 
   _log(msg) {
-    if (this.verbose) {
-      console.log(`  [provisioner] ${msg}`);
-    }
+    this.logger.info(msg);
   }
 
   /**

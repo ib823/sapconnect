@@ -1,0 +1,64 @@
+{
+  "salesOrgs": [
+    { "VKORG": "1000", "WAESSION": "EUR", "BUKRS": "1000", "ADRNR": "0000012001" },
+    { "VKORG": "2000", "WAESSION": "USD", "BUKRS": "2000", "ADRNR": "0000012002" },
+    { "VKORG": "3000", "WAESSION": "GBP", "BUKRS": "3000", "ADRNR": "0000012003" }
+  ],
+  "distributionChannels": [
+    { "VTWEG": "10", "VTEXT": "Direct Sales" },
+    { "VTWEG": "20", "VTEXT": "Wholesale" },
+    { "VTWEG": "30", "VTEXT": "Online" },
+    { "VTWEG": "40", "VTEXT": "Retail" }
+  ],
+  "divisions": [
+    { "SPART": "00", "VTEXT": "Cross-Division" },
+    { "SPART": "01", "VTEXT": "Mechanical Components" },
+    { "SPART": "02", "VTEXT": "Electronic Components" },
+    { "SPART": "03", "VTEXT": "Services" }
+  ],
+  "salesDocTypes": [
+    { "AUART": "OR", "BEZEI": "Standard Order", "VBTYP": "C", "NUMKI": "RV" },
+    { "AUART": "RE", "BEZEI": "Returns", "VBTYP": "H", "NUMKI": "RV" },
+    { "AUART": "SO", "BEZEI": "Rush Order", "VBTYP": "C", "NUMKI": "RV" },
+    { "AUART": "CR", "BEZEI": "Credit Memo Request", "VBTYP": "K", "NUMKI": "RK" },
+    { "AUART": "QT", "BEZEI": "Quotation", "VBTYP": "B", "NUMKI": "AG" }
+  ],
+  "deliveryTypes": [
+    { "LFART": "LF", "VTEXT": "Outbound Delivery", "LDEST": "" },
+    { "LFART": "NL", "VTEXT": "Replenishment Delivery", "LDEST": "" },
+    { "LFART": "LR", "VTEXT": "Return Delivery", "LDEST": "" },
+    { "LFART": "EL", "VTEXT": "Inbound Delivery", "LDEST": "" }
+  ],
+  "billingTypes": [
+    { "FKART": "F2", "VTEXT": "Invoice", "FKTYP": "F" },
+    { "FKART": "RE", "VTEXT": "Credit Memo", "FKTYP": "G" },
+    { "FKART": "G2", "VTEXT": "Debit Memo", "FKTYP": "L" },
+    { "FKART": "S1", "VTEXT": "Cancellation Invoice", "FKTYP": "S" }
+  ],
+  "itemCategories": [
+    { "PSTYV": "TAN", "VTEXT": "Standard Item" },
+    { "PSTYV": "TAD", "VTEXT": "Service Item" },
+    { "PSTYV": "TANN", "VTEXT": "Free of Charge" },
+    { "PSTYV": "KLN", "VTEXT": "Sub-Item" },
+    { "PSTYV": "TAX", "VTEXT": "Third-Party Item" }
+  ],
+  "scheduleLineCategories": [
+    { "ETTYP": "CP", "VTEXT": "MRP", "ETEFM": "1" },
+    { "ETTYP": "CN", "VTEXT": "No MRP", "ETEFM": "0" },
+    { "ETTYP": "BN", "VTEXT": "No Inventory Management", "ETEFM": "0" },
+    { "ETTYP": "DN", "VTEXT": "Returns", "ETEFM": "0" }
+  ],
+  "pricingProcedures": [
+    { "KALSM": "RVAA01", "VTEXT": "Standard Pricing" },
+    { "KALSM": "RVAA02", "VTEXT": "Export Pricing" },
+    { "KALSM": "RVAB01", "VTEXT": "Rebate Processing" }
+  ],
+  "conditionTypes": [
+    { "KSCHL": "PR00", "VTEXT": "Price", "KOPTS": "", "KOTYP": "B" },
+    { "KSCHL": "K004", "VTEXT": "Material Discount", "KOPTS": "", "KOTYP": "A" },
+    { "KSCHL": "K007", "VTEXT": "Customer Discount", "KOPTS": "", "KOTYP": "A" },
+    { "KSCHL": "KF00", "VTEXT": "Freight", "KOPTS": "", "KOTYP": "D" },
+    { "KSCHL": "MWST", "VTEXT": "Tax", "KOPTS": "", "KOTYP": "D" },
+    { "KSCHL": "SKTO", "VTEXT": "Cash Discount", "KOPTS": "", "KOTYP": "A" }
+  ]
+}

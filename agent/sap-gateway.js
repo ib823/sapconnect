@@ -49,9 +49,10 @@ class SapGateway {
     const candidate = explicitPath || process.env.VSP_PATH || null;
     if (!candidate) return null;
     if (!fs.existsSync(candidate)) {
-      console.error(`  [gateway] vsp binary not found at: ${candidate}`);
-      console.error('  [gateway] Install from: https://github.com/oisee/vibing-steampunk');
-      console.error('  [gateway] Falling back to mock mode.\n');
+      const earlyLog = new Logger('gateway', { level: 'info' });
+      earlyLog.warn(`vsp binary not found at: ${candidate}`);
+      earlyLog.warn('Install from: https://github.com/oisee/vibing-steampunk');
+      earlyLog.warn('Falling back to mock mode.');
       return null;
     }
     return candidate;
@@ -84,10 +85,10 @@ class SapGateway {
 
   /** Log that a method requires MCP mode and fall back to mock */
   _vspNotSupported(method) {
-    console.log(`  [gateway] vsp CLI does not support ${method}.`);
-    console.log('  [gateway] For full capability, use vsp as an MCP server in Claude Code.');
-    console.log('  [gateway] See .mcp.json.example for configuration.');
-    console.log('  [gateway] Falling back to mock data.\n');
+    this._log.warn(`vsp CLI does not support ${method}.`);
+    this._log.info('For full capability, use vsp as an MCP server in Claude Code.');
+    this._log.info('See .mcp.json.example for configuration.');
+    this._log.warn('Falling back to mock data.');
   }
 
   /** Load mock data lazily */

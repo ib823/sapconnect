@@ -1,0 +1,50 @@
+{
+  "documentHeaders": [
+    { "BUKRS": "1000", "BELNR": "0100000001", "GJAHR": "2024", "BLART": "SA", "BUDAT": "20240115", "BLDAT": "20240115", "MONAT": "01", "USNAM": "SAPUSER", "BKTXT": "January GL Posting", "WAERS": "USD", "CPUDT": "20240115" },
+    { "BUKRS": "1000", "BELNR": "0100000002", "GJAHR": "2024", "BLART": "DR", "BUDAT": "20240120", "BLDAT": "20240119", "MONAT": "01", "USNAM": "SALESUSR", "BKTXT": "Customer Invoice 9001", "WAERS": "USD", "CPUDT": "20240120" },
+    { "BUKRS": "1000", "BELNR": "0100000003", "GJAHR": "2024", "BLART": "KR", "BUDAT": "20240122", "BLDAT": "20240120", "MONAT": "01", "USNAM": "MMUSER", "BKTXT": "Vendor Invoice V-5500", "WAERS": "USD", "CPUDT": "20240122" },
+    { "BUKRS": "1000", "BELNR": "0100000004", "GJAHR": "2024", "BLART": "DZ", "BUDAT": "20240205", "BLDAT": "20240205", "MONAT": "02", "USNAM": "FIUSER", "BKTXT": "Customer Payment", "WAERS": "USD", "CPUDT": "20240205" },
+    { "BUKRS": "1000", "BELNR": "0100000005", "GJAHR": "2024", "BLART": "KZ", "BUDAT": "20240210", "BLDAT": "20240210", "MONAT": "02", "USNAM": "FIUSER", "BKTXT": "Vendor Payment Run", "WAERS": "USD", "CPUDT": "20240210" },
+    { "BUKRS": "2000", "BELNR": "0200000001", "GJAHR": "2024", "BLART": "SA", "BUDAT": "20240131", "BLDAT": "20240131", "MONAT": "01", "USNAM": "DEUSER", "BKTXT": "Monthly Accruals", "WAERS": "EUR", "CPUDT": "20240131" }
+  ],
+  "lineItems": [
+    { "BUKRS": "1000", "BELNR": "0100000001", "GJAHR": "2024", "BUZEI": "001", "BSCHL": "40", "KOART": "S", "HKONT": "0000476000", "WRBTR": 15000.00, "SHKZG": "S", "KOSTL": "1000" },
+    { "BUKRS": "1000", "BELNR": "0100000001", "GJAHR": "2024", "BUZEI": "002", "BSCHL": "50", "KOART": "S", "HKONT": "0000300000", "WRBTR": 15000.00, "SHKZG": "H", "KOSTL": "" },
+    { "BUKRS": "1000", "BELNR": "0100000002", "GJAHR": "2024", "BUZEI": "001", "BSCHL": "01", "KOART": "D", "KUNNR": "0000001000", "WRBTR": 25000.00, "SHKZG": "S", "KOSTL": "" },
+    { "BUKRS": "1000", "BELNR": "0100000002", "GJAHR": "2024", "BUZEI": "002", "BSCHL": "50", "KOART": "S", "HKONT": "0000400000", "WRBTR": 25000.00, "SHKZG": "H", "KOSTL": "2000" },
+    { "BUKRS": "1000", "BELNR": "0100000003", "GJAHR": "2024", "BUZEI": "001", "BSCHL": "31", "KOART": "K", "LIFNR": "0000002000", "WRBTR": 42000.00, "SHKZG": "H", "KOSTL": "" },
+    { "BUKRS": "1000", "BELNR": "0100000003", "GJAHR": "2024", "BUZEI": "002", "BSCHL": "40", "KOART": "S", "HKONT": "0000300000", "WRBTR": 42000.00, "SHKZG": "S", "KOSTL": "" }
+  ],
+  "customerItems": {
+    "open": [
+      { "BUKRS": "1000", "KUNNR": "0000001000", "UMSKS": "", "UMSKZ": "", "AUGDT": "", "AUGBL": "", "ZUESSION": "0001", "GJAHR": "2024", "BELNR": "0100000010", "BUZEI": "001", "BUDAT": "20240301", "BLDAT": "20240301", "BLART": "DR", "WRBTR": 18500.00, "SHKZG": "S", "WAESSION": "USD" },
+      { "BUKRS": "1000", "KUNNR": "0000001001", "UMSKS": "", "UMSKZ": "", "AUGDT": "", "AUGBL": "", "ZUESSION": "0001", "GJAHR": "2024", "BELNR": "0100000011", "BUZEI": "001", "BUDAT": "20240305", "BLDAT": "20240305", "BLART": "DR", "WRBTR": 33200.00, "SHKZG": "S", "WAESSION": "USD" }
+    ],
+    "cleared": [
+      { "BUKRS": "1000", "KUNNR": "0000001000", "UMSKS": "", "UMSKZ": "", "AUGDT": "20240205", "AUGBL": "0100000004", "ZUESSION": "0001", "GJAHR": "2024", "BELNR": "0100000002", "BUZEI": "001", "BUDAT": "20240120", "BLDAT": "20240119", "BLART": "DR", "WRBTR": 25000.00, "SHKZG": "S", "WAESSION": "USD" }
+    ]
+  },
+  "vendorItems": {
+    "open": [
+      { "BUKRS": "1000", "LIFNR": "0000002002", "UMSKS": "", "UMSKZ": "", "AUGDT": "", "AUGBL": "", "ZUESSION": "0001", "GJAHR": "2024", "BELNR": "0100000020", "BUZEI": "001", "BUDAT": "20240310", "BLDAT": "20240308", "BLART": "KR", "WRBTR": 12800.00, "SHKZG": "H", "WAESSION": "USD" },
+      { "BUKRS": "2000", "LIFNR": "0000002001", "UMSKS": "", "UMSKZ": "", "AUGDT": "", "AUGBL": "", "ZUESSION": "0002", "GJAHR": "2024", "BELNR": "0200000010", "BUZEI": "001", "BUDAT": "20240315", "BLDAT": "20240314", "BLART": "KR", "WRBTR": 55000.00, "SHKZG": "H", "WAESSION": "EUR" }
+    ],
+    "cleared": [
+      { "BUKRS": "1000", "LIFNR": "0000002000", "UMSKS": "", "UMSKZ": "", "AUGDT": "20240210", "AUGBL": "0100000005", "ZUESSION": "0001", "GJAHR": "2024", "BELNR": "0100000003", "BUZEI": "001", "BUDAT": "20240122", "BLDAT": "20240120", "BLART": "KR", "WRBTR": 42000.00, "SHKZG": "H", "WAESSION": "USD" }
+    ]
+  },
+  "glItems": {
+    "open": [
+      { "BUKRS": "1000", "HKONT": "0000191100", "UMSKS": "", "UMSKZ": "", "GJAHR": "2024", "BELNR": "0100000030", "BUZEI": "001", "BUDAT": "20240401", "BLART": "SA", "WRBTR": 8500.00, "SHKZG": "S" }
+    ],
+    "cleared": [
+      { "BUKRS": "1000", "HKONT": "0000191100", "UMSKS": "", "UMSKZ": "", "GJAHR": "2024", "BELNR": "0100000025", "BUZEI": "001", "BUDAT": "20240301", "BLART": "SA", "WRBTR": 5200.00, "SHKZG": "S", "AUGDT": "20240331" }
+    ]
+  },
+  "journalEntries": [
+    { "RCLNT": "100", "RLDNR": "0L", "RBUKRS": "1000", "GJAHR": "2024", "BELNR": "0100000001", "DOCLN": "000001", "RYESSION": "2024", "POPER": "001", "RACCT": "0000476000", "RHCUR": "USD", "HSL": 15000.00, "TSL": 15000.00, "DRCRK": "S" },
+    { "RCLNT": "100", "RLDNR": "0L", "RBUKRS": "1000", "GJAHR": "2024", "BELNR": "0100000001", "DOCLN": "000002", "RYESSION": "2024", "POPER": "001", "RACCT": "0000300000", "RHCUR": "USD", "HSL": -15000.00, "TSL": -15000.00, "DRCRK": "H" },
+    { "RCLNT": "100", "RLDNR": "0L", "RBUKRS": "1000", "GJAHR": "2024", "BELNR": "0100000002", "DOCLN": "000001", "RYESSION": "2024", "POPER": "001", "RACCT": "0000113100", "RHCUR": "USD", "HSL": 25000.00, "TSL": 25000.00, "DRCRK": "S" },
+    { "RCLNT": "100", "RLDNR": "0L", "RBUKRS": "1000", "GJAHR": "2024", "BELNR": "0100000002", "DOCLN": "000002", "RYESSION": "2024", "POPER": "001", "RACCT": "0000400000", "RHCUR": "USD", "HSL": -25000.00, "TSL": -25000.00, "DRCRK": "H" }
+  ]
+}

@@ -1,21 +1,28 @@
 {
   "name": "sapconnect",
   "version": "1.0.0",
-  "description": "SAP Connect - Demo & Pitch Toolkit for SAP Public Cloud External Development",
+  "description": "SAP Connect - Enterprise SAP S/4HANA Migration Platform & Clean Core Development Toolkit",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "repository": "https://github.com/your-org/sapconnect",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
     "@sap/cds": "^8",
-    "express": "^4",
     "@sap/xssec": "^4",
+    "express": "^4",
     "passport": "^0.7"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^1",
     "@sap/cds-dk": "^8",
     "@sap/ux-specification": "latest",
+    "@vitest/coverage-v8": "^4.0.18",
     "vitest": "^3"
+  },
+  "optionalDependencies": {
+    "node-rfc": "^3.3.1"
   },
   "scripts": {
     "start": "cds-serve",
@@ -31,9 +38,17 @@
     "provision": "node migration/provision.js",
     "test-migrate": "node migration/test-migrate.js",
     "cutover": "node migration/cutover.js",
+    "forensic-extract": "node extraction/forensic-extract.js",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "lint": "npx eslint lib/ migration/ srv/ agent/ discovery/ --ext .js",
+    "lint:fix": "npx eslint lib/ migration/ srv/ agent/ discovery/ --ext .js --fix",
+    "format": "npx prettier --write 'lib/**/*.js' 'migration/**/*.js' 'srv/**/*.js' 'agent/**/*.js' 'discovery/**/*.js'",
+    "format:check": "npx prettier --check 'lib/**/*.js' 'migration/**/*.js' 'srv/**/*.js' 'agent/**/*.js' 'discovery/**/*.js'",
+    "docker:build": "docker build -t sapconnect .",
+    "docker:run": "docker compose up",
+    "precommit": "npm run lint && npm test"
   },
   "cds": {
     "requires": {

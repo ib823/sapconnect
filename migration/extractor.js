@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const Logger = require('../lib/logger');
 
 /**
  * Source Data Extractor
@@ -13,12 +14,11 @@ class Extractor {
     this.verbose = options.verbose || false;
     this.cutoffDate = options.cutoffDate || '2020-01-01';
     this.modules = options.modules || ['FI', 'MM', 'SD', 'HR'];
+    this.logger = new Logger('extractor', { level: options.logLevel || 'info' });
   }
 
   _log(msg) {
-    if (this.verbose) {
-      console.log(`  [extractor] ${msg}`);
-    }
+    this.logger.info(msg);
   }
 
   /**
@@ -111,8 +111,8 @@ class Extractor {
 
   async _extractLive() {
     this._log('Live extraction not yet implemented, falling back to mock...');
-    console.log('  [extractor] Live extraction requires RFC_READ_TABLE or ABAP extraction programs.');
-    console.log('  [extractor] Falling back to mock data.\n');
+    this.logger.warn('Live extraction requires RFC_READ_TABLE or ABAP extraction programs.');
+    this.logger.warn('Falling back to mock data.');
     return this._extractMock();
   }
 }

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const Logger = require('../lib/logger');
 
 /**
  * Scanner - Core API discovery logic
@@ -14,6 +15,7 @@ class Scanner {
     this.system = options.system || null;
     this.username = options.username || process.env.SAP_USERNAME;
     this.password = options.password || process.env.SAP_PASSWORD;
+    this.logger = new Logger('discovery-scanner', { level: options.logLevel || 'info' });
   }
 
   async scan() {
@@ -61,22 +63,12 @@ class Scanner {
       );
     }
 
-    console.log(`Connecting to ${this.system}...`);
-    console.log(
-      'Live scanning is not yet implemented. Use mock mode for demos.'
-    );
-    console.log(
-      'To implement, add HTTP calls to the SAP system metadata endpoints:'
-    );
-    console.log(
-      '  - /sap/opu/odata/sap/APS_IAM_CSCEN_V2 (Communication Scenarios)'
-    );
-    console.log(
-      '  - /sap/opu/odata/sap/APS_IAM_CARNG_V2 (Communication Arrangements)'
-    );
-    console.log(
-      '  - /sap/opu/odata4/sap/api-business-hub-enterprise/srvd_a2x/sap/apibhubenterprise/0001 (API catalog)'
-    );
+    this.logger.info(`Connecting to ${this.system}...`);
+    this.logger.warn('Live scanning is not yet implemented. Use mock mode for demos.');
+    this.logger.info('To implement, add HTTP calls to the SAP system metadata endpoints:');
+    this.logger.info('  - /sap/opu/odata/sap/APS_IAM_CSCEN_V2 (Communication Scenarios)');
+    this.logger.info('  - /sap/opu/odata/sap/APS_IAM_CARNG_V2 (Communication Arrangements)');
+    this.logger.info('  - /sap/opu/odata4/sap/api-business-hub-enterprise/srvd_a2x/sap/apibhubenterprise/0001 (API catalog)');
 
     // Fall back to mock data for now
     return this.scanMock();

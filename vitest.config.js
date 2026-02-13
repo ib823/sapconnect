@@ -7,7 +7,7 @@ export default defineConfig({
     globals: true,
     coverage: {
       provider: 'v8',
-      include: ['agent/**', 'migration/**', 'discovery/**', 'lib/**'],
+      include: ['agent/**', 'migration/**', 'discovery/**', 'lib/**', 'srv/**'],
     },
   },
 });

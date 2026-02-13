@@ -1,3 +1,5 @@
+const Logger = require('../lib/logger');
+
 /**
  * Cutover Plan Generator
  *
@@ -9,12 +11,11 @@ class CutoverPlan {
     this.verbose = options.verbose || false;
     this.goLiveDate = options.goLiveDate || this._nextMonday();
     this.clientName = options.clientName || 'SAP Client';
+    this.logger = new Logger('cutover', { level: options.logLevel || 'info' });
   }
 
   _log(msg) {
-    if (this.verbose) {
-      console.log(`  [cutover] ${msg}`);
-    }
+    this.logger.info(msg);
   }
 
   _nextMonday() {

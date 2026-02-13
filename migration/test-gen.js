@@ -1,3 +1,5 @@
+const Logger = require('../lib/logger');
+
 /**
  * Migration Test Script Generator
  *
@@ -8,12 +10,11 @@ class TestGenerator {
   constructor(options = {}) {
     this.verbose = options.verbose || false;
     this.modules = options.modules || ['FI', 'MM', 'SD'];
+    this.logger = new Logger('test-gen', { level: options.logLevel || 'info' });
   }
 
   _log(msg) {
-    if (this.verbose) {
-      console.log(`  [test-gen] ${msg}`);
-    }
+    this.logger.info(msg);
   }
 
   /**

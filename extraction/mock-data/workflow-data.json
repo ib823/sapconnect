@@ -1,0 +1,49 @@
+{
+  "templates": [
+    { "WI_ID": "WS20000001", "WI_TYPE": "F", "WI_TEXT": "Purchase Order Approval", "WI_STAT": "STARTED", "WI_LANG": "E", "WI_PRIO": 5, "WI_CREATOR": "SYSADMIN", "WI_CD": "20220301", "WI_CT": "100000" },
+    { "WI_ID": "WS20000002", "WI_TYPE": "F", "WI_TEXT": "Invoice Verification Workflow", "WI_STAT": "STARTED", "WI_LANG": "E", "WI_PRIO": 5, "WI_CREATOR": "SYSADMIN", "WI_CD": "20220401", "WI_CT": "100000" },
+    { "WI_ID": "WS20000003", "WI_TYPE": "F", "WI_TEXT": "Sales Order Release", "WI_STAT": "STARTED", "WI_LANG": "E", "WI_PRIO": 3, "WI_CREATOR": "SYSADMIN", "WI_CD": "20220601", "WI_CT": "100000" },
+    { "WI_ID": "WS20000004", "WI_TYPE": "F", "WI_TEXT": "Material Master Change Approval", "WI_STAT": "STARTED", "WI_LANG": "E", "WI_PRIO": 5, "WI_CREATOR": "SYSADMIN", "WI_CD": "20230101", "WI_CT": "100000" },
+    { "WI_ID": "WS20000005", "WI_TYPE": "F", "WI_TEXT": "Leave Request Approval", "WI_STAT": "COMMITTED", "WI_LANG": "E", "WI_PRIO": 5, "WI_CREATOR": "SYSADMIN", "WI_CD": "20230301", "WI_CT": "100000" }
+  ],
+  "templateSteps": [
+    { "WI_ID": "WS20000001", "STEP_ID": "0001", "STEP_TYPE": "A", "TASK_ID": "TS20000010", "STEP_TEXT": "Manager Approval", "STEP_PRIO": 5 },
+    { "WI_ID": "WS20000001", "STEP_ID": "0002", "STEP_TYPE": "A", "TASK_ID": "TS20000011", "STEP_TEXT": "Finance Review", "STEP_PRIO": 5 },
+    { "WI_ID": "WS20000001", "STEP_ID": "0003", "STEP_TYPE": "C", "TASK_ID": "", "STEP_TEXT": "Approval Decision", "STEP_PRIO": 5 },
+    { "WI_ID": "WS20000002", "STEP_ID": "0001", "STEP_TYPE": "A", "TASK_ID": "TS20000020", "STEP_TEXT": "AP Clerk Verification", "STEP_PRIO": 5 },
+    { "WI_ID": "WS20000002", "STEP_ID": "0002", "STEP_TYPE": "A", "TASK_ID": "TS20000021", "STEP_TEXT": "Manager Sign-off", "STEP_PRIO": 3 },
+    { "WI_ID": "WS20000003", "STEP_ID": "0001", "STEP_TYPE": "A", "TASK_ID": "TS20000030", "STEP_TEXT": "Credit Check", "STEP_PRIO": 5 },
+    { "WI_ID": "WS20000003", "STEP_ID": "0002", "STEP_TYPE": "A", "TASK_ID": "TS20000031", "STEP_TEXT": "Sales Manager Release", "STEP_PRIO": 3 },
+    { "WI_ID": "WS20000004", "STEP_ID": "0001", "STEP_TYPE": "A", "TASK_ID": "TS20000040", "STEP_TEXT": "Data Steward Review", "STEP_PRIO": 5 },
+    { "WI_ID": "WS20000005", "STEP_ID": "0001", "STEP_TYPE": "A", "TASK_ID": "TS20000050", "STEP_TEXT": "Supervisor Approval", "STEP_PRIO": 5 },
+    { "WI_ID": "WS20000005", "STEP_ID": "0002", "STEP_TYPE": "A", "TASK_ID": "TS20000051", "STEP_TEXT": "HR Confirmation", "STEP_PRIO": 5 }
+  ],
+  "workItems": [
+    { "WI_ID": "WI30000001", "WI_TYPE": "W", "WI_TEXT": "PO 4500001000 Approval", "WI_STAT": "COMPLETED", "WI_PRIO": 5, "WI_CD": "20240301", "WI_CT": "101500", "WI_AAGENT": "JSMITH" },
+    { "WI_ID": "WI30000002", "WI_TYPE": "W", "WI_TEXT": "PO 4500001001 Approval", "WI_STAT": "READY", "WI_PRIO": 5, "WI_CD": "20240315", "WI_CT": "080000", "WI_AAGENT": "" },
+    { "WI_ID": "WI30000003", "WI_TYPE": "W", "WI_TEXT": "Invoice 5100000010 Verification", "WI_STAT": "COMPLETED", "WI_PRIO": 5, "WI_CD": "20240310", "WI_CT": "143000", "WI_AAGENT": "ABROWN" },
+    { "WI_ID": "WI30000004", "WI_TYPE": "W", "WI_TEXT": "SO 100000 Release", "WI_STAT": "READY", "WI_PRIO": 3, "WI_CD": "20240318", "WI_CT": "090000", "WI_AAGENT": "" },
+    { "WI_ID": "WI30000005", "WI_TYPE": "W", "WI_TEXT": "Leave Request MWILSON", "WI_STAT": "COMPLETED", "WI_PRIO": 5, "WI_CD": "20240305", "WI_CT": "120000", "WI_AAGENT": "SYSADMIN" }
+  ],
+  "workItemObjects": [
+    { "WI_ID": "WI30000001", "CATID": "BO", "TYPEID": "BUS2012", "INSTID": "4500001000" },
+    { "WI_ID": "WI30000002", "CATID": "BO", "TYPEID": "BUS2012", "INSTID": "4500001001" },
+    { "WI_ID": "WI30000003", "CATID": "BO", "TYPEID": "BUS2081", "INSTID": "5100000010" },
+    { "WI_ID": "WI30000004", "CATID": "BO", "TYPEID": "BUS2032", "INSTID": "100000" },
+    { "WI_ID": "WI30000005", "CATID": "CL", "TYPEID": "CL_HR_LEAVE", "INSTID": "00001003" }
+  ],
+  "containerObjects": [
+    { "WI_ID": "WI30000001", "ELEMENT": "_WI_OBJECT_ID", "ELETYP": "BO", "TYPEID": "BUS2012", "INSTID": "4500001000" },
+    { "WI_ID": "WI30000001", "ELEMENT": "AMOUNT", "ELETYP": "C", "TYPEID": "", "INSTID": "50000.00" },
+    { "WI_ID": "WI30000002", "ELEMENT": "_WI_OBJECT_ID", "ELETYP": "BO", "TYPEID": "BUS2012", "INSTID": "4500001001" },
+    { "WI_ID": "WI30000003", "ELEMENT": "_WI_OBJECT_ID", "ELETYP": "BO", "TYPEID": "BUS2081", "INSTID": "5100000010" }
+  ],
+  "taskRelationships": [
+    { "TASK_ID": "TS20000010", "TASK_TYPE": "T", "WF_ID": "WS20000001", "REL_TYPE": "STEP" },
+    { "TASK_ID": "TS20000011", "TASK_TYPE": "T", "WF_ID": "WS20000001", "REL_TYPE": "STEP" },
+    { "TASK_ID": "TS20000020", "TASK_TYPE": "T", "WF_ID": "WS20000002", "REL_TYPE": "STEP" },
+    { "TASK_ID": "TS20000021", "TASK_TYPE": "T", "WF_ID": "WS20000002", "REL_TYPE": "STEP" },
+    { "TASK_ID": "TS20000030", "TASK_TYPE": "T", "WF_ID": "WS20000003", "REL_TYPE": "STEP" },
+    { "TASK_ID": "TS20000031", "TASK_TYPE": "T", "WF_ID": "WS20000003", "REL_TYPE": "STEP" }
+  ]
+}

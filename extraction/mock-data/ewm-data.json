@@ -1,0 +1,32 @@
+{
+  "quants": [
+    { "LGNUM": "WH01", "HUIDENT": "HU-000001", "MATNR": "MAT-10001", "BATCHID": "BATCH-001", "QUAN": "500.000", "UOM": "EA", "LGTYP": "A01", "LGPLA": "01-01-A1" },
+    { "LGNUM": "WH01", "HUIDENT": "HU-000002", "MATNR": "MAT-10002", "BATCHID": "BATCH-002", "QUAN": "1200.000", "UOM": "EA", "LGTYP": "A01", "LGPLA": "01-01-A2" },
+    { "LGNUM": "WH01", "HUIDENT": "HU-000003", "MATNR": "MAT-10003", "BATCHID": "", "QUAN": "250.000", "UOM": "KG", "LGTYP": "B02", "LGPLA": "02-03-B1" },
+    { "LGNUM": "WH02", "HUIDENT": "HU-000004", "MATNR": "MAT-10001", "BATCHID": "BATCH-003", "QUAN": "800.000", "UOM": "EA", "LGTYP": "A01", "LGPLA": "01-02-A1" }
+  ],
+  "huItems": [
+    { "LGNUM": "WH01", "HUIDENT": "HU-000001", "MATNR": "MAT-10001", "QUAN": "500.000", "UOM": "EA", "STOCK_TYPE": "F1", "OWNER": "OWNER-1000" },
+    { "LGNUM": "WH01", "HUIDENT": "HU-000002", "MATNR": "MAT-10002", "QUAN": "1200.000", "UOM": "EA", "STOCK_TYPE": "F1", "OWNER": "OWNER-1000" },
+    { "LGNUM": "WH01", "HUIDENT": "HU-000003", "MATNR": "MAT-10003", "QUAN": "250.000", "UOM": "KG", "STOCK_TYPE": "F2", "OWNER": "OWNER-2000" },
+    { "LGNUM": "WH02", "HUIDENT": "HU-000004", "MATNR": "MAT-10001", "QUAN": "800.000", "UOM": "EA", "STOCK_TYPE": "F1", "OWNER": "OWNER-1000" },
+    { "LGNUM": "WH02", "HUIDENT": "HU-000005", "MATNR": "MAT-10004", "QUAN": "60.000", "UOM": "L", "STOCK_TYPE": "F3", "OWNER": "OWNER-3000" }
+  ],
+  "warehouseConfig": [
+    { "LGNUM": "WH01", "LNUMT": "Main Distribution Center", "KOBER": "001", "ADRNR": "0000012345", "LGTYP_MAX": "20", "WHS_STATUS": "ACTIVE" },
+    { "LGNUM": "WH02", "LNUMT": "Regional Warehouse East", "KOBER": "002", "ADRNR": "0000012346", "LGTYP_MAX": "10", "WHS_STATUS": "ACTIVE" },
+    { "LGNUM": "WH03", "LNUMT": "Cold Storage Facility", "KOBER": "003", "ADRNR": "0000012347", "LGTYP_MAX": "8", "WHS_STATUS": "ACTIVE" }
+  ],
+  "warehouseTasks": [
+    { "LGNUM": "WH01", "TANUM": "WT-000001", "TAPOS": "0001", "MATNR": "MAT-10001", "VLTYP": "GR", "VLPLA": "GR-ZONE", "NLTYP": "A01", "NLPLA": "01-01-A1", "VSOLM": "200.000" },
+    { "LGNUM": "WH01", "TANUM": "WT-000002", "TAPOS": "0001", "MATNR": "MAT-10002", "VLTYP": "A01", "VLPLA": "01-01-A2", "NLTYP": "GI", "NLPLA": "GI-ZONE", "VSOLM": "100.000" },
+    { "LGNUM": "WH01", "TANUM": "WT-000003", "TAPOS": "0001", "MATNR": "MAT-10003", "VLTYP": "B02", "VLPLA": "02-03-B1", "NLTYP": "B02", "NLPLA": "02-04-B2", "VSOLM": "50.000" },
+    { "LGNUM": "WH02", "TANUM": "WT-000004", "TAPOS": "0001", "MATNR": "MAT-10004", "VLTYP": "GR", "VLPLA": "GR-ZONE", "NLTYP": "C01", "NLPLA": "03-01-C1", "VSOLM": "30.000" }
+  ],
+  "waveHeaders": [
+    { "LGNUM": "WH01", "WAVE": "WAVE-001", "WAVE_TYPE": "OUTB", "STATUS": "COMPLETED", "CREA_DATE": "20240110", "CREA_TIME": "083000", "ITEMS_COUNT": "25" },
+    { "LGNUM": "WH01", "WAVE": "WAVE-002", "WAVE_TYPE": "OUTB", "STATUS": "IN_PROCESS", "CREA_DATE": "20240111", "CREA_TIME": "091500", "ITEMS_COUNT": "18" },
+    { "LGNUM": "WH02", "WAVE": "WAVE-003", "WAVE_TYPE": "OUTB", "STATUS": "PLANNED", "CREA_DATE": "20240112", "CREA_TIME": "060000", "ITEMS_COUNT": "12" },
+    { "LGNUM": "WH01", "WAVE": "WAVE-004", "WAVE_TYPE": "REPLEN", "STATUS": "COMPLETED", "CREA_DATE": "20240110", "CREA_TIME": "140000", "ITEMS_COUNT": "8" }
+  ]
+}

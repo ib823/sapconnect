@@ -9,3 +9,7 @@ resources/
 dist/
 *.mtar
 connection.properties
+coverage/
+.migration-checkpoints/
+.sapconnect-checkpoints/
+*.log

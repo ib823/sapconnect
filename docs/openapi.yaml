@@ -1,0 +1,455 @@
+openapi: 3.0.3
+info:
+  title: SAP Connect Migration Dashboard API
+  description: |
+    REST API for the SAP S/4HANA Migration Platform.
+    Provides migration status, object progress, rule analysis,
+    reconciliation, and test scenario management.
+  version: 1.0.0
+  contact:
+    name: SAP Connect Team
+  license:
+    name: Proprietary
+
+servers:
+  - url: http://localhost:4004
+    description: Local development
+  - url: https://{host}
+    description: Production
+    variables:
+      host:
+        default: sapconnect.example.com
+
+tags:
+  - name: Dashboard
+    description: Migration dashboard endpoints
+  - name: Health
+    description: Health and readiness checks
+  - name: Metrics
+    description: Observability endpoints
+
+paths:
+  /health:
+    get:
+      tags: [Health]
+      summary: Liveness probe
+      description: Returns basic health status. Used by orchestrators for liveness checks.
+      operationId: getHealth
+      responses:
+        '200':
+          description: Service is alive
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /ready:
+    get:
+      tags: [Health]
+      summary: Readiness probe
+      description: Returns readiness status including dependency checks.
+      operationId: getReady
+      responses:
+        '200':
+          description: Service is ready
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadinessResponse'
+        '503':
+          description: Service is not ready
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadinessResponse'
+
+  /metrics:
+    get:
+      tags: [Metrics]
+      summary: Application metrics
+      description: Returns metrics in Prometheus or JSON format based on Accept header.
+      operationId: getMetrics
+      responses:
+        '200':
+          description: Metrics data
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricsResponse'
+
+  /api/dashboard/summary:
+    get:
+      tags: [Dashboard]
+      summary: Migration summary
+      description: Returns overall migration status including object counts, rule counts, and run history.
+      operationId: getDashboardSummary
+      responses:
+        '200':
+          description: Migration summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardSummary'
+
+  /api/dashboard/objects:
+    get:
+      tags: [Dashboard]
+      summary: List migration objects
+      description: Returns all 42 migration objects with their current status.
+      operationId: listMigrationObjects
+      responses:
+        '200':
+          description: List of migration objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MigrationObject'
+
+  /api/dashboard/objects/{objectId}:
+    get:
+      tags: [Dashboard]
+      summary: Get object detail
+      description: Returns detailed information for a specific migration object.
+      operationId: getMigrationObject
+      parameters:
+        - name: objectId
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^[A-Z][A-Z0-9_]{1,49}$'
+          example: GL_BALANCE
+      responses:
+        '200':
+          description: Object detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MigrationObjectDetail'
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/dashboard/rules:
+    get:
+      tags: [Dashboard]
+      summary: Rule analysis
+      description: Returns all 874 custom code rules with severity and category breakdowns.
+      operationId: getRulesAnalysis
+      responses:
+        '200':
+          description: Rules analysis
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RulesAnalysis'
+
+  /api/dashboard/reconciliation:
+    get:
+      tags: [Dashboard]
+      summary: Reconciliation report
+      description: Returns reconciliation results from the last migration run.
+      operationId: getReconciliation
+      responses:
+        '200':
+          description: Reconciliation report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReconciliationReport'
+
+  /api/dashboard/tests:
+    get:
+      tags: [Dashboard]
+      summary: Test scenarios
+      description: Returns generated test scenarios from the last migration run.
+      operationId: getTestScenarios
+      responses:
+        '200':
+          description: Test scenarios
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestScenarios'
+
+  /api/dashboard/run:
+    post:
+      tags: [Dashboard]
+      summary: Run full migration
+      description: Triggers a full migration run across all 42 objects.
+      operationId: runFullMigration
+      responses:
+        '200':
+          description: Migration run result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RunResult'
+
+  /api/dashboard/run/{objectId}:
+    post:
+      tags: [Dashboard]
+      summary: Run single object
+      description: Triggers a migration run for a single object.
+      operationId: runSingleObject
+      parameters:
+        - name: objectId
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^[A-Z][A-Z0-9_]{1,49}$'
+      responses:
+        '200':
+          description: Object run result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectRunResult'
+        '400':
+          description: Invalid object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [up]
+        timestamp:
+          type: string
+          format: date-time
+        uptime:
+          type: integer
+          description: Uptime in seconds
+        version:
+          type: string
+        pid:
+          type: integer
+        memory:
+          type: object
+          properties:
+            rss:
+              type: integer
+              description: RSS in MB
+            heapUsed:
+              type: integer
+            heapTotal:
+              type: integer
+
+    ReadinessResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [up, degraded]
+        timestamp:
+          type: string
+          format: date-time
+        checks:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              status:
+                type: string
+                enum: [up, down]
+              error:
+                type: string
+
+    MetricsResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        uptime:
+          type: integer
+        counters:
+          type: object
+        gauges:
+          type: object
+        histograms:
+          type: object
+
+    DashboardSummary:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        totalObjects:
+          type: integer
+          example: 42
+        totalRules:
+          type: integer
+          example: 874
+        lastRun:
+          type: object
+          nullable: true
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+            status:
+              type: string
+            objectsRun:
+              type: integer
+            objectsCompleted:
+              type: integer
+            objectsFailed:
+              type: integer
+            durationMs:
+              type: integer
+        rulesBreakdown:
+          type: object
+          properties:
+            critical:
+              type: integer
+            high:
+              type: integer
+            medium:
+              type: integer
+            low:
+              type: integer
+        runHistory:
+          type: array
+          items:
+            type: object
+            properties:
+              timestamp:
+                type: string
+              status:
+                type: string
+              objectsRun:
+                type: integer
+
+    MigrationObject:
+      type: object
+      properties:
+        objectId:
+          type: string
+          example: GL_BALANCE
+        name:
+          type: string
+          example: GL Account Balance
+        fieldMappings:
+          type: integer
+          example: 70
+        status:
+          type: string
+          enum: [not_run, completed, completed_with_errors, failed, validation_failed]
+
+    MigrationObjectDetail:
+      type: object
+      properties:
+        objectId:
+          type: string
+        name:
+          type: string
+        fieldMappings:
+          type: array
+          items:
+            type: object
+        qualityChecks:
+          type: object
+        lastResult:
+          type: object
+          nullable: true
+
+    RulesAnalysis:
+      type: object
+      properties:
+        total:
+          type: integer
+          example: 874
+        bySeverity:
+          type: object
+        byCategory:
+          type: object
+        rules:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              severity:
+                type: string
+              category:
+                type: string
+
+    ReconciliationReport:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [no_data, completed]
+        reports:
+          type: array
+        summary:
+          type: object
+
+    TestScenarios:
+      type: object
+      properties:
+        status:
+          type: string
+        scenarios:
+          type: object
+        stats:
+          type: object
+
+    RunResult:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [COMPLETED, COMPLETED_WITH_ERRORS]
+        stats:
+          type: object
+          properties:
+            total:
+              type: integer
+            completed:
+              type: integer
+            failed:
+              type: integer
+            totalDurationMs:
+              type: integer
+        timestamp:
+          type: string
+          format: date-time
+
+    ObjectRunResult:
+      type: object
+      properties:
+        status:
+          type: string
+        objectId:
+          type: string
+        phases:
+          type: object
+        stats:
+          type: object
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string

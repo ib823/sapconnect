@@ -1,0 +1,42 @@
+{
+  "equipment": [
+    { "EQUNR": "000000000010000001", "EQTYP": "M", "EQART": "PUMP", "SWERK": "1000", "STORT": "PROD", "TPLNR": "1000-PROD-LINE1", "INBDT": "20190601", "ERDAT": "20190515", "EQKTX": "Centrifugal Pump CP-100" },
+    { "EQUNR": "000000000010000002", "EQTYP": "M", "EQART": "MOTOR", "SWERK": "1000", "STORT": "PROD", "TPLNR": "1000-PROD-LINE1", "INBDT": "20190601", "ERDAT": "20190515", "EQKTX": "Electric Motor EM-200 3Phase" },
+    { "EQUNR": "000000000010000003", "EQTYP": "M", "EQART": "CONV", "SWERK": "1000", "STORT": "PROD", "TPLNR": "1000-PROD-LINE2", "INBDT": "20200301", "ERDAT": "20200215", "EQKTX": "Belt Conveyor BC-300 Heavy Duty" },
+    { "EQUNR": "000000000010000004", "EQTYP": "M", "EQART": "COMP", "SWERK": "2000", "STORT": "UTIL", "TPLNR": "2000-UTIL-AIR", "INBDT": "20180101", "ERDAT": "20171201", "EQKTX": "Air Compressor AC-150" },
+    { "EQUNR": "000000000010000005", "EQTYP": "M", "EQART": "HEX", "SWERK": "2000", "STORT": "UTIL", "TPLNR": "2000-UTIL-COOL", "INBDT": "20200901", "ERDAT": "20200815", "EQKTX": "Heat Exchanger HX-400 Shell&Tube" }
+  ],
+  "functionalLocations": [
+    { "TPLNR": "1000-PROD-LINE1", "FLTYP": "A", "SWERK": "1000", "STORT": "PROD", "IWERK": "1000", "ERDAT": "20190101" },
+    { "TPLNR": "1000-PROD-LINE2", "FLTYP": "A", "SWERK": "1000", "STORT": "PROD", "IWERK": "1000", "ERDAT": "20200101" },
+    { "TPLNR": "1000-PACK-01", "FLTYP": "A", "SWERK": "1000", "STORT": "PACK", "IWERK": "1000", "ERDAT": "20190101" },
+    { "TPLNR": "2000-UTIL-AIR", "FLTYP": "A", "SWERK": "2000", "STORT": "UTIL", "IWERK": "2000", "ERDAT": "20170601" },
+    { "TPLNR": "2000-UTIL-COOL", "FLTYP": "A", "SWERK": "2000", "STORT": "UTIL", "IWERK": "2000", "ERDAT": "20200601" },
+    { "TPLNR": "2000-PROD-MAIN", "FLTYP": "A", "SWERK": "2000", "STORT": "PROD", "IWERK": "2000", "ERDAT": "20170601" }
+  ],
+  "maintenancePlans": [
+    { "WARPL": "000000001001", "ABESSION": "Preventive Maintenance - Pumps", "AESSION_TXT": "Quarterly PM for all centrifugal pumps", "STRAT": "Z_QRTR", "SESSION": "1000" },
+    { "WARPL": "000000001002", "ABESSION": "Motor Inspection", "AESSION_TXT": "Annual motor inspection and testing", "STRAT": "Z_ANNU", "SESSION": "1000" },
+    { "WARPL": "000000001003", "ABESSION": "Conveyor Belt Replacement", "AESSION_TXT": "Semi-annual belt condition check", "STRAT": "Z_SEMI", "SESSION": "1000" },
+    { "WARPL": "000000002001", "ABESSION": "Compressor Overhaul", "AESSION_TXT": "Annual compressor overhaul", "STRAT": "Z_ANNU", "SESSION": "2000" }
+  ],
+  "notifications": [
+    { "QMNUM": "000100000001", "QMART": "M1", "EQUNR": "000000000010000001", "TPLNR": "1000-PROD-LINE1", "SWERK": "1000", "ERDAT": "20240110", "ERNAM": "PMUSER01", "PRIESSION": "2" },
+    { "QMNUM": "000100000002", "QMART": "M2", "EQUNR": "000000000010000003", "TPLNR": "1000-PROD-LINE2", "SWERK": "1000", "ERDAT": "20240125", "ERNAM": "PMUSER02", "PRIESSION": "1" },
+    { "QMNUM": "000100000003", "QMART": "M1", "EQUNR": "000000000010000004", "TPLNR": "2000-UTIL-AIR", "SWERK": "2000", "ERDAT": "20240205", "ERNAM": "PMUSER01", "PRIESSION": "3" },
+    { "QMNUM": "000100000004", "QMART": "M3", "EQUNR": "000000000010000002", "TPLNR": "1000-PROD-LINE1", "SWERK": "1000", "ERDAT": "20240220", "ERNAM": "PMUSER03", "PRIESSION": "2" },
+    { "QMNUM": "000100000005", "QMART": "M1", "EQUNR": "000000000010000005", "TPLNR": "2000-UTIL-COOL", "SWERK": "2000", "ERDAT": "20240301", "ERNAM": "PMUSER02", "PRIESSION": "1" }
+  ],
+  "planningPlants": [
+    { "IESSION": "01", "SWERK": "1000", "IWERK": "1000" },
+    { "IESSION": "02", "SWERK": "2000", "IWERK": "2000" },
+    { "IESSION": "03", "SWERK": "3000", "IWERK": "1000" }
+  ],
+  "plannerGroups": [
+    { "IWERK": "1000", "INGRP": "100", "INNAM": "Mechanical Maintenance" },
+    { "IWERK": "1000", "INGRP": "200", "INNAM": "Electrical Maintenance" },
+    { "IWERK": "1000", "INGRP": "300", "INNAM": "Instrumentation" },
+    { "IWERK": "2000", "INGRP": "100", "INNAM": "General Maintenance" },
+    { "IWERK": "2000", "INGRP": "200", "INNAM": "Utilities Maintenance" }
+  ]
+}

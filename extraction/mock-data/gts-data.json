@@ -1,0 +1,25 @@
+{
+  "customsProducts": [
+    { "GUID": "GTS-CP-001", "CNTRY": "DE", "STAWN": "8471300000", "DESCR": "Portable digital computers", "VALID_FROM": "20230101", "VALID_TO": "99991231" },
+    { "GUID": "GTS-CP-002", "CNTRY": "DE", "STAWN": "8542310000", "DESCR": "Electronic integrated circuits - processors", "VALID_FROM": "20230101", "VALID_TO": "99991231" },
+    { "GUID": "GTS-CP-003", "CNTRY": "US", "STAWN": "8471410000", "DESCR": "Data processing machines", "VALID_FROM": "20230601", "VALID_TO": "99991231" },
+    { "GUID": "GTS-CP-004", "CNTRY": "CN", "STAWN": "8517620000", "DESCR": "Communication apparatus for reception/transmission", "VALID_FROM": "20230101", "VALID_TO": "99991231" }
+  ],
+  "legalRegulations": [
+    { "GUID": "GTS-LR-001", "LGREG": "EAR", "CNTRY": "US", "DESCR": "Export Administration Regulations", "ACTIVE": "X", "VALID_FROM": "20200101" },
+    { "GUID": "GTS-LR-002", "LGREG": "ITAR", "CNTRY": "US", "DESCR": "International Traffic in Arms Regulations", "ACTIVE": "X", "VALID_FROM": "20200101" },
+    { "GUID": "GTS-LR-003", "LGREG": "EU_DUAL", "CNTRY": "DE", "DESCR": "EU Dual-Use Regulation", "ACTIVE": "X", "VALID_FROM": "20210901" },
+    { "GUID": "GTS-LR-004", "LGREG": "REACH", "CNTRY": "DE", "DESCR": "EU REACH Chemical Regulation", "ACTIVE": "X", "VALID_FROM": "20180601" }
+  ],
+  "sanctionedParties": [
+    { "GUID": "GTS-SP-001", "LIST_TYPE": "SDN", "PARTY_NAME": "Test Entity Alpha", "CNTRY": "IR", "STATUS": "ACTIVE", "LAST_CHECK": "20240115" },
+    { "GUID": "GTS-SP-002", "LIST_TYPE": "EU_SANC", "PARTY_NAME": "Test Entity Beta", "CNTRY": "SY", "STATUS": "ACTIVE", "LAST_CHECK": "20240115" },
+    { "GUID": "GTS-SP-003", "LIST_TYPE": "SDN", "PARTY_NAME": "Test Entity Gamma", "CNTRY": "KP", "STATUS": "ACTIVE", "LAST_CHECK": "20240110" }
+  ],
+  "preferenceProcessing": [
+    { "GUID": "GTS-PP-001", "MATNR": "MAT-001", "CNTRY_FROM": "DE", "CNTRY_TO": "US", "PREF_STATUS": "QUALIFIED", "VALID_FROM": "20230101", "VALID_TO": "20241231" },
+    { "GUID": "GTS-PP-002", "MATNR": "MAT-002", "CNTRY_FROM": "DE", "CNTRY_TO": "CH", "PREF_STATUS": "QUALIFIED", "VALID_FROM": "20230101", "VALID_TO": "20241231" },
+    { "GUID": "GTS-PP-003", "MATNR": "MAT-003", "CNTRY_FROM": "DE", "CNTRY_TO": "JP", "PREF_STATUS": "NOT_QUALIFIED", "VALID_FROM": "20230601", "VALID_TO": "20241231" },
+    { "GUID": "GTS-PP-004", "MATNR": "MAT-004", "CNTRY_FROM": "US", "CNTRY_TO": "MX", "PREF_STATUS": "QUALIFIED", "VALID_FROM": "20230101", "VALID_TO": "20251231" }
+  ]
+}

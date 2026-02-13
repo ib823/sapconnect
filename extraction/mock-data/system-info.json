@@ -1,0 +1,39 @@
+{
+  "sid": "ECD",
+  "client": "100",
+  "release": "617",
+  "kernel": "753",
+  "database": "HANA",
+  "os": "Linux",
+  "hostname": "sapecd01",
+  "instanceNumber": "00",
+  "clients": [
+    { "MANDT": "000", "MTEXT": "SAP Reference Client", "CCCATEGORY": "S" },
+    { "MANDT": "001", "MTEXT": "Development", "CCCATEGORY": "C" },
+    { "MANDT": "100", "MTEXT": "Production", "CCCATEGORY": "P" },
+    { "MANDT": "200", "MTEXT": "Quality Assurance", "CCCATEGORY": "T" }
+  ],
+  "components": [
+    { "COMPONENT": "SAP_BASIS", "RELEASE": "753", "EXTRELEASE": "0010", "COMP_TYPE": "S" },
+    { "COMPONENT": "SAP_ABA", "RELEASE": "753", "EXTRELEASE": "0010", "COMP_TYPE": "S" },
+    { "COMPONENT": "SAP_APPL", "RELEASE": "617", "EXTRELEASE": "0010", "COMP_TYPE": "W" },
+    { "COMPONENT": "SAP_FIN", "RELEASE": "720", "EXTRELEASE": "0010", "COMP_TYPE": "W" },
+    { "COMPONENT": "SAP_HR", "RELEASE": "608", "EXTRELEASE": "0097", "COMP_TYPE": "W" },
+    { "COMPONENT": "EA-HR", "RELEASE": "608", "EXTRELEASE": "0097", "COMP_TYPE": "W" },
+    { "COMPONENT": "ST-PI", "RELEASE": "740", "EXTRELEASE": "0012", "COMP_TYPE": "X" },
+    { "COMPONENT": "WEBCUIF", "RELEASE": "753", "EXTRELEASE": "0007", "COMP_TYPE": "S" }
+  ],
+  "supportPackages": [
+    { "COMP": "SAP_BASIS", "PATNO": "SAPKB75310", "PATCH_NOSC": "10", "DTEFIXED": "20230615" },
+    { "COMP": "SAP_ABA", "PATNO": "SAPKA75310", "PATCH_NOSC": "10", "DTEFIXED": "20230615" },
+    { "COMP": "SAP_APPL", "PATNO": "SAPKH61710", "PATCH_NOSC": "10", "DTEFIXED": "20230501" }
+  ],
+  "parameters": {
+    "login/system_client": "100",
+    "rdisp/wp_no_dia": "20",
+    "rdisp/wp_no_btc": "10",
+    "rdisp/wp_no_spo": "3",
+    "rdisp/max_wprun_time": "600",
+    "zcsa/installed_languages": "DE EN ES FR"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "users": [
+    { "BNAME": "DDIC", "USTYP": "S", "CLASS": "SUPER", "GLTGV": "20200101", "GLTGB": "99991231", "TRDAT": "20240115", "LTIME": "083042", "UFLAG": 0 },
+    { "BNAME": "SAP*", "USTYP": "S", "CLASS": "SUPER", "GLTGV": "20200101", "GLTGB": "99991231", "TRDAT": "20231201", "LTIME": "000000", "UFLAG": 128 },
+    { "BNAME": "JSMITH", "USTYP": "A", "CLASS": "DIALOG", "GLTGV": "20210301", "GLTGB": "99991231", "TRDAT": "20240320", "LTIME": "143022", "UFLAG": 0 },
+    { "BNAME": "ABROWN", "USTYP": "A", "CLASS": "DIALOG", "GLTGV": "20210601", "GLTGB": "99991231", "TRDAT": "20240318", "LTIME": "091500", "UFLAG": 0 },
+    { "BNAME": "MWILSON", "USTYP": "A", "CLASS": "DIALOG", "GLTGV": "20220115", "GLTGB": "99991231", "TRDAT": "20240315", "LTIME": "161030", "UFLAG": 0 },
+    { "BNAME": "BATCHUSR", "USTYP": "B", "CLASS": "BATCH", "GLTGV": "20200501", "GLTGB": "99991231", "TRDAT": "20240320", "LTIME": "020015", "UFLAG": 0 },
+    { "BNAME": "RFC_USER", "USTYP": "C", "CLASS": "RFC", "GLTGV": "20210101", "GLTGB": "99991231", "TRDAT": "20240320", "LTIME": "120000", "UFLAG": 0 },
+    { "BNAME": "SYSADMIN", "USTYP": "A", "CLASS": "DIALOG", "GLTGV": "20200101", "GLTGB": "99991231", "TRDAT": "20240319", "LTIME": "080000", "UFLAG": 0 }
+  ],
+  "userKeys": [
+    { "BNAME": "DDIC", "PERSNUMBER": "00000001", "ADDRNUMBER": "0000010001", "KOSTL": "", "AESSION_NAME": "" },
+    { "BNAME": "JSMITH", "PERSNUMBER": "00001001", "ADDRNUMBER": "0000020001", "KOSTL": "1000", "AESSION_NAME": "John Smith" },
+    { "BNAME": "ABROWN", "PERSNUMBER": "00001002", "ADDRNUMBER": "0000020002", "KOSTL": "1000", "AESSION_NAME": "Alice Brown" },
+    { "BNAME": "MWILSON", "PERSNUMBER": "00001003", "ADDRNUMBER": "0000020003", "KOSTL": "2000", "AESSION_NAME": "Mark Wilson" },
+    { "BNAME": "BATCHUSR", "PERSNUMBER": "00002001", "ADDRNUMBER": "0000030001", "KOSTL": "", "AESSION_NAME": "Batch User" },
+    { "BNAME": "RFC_USER", "PERSNUMBER": "00002002", "ADDRNUMBER": "0000030002", "KOSTL": "", "AESSION_NAME": "RFC Technical User" },
+    { "BNAME": "SYSADMIN", "PERSNUMBER": "00001004", "ADDRNUMBER": "0000020004", "KOSTL": "1000", "AESSION_NAME": "System Administrator" }
+  ],
+  "roleDefinitions": [
+    { "AGR_NAME": "SAP_ALL", "PARENT_AGR": "", "CREATE_USR": "SAP*", "CREATE_DAT": "20200101", "CREATE_TIM": "000000" },
+    { "AGR_NAME": "Z_FI_POSTING", "PARENT_AGR": "", "CREATE_USR": "DDIC", "CREATE_DAT": "20210315", "CREATE_TIM": "101500" },
+    { "AGR_NAME": "Z_MM_BUYER", "PARENT_AGR": "", "CREATE_USR": "DDIC", "CREATE_DAT": "20210401", "CREATE_TIM": "093000" },
+    { "AGR_NAME": "Z_SD_SALES", "PARENT_AGR": "", "CREATE_USR": "DDIC", "CREATE_DAT": "20210501", "CREATE_TIM": "110000" },
+    { "AGR_NAME": "Z_BASIS_ADMIN", "PARENT_AGR": "", "CREATE_USR": "DDIC", "CREATE_DAT": "20200601", "CREATE_TIM": "080000" },
+    { "AGR_NAME": "Z_DISPLAY_ALL", "PARENT_AGR": "", "CREATE_USR": "DDIC", "CREATE_DAT": "20210201", "CREATE_TIM": "143000" },
+    { "AGR_NAME": "Z_UNUSED_ROLE", "PARENT_AGR": "", "CREATE_USR": "DDIC", "CREATE_DAT": "20220101", "CREATE_TIM": "100000" }
+  ],
+  "roleAuthValues": [
+    { "AGR_NAME": "Z_FI_POSTING", "OBJECT": "F_BKPF_BUK", "AUTH": "0001", "FIELD": "BUKRS", "LOW": "1000", "HIGH": "" },
+    { "AGR_NAME": "Z_FI_POSTING", "OBJECT": "F_BKPF_BLA", "AUTH": "0001", "FIELD": "BRGRU", "LOW": "*", "HIGH": "" },
+    { "AGR_NAME": "Z_MM_BUYER", "OBJECT": "M_BEST_EKO", "AUTH": "0001", "FIELD": "EKORG", "LOW": "1000", "HIGH": "" },
+    { "AGR_NAME": "Z_MM_BUYER", "OBJECT": "M_BEST_EKG", "AUTH": "0001", "FIELD": "EKGRP", "LOW": "100", "HIGH": "200" },
+    { "AGR_NAME": "Z_SD_SALES", "OBJECT": "V_VBAK_VKO", "AUTH": "0001", "FIELD": "VKORG", "LOW": "1000", "HIGH": "" },
+    { "AGR_NAME": "Z_BASIS_ADMIN", "OBJECT": "S_TCODE", "AUTH": "0001", "FIELD": "TCD", "LOW": "SM21", "HIGH": "" },
+    { "AGR_NAME": "Z_BASIS_ADMIN", "OBJECT": "S_TCODE", "AUTH": "0002", "FIELD": "TCD", "LOW": "SM37", "HIGH": "" }
+  ],
+  "roleUserAssignments": [
+    { "AGR_NAME": "SAP_ALL", "UNAME": "DDIC", "FROM_DAT": "20200101", "TO_DAT": "99991231" },
+    { "AGR_NAME": "SAP_ALL", "UNAME": "SYSADMIN", "FROM_DAT": "20200101", "TO_DAT": "99991231" },
+    { "AGR_NAME": "Z_FI_POSTING", "UNAME": "JSMITH", "FROM_DAT": "20210301", "TO_DAT": "99991231" },
+    { "AGR_NAME": "Z_FI_POSTING", "UNAME": "ABROWN", "FROM_DAT": "20210601", "TO_DAT": "99991231" },
+    { "AGR_NAME": "Z_MM_BUYER", "UNAME": "MWILSON", "FROM_DAT": "20220115", "TO_DAT": "99991231" },
+    { "AGR_NAME": "Z_SD_SALES", "UNAME": "ABROWN", "FROM_DAT": "20210601", "TO_DAT": "99991231" },
+    { "AGR_NAME": "Z_BASIS_ADMIN", "UNAME": "SYSADMIN", "FROM_DAT": "20200601", "TO_DAT": "99991231" },
+    { "AGR_NAME": "Z_DISPLAY_ALL", "UNAME": "JSMITH", "FROM_DAT": "20210301", "TO_DAT": "99991231" }
+  ],
+  "roleTcodes": [
+    { "AGR_NAME": "Z_FI_POSTING", "TCODE": "FB01" },
+    { "AGR_NAME": "Z_FI_POSTING", "TCODE": "FB50" },
+    { "AGR_NAME": "Z_FI_POSTING", "TCODE": "F-02" },
+    { "AGR_NAME": "Z_MM_BUYER", "TCODE": "ME21N" },
+    { "AGR_NAME": "Z_MM_BUYER", "TCODE": "ME22N" },
+    { "AGR_NAME": "Z_MM_BUYER", "TCODE": "ME23N" },
+    { "AGR_NAME": "Z_SD_SALES", "TCODE": "VA01" },
+    { "AGR_NAME": "Z_SD_SALES", "TCODE": "VA02" },
+    { "AGR_NAME": "Z_BASIS_ADMIN", "TCODE": "SM21" },
+    { "AGR_NAME": "Z_BASIS_ADMIN", "TCODE": "SM37" },
+    { "AGR_NAME": "Z_BASIS_ADMIN", "TCODE": "SU01" }
+  ],
+  "roleTexts": [
+    { "AGR_NAME": "SAP_ALL", "SPRAS": "E", "TEXT": "All Authorizations" },
+    { "AGR_NAME": "Z_FI_POSTING", "SPRAS": "E", "TEXT": "FI Document Posting" },
+    { "AGR_NAME": "Z_MM_BUYER", "SPRAS": "E", "TEXT": "MM Purchasing Buyer" },
+    { "AGR_NAME": "Z_SD_SALES", "SPRAS": "E", "TEXT": "SD Sales Processing" },
+    { "AGR_NAME": "Z_BASIS_ADMIN", "SPRAS": "E", "TEXT": "Basis Administration" },
+    { "AGR_NAME": "Z_DISPLAY_ALL", "SPRAS": "E", "TEXT": "Display Only Access" },
+    { "AGR_NAME": "Z_UNUSED_ROLE", "SPRAS": "E", "TEXT": "Unused Legacy Role" }
+  ],
+  "roleProfiles": [
+    { "AGR_NAME": "SAP_ALL", "PROFILE": "SAP_ALL" },
+    { "AGR_NAME": "Z_FI_POSTING", "PROFILE": "Z_FI_POST" },
+    { "AGR_NAME": "Z_MM_BUYER", "PROFILE": "Z_MM_BUY" },
+    { "AGR_NAME": "Z_SD_SALES", "PROFILE": "Z_SD_SAL" },
+    { "AGR_NAME": "Z_BASIS_ADMIN", "PROFILE": "Z_BAS_ADM" }
+  ],
+  "userProfiles": [
+    { "BNAME": "DDIC", "PROFILE": "SAP_ALL" },
+    { "BNAME": "SYSADMIN", "PROFILE": "SAP_ALL" },
+    { "BNAME": "JSMITH", "PROFILE": "Z_FI_POST" },
+    { "BNAME": "ABROWN", "PROFILE": "Z_FI_POST" },
+    { "BNAME": "ABROWN", "PROFILE": "Z_SD_SAL" },
+    { "BNAME": "MWILSON", "PROFILE": "Z_MM_BUY" }
+  ],
+  "checkIndicators": [
+    { "OBJECT": "F_BKPF_BUK", "FIELD": "BUKRS", "OKFLAG": "X" },
+    { "OBJECT": "F_BKPF_BLA", "FIELD": "BRGRU", "OKFLAG": "X" },
+    { "OBJECT": "M_BEST_EKO", "FIELD": "EKORG", "OKFLAG": "X" },
+    { "OBJECT": "V_VBAK_VKO", "FIELD": "VKORG", "OKFLAG": "X" },
+    { "OBJECT": "S_TCODE", "FIELD": "TCD", "OKFLAG": "X" }
+  ],
+  "defaultAuthValues": [
+    { "OBJECT": "F_BKPF_BUK", "FIELD": "BUKRS", "LOW": "", "HIGH": "", "OKFLAG": "" },
+    { "OBJECT": "M_BEST_EKO", "FIELD": "EKORG", "LOW": "", "HIGH": "", "OKFLAG": "" },
+    { "OBJECT": "S_TCODE", "FIELD": "TCD", "LOW": "", "HIGH": "", "OKFLAG": "" }
+  ],
+  "userGroups": [
+    { "USERGROUP": "SUPER", "AESSION_NAME": "" },
+    { "USERGROUP": "DIALOG", "AESSION_NAME": "" },
+    { "USERGROUP": "BATCH", "AESSION_NAME": "" },
+    { "USERGROUP": "RFC", "AESSION_NAME": "" }
+  ],
+  "analysis": {
+    "usersWithSapAll": ["DDIC", "SYSADMIN"],
+    "unusedRoles": ["Z_UNUSED_ROLE"]
+  }
+}

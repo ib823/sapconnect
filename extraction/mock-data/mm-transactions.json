@@ -1,0 +1,40 @@
+{
+  "purchaseOrders": [
+    { "EBELN": "4500000001", "BUKRS": "1000", "BSTYP": "F", "BSART": "NB", "LOEKZ": "", "AEDAT": "20240115", "ERNAM": "MMUSER01", "EKORG": "1000", "EKGRP": "001", "LIFNR": "0000001000" },
+    { "EBELN": "4500000002", "BUKRS": "1000", "BSTYP": "F", "BSART": "NB", "LOEKZ": "", "AEDAT": "20240201", "ERNAM": "MMUSER02", "EKORG": "1000", "EKGRP": "002", "LIFNR": "0000001001" },
+    { "EBELN": "4500000003", "BUKRS": "2000", "BSTYP": "F", "BSART": "FO", "LOEKZ": "", "AEDAT": "20240215", "ERNAM": "MMUSER01", "EKORG": "2000", "EKGRP": "001", "LIFNR": "0000001002" },
+    { "EBELN": "4500000004", "BUKRS": "1000", "BSTYP": "F", "BSART": "UB", "LOEKZ": "", "AEDAT": "20240301", "ERNAM": "MMUSER03", "EKORG": "1000", "EKGRP": "003", "LIFNR": "" }
+  ],
+  "poItems": [
+    { "EBELN": "4500000001", "EBELP": "00010", "MATNR": "100-100", "WERKS": "1000", "LGORT": "0001", "MENGE": "500.000", "MEINS": "KG", "NETPR": "12.50", "PEINH": "1" },
+    { "EBELN": "4500000001", "EBELP": "00020", "MATNR": "200-100", "WERKS": "1000", "LGORT": "0001", "MENGE": "100.000", "MEINS": "EA", "NETPR": "3.75", "PEINH": "1" },
+    { "EBELN": "4500000002", "EBELP": "00010", "MATNR": "100-200", "WERKS": "1000", "LGORT": "0001", "MENGE": "200.000", "MEINS": "EA", "NETPR": "45.00", "PEINH": "1" },
+    { "EBELN": "4500000003", "EBELP": "00010", "MATNR": "100-100", "WERKS": "2000", "LGORT": "0001", "MENGE": "1000.000", "MEINS": "KG", "NETPR": "11.80", "PEINH": "1" },
+    { "EBELN": "4500000004", "EBELP": "00010", "MATNR": "100-300", "WERKS": "1100", "LGORT": "0001", "MENGE": "50.000", "MEINS": "EA", "NETPR": "120.00", "PEINH": "1" }
+  ],
+  "poHistory": [
+    { "EBELN": "4500000001", "EBELP": "00010", "ZEKKN": "00", "VGABE": "1", "BEWTP": "E", "MENGE": "500.000", "DMBTR": "6250.00", "BUDAT": "20240120" },
+    { "EBELN": "4500000001", "EBELP": "00010", "ZEKKN": "00", "VGABE": "2", "BEWTP": "Q", "MENGE": "500.000", "DMBTR": "6250.00", "BUDAT": "20240125" },
+    { "EBELN": "4500000002", "EBELP": "00010", "ZEKKN": "00", "VGABE": "1", "BEWTP": "E", "MENGE": "200.000", "DMBTR": "9000.00", "BUDAT": "20240210" },
+    { "EBELN": "4500000003", "EBELP": "00010", "ZEKKN": "00", "VGABE": "1", "BEWTP": "E", "MENGE": "800.000", "DMBTR": "9440.00", "BUDAT": "20240225" }
+  ],
+  "requisitions": [
+    { "BANFN": "0010000001", "BNFPO": "00010", "MATNR": "100-100", "WERKS": "1000", "MENGE": "500.000", "MEINS": "KG", "BSART": "NB", "EKGRP": "001", "AFNAM": "Production Dept" },
+    { "BANFN": "0010000002", "BNFPO": "00010", "MATNR": "200-100", "WERKS": "1000", "MENGE": "200.000", "MEINS": "EA", "BSART": "NB", "EKGRP": "003", "AFNAM": "Maintenance Dept" },
+    { "BANFN": "0010000003", "BNFPO": "00010", "MATNR": "300-100", "WERKS": "2000", "MENGE": "1000.000", "MEINS": "EA", "BSART": "NB", "EKGRP": "002", "AFNAM": "Packaging Dept" },
+    { "BANFN": "0010000003", "BNFPO": "00020", "MATNR": "100-200", "WERKS": "2000", "MENGE": "150.000", "MEINS": "EA", "BSART": "NB", "EKGRP": "001", "AFNAM": "Packaging Dept" }
+  ],
+  "materialDocuments": [
+    { "MBLNR": "4900000001", "MJAHR": "2024", "BUDAT": "20240120", "USNAM": "MMUSER01", "TCODE": "MIGO", "XBLNR": "DN-1001" },
+    { "MBLNR": "4900000002", "MJAHR": "2024", "BUDAT": "20240210", "USNAM": "MMUSER02", "TCODE": "MIGO", "XBLNR": "DN-1002" },
+    { "MBLNR": "4900000003", "MJAHR": "2024", "BUDAT": "20240225", "USNAM": "MMUSER01", "TCODE": "MIGO", "XBLNR": "DN-1003" },
+    { "MBLNR": "4900000004", "MJAHR": "2024", "BUDAT": "20240301", "USNAM": "PPUSER01", "TCODE": "MB1A", "XBLNR": "" },
+    { "MBLNR": "4900000005", "MJAHR": "2024", "BUDAT": "20240305", "USNAM": "MMUSER03", "TCODE": "MB1B", "XBLNR": "" }
+  ],
+  "confirmations": [
+    { "EBELN": "4500000001", "EBELP": "00010", "ETENS": "0001", "EBTYP": "AB", "EINDT": "20240118", "MENGE": "500.000" },
+    { "EBELN": "4500000002", "EBELP": "00010", "ETENS": "0001", "EBTYP": "AB", "EINDT": "20240208", "MENGE": "200.000" },
+    { "EBELN": "4500000003", "EBELP": "00010", "ETENS": "0001", "EBTYP": "LA", "EINDT": "20240222", "MENGE": "1000.000" },
+    { "EBELN": "4500000003", "EBELP": "00010", "ETENS": "0002", "EBTYP": "AB", "EINDT": "20240220", "MENGE": "800.000" }
+  ]
+}

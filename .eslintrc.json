@@ -1,0 +1,47 @@
+{
+  "env": {
+    "node": true,
+    "es2022": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "commonjs"
+  },
+  "rules": {
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "eqeqeq": ["error", "always"],
+    "no-var": "error",
+    "prefer-const": "warn",
+    "no-throw-literal": "error",
+    "no-eval": "error",
+    "no-implied-eval": "error",
+    "no-new-func": "error",
+    "no-return-await": "warn",
+    "no-self-compare": "error",
+    "no-template-curly-in-string": "warn",
+    "no-unmodified-loop-condition": "error",
+    "no-unreachable-loop": "error",
+    "no-use-before-define": ["error", { "functions": false }],
+    "require-atomic-updates": "warn",
+    "curly": ["warn", "multi-line"],
+    "default-case-last": "warn",
+    "grouped-accessor-pairs": "warn",
+    "no-constructor-return": "error",
+    "no-promise-executor-return": "warn",
+    "prefer-promise-reject-errors": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["test/**/*.js", "**/*.test.js"],
+      "env": {
+        "jest": true
+      },
+      "rules": {
+        "no-unused-vars": "off",
+        "no-console": "off"
+      }
+    }
+  ],
+  "ignorePatterns": ["node_modules/", "coverage/", "app/", "db/"]
+}

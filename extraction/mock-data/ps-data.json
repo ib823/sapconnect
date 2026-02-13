@@ -1,0 +1,51 @@
+{
+  "projects": [
+    { "PSPNR": "00000001", "PSPID": "P-2023-001", "POST1": "ERP Migration Phase 1", "OBJNR": "PR00000001", "PLFAZ": "20230101", "PLSEZ": "20231231", "VERNR": "00010001", "BUKRS": "1000", "VBUKR": "1000" },
+    { "PSPNR": "00000002", "PSPID": "P-2023-002", "POST1": "Plant Expansion Project", "OBJNR": "PR00000002", "PLFAZ": "20230401", "PLSEZ": "20240630", "VERNR": "00010002", "BUKRS": "1000", "VBUKR": "1000" },
+    { "PSPNR": "00000003", "PSPID": "P-2024-001", "POST1": "S/4HANA Conversion", "OBJNR": "PR00000003", "PLFAZ": "20240101", "PLSEZ": "20250630", "VERNR": "00010003", "BUKRS": "2000", "VBUKR": "2000" },
+    { "PSPNR": "00000004", "PSPID": "P-2024-002", "POST1": "Warehouse Automation", "OBJNR": "PR00000004", "PLFAZ": "20240301", "PLSEZ": "20241231", "VERNR": "00010001", "BUKRS": "1000", "VBUKR": "1000" }
+  ],
+  "wbsElements": [
+    { "PSPNR": "00000010", "POSID": "P-2023-001.1", "POST1": "Requirements Gathering", "OBJNR": "PR00000010", "PSPHI": "00000001", "STUFE": "2", "BELKZ": "X", "FAKKZ": "", "PKOKR": "1000" },
+    { "PSPNR": "00000011", "POSID": "P-2023-001.2", "POST1": "Development Phase", "OBJNR": "PR00000011", "PSPHI": "00000001", "STUFE": "2", "BELKZ": "X", "FAKKZ": "", "PKOKR": "1000" },
+    { "PSPNR": "00000012", "POSID": "P-2023-001.3", "POST1": "Testing & Go-Live", "OBJNR": "PR00000012", "PSPHI": "00000001", "STUFE": "2", "BELKZ": "X", "FAKKZ": "X", "PKOKR": "1000" },
+    { "PSPNR": "00000020", "POSID": "P-2023-002.1", "POST1": "Civil Engineering", "OBJNR": "PR00000020", "PSPHI": "00000002", "STUFE": "2", "BELKZ": "X", "FAKKZ": "", "PKOKR": "1000" },
+    { "PSPNR": "00000021", "POSID": "P-2023-002.2", "POST1": "Equipment Installation", "OBJNR": "PR00000021", "PSPHI": "00000002", "STUFE": "2", "BELKZ": "X", "FAKKZ": "X", "PKOKR": "1000" }
+  ],
+  "wbsHierarchy": [
+    { "POSNR": "00000010", "UP": "00000001", "DOWN": "", "LEFT": "", "RIGHT": "00000011", "REFNR": "" },
+    { "POSNR": "00000011", "UP": "00000001", "DOWN": "", "LEFT": "00000010", "RIGHT": "00000012", "REFNR": "" },
+    { "POSNR": "00000012", "UP": "00000001", "DOWN": "", "LEFT": "00000011", "RIGHT": "", "REFNR": "" },
+    { "POSNR": "00000020", "UP": "00000002", "DOWN": "", "LEFT": "", "RIGHT": "00000021", "REFNR": "" },
+    { "POSNR": "00000021", "UP": "00000002", "DOWN": "", "LEFT": "00000020", "RIGHT": "", "REFNR": "" }
+  ],
+  "psOrders": [
+    { "AUFNR": "000100001000", "AUART": "PS01", "AUTYP": "01", "KTEXT": "Migration Development", "BUKRS": "1000", "WERKS": "1000", "OBJNR": "OR000100001000", "PSPEL": "00000011" },
+    { "AUFNR": "000100002000", "AUART": "PS01", "AUTYP": "01", "KTEXT": "Migration Testing", "BUKRS": "1000", "WERKS": "1000", "OBJNR": "OR000100002000", "PSPEL": "00000012" },
+    { "AUFNR": "000100003000", "AUART": "PS02", "AUTYP": "01", "KTEXT": "Equipment Procurement", "BUKRS": "1000", "WERKS": "1000", "OBJNR": "OR000100003000", "PSPEL": "00000021" },
+    { "AUFNR": "000100004000", "AUART": "PS01", "AUTYP": "01", "KTEXT": "S4 Data Migration", "BUKRS": "2000", "WERKS": "2000", "OBJNR": "OR000100004000", "PSPEL": "00000030" }
+  ],
+  "budgets": [
+    { "OBJNR": "PR00000001", "GJAHR": "2023", "WRTTP": "41", "VORGA": "KBUD", "WLGES": "500000.00", "WTGES": "500000.00" },
+    { "OBJNR": "PR00000002", "GJAHR": "2023", "WRTTP": "41", "VORGA": "KBUD", "WLGES": "2000000.00", "WTGES": "2000000.00" },
+    { "OBJNR": "PR00000003", "GJAHR": "2024", "WRTTP": "41", "VORGA": "KBUD", "WLGES": "1500000.00", "WTGES": "1500000.00" },
+    { "OBJNR": "PR00000004", "GJAHR": "2024", "WRTTP": "41", "VORGA": "KBUD", "WLGES": "800000.00", "WTGES": "800000.00" }
+  ],
+  "systemStatus": [
+    { "OBJNR": "PR00000001", "STAT": "I0002", "INACT": "", "CHGNR": "001" },
+    { "OBJNR": "PR00000001", "STAT": "I0045", "INACT": "", "CHGNR": "001" },
+    { "OBJNR": "PR00000002", "STAT": "I0001", "INACT": "", "CHGNR": "001" },
+    { "OBJNR": "PR00000003", "STAT": "I0001", "INACT": "", "CHGNR": "001" }
+  ],
+  "userStatus": [
+    { "OBJNR": "PR00000001", "OBTYP": "PR", "STSMA": "ZPSSTAT", "CHGNR": "001" },
+    { "OBJNR": "PR00000002", "OBTYP": "PR", "STSMA": "ZPSSTAT", "CHGNR": "001" },
+    { "OBJNR": "PR00000003", "OBTYP": "PR", "STSMA": "ZPSSTAT", "CHGNR": "001" }
+  ],
+  "statusProfiles": [
+    { "STSMA": "ZPSSTAT", "ESTAT": "E0001", "STONR": "01", "TXT04": "PLAN", "TXT30": "In Planning" },
+    { "STSMA": "ZPSSTAT", "ESTAT": "E0002", "STONR": "02", "TXT04": "EXEC", "TXT30": "In Execution" },
+    { "STSMA": "ZPSSTAT", "ESTAT": "E0003", "STONR": "03", "TXT04": "CLOS", "TXT30": "Closed" },
+    { "STSMA": "ZPSSTAT", "ESTAT": "E0004", "STONR": "04", "TXT04": "HOLD", "TXT30": "On Hold" }
+  ]
+}

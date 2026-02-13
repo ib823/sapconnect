@@ -1,3 +1,5 @@
+const Logger = require('../lib/logger');
+
 /**
  * Migration Test Runner
  *
@@ -9,12 +11,11 @@ class TestRunner {
   constructor(gateway, options = {}) {
     this.gateway = gateway;
     this.verbose = options.verbose || false;
+    this.logger = new Logger('test-runner', { level: options.logLevel || 'info' });
   }
 
   _log(msg) {
-    if (this.verbose) {
-      console.log(`  [test-runner] ${msg}`);
-    }
+    this.logger.info(msg);
   }
 
   /**

@@ -1,0 +1,132 @@
+{
+  "companyCodes": [
+    { "BUKRS": "1000", "BUTXT": "Global Corp US", "ORT01": "New York", "LAND1": "US", "WAERS": "USD", "KTOPL": "CAUS", "PERIV": "K4" },
+    { "BUKRS": "2000", "BUTXT": "Global Corp DE", "ORT01": "Frankfurt", "LAND1": "DE", "WAERS": "EUR", "KTOPL": "CADE", "PERIV": "K4" },
+    { "BUKRS": "3000", "BUTXT": "Global Corp UK", "ORT01": "London", "LAND1": "GB", "WAERS": "GBP", "KTOPL": "CAGB", "PERIV": "K4" }
+  ],
+  "companyCodeDetails": [
+    { "BUKRS": "1000", "GSBER": "1000", "BKONT": "0001" },
+    { "BUKRS": "2000", "GSBER": "2000", "BKONT": "0001" }
+  ],
+  "companyCodeCurrencies": [
+    { "BUKRS": "1000", "WAERS": "USD" },
+    { "BUKRS": "2000", "WAERS": "EUR" },
+    { "BUKRS": "3000", "WAERS": "GBP" }
+  ],
+  "documentTypes": [
+    { "BLART": "SA", "BLTYP": "1" },
+    { "BLART": "RE", "BLTYP": "1" },
+    { "BLART": "KR", "BLTYP": "1" },
+    { "BLART": "DR", "BLTYP": "1" },
+    { "BLART": "DZ", "BLTYP": "1" },
+    { "BLART": "KZ", "BLTYP": "1" },
+    { "BLART": "AB", "BLTYP": "1" }
+  ],
+  "documentTypeTexts": [
+    { "BLART": "SA", "LTEXT": "G/L Account Document" },
+    { "BLART": "RE", "LTEXT": "Invoice - Gross" },
+    { "BLART": "KR", "LTEXT": "Vendor Invoice" },
+    { "BLART": "DR", "LTEXT": "Customer Invoice" },
+    { "BLART": "DZ", "LTEXT": "Customer Payment" },
+    { "BLART": "KZ", "LTEXT": "Vendor Payment" },
+    { "BLART": "AB", "LTEXT": "Accounting Document" }
+  ],
+  "chartsOfAccounts": [
+    { "KTOPL": "CAUS", "KTPLT": "Chart of Accounts - US" },
+    { "KTOPL": "CADE", "KTPLT": "Chart of Accounts - Germany" },
+    { "KTOPL": "CAGB", "KTPLT": "Chart of Accounts - UK" },
+    { "KTOPL": "YCOA", "KTPLT": "Operational Chart of Accounts" }
+  ],
+  "chartsOfAccountsTexts": [
+    { "KTOPL": "CAUS", "SPRAS": "E", "KTPLT": "Chart of Accounts - US" },
+    { "KTOPL": "CADE", "SPRAS": "E", "KTPLT": "Chart of Accounts - Germany" }
+  ],
+  "postingKeys": [
+    { "BSCHL": "01", "KOART": "D", "SHKZG": "S", "XSONU": "" },
+    { "BSCHL": "11", "KOART": "D", "SHKZG": "H", "XSONU": "" },
+    { "BSCHL": "21", "KOART": "K", "SHKZG": "H", "XSONU": "" },
+    { "BSCHL": "31", "KOART": "K", "SHKZG": "S", "XSONU": "" },
+    { "BSCHL": "40", "KOART": "S", "SHKZG": "S", "XSONU": "" },
+    { "BSCHL": "50", "KOART": "S", "SHKZG": "H", "XSONU": "" }
+  ],
+  "postingKeyTexts": [
+    { "BSCHL": "01", "LTEXT": "Invoice" },
+    { "BSCHL": "11", "LTEXT": "Credit Memo" },
+    { "BSCHL": "21", "LTEXT": "Credit Memo" },
+    { "BSCHL": "31", "LTEXT": "Invoice" },
+    { "BSCHL": "40", "LTEXT": "Debit Entry" },
+    { "BSCHL": "50", "LTEXT": "Credit Entry" }
+  ],
+  "accountDetermination": [
+    { "KTOPL": "CAUS", "KTOSL": "GBB", "HKONT": "0000893000" },
+    { "KTOPL": "CAUS", "KTOSL": "BSX", "HKONT": "0000300000" },
+    { "KTOPL": "CAUS", "KTOSL": "WRX", "HKONT": "0000191100" }
+  ],
+  "paymentConfig": [
+    { "ZBUKR": "1000", "RZAWE": "C", "TEXT1": "Check" },
+    { "ZBUKR": "1000", "RZAWE": "T", "TEXT1": "Bank Transfer" },
+    { "ZBUKR": "2000", "RZAWE": "U", "TEXT1": "SEPA Transfer" }
+  ],
+  "taxCodes": [
+    { "KALSM": "TAXUS", "MWSKZ": "A1", "TEXT1": "Output Tax 10%" },
+    { "KALSM": "TAXUS", "MWSKZ": "I1", "TEXT1": "Input Tax 10%" },
+    { "KALSM": "TAXUS", "MWSKZ": "A0", "TEXT1": "Output Tax Exempt" },
+    { "KALSM": "TAXDE", "MWSKZ": "V1", "TEXT1": "Vorsteuer 19%" }
+  ],
+  "taxCodeDetails": [
+    { "KALSM": "TAXUS", "MWSKZ": "A1", "KSCHL": "MWAS", "KBETR": "10.000" },
+    { "KALSM": "TAXUS", "MWSKZ": "I1", "KSCHL": "MWVS", "KBETR": "10.000" },
+    { "KALSM": "TAXDE", "MWSKZ": "V1", "KSCHL": "MWVS", "KBETR": "19.000" }
+  ],
+  "countries": [
+    { "LAND1": "US", "LANDX": "United States", "WAESSION": "USD" },
+    { "LAND1": "DE", "LANDX": "Germany", "WAESSION": "EUR" },
+    { "LAND1": "GB", "LANDX": "United Kingdom", "WAESSION": "GBP" },
+    { "LAND1": "JP", "LANDX": "Japan", "WAESSION": "JPY" }
+  ],
+  "creditControlAreas": [
+    { "KKBER": "1000", "KKBTX": "Credit Control Area US", "BUKRS": "1000", "WAESSION": "USD" },
+    { "KKBER": "2000", "KKBTX": "Credit Control Area DE", "BUKRS": "2000", "WAESSION": "EUR" }
+  ],
+  "banks": [
+    { "BANKS": "US", "BANKL": "021000021", "BANKA": "JP Morgan Chase", "STRAS": "383 Madison Ave", "ORT01": "New York" },
+    { "BANKS": "DE", "BANKL": "50010060", "BANKA": "Deutsche Bank", "STRAS": "Taunusanlage 12", "ORT01": "Frankfurt" },
+    { "BANKS": "GB", "BANKL": "BARCGB22", "BANKA": "Barclays Bank", "STRAS": "1 Churchill Place", "ORT01": "London" }
+  ],
+  "consolidationUnits": [
+    { "RCOMP": "GC01", "RTEXT": "Global Corp Consolidated" },
+    { "RCOMP": "GC02", "RTEXT": "Global Corp Americas" }
+  ],
+  "businessAreas": [
+    { "GSBER": "1000", "GTEXT": "Manufacturing" },
+    { "GSBER": "2000", "GTEXT": "Sales & Distribution" },
+    { "GSBER": "3000", "GTEXT": "Services" }
+  ],
+  "businessAreaTexts": [
+    { "GSBER": "1000", "SPRAS": "E", "GTEXT": "Manufacturing" },
+    { "GSBER": "2000", "SPRAS": "E", "GTEXT": "Sales & Distribution" },
+    { "GSBER": "3000", "SPRAS": "E", "GTEXT": "Services" }
+  ],
+  "assetClasses": [
+    { "ANLKL": "1000", "KTGRU": "01", "AFESSION": "01" },
+    { "ANLKL": "2000", "KTGRU": "02", "AFESSION": "01" },
+    { "ANLKL": "3000", "KTGRU": "03", "AFESSION": "01" }
+  ],
+  "depreciationAreas": [
+    { "AFESSION": "01", "AFESSION_TXT": "Book Depreciation" },
+    { "AFESSION": "15", "AFESSION_TXT": "Tax Depreciation US" },
+    { "AFESSION": "20", "AFESSION_TXT": "Cost Accounting" }
+  ],
+  "toleranceGroups": [
+    { "BUKRS": "1000", "HTEFH": "1000000.00", "HTEFS": "500000.00" },
+    { "BUKRS": "2000", "HTEFH": "800000.00", "HTEFS": "400000.00" }
+  ],
+  "documentSplitting": [
+    { "SPLIT_FIELD": "GSBER", "SPLIT_ACTIVE": "X", "INHERITANCE": "X" },
+    { "SPLIT_FIELD": "PRCTR", "SPLIT_ACTIVE": "X", "INHERITANCE": "X" }
+  ],
+  "ledgerConfig": [
+    { "RLDNR": "0L", "NAME": "Leading Ledger", "GCURR": "10", "LEDGER_TYPE": "L" },
+    { "RLDNR": "2L", "NAME": "Extension Ledger IFRS", "GCURR": "10", "LEDGER_TYPE": "X" }
+  ]
+}

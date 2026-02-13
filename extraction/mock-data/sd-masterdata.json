@@ -1,0 +1,35 @@
+{
+  "customers": [
+    { "KUNNR": "0000010000", "NAME1": "Acme Corporation", "LAND1": "DE", "ORT01": "Hamburg", "KTOKD": "0001", "STCD1": "DE123456789", "ERDAT": "20200315" },
+    { "KUNNR": "0000010001", "NAME1": "Global Trade Ltd", "LAND1": "GB", "ORT01": "London", "KTOKD": "0001", "STCD1": "GB987654321", "ERDAT": "20200520" },
+    { "KUNNR": "0000010002", "NAME1": "Pacific Industries", "LAND1": "US", "ORT01": "Chicago", "KTOKD": "0002", "STCD1": "US556677889", "ERDAT": "20210110" },
+    { "KUNNR": "0000010003", "NAME1": "Alpine Manufacturing", "LAND1": "CH", "ORT01": "Zurich", "KTOKD": "0001", "STCD1": "CH112233445", "ERDAT": "20210605" },
+    { "KUNNR": "0000010004", "NAME1": "Nordic Solutions AB", "LAND1": "SE", "ORT01": "Stockholm", "KTOKD": "0002", "STCD1": "SE998877665", "ERDAT": "20220301" }
+  ],
+  "salesAreas": [
+    { "KUNNR": "0000010000", "VKORG": "1000", "VTWEG": "10", "SPART": "01", "KDGRP": "01", "BZIRK": "D001", "WAERS": "EUR" },
+    { "KUNNR": "0000010001", "VKORG": "3000", "VTWEG": "10", "SPART": "01", "KDGRP": "02", "BZIRK": "GB01", "WAERS": "GBP" },
+    { "KUNNR": "0000010002", "VKORG": "2000", "VTWEG": "20", "SPART": "02", "KDGRP": "01", "BZIRK": "US01", "WAERS": "USD" },
+    { "KUNNR": "0000010003", "VKORG": "1000", "VTWEG": "10", "SPART": "00", "KDGRP": "03", "BZIRK": "CH01", "WAERS": "CHF" },
+    { "KUNNR": "0000010004", "VKORG": "1000", "VTWEG": "30", "SPART": "02", "KDGRP": "02", "BZIRK": "SE01", "WAERS": "SEK" }
+  ],
+  "partnerFunctions": [
+    { "KUNNR": "0000010000", "VKORG": "1000", "VTWEG": "10", "SPART": "01", "PARVW": "AG", "KUNN2": "0000010000" },
+    { "KUNNR": "0000010000", "VKORG": "1000", "VTWEG": "10", "SPART": "01", "PARVW": "WE", "KUNN2": "0000010000" },
+    { "KUNNR": "0000010000", "VKORG": "1000", "VTWEG": "10", "SPART": "01", "PARVW": "RE", "KUNN2": "0000010000" },
+    { "KUNNR": "0000010001", "VKORG": "3000", "VTWEG": "10", "SPART": "01", "PARVW": "AG", "KUNN2": "0000010001" },
+    { "KUNNR": "0000010002", "VKORG": "2000", "VTWEG": "20", "SPART": "02", "PARVW": "AG", "KUNN2": "0000010002" }
+  ],
+  "customerHierarchy": [
+    { "HESSION": "A", "KUNNR": "0000010000", "VKORG": "1000", "VTWEG": "10", "SPART": "01", "DATAB": "20200101", "DATBI": "99991231" },
+    { "HESSION": "A", "KUNNR": "0000010003", "VKORG": "1000", "VTWEG": "10", "SPART": "00", "DATAB": "20210101", "DATBI": "99991231" },
+    { "HESSION": "B", "KUNNR": "0000010001", "VKORG": "3000", "VTWEG": "10", "SPART": "01", "DATAB": "20200601", "DATBI": "99991231" }
+  ],
+  "conditionRecords": [
+    { "KNUMH": "0000056001", "KSCHL": "PR00", "ERDAT": "20230101", "ERNAM": "SDUSER01", "VAESSION": "20241231" },
+    { "KNUMH": "0000056002", "KSCHL": "K004", "ERDAT": "20230201", "ERNAM": "SDUSER01", "VAESSION": "20241231" },
+    { "KNUMH": "0000056003", "KSCHL": "K007", "ERDAT": "20230301", "ERNAM": "SDUSER02", "VAESSION": "20241231" },
+    { "KNUMH": "0000056004", "KSCHL": "KF00", "ERDAT": "20230401", "ERNAM": "SDUSER01", "VAESSION": "20251231" },
+    { "KNUMH": "0000056005", "KSCHL": "PR00", "ERDAT": "20240101", "ERNAM": "SDUSER02", "VAESSION": "20251231" }
+  ]
+}
