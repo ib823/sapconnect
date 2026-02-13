@@ -48,7 +48,7 @@ graph TB
 1. Click **Code > Codespaces > New codespace** on this repository
 2. Wait for setup to complete (installs SAP tools automatically)
 3. Run `npm run watch` — server starts on port 4004
-4. Run `npm test` — 1137 tests across 118 files
+4. Run `npm test` — 2133 tests across 185 files
 
 ### Local Development
 ```bash
@@ -70,7 +70,7 @@ docker compose up
 ### Run Migration Assessment
 ```bash
 npm run assess                    # Scan custom code against 874 rules
-npm test                          # Run full test suite (1137 tests)
+npm test                          # Run full test suite (2133 tests)
 npm run lint                      # ESLint code quality check
 node -e "
   const R = require('./migration/objects/registry');
@@ -97,7 +97,7 @@ node -e "
 | **Live Connectivity** | 18 service mappings | OData V2/V4 with CSRF, batch, retry, pagination; RFC pool + table reader |
 | **Dependency Graph** | 42 objects | Topological sort, execution waves, circular detection |
 | **Checkpoint/Resume** | File-based | Save/restore migration state, crash recovery, cleanup |
-| **CI/CD** | GitHub Actions | Lint + test + security + Docker build, multi-node matrix (18/20/22) |
+| **CI/CD** | GitHub Actions | Lint + test + security + Docker build, multi-node matrix (20/22) |
 | **CAP Backend** | OData V4 | Customer service with draft support, business partner API |
 | **Fiori Elements** | List Report + Object Page | Auto-generated UI from annotations |
 | **API Discovery** | Scanner CLI | Discovers released APIs, events, and extension points |
@@ -150,7 +150,7 @@ node -e "
 - **Structured Logging** — JSON or text format, log levels, child loggers
 
 ### CI/CD Pipeline
-- **GitHub Actions** — Lint, test (Node 18/20/22 matrix), security audit, Docker build
+- **GitHub Actions** — Lint, test (Node 20/22 matrix), security audit, Docker build
 - **Docker** — Multi-stage build, non-root user, health checks, < 200MB image
 - **Code Quality** — ESLint + Prettier with pre-commit enforcement
 
@@ -168,7 +168,7 @@ npm run watch        # Start CAP server with live reload
 npm run discover     # Run API Discovery in mock mode
 npm run agent        # Run AI Agent workflow in mock mode
 npm run assess       # Run migration assessment
-npm test             # Run 1137 tests across 118 files
+npm test             # Run 2133 tests across 185 files
 npm run lint         # Run ESLint
 npm run format       # Run Prettier
 npm run docker:build # Build Docker image
@@ -189,7 +189,7 @@ npm run docker:build # Build Docker image
 - **SAP CAP (Node.js)** — Backend framework
 - **SAP Fiori Elements / UI5** — Frontend
 - **SQLite in-memory** — Local database
-- **vitest** — Test framework (1137 tests, 118 files)
+- **vitest** — Test framework (2133 tests, 185 files)
 - **ESLint + Prettier** — Code quality
 - **Docker** — Containerization
 - **GitHub Actions** — CI/CD

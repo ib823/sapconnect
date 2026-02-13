@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "SAP Connect - Enterprise SAP S/4HANA Migration Platform & Clean Core Development Toolkit",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
-  "repository": "https://github.com/your-org/sapconnect",
+  "repository": "https://github.com/ib823/sapconnect",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
@@ -18,7 +18,9 @@
     "@cap-js/sqlite": "^1",
     "@sap/cds-dk": "^8",
     "@sap/ux-specification": "latest",
-    "@vitest/coverage-v8": "^4.0.18",
+    "@vitest/coverage-v8": "^3",
+    "eslint": "^8",
+    "prettier": "^3",
     "vitest": "^3"
   },
   "optionalDependencies": {
@@ -43,10 +45,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "lint": "npx eslint lib/ migration/ srv/ agent/ discovery/ --ext .js",
-    "lint:fix": "npx eslint lib/ migration/ srv/ agent/ discovery/ --ext .js --fix",
-    "format": "npx prettier --write 'lib/**/*.js' 'migration/**/*.js' 'srv/**/*.js' 'agent/**/*.js' 'discovery/**/*.js'",
-    "format:check": "npx prettier --check 'lib/**/*.js' 'migration/**/*.js' 'srv/**/*.js' 'agent/**/*.js' 'discovery/**/*.js'",
+    "lint": "eslint lib/ migration/ srv/ agent/ discovery/ extraction/ --ext .js",
+    "lint:fix": "eslint lib/ migration/ srv/ agent/ discovery/ extraction/ --ext .js --fix",
+    "format": "prettier --write 'lib/**/*.js' 'migration/**/*.js' 'srv/**/*.js' 'agent/**/*.js' 'discovery/**/*.js' 'extraction/**/*.js'",
+    "format:check": "prettier --check 'lib/**/*.js' 'migration/**/*.js' 'srv/**/*.js' 'agent/**/*.js' 'discovery/**/*.js' 'extraction/**/*.js'",
     "docker:build": "docker build -t sapconnect .",
     "docker:run": "docker compose up",
     "precommit": "npm run lint && npm test"

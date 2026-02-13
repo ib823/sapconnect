@@ -280,7 +280,7 @@ class ReconciliationEngine {
 
     for (const rec of target) {
       for (const field of valueFields) {
-        if (rec[field] == null || rec[field] === '') {
+        if (rec[field] === null || rec[field] === undefined || rec[field] === '') {
           nullCounts[field]++;
         }
       }

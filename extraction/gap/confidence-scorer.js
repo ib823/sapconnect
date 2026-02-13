@@ -22,7 +22,7 @@ class ConfidenceScorer {
     let totalWeight = 0;
 
     for (const [category, weight] of Object.entries(ConfidenceScorer.WEIGHTS)) {
-      let score = this._getCategoryScore(category, coverageReport, gapReport);
+      const score = this._getCategoryScore(category, coverageReport, gapReport);
       categoryScores[category] = { score, weight };
       weightedTotal += score * weight;
       totalWeight += weight;

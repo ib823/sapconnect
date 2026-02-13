@@ -1,111 +1,6 @@
 const Logger = require('../lib/logger');
 
 /**
- * Source-to-Target Data Transformer
- *
- * Maps ECC field names to S/4HANA API field names.
- * Handles Business Partner conversion (customer/vendor -> BP).
- */
-class Transformer {
-  constructor(options = {}) {
-    this.verbose = options.verbose || false;
-    this.logger = new Logger('transformer', { level: options.logLevel || 'info' });
-  }
-
-  _log(msg) {
-    this.logger.info(msg);
-  }
-
-  /**
-   * Transform extracted data for S/4HANA target
-   * @param {object} extractionResult - Output from Extractor.extract()
-   * @returns {object} { transformations[], stats }
-   */
-  transform(extractionResult) {
-    this._log('Starting data transformation...');
-
-    const transformations = [];
-    let totalInput = 0;
-    let totalOutput = 0;
-    let totalMerged = 0;
-
-    for (const extraction of extractionResult.extractions) {
-      const result = this._transformModule(extraction);
-      transformations.push(result);
-      totalInput += result.inputRecords;
-      totalOutput += result.outputRecords;
-      totalMerged += result.mergedRecords;
-    }
-
-    return {
-      transformations,
-      stats: {
-        totalInputRecords: totalInput,
-        totalOutputRecords: totalOutput,
-        totalMergedRecords: totalMerged,
-        transformationRate: totalInput > 0
-          ? Math.round((totalOutput / totalInput) * 100)
-          : 0,
-      },
-    };
-  }
-
-  _transformModule(extraction) {
-    const module = extraction.module;
-    this._log(`Transforming module: ${module}`);
-
-    const mappings = MODULE_MAPPINGS[module];
-    if (!mappings) {
-      return {
-        module,
-        status: 'skipped',
-        reason: 'No mapping defined',
-        inputRecords: extraction.totalRecords,
-        outputRecords: 0,
-        mergedRecords: 0,
-        tableMappings: [],
-      };
-    }
-
-    const tableMappings = [];
-    let inputRecords = 0;
-    let outputRecords = 0;
-    let mergedRecords = 0;
-
-    for (const table of extraction.tables) {
-      const mapping = mappings[table.table];
-      if (mapping) {
-        const output = Math.round(table.records * (mapping.ratio || 1));
-        const merged = mapping.mergeInto ? Math.round(table.records * 0.02) : 0;
-
-        tableMappings.push({
-          sourceTable: table.table,
-          targetTable: mapping.target,
-          targetAPI: mapping.api || null,
-          fieldMappings: mapping.fields.length,
-          inputRecords: table.records,
-          outputRecords: output,
-          mergedRecords: merged,
-          notes: mapping.notes || '',
-        });
-        inputRecords += table.records;
-        outputRecords += output;
-        mergedRecords += merged;
-      }
-    }
-
-    return {
-      module,
-      status: 'completed',
-      inputRecords,
-      outputRecords,
-      mergedRecords,
-      tableMappings,
-    };
-  }
-}
-
-/**
  * Field mapping definitions: ECC table -> S/4HANA target
  */
 const MODULE_MAPPINGS = {
@@ -232,5 +127,110 @@ const MODULE_MAPPINGS = {
     },
   },
 };
+
+/**
+ * Source-to-Target Data Transformer
+ *
+ * Maps ECC field names to S/4HANA API field names.
+ * Handles Business Partner conversion (customer/vendor -> BP).
+ */
+class Transformer {
+  constructor(options = {}) {
+    this.verbose = options.verbose || false;
+    this.logger = new Logger('transformer', { level: options.logLevel || 'info' });
+  }
+
+  _log(msg) {
+    this.logger.info(msg);
+  }
+
+  /**
+   * Transform extracted data for S/4HANA target
+   * @param {object} extractionResult - Output from Extractor.extract()
+   * @returns {object} { transformations[], stats }
+   */
+  transform(extractionResult) {
+    this._log('Starting data transformation...');
+
+    const transformations = [];
+    let totalInput = 0;
+    let totalOutput = 0;
+    let totalMerged = 0;
+
+    for (const extraction of extractionResult.extractions) {
+      const result = this._transformModule(extraction);
+      transformations.push(result);
+      totalInput += result.inputRecords;
+      totalOutput += result.outputRecords;
+      totalMerged += result.mergedRecords;
+    }
+
+    return {
+      transformations,
+      stats: {
+        totalInputRecords: totalInput,
+        totalOutputRecords: totalOutput,
+        totalMergedRecords: totalMerged,
+        transformationRate: totalInput > 0
+          ? Math.round((totalOutput / totalInput) * 100)
+          : 0,
+      },
+    };
+  }
+
+  _transformModule(extraction) {
+    const module = extraction.module;
+    this._log(`Transforming module: ${module}`);
+
+    const mappings = MODULE_MAPPINGS[module];
+    if (!mappings) {
+      return {
+        module,
+        status: 'skipped',
+        reason: 'No mapping defined',
+        inputRecords: extraction.totalRecords,
+        outputRecords: 0,
+        mergedRecords: 0,
+        tableMappings: [],
+      };
+    }
+
+    const tableMappings = [];
+    let inputRecords = 0;
+    let outputRecords = 0;
+    let mergedRecords = 0;
+
+    for (const table of extraction.tables) {
+      const mapping = mappings[table.table];
+      if (mapping) {
+        const output = Math.round(table.records * (mapping.ratio || 1));
+        const merged = mapping.mergeInto ? Math.round(table.records * 0.02) : 0;
+
+        tableMappings.push({
+          sourceTable: table.table,
+          targetTable: mapping.target,
+          targetAPI: mapping.api || null,
+          fieldMappings: mapping.fields.length,
+          inputRecords: table.records,
+          outputRecords: output,
+          mergedRecords: merged,
+          notes: mapping.notes || '',
+        });
+        inputRecords += table.records;
+        outputRecords += output;
+        mergedRecords += merged;
+      }
+    }
+
+    return {
+      module,
+      status: 'completed',
+      inputRecords,
+      outputRecords,
+      mergedRecords,
+      tableMappings,
+    };
+  }
+}
 
 module.exports = Transformer;

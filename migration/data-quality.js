@@ -112,7 +112,7 @@ class DataQualityChecker {
     for (let i = 0; i < records.length; i++) {
       for (const f of fields) {
         const val = records[i][f];
-        if (val == null || val === '') {
+        if (val === null || val === undefined || val === '') {
           missing.push({ row: i, field: f });
         }
       }
@@ -198,7 +198,7 @@ class DataQualityChecker {
 
     for (let i = 0; i < records.length; i++) {
       const val = records[i][field];
-      if (val != null && val !== '' && !refSet.has(val)) {
+      if (val !== null && val !== undefined && val !== '' && !refSet.has(val)) {
         violations.push({ row: i, field, value: val });
       }
     }
@@ -223,7 +223,7 @@ class DataQualityChecker {
 
     for (let i = 0; i < records.length; i++) {
       const val = records[i][field];
-      if (val != null && val !== '' && !regex.test(String(val))) {
+      if (val !== null && val !== undefined && val !== '' && !regex.test(String(val))) {
         violations.push({ row: i, field, value: val });
       }
     }
@@ -248,8 +248,8 @@ class DataQualityChecker {
     for (let i = 0; i < records.length; i++) {
       const val = Number(records[i][field]);
       if (!isNaN(val)) {
-        if (min != null && val < min) violations.push({ row: i, field, value: val, reason: `below min ${min}` });
-        if (max != null && val > max) violations.push({ row: i, field, value: val, reason: `above max ${max}` });
+        if (min !== null && min !== undefined && val < min) violations.push({ row: i, field, value: val, reason: `below min ${min}` });
+        if (max !== null && max !== undefined && val > max) violations.push({ row: i, field, value: val, reason: `above max ${max}` });
       }
     }
 

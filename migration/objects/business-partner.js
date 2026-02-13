@@ -140,7 +140,7 @@ class BusinessPartnerMigrationObject extends BaseMigrationObject {
     const map = new Map();
     const merged = [];
 
-    const hasValue = (v) => v != null && v !== '' && v !== '0000000000';
+    const hasValue = (v) => v !== null && v !== undefined && v !== '' && v !== '0000000000';
 
     for (const rec of records) {
       const key = `${(rec.BusinessPartnerFullName || '').toUpperCase()}|${(rec.CityName || '').toUpperCase()}`;
@@ -149,7 +149,7 @@ class BusinessPartnerMigrationObject extends BaseMigrationObject {
         // Merge: keep existing, add non-empty fields from duplicate
         for (const [k, v] of Object.entries(rec)) {
           if (k === '_roles') continue;
-          if ((existing[k] == null || existing[k] === '' || existing[k] === '0000000000') && hasValue(v)) {
+          if ((existing[k] === null || existing[k] === undefined || existing[k] === '' || existing[k] === '0000000000') && hasValue(v)) {
             existing[k] = v;
           }
         }

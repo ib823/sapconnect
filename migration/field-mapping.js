@@ -11,10 +11,10 @@ const Logger = require('../lib/logger');
 // ── Built-in converters ──────────────────────────────────────────────
 
 const CONVERTERS = {
-  padLeft40: (v) => v == null ? '' : String(v).padStart(40, '0'),
-  padLeft10: (v) => v == null ? '' : String(v).padStart(10, '0'),
-  toUpperCase: (v) => v == null ? '' : String(v).toUpperCase(),
-  toLowerCase: (v) => v == null ? '' : String(v).toLowerCase(),
+  padLeft40: (v) => v === null || v === undefined ? '' : String(v).padStart(40, '0'),
+  padLeft10: (v) => v === null || v === undefined ? '' : String(v).padStart(10, '0'),
+  toUpperCase: (v) => v === null || v === undefined ? '' : String(v).toUpperCase(),
+  toLowerCase: (v) => v === null || v === undefined ? '' : String(v).toLowerCase(),
   toDate: (v) => {
     if (!v) return null;
     const s = String(v).replace(/[^0-9]/g, '');
@@ -22,19 +22,19 @@ const CONVERTERS = {
     return String(v);
   },
   toDecimal: (v) => {
-    if (v == null || v === '') return 0;
+    if (v === null || v === undefined || v === '') return 0;
     const n = Number(v);
     return isNaN(n) ? 0 : n;
   },
   toInteger: (v) => {
-    if (v == null || v === '') return 0;
+    if (v === null || v === undefined || v === '') return 0;
     const n = parseInt(v, 10);
     return isNaN(n) ? 0 : n;
   },
   boolYN: (v) => v === 'Y' || v === 'X' || v === true || v === 1,
   boolTF: (v) => (v === 'Y' || v === 'X' || v === true || v === 1) ? 'T' : 'F',
-  stripLeadingZeros: (v) => v == null ? '' : String(v).replace(/^0+/, '') || '0',
-  trim: (v) => v == null ? '' : String(v).trim(),
+  stripLeadingZeros: (v) => v === null || v === undefined ? '' : String(v).replace(/^0+/, '') || '0',
+  trim: (v) => v === null || v === undefined ? '' : String(v).trim(),
 };
 
 // ── Mapping types ────────────────────────────────────────────────────
@@ -86,14 +86,14 @@ class FieldMappingEngine {
           // Concatenation
           const parts = m.sources.map((s) => {
             mappedSources.add(s);
-            return record[s] != null ? String(record[s]) : '';
+            return record[s] !== null && record[s] !== undefined ? String(record[s]) : '';
           });
-          target[m.target] = parts.join(m.separator != null ? m.separator : ' ');
+          target[m.target] = parts.join(m.separator !== null && m.separator !== undefined ? m.separator : ' ');
         } else if (m.source && m.target && m.valueMap) {
           // Value map
           mappedSources.add(m.source);
           const raw = record[m.source];
-          target[m.target] = m.valueMap[raw] != null ? m.valueMap[raw] : (m.default != null ? m.default : raw);
+          target[m.target] = m.valueMap[raw] !== null && m.valueMap[raw] !== undefined ? m.valueMap[raw] : (m.default !== null && m.default !== undefined ? m.default : raw);
         } else if (m.source && m.target && m.convert) {
           // Type conversion
           mappedSources.add(m.source);

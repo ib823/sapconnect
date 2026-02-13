@@ -224,10 +224,10 @@ class BaseMigrationObject {
       extractedRecords: result.phases.extract ? result.phases.extract.recordCount : 0,
       transformedRecords: result.phases.transform ? result.phases.transform.recordCount : 0,
       validationStatus: result.phases.validate ? result.phases.validate.qualityStatus : 'n/a',
-      loadedRecords: result.phases.load && result.phases.load.successCount != null
+      loadedRecords: result.phases.load && result.phases.load.successCount !== null && result.phases.load.successCount !== undefined
         ? result.phases.load.successCount
         : 0,
-      loadErrors: result.phases.load && result.phases.load.errorCount != null
+      loadErrors: result.phases.load && result.phases.load.errorCount !== null && result.phases.load.errorCount !== undefined
         ? result.phases.load.errorCount
         : 0,
     };
