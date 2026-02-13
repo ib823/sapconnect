@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SAP Business Process Catalog",
+  "description": "Schema for SAP S/4HANA business process definitions used in migration testing",
+  "type": "object",
+  "required": ["version", "modules"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "description": { "type": "string" },
+    "modules": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-Z]{2,4}$": {
+          "$ref": "#/definitions/Module"
+        }
+      },
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "totalProcesses": { "type": "integer", "minimum": 0 },
+        "totalModules": { "type": "integer", "minimum": 0 },
+        "categoryCounts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Module": {
+      "type": "object",
+      "required": ["name", "processes"],
+      "properties": {
+        "name": { "type": "string" },
+        "processes": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/Process" },
+          "minItems": 1
+        }
+      }
+    },
+    "Process": {
+      "type": "object",
+      "required": ["id", "name", "category", "steps", "priority"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z]{2,4}-[A-Z]{2,5}-\\d{3}$"
+        },
+        "name": { "type": "string", "minLength": 3 },
+        "category": { "type": "string" },
+        "steps": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 2
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["critical", "high", "medium", "low"]
+        },
+        "transactions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

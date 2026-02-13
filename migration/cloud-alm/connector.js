@@ -7,10 +7,19 @@
  * - Status reporting (push migration status updates)
  * - Issue management (create/close issues from validation failures)
  *
- * Supports mock mode for testing without Cloud ALM credentials.
+ * Supports live mode (OData to Cloud ALM APIs) and mock mode.
  */
 
 const Logger = require('../../lib/logger');
+const ODataClient = require('../../lib/odata/client');
+const { OAuth2ClientCredentialsProvider } = require('../../lib/odata/auth');
+
+const CLOUD_ALM_PATHS = {
+  projects: '/api/calm-projects/v1/projects',
+  tasks: '/api/calm-tasks/v1/tasks',
+  requirements: '/api/calm-requirements/v1/requirements',
+  testCases: '/api/calm-test/v1/testCases',
+};
 
 class CloudALMConnector {
   constructor(options = {}) {
@@ -18,6 +27,7 @@ class CloudALMConnector {
     this.mode = options.mode || 'mock';
     this.baseUrl = options.baseUrl || '';
     this.credentials = options.credentials || null;
+    this._client = null;
     this._mockStore = {
       projects: new Map(),
       tasks: new Map(),
@@ -25,6 +35,27 @@ class CloudALMConnector {
       statusUpdates: [],
     };
     this._idCounter = 0;
+
+    if (this.mode === 'live' && this.baseUrl && this.credentials) {
+      this._initLiveClient();
+    }
+  }
+
+  _initLiveClient() {
+    const authProvider = new OAuth2ClientCredentialsProvider(
+      this.credentials.tokenUrl,
+      this.credentials.clientId,
+      this.credentials.clientSecret,
+      this.credentials.scope || '',
+    );
+    this._client = new ODataClient({
+      baseUrl: this.baseUrl,
+      authProvider,
+      version: 'v4',
+      timeout: 30000,
+      retries: 2,
+      logger: this.logger.child('odata'),
+    });
   }
 
   /**
@@ -37,7 +68,7 @@ class CloudALMConnector {
       return this._mockSyncProject(projectData);
     }
 
-    throw new Error('Live Cloud ALM integration not yet implemented');
+    return this._liveSyncProject(projectData);
   }
 
   /**
@@ -50,7 +81,7 @@ class CloudALMConnector {
       return this._mockSyncTask(task);
     }
 
-    throw new Error('Live Cloud ALM integration not yet implemented');
+    return this._liveSyncTask(task);
   }
 
   /**
@@ -63,7 +94,7 @@ class CloudALMConnector {
       return this._mockPushStatus(statusUpdate);
     }
 
-    throw new Error('Live Cloud ALM integration not yet implemented');
+    return this._livePushStatus(statusUpdate);
   }
 
   /**
@@ -76,7 +107,7 @@ class CloudALMConnector {
       return this._mockCreateIssue(issue);
     }
 
-    throw new Error('Live Cloud ALM integration not yet implemented');
+    return this._liveCreateIssue(issue);
   }
 
   /**
@@ -89,7 +120,7 @@ class CloudALMConnector {
       return this._mockCloseIssue(issueId, resolution);
     }
 
-    throw new Error('Live Cloud ALM integration not yet implemented');
+    return this._liveCloseIssue(issueId, resolution);
   }
 
   /**
@@ -100,7 +131,7 @@ class CloudALMConnector {
       return this._mockGetProjectStatus(projectId);
     }
 
-    throw new Error('Live Cloud ALM integration not yet implemented');
+    return this._liveGetProjectStatus(projectId);
   }
 
   /**
@@ -111,7 +142,7 @@ class CloudALMConnector {
       return this._mockGetIssues(projectId);
     }
 
-    throw new Error('Live Cloud ALM integration not yet implemented');
+    return this._liveGetIssues(projectId);
   }
 
   /**
@@ -124,7 +155,206 @@ class CloudALMConnector {
       return this._mockPushTestResults(projectId, testResults);
     }
 
-    throw new Error('Live Cloud ALM integration not yet implemented');
+    return this._livePushTestResults(projectId, testResults);
+  }
+
+  // ── Live implementations ────────────────────────────────────
+
+  async _liveSyncProject(projectData) {
+    const payload = {
+      name: projectData.name || projectData.projectId,
+      externalId: projectData.projectId,
+      description: projectData.description || `Migration project ${projectData.projectId}`,
+      status: projectData.status || 'IN_PROGRESS',
+      type: 'IMPLEMENTATION',
+      startDate: projectData.startDate || new Date().toISOString().split('T')[0],
+    };
+
+    try {
+      // Try update first (PATCH by externalId filter)
+      const existing = await this._client.get(CLOUD_ALM_PATHS.projects, {
+        $filter: `externalId eq '${projectData.projectId}'`,
+      });
+      const results = this._extractResults(existing);
+
+      if (results.length > 0) {
+        const almId = results[0].id || results[0].ID;
+        await this._client.patch(`${CLOUD_ALM_PATHS.projects}('${almId}')`, payload);
+        return { success: true, almId, action: 'updated' };
+      }
+
+      // Create new
+      const created = await this._client.post(CLOUD_ALM_PATHS.projects, payload);
+      const newId = created.id || created.ID || created.d?.id;
+      return { success: true, almId: newId, action: 'created' };
+    } catch (err) {
+      this.logger.error('Cloud ALM syncProject failed', { error: err.message });
+      return { success: false, error: err.message };
+    }
+  }
+
+  async _liveSyncTask(task) {
+    const payload = {
+      title: task.title || task.taskId,
+      externalId: task.taskId,
+      projectId: task.projectId,
+      status: task.status || 'OPEN',
+      description: task.description || '',
+      assignee: task.assignee || null,
+      dueDate: task.dueDate || null,
+    };
+
+    try {
+      const existing = await this._client.get(CLOUD_ALM_PATHS.tasks, {
+        $filter: `externalId eq '${task.taskId}'`,
+      });
+      const results = this._extractResults(existing);
+
+      if (results.length > 0) {
+        const almTaskId = results[0].id || results[0].ID;
+        await this._client.patch(`${CLOUD_ALM_PATHS.tasks}('${almTaskId}')`, payload);
+        return { success: true, taskId: task.taskId, almTaskId };
+      }
+
+      const created = await this._client.post(CLOUD_ALM_PATHS.tasks, payload);
+      const newId = created.id || created.ID || created.d?.id;
+      return { success: true, taskId: task.taskId, almTaskId: newId };
+    } catch (err) {
+      this.logger.error('Cloud ALM syncTask failed', { error: err.message });
+      return { success: false, error: err.message };
+    }
+  }
+
+  async _livePushStatus(statusUpdate) {
+    try {
+      // Push status as a requirement/note on the project
+      const payload = {
+        projectId: statusUpdate.projectId,
+        title: `Migration Status: ${statusUpdate.phase || 'update'}`,
+        description: JSON.stringify(statusUpdate),
+        type: 'STATUS_UPDATE',
+        status: statusUpdate.status || 'IN_PROGRESS',
+        createdAt: new Date().toISOString(),
+      };
+      const result = await this._client.post(CLOUD_ALM_PATHS.requirements, payload);
+      return { success: true, statusId: result.id || result.ID || result.d?.id };
+    } catch (err) {
+      this.logger.error('Cloud ALM pushStatus failed', { error: err.message });
+      return { success: false, error: err.message };
+    }
+  }
+
+  async _liveCreateIssue(issue) {
+    try {
+      const payload = {
+        title: issue.title,
+        projectId: issue.projectId,
+        description: issue.description || '',
+        priority: issue.priority || 'MEDIUM',
+        type: 'DEFECT',
+        status: 'OPEN',
+      };
+      const result = await this._client.post(CLOUD_ALM_PATHS.tasks, payload);
+      const issueId = result.id || result.ID || result.d?.id;
+      return { success: true, issueId };
+    } catch (err) {
+      this.logger.error('Cloud ALM createIssue failed', { error: err.message });
+      return { success: false, error: err.message };
+    }
+  }
+
+  async _liveCloseIssue(issueId, resolution) {
+    try {
+      await this._client.patch(`${CLOUD_ALM_PATHS.tasks}('${issueId}')`, {
+        status: 'CLOSED',
+        resolution: resolution || 'FIXED',
+      });
+      return { success: true, issueId };
+    } catch (err) {
+      this.logger.error('Cloud ALM closeIssue failed', { error: err.message });
+      return { success: false, error: err.message };
+    }
+  }
+
+  async _liveGetProjectStatus(projectId) {
+    try {
+      const projectData = await this._client.get(CLOUD_ALM_PATHS.projects, {
+        $filter: `externalId eq '${projectId}'`,
+      });
+      const projects = this._extractResults(projectData);
+      if (projects.length === 0) return null;
+
+      const project = projects[0];
+      const almProjectId = project.id || project.ID;
+
+      const tasksData = await this._client.get(CLOUD_ALM_PATHS.tasks, {
+        $filter: `projectId eq '${almProjectId}'`,
+      });
+      const tasks = this._extractResults(tasksData);
+      const openIssues = tasks.filter(t => t.type === 'DEFECT' && t.status === 'OPEN').length;
+
+      return {
+        project,
+        taskCount: tasks.length,
+        openIssues,
+        statusUpdates: 0,
+      };
+    } catch (err) {
+      this.logger.error('Cloud ALM getProjectStatus failed', { error: err.message });
+      return null;
+    }
+  }
+
+  async _liveGetIssues(projectId) {
+    try {
+      const projectData = await this._client.get(CLOUD_ALM_PATHS.projects, {
+        $filter: `externalId eq '${projectId}'`,
+      });
+      const projects = this._extractResults(projectData);
+      if (projects.length === 0) return [];
+
+      const almProjectId = projects[0].id || projects[0].ID;
+      const tasksData = await this._client.get(CLOUD_ALM_PATHS.tasks, {
+        $filter: `projectId eq '${almProjectId}' and type eq 'DEFECT'`,
+      });
+      return this._extractResults(tasksData);
+    } catch (err) {
+      this.logger.error('Cloud ALM getIssues failed', { error: err.message });
+      return [];
+    }
+  }
+
+  async _livePushTestResults(projectId, testResults) {
+    try {
+      let pushed = 0;
+      for (const result of testResults) {
+        await this._client.post(CLOUD_ALM_PATHS.testCases, {
+          projectId,
+          name: result.name || result.scenarioId,
+          status: result.status || 'PASSED',
+          executedAt: new Date().toISOString(),
+          details: JSON.stringify(result),
+        });
+        pushed++;
+      }
+      return {
+        success: true,
+        projectId,
+        resultCount: pushed,
+        syncedAt: new Date().toISOString(),
+      };
+    } catch (err) {
+      this.logger.error('Cloud ALM pushTestResults failed', { error: err.message });
+      return { success: false, error: err.message };
+    }
+  }
+
+  _extractResults(data) {
+    if (Array.isArray(data)) return data;
+    if (data?.value) return data.value;
+    if (data?.d?.results) return data.d.results;
+    if (data?.d) return [data.d];
+    return [];
   }
 
   // ── Mock implementations ───────────────────────────────────

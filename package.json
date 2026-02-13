@@ -26,6 +26,7 @@
   },
   "scripts": {
     "start": "cds-serve",
+    "start:api": "node server.js",
     "watch": "cds watch",
     "demo": "cds watch --profile demo",
     "discover": "node discovery/discover.js",

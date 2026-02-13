@@ -1,0 +1,425 @@
+{
+  "$schema": "./process-catalog.schema.json",
+  "version": "1.0.0",
+  "description": "SAP S/4HANA Business Process Catalog for Migration Testing",
+  "modules": {
+    "FI": {
+      "name": "Financial Accounting",
+      "processes": [
+        {
+          "id": "OTC-001",
+          "name": "Order to Cash - Standard",
+          "category": "Order to Cash",
+          "steps": ["Create Sales Order", "Delivery", "Goods Issue", "Billing", "Customer Payment"],
+          "priority": "critical",
+          "transactions": ["VA01", "VL01N", "VF01", "F-28"]
+        },
+        {
+          "id": "OTC-002",
+          "name": "Order to Cash - Returns",
+          "category": "Order to Cash",
+          "steps": ["Create Return Order", "Return Delivery", "Goods Receipt", "Credit Memo"],
+          "priority": "high",
+          "transactions": ["VA01", "VL01N", "VF01"]
+        },
+        {
+          "id": "PTP-001",
+          "name": "Procure to Pay - Standard",
+          "category": "Procure to Pay",
+          "steps": ["Purchase Requisition", "Purchase Order", "Goods Receipt", "Invoice Verification", "Payment"],
+          "priority": "critical",
+          "transactions": ["ME51N", "ME21N", "MIGO", "MIRO", "F110"]
+        },
+        {
+          "id": "PTP-002",
+          "name": "Procure to Pay - Service",
+          "category": "Procure to Pay",
+          "steps": ["Service PO", "Service Entry", "Invoice Verification", "Payment"],
+          "priority": "high",
+          "transactions": ["ME21N", "ML81N", "MIRO", "F110"]
+        },
+        {
+          "id": "RTR-001",
+          "name": "Record to Report - GL Posting",
+          "category": "Record to Report",
+          "steps": ["Create GL Document", "Park Document", "Post Document", "Display Line Items"],
+          "priority": "critical",
+          "transactions": ["FB50", "FBV0", "FBV2", "FBL3N"]
+        },
+        {
+          "id": "RTR-002",
+          "name": "Record to Report - Period Close",
+          "category": "Record to Report",
+          "steps": ["Foreign Currency Valuation", "Depreciation Run", "Accruals/Deferrals", "Balance Carry Forward", "Period Lock"],
+          "priority": "critical",
+          "transactions": ["FAGL_FC_VAL", "AFAB", "FBS1", "FAGLGVTR", "OB52"]
+        },
+        {
+          "id": "RTR-003",
+          "name": "Record to Report - Year-End Close",
+          "category": "Record to Report",
+          "steps": ["Year-End Adjustments", "Tax Reporting", "Balance Confirmation", "Carry Forward", "Year Lock"],
+          "priority": "critical",
+          "transactions": ["F.5D", "RFUMSV00", "F.17", "FAGLGVTR", "OB52"]
+        },
+        {
+          "id": "FI-AP-001",
+          "name": "Accounts Payable - Invoice Processing",
+          "category": "Accounts Payable",
+          "steps": ["Enter Invoice", "Block/Release", "Payment Proposal", "Payment Run", "Bank Reconciliation"],
+          "priority": "critical",
+          "transactions": ["FB60", "MRBR", "F110", "F110", "FF67"]
+        },
+        {
+          "id": "FI-AR-001",
+          "name": "Accounts Receivable - Billing",
+          "category": "Accounts Receivable",
+          "steps": ["Create Invoice", "Send Dunning", "Incoming Payment", "Clear Items"],
+          "priority": "critical",
+          "transactions": ["VF01", "F150", "F-28", "F-32"]
+        },
+        {
+          "id": "FI-AA-001",
+          "name": "Asset Accounting - Lifecycle",
+          "category": "Asset Accounting",
+          "steps": ["Acquire Asset", "Post Depreciation", "Transfer Asset", "Retire Asset"],
+          "priority": "high",
+          "transactions": ["AS01", "AFAB", "ABUMN", "ABAON"]
+        }
+      ]
+    },
+    "CO": {
+      "name": "Controlling",
+      "processes": [
+        {
+          "id": "CO-CCA-001",
+          "name": "Cost Center Accounting - Planning & Actuals",
+          "category": "Cost Center Accounting",
+          "steps": ["Plan Cost Center Budget", "Post Actual Costs", "Assessment Cycle", "Distribution Cycle", "Variance Analysis"],
+          "priority": "high",
+          "transactions": ["KP06", "KB21N", "KSU5", "KSV5", "S_ALR_87013611"]
+        },
+        {
+          "id": "CO-PC-001",
+          "name": "Profit Center Accounting",
+          "category": "Profit Center Accounting",
+          "steps": ["Create Profit Center", "Assign Objects", "Plan P&L", "Actual Postings", "P&L Report"],
+          "priority": "high",
+          "transactions": ["KE51", "KE52", "7KE1", "8KE0", "S_ALR_87013326"]
+        },
+        {
+          "id": "CO-IO-001",
+          "name": "Internal Order Processing",
+          "category": "Internal Orders",
+          "steps": ["Create Order", "Budget Assignment", "Post Costs", "Settlement", "Close Order"],
+          "priority": "high",
+          "transactions": ["KO01", "KO22", "KB21N", "KO88", "KO02"]
+        },
+        {
+          "id": "CO-PA-001",
+          "name": "Profitability Analysis",
+          "category": "Profitability Analysis",
+          "steps": ["Define Operating Concern", "Assign Value Fields", "Transfer Postings", "Report"],
+          "priority": "medium",
+          "transactions": ["KEA0", "KE21N", "KE24", "KE30"]
+        }
+      ]
+    },
+    "MM": {
+      "name": "Materials Management",
+      "processes": [
+        {
+          "id": "MM-PROC-001",
+          "name": "Standard Procurement",
+          "category": "Procurement",
+          "steps": ["Create PR", "Source Determination", "Create PO", "GR", "IR", "Payment"],
+          "priority": "critical",
+          "transactions": ["ME51N", "ME05", "ME21N", "MIGO", "MIRO", "F110"]
+        },
+        {
+          "id": "MM-INV-001",
+          "name": "Inventory Management",
+          "category": "Inventory",
+          "steps": ["Goods Receipt", "Stock Transfer", "Physical Inventory", "Goods Issue"],
+          "priority": "critical",
+          "transactions": ["MIGO", "MIGO", "MI01", "MIGO"]
+        },
+        {
+          "id": "MM-INV-002",
+          "name": "Physical Inventory Count",
+          "category": "Inventory",
+          "steps": ["Create Count Document", "Enter Count", "Post Differences", "Recount (if needed)"],
+          "priority": "high",
+          "transactions": ["MI01", "MI04", "MI07", "MI04"]
+        },
+        {
+          "id": "MM-SRC-001",
+          "name": "Source of Supply Management",
+          "category": "Sourcing",
+          "steps": ["Maintain Source List", "Create Info Record", "Vendor Evaluation", "Contract Release"],
+          "priority": "medium",
+          "transactions": ["ME01", "ME11", "ME61", "ME31K"]
+        },
+        {
+          "id": "MM-MRP-001",
+          "name": "Material Requirements Planning",
+          "category": "Planning",
+          "steps": ["MRP Run", "Review Results", "Convert PR to PO", "Schedule Delivery"],
+          "priority": "high",
+          "transactions": ["MD01", "MD04", "ME59N", "VL10"]
+        }
+      ]
+    },
+    "SD": {
+      "name": "Sales & Distribution",
+      "processes": [
+        {
+          "id": "SD-ORD-001",
+          "name": "Standard Sales Order",
+          "category": "Sales",
+          "steps": ["Inquiry", "Quotation", "Sales Order", "Delivery", "Billing"],
+          "priority": "critical",
+          "transactions": ["VA11", "VA21", "VA01", "VL01N", "VF01"]
+        },
+        {
+          "id": "SD-ORD-002",
+          "name": "Third-Party Order",
+          "category": "Sales",
+          "steps": ["Create 3rd Party SO", "Auto PO Creation", "Invoice Receipt", "Billing"],
+          "priority": "high",
+          "transactions": ["VA01", "ME21N", "MIRO", "VF01"]
+        },
+        {
+          "id": "SD-RET-001",
+          "name": "Returns Processing",
+          "category": "Returns",
+          "steps": ["Create Return", "Return Delivery", "Goods Receipt", "Credit/Debit Memo"],
+          "priority": "high",
+          "transactions": ["VA01", "VL01N", "MIGO", "VF01"]
+        },
+        {
+          "id": "SD-DEL-001",
+          "name": "Outbound Delivery",
+          "category": "Delivery",
+          "steps": ["Create Delivery", "Pick", "Pack", "Goods Issue", "POD"],
+          "priority": "critical",
+          "transactions": ["VL01N", "VL02N", "HU02", "VL02N", "VL02N"]
+        },
+        {
+          "id": "SD-PRC-001",
+          "name": "Pricing & Conditions",
+          "category": "Pricing",
+          "steps": ["Maintain Condition Records", "Create Pricing Procedure", "Apply to Order", "Verify"],
+          "priority": "high",
+          "transactions": ["VK11", "V/08", "VA01", "VA03"]
+        }
+      ]
+    },
+    "PP": {
+      "name": "Production Planning",
+      "processes": [
+        {
+          "id": "PP-MTS-001",
+          "name": "Make to Stock",
+          "category": "Production",
+          "steps": ["Demand Planning", "MRP Run", "Planned Order Conversion", "Release Production Order", "Confirmation", "Goods Receipt"],
+          "priority": "critical",
+          "transactions": ["MD61", "MD01", "CO40", "CO02", "CO11N", "MIGO"]
+        },
+        {
+          "id": "PP-MTO-001",
+          "name": "Make to Order",
+          "category": "Production",
+          "steps": ["Sales Order", "MRP", "Production Order", "Confirmation", "Delivery"],
+          "priority": "high",
+          "transactions": ["VA01", "MD01", "CO01", "CO11N", "VL01N"]
+        },
+        {
+          "id": "PP-PI-001",
+          "name": "Process Industry",
+          "category": "Process Manufacturing",
+          "steps": ["Create Process Order", "Release", "Batch Management", "Confirmation", "QA"],
+          "priority": "medium",
+          "transactions": ["COR1", "COR2", "MSC1N", "COR6N", "QA01"]
+        },
+        {
+          "id": "PP-SFC-001",
+          "name": "Shop Floor Control",
+          "category": "Shop Floor",
+          "steps": ["Display Work Center Load", "Schedule Order", "Print Shop Papers", "Time Confirmation", "Yield Confirmation"],
+          "priority": "high",
+          "transactions": ["CM01", "CO02", "CO02", "CO11N", "CO11N"]
+        }
+      ]
+    },
+    "PM": {
+      "name": "Plant Maintenance",
+      "processes": [
+        {
+          "id": "PM-CM-001",
+          "name": "Corrective Maintenance",
+          "category": "Maintenance",
+          "steps": ["Create Notification", "Create Order", "Plan Operations", "Execute", "Confirm", "Close"],
+          "priority": "critical",
+          "transactions": ["IW21", "IW31", "IW32", "IW32", "IW42", "IW32"]
+        },
+        {
+          "id": "PM-PM-001",
+          "name": "Preventive Maintenance",
+          "category": "Maintenance",
+          "steps": ["Create Maintenance Plan", "Schedule", "Generate Orders", "Execute", "Complete"],
+          "priority": "high",
+          "transactions": ["IP01", "IP10", "IP30", "IW32", "IW32"]
+        },
+        {
+          "id": "PM-EQ-001",
+          "name": "Equipment Management",
+          "category": "Equipment",
+          "steps": ["Create Equipment", "Assign to Functional Location", "Install", "Dismantle", "Scrap"],
+          "priority": "high",
+          "transactions": ["IE01", "IE02", "IE02", "IE02", "IE02"]
+        }
+      ]
+    },
+    "HR": {
+      "name": "Human Resources",
+      "processes": [
+        {
+          "id": "HR-PA-001",
+          "name": "Employee Lifecycle",
+          "category": "Personnel Administration",
+          "steps": ["Hire Employee", "Maintain Master Data", "Organizational Change", "Termination"],
+          "priority": "critical",
+          "transactions": ["PA40", "PA30", "PA40", "PA40"]
+        },
+        {
+          "id": "HR-PY-001",
+          "name": "Payroll Processing",
+          "category": "Payroll",
+          "steps": ["Time Recording", "Payroll Simulation", "Payroll Run", "Post to FI", "Bank Transfer"],
+          "priority": "critical",
+          "transactions": ["CAT2", "PC00_M99_CALC_SIMU", "PC00_M99_CALC", "PC00_M99_CIPE", "PC00_M99_CDTA"]
+        },
+        {
+          "id": "HR-TM-001",
+          "name": "Time Management",
+          "category": "Time Management",
+          "steps": ["Record Time", "Approve Time", "Time Evaluation", "Transfer to Payroll"],
+          "priority": "high",
+          "transactions": ["CAT2", "CAT3", "PT60", "PT61"]
+        }
+      ]
+    },
+    "EWM": {
+      "name": "Extended Warehouse Management",
+      "processes": [
+        {
+          "id": "EWM-IB-001",
+          "name": "Inbound Processing",
+          "category": "Inbound",
+          "steps": ["Receive ASN", "Create Inbound Delivery", "Unload", "Putaway", "Confirm"],
+          "priority": "high",
+          "transactions": ["/SCWM/PRDI", "/SCWM/ADGI", "/SCWM/RFUI", "/SCWM/RFUI", "/SCWM/MON"]
+        },
+        {
+          "id": "EWM-OB-001",
+          "name": "Outbound Processing",
+          "category": "Outbound",
+          "steps": ["Release Wave", "Pick", "Pack", "Load", "Goods Issue"],
+          "priority": "high",
+          "transactions": ["/SCWM/WAVE", "/SCWM/RFUI", "/SCWM/PACK", "/SCWM/LOAD", "/SCWM/RFUI"]
+        }
+      ]
+    },
+    "TM": {
+      "name": "Transportation Management",
+      "processes": [
+        {
+          "id": "TM-FRT-001",
+          "name": "Freight Management",
+          "category": "Freight",
+          "steps": ["Create Freight Order", "Carrier Selection", "Tendering", "Execution", "Settlement"],
+          "priority": "medium",
+          "transactions": ["/SCMTMS/TOR", "/SCMTMS/CARRIER", "/SCMTMS/TENDER", "/SCMTMS/TOR", "/SCMTMS/SETTLE"]
+        }
+      ]
+    },
+    "GTS": {
+      "name": "Global Trade Services",
+      "processes": [
+        {
+          "id": "GTS-COMP-001",
+          "name": "Export Compliance",
+          "category": "Compliance",
+          "steps": ["Sanctioned Party Screening", "License Determination", "Embargo Check", "Export Declaration"],
+          "priority": "medium",
+          "transactions": ["/SAPSLL/SPS_R3", "/SAPSLL/LCD_R3", "/SAPSLL/EMB_R3", "/SAPSLL/CSD_R3"]
+        }
+      ]
+    },
+    "QM": {
+      "name": "Quality Management",
+      "processes": [
+        {
+          "id": "QM-INS-001",
+          "name": "Inspection Processing",
+          "category": "Inspection",
+          "steps": ["Create Inspection Lot", "Record Results", "Usage Decision", "Certificate"],
+          "priority": "high",
+          "transactions": ["QA01", "QA32", "QA11", "QC01"]
+        }
+      ]
+    },
+    "PS": {
+      "name": "Project System",
+      "processes": [
+        {
+          "id": "PS-PRJ-001",
+          "name": "Project Execution",
+          "category": "Project",
+          "steps": ["Create Project", "Budget Allocation", "Activity Confirmation", "Settlement", "Close"],
+          "priority": "medium",
+          "transactions": ["CJ20N", "CJ30", "CJ20N", "CJ88", "CJ20N"]
+        }
+      ]
+    }
+  },
+  "summary": {
+    "totalProcesses": 52,
+    "totalModules": 14,
+    "categoryCounts": {
+      "Order to Cash": 2,
+      "Procure to Pay": 2,
+      "Record to Report": 3,
+      "Accounts Payable": 1,
+      "Accounts Receivable": 1,
+      "Asset Accounting": 1,
+      "Cost Center Accounting": 1,
+      "Profit Center Accounting": 1,
+      "Internal Orders": 1,
+      "Profitability Analysis": 1,
+      "Procurement": 1,
+      "Inventory": 2,
+      "Sourcing": 1,
+      "Planning": 1,
+      "Sales": 2,
+      "Returns": 1,
+      "Delivery": 1,
+      "Pricing": 1,
+      "Production": 2,
+      "Process Manufacturing": 1,
+      "Shop Floor": 1,
+      "Maintenance": 2,
+      "Equipment": 1,
+      "Personnel Administration": 1,
+      "Payroll": 1,
+      "Time Management": 1,
+      "Inbound": 1,
+      "Outbound": 1,
+      "Freight": 1,
+      "Compliance": 1,
+      "Inspection": 1,
+      "Project": 1
+    }
+  }
+}

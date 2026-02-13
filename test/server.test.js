@@ -1,0 +1,305 @@
+/**
+ * Tests for server.js — createApp factory
+ *
+ * Verifies Express app creation, route registration, security headers,
+ * health/readiness/metrics endpoints, dashboard, audit, info, 404 handling,
+ * and internal reference objects.
+ *
+ * Uses a lightweight HTTP helper to issue requests against the Express app
+ * without requiring external test utilities like supertest.
+ */
+
+const http = require('http');
+const { createApp } = require('../server');
+const { HealthCheck } = require('../lib/monitoring/health');
+const { MetricsCollector } = require('../lib/monitoring/metrics');
+const { AuditLogger } = require('../lib/security/audit-logger');
+
+// ── HTTP test helper ─────────────────────────────────────────
+
+/**
+ * Create a one-shot HTTP request against an Express app.
+ * Returns { status, headers, body } where body is parsed JSON
+ * or the raw string if JSON parsing fails.
+ */
+function request(app) {
+  return {
+    get: (path) =>
+      new Promise((resolve, reject) => {
+        const server = http.createServer(app);
+        server.listen(0, '127.0.0.1', () => {
+          const port = server.address().port;
+          const req = http.get(
+            `http://127.0.0.1:${port}${path}`,
+            (res) => {
+              let data = '';
+              res.on('data', (chunk) => (data += chunk));
+              res.on('end', () => {
+                server.close();
+                let body;
+                try {
+                  body = JSON.parse(data);
+                } catch {
+                  body = data;
+                }
+                resolve({
+                  status: res.statusCode,
+                  headers: res.headers,
+                  body,
+                });
+              });
+            }
+          );
+          req.on('error', (e) => {
+            server.close();
+            reject(e);
+          });
+        });
+      }),
+  };
+}
+
+// ── Tests ────────────────────────────────────────────────────
+
+describe('server.js — createApp', () => {
+  let app;
+
+  beforeEach(() => {
+    app = createApp({ NODE_ENV: 'test', LOG_LEVEL: 'error' });
+  });
+
+  // ── App creation ───────────────────────────────────────────
+
+  describe('app creation', () => {
+    it('should return a function (Express app)', () => {
+      expect(typeof app).toBe('function');
+      // Express apps have .use, .get, .listen
+      expect(typeof app.use).toBe('function');
+      expect(typeof app.get).toBe('function');
+      expect(typeof app.listen).toBe('function');
+    });
+
+    it('should attach _config with loaded configuration', () => {
+      expect(app._config).toBeDefined();
+      expect(app._config.nodeEnv).toBe('test');
+      expect(app._config.logLevel).toBe('error');
+      expect(typeof app._config.port).toBe('number');
+    });
+
+    it('should apply config overrides passed to createApp', () => {
+      const custom = createApp({
+        NODE_ENV: 'test',
+        LOG_LEVEL: 'debug',
+        APP_NAME: 'custom-app',
+        APP_VERSION: '2.5.0',
+        METRICS_PREFIX: 'custom',
+      });
+
+      expect(custom._config.logLevel).toBe('debug');
+      expect(custom._config.appName).toBe('custom-app');
+      expect(custom._config.appVersion).toBe('2.5.0');
+      expect(custom._config.metricsPrefix).toBe('custom');
+    });
+
+    it('should attach _health as a HealthCheck instance', () => {
+      expect(app._health).toBeDefined();
+      expect(app._health).toBeInstanceOf(HealthCheck);
+    });
+
+    it('should attach _metrics as a MetricsCollector instance', () => {
+      expect(app._metrics).toBeDefined();
+      expect(app._metrics).toBeInstanceOf(MetricsCollector);
+    });
+
+    it('should attach _auditLogger as an AuditLogger instance', () => {
+      expect(app._auditLogger).toBeDefined();
+      expect(app._auditLogger).toBeInstanceOf(AuditLogger);
+    });
+
+    it('should attach _rateLimiter reference', () => {
+      expect(app._rateLimiter).toBeDefined();
+      expect(typeof app._rateLimiter.middleware).toBe('function');
+    });
+
+    it('should attach _dashboard reference', () => {
+      expect(app._dashboard).toBeDefined();
+      expect(typeof app._dashboard.getSummary).toBe('function');
+    });
+  });
+
+  // ── GET /health ────────────────────────────────────────────
+
+  describe('GET /health', () => {
+    it('should return 200 with status up', async () => {
+      const res = await request(app).get('/health');
+
+      expect(res.status).toBe(200);
+      expect(res.body.status).toBe('up');
+      expect(res.body.timestamp).toBeDefined();
+      expect(typeof res.body.uptime).toBe('number');
+      expect(res.body.version).toBeDefined();
+      expect(res.body.name).toBeDefined();
+      expect(typeof res.body.pid).toBe('number');
+      expect(res.body.memory).toBeDefined();
+      expect(typeof res.body.memory.rss).toBe('number');
+    });
+  });
+
+  // ── GET /ready ─────────────────────────────────────────────
+
+  describe('GET /ready', () => {
+    it('should return 200 or 503 with readiness checks', async () => {
+      const res = await request(app).get('/ready');
+
+      // May be 200 (all up) or 503 (degraded) depending on checks
+      expect([200, 503]).toContain(res.status);
+      expect(res.body.status).toBeDefined();
+      expect(['up', 'degraded']).toContain(res.body.status);
+      expect(res.body.timestamp).toBeDefined();
+      expect(res.body.checks).toBeDefined();
+      expect(typeof res.body.checks).toBe('object');
+    });
+  });
+
+  // ── GET /metrics ───────────────────────────────────────────
+
+  describe('GET /metrics', () => {
+    it('should return Prometheus text format by default', async () => {
+      const res = await request(app).get('/metrics');
+
+      expect(res.status).toBe(200);
+      expect(res.headers['content-type']).toContain('text/plain');
+      // Prometheus format is a string, not JSON
+      expect(typeof res.body).toBe('string');
+    });
+  });
+
+  // ── GET /api/info ──────────────────────────────────────────
+
+  describe('GET /api/info', () => {
+    it('should return app info with expected fields', async () => {
+      const res = await request(app).get('/api/info');
+
+      expect(res.status).toBe(200);
+      expect(res.body.name).toBe(app._config.appName);
+      expect(res.body.version).toBe(app._config.appVersion);
+      expect(res.body.environment).toBe('test');
+      expect(res.body.migrationMode).toBe(app._config.migrationMode);
+      expect(typeof res.body.migrationObjects).toBe('number');
+      expect(typeof res.body.uptime).toBe('number');
+    });
+  });
+
+  // ── GET /api/dashboard/summary ─────────────────────────────
+
+  describe('GET /api/dashboard/summary', () => {
+    it('should return a dashboard summary object', async () => {
+      const res = await request(app).get('/api/dashboard/summary');
+
+      expect(res.status).toBe(200);
+      expect(res.body.timestamp).toBeDefined();
+      expect(typeof res.body.totalObjects).toBe('number');
+      expect(typeof res.body.totalRules).toBe('number');
+      // lastRun may be null on fresh app
+      expect(res.body).toHaveProperty('lastRun');
+      expect(res.body).toHaveProperty('rulesBreakdown');
+      expect(res.body).toHaveProperty('runHistory');
+    });
+  });
+
+  // ── GET /api/audit ─────────────────────────────────────────
+
+  describe('GET /api/audit', () => {
+    it('should return audit log entries', async () => {
+      const res = await request(app).get('/api/audit');
+
+      expect(res.status).toBe(200);
+      expect(res.body).toHaveProperty('total');
+      expect(res.body).toHaveProperty('entries');
+      expect(Array.isArray(res.body.entries)).toBe(true);
+      expect(typeof res.body.total).toBe('number');
+    });
+  });
+
+  // ── GET /api/audit/stats ───────────────────────────────────
+
+  describe('GET /api/audit/stats', () => {
+    it('should return audit statistics', async () => {
+      const res = await request(app).get('/api/audit/stats');
+
+      expect(res.status).toBe(200);
+      expect(res.body).toHaveProperty('totalEntries');
+      expect(res.body).toHaveProperty('byEvent');
+      expect(res.body).toHaveProperty('byOutcome');
+      expect(res.body).toHaveProperty('byActor');
+      expect(typeof res.body.totalEntries).toBe('number');
+    });
+  });
+
+  // ── 404 handler ────────────────────────────────────────────
+
+  describe('GET /nonexistent', () => {
+    it('should return 404 with structured JSON error', async () => {
+      const res = await request(app).get('/this-path-does-not-exist');
+
+      expect(res.status).toBe(404);
+      expect(res.body.error).toBe('Not Found');
+      expect(res.body.status).toBe(404);
+      expect(res.body.message).toContain('Cannot GET');
+      expect(res.body.timestamp).toBeDefined();
+    });
+  });
+
+  // ── Security headers ──────────────────────────────────────
+
+  describe('security headers', () => {
+    it('should set X-Content-Type-Options header', async () => {
+      const res = await request(app).get('/health');
+
+      expect(res.headers['x-content-type-options']).toBe('nosniff');
+    });
+
+    it('should set X-Frame-Options header', async () => {
+      const res = await request(app).get('/health');
+
+      // helmet sets SAMEORIGIN by default
+      expect(res.headers['x-frame-options']).toBeDefined();
+    });
+
+    it('should not expose X-Powered-By header', async () => {
+      const res = await request(app).get('/health');
+
+      // Express default is to set this, security middleware should remove it
+      // or helmet disables it
+      expect(res.headers['x-powered-by']).toBeUndefined();
+    });
+  });
+
+  // ── CORS ───────────────────────────────────────────────────
+
+  describe('CORS', () => {
+    it('should include access-control-allow-origin in response', async () => {
+      const res = await request(app).get('/health');
+
+      // With CORS_ORIGINS='*' (the default), the header should be set
+      expect(res.headers['access-control-allow-origin']).toBeDefined();
+    });
+  });
+
+  // ── Integration: multiple endpoints in sequence ────────────
+
+  describe('sequential requests', () => {
+    it('should serve different endpoints correctly', async () => {
+      const health = await request(app).get('/health');
+      expect(health.status).toBe(200);
+      expect(health.body.status).toBe('up');
+
+      const info = await request(app).get('/api/info');
+      expect(info.status).toBe(200);
+      expect(info.body.name).toBeDefined();
+
+      const notFound = await request(app).get('/nope');
+      expect(notFound.status).toBe(404);
+    });
+  });
+});
