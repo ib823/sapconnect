@@ -6,29 +6,73 @@
  */
 
 const Logger = require('../lib/logger');
-const { SapClientFactory, SAP_SERVICES } = require('../lib/sap-client-factory');
-const { ConnectionError, MigrationObjectError } = require('../lib/errors');
+const { SapClientFactory } = require('../lib/sap-client-factory');
+const { MigrationObjectError } = require('../lib/errors');
 
 // Maps migration object IDs to their SAP service and entity set
+// All 42 objects mapped to SAP OData/RFC services
 const OBJECT_SERVICE_MAP = {
+  // ── Finance ──────────────────────────────────────────────────
   GL_BALANCE: { system: 'source', service: 'ECC_GL_BALANCE', entitySet: 'FAGLFLEXT', version: 'v2' },
   GL_ACCOUNT_MASTER: { system: 'target', service: 'GL_ACCOUNT', entitySet: 'GLAccountInChartOfAccounts', version: 'v4' },
-  BUSINESS_PARTNER: { system: 'target', service: 'BUSINESS_PARTNER', entitySet: 'A_BusinessPartner', version: 'v2' },
   CUSTOMER_OPEN_ITEM: { system: 'source', service: 'ECC_CUSTOMER', entitySet: 'CustomerOpenItems', version: 'v2' },
   VENDOR_OPEN_ITEM: { system: 'source', service: 'ECC_VENDOR', entitySet: 'VendorOpenItems', version: 'v2' },
+  COST_ELEMENT: { system: 'target', service: 'COST_ELEMENT', entitySet: 'CostCenterActivityType', version: 'v2' },
+  ASSET_ACQUISITION: { system: 'target', service: 'FIXED_ASSET', entitySet: 'A_FixedAssetAcquisition', version: 'v2' },
+  PROFIT_SEGMENT: { system: 'target', service: 'PROFIT_CENTER', entitySet: 'A_ProfitabilitySegment', version: 'v2' },
+
+  // ── Controlling ──────────────────────────────────────────────
+  COST_CENTER: { system: 'target', service: 'COST_CENTER', entitySet: 'A_CostCenter', version: 'v2' },
+  PROFIT_CENTER: { system: 'target', service: 'PROFIT_CENTER', entitySet: 'A_ProfitCenter', version: 'v2' },
+  INTERNAL_ORDER: { system: 'target', service: 'INTERNAL_ORDER', entitySet: 'A_InternalOrder', version: 'v2' },
+  WBS_ELEMENT: { system: 'target', service: 'PROJECT', entitySet: 'A_WBSElement', version: 'v2' },
+
+  // ── Logistics ────────────────────────────────────────────────
+  BUSINESS_PARTNER: { system: 'target', service: 'BUSINESS_PARTNER', entitySet: 'A_BusinessPartner', version: 'v2' },
   MATERIAL_MASTER: { system: 'target', service: 'MATERIAL', entitySet: 'A_Product', version: 'v2' },
   PURCHASE_ORDER: { system: 'target', service: 'PURCHASE_ORDER', entitySet: 'A_PurchaseOrder', version: 'v2' },
   SALES_ORDER: { system: 'target', service: 'SALES_ORDER', entitySet: 'A_SalesOrder', version: 'v2' },
-  FIXED_ASSET: { system: 'target', service: 'FIXED_ASSET', entitySet: 'A_FixedAsset', version: 'v2' },
-  COST_CENTER: { system: 'target', service: 'COST_CENTER', entitySet: 'A_CostCenter', version: 'v2' },
-  COST_ELEMENT: { system: 'target', service: 'COST_CENTER', entitySet: 'A_CostCenter', version: 'v2' },
-  PROFIT_CENTER: { system: 'target', service: 'PROFIT_CENTER', entitySet: 'A_ProfitCenter', version: 'v2' },
-  EQUIPMENT_MASTER: { system: 'target', service: 'EQUIPMENT', entitySet: 'Equipment', version: 'v2' },
-  MAINTENANCE_ORDER: { system: 'target', service: 'MAINTENANCE_ORDER', entitySet: 'MaintenanceOrder', version: 'v2' },
-  PRODUCTION_ORDER: { system: 'target', service: 'PRODUCTION_ORDER', entitySet: 'A_ProductionOrder_2', version: 'v2' },
-  BANK_MASTER: { system: 'target', service: 'BANK', entitySet: 'A_BankDetail', version: 'v2' },
-  EMPLOYEE_MASTER: { system: 'target', service: 'EMPLOYEE', entitySet: 'A_BusinessPartner', version: 'v2' },
+  PRICING_CONDITION: { system: 'target', service: 'PRICING_CONDITION', entitySet: 'A_SlsPrcgCndnRecdValidity', version: 'v2' },
+  SOURCE_LIST: { system: 'target', service: 'SOURCE_LIST', entitySet: 'A_PurchasingSource', version: 'v2' },
+  SCHEDULING_AGREEMENT: { system: 'target', service: 'SCHED_AGREEMENT', entitySet: 'A_SchAgrmtHeader', version: 'v2' },
+  PURCHASE_CONTRACT: { system: 'target', service: 'PURCHASE_CONTRACT', entitySet: 'A_PurchaseContract', version: 'v2' },
   BATCH_MASTER: { system: 'target', service: 'BATCH', entitySet: 'Batch', version: 'v2' },
+  BANK_MASTER: { system: 'target', service: 'BANK', entitySet: 'A_BankDetail', version: 'v2' },
+
+  // ── Plant Maintenance ────────────────────────────────────────
+  EQUIPMENT_MASTER: { system: 'target', service: 'EQUIPMENT', entitySet: 'Equipment', version: 'v2' },
+  FUNCTIONAL_LOCATION: { system: 'target', service: 'FUNC_LOCATION', entitySet: 'A_FunctionalLocation', version: 'v2' },
+  WORK_CENTER: { system: 'target', service: 'WORK_CENTER', entitySet: 'A_WorkCenter', version: 'v2' },
+  MAINTENANCE_ORDER: { system: 'target', service: 'MAINTENANCE_ORDER', entitySet: 'MaintenanceOrder', version: 'v2' },
+
+  // ── Production ───────────────────────────────────────────────
+  PRODUCTION_ORDER: { system: 'target', service: 'PRODUCTION_ORDER', entitySet: 'A_ProductionOrder_2', version: 'v2' },
+  BOM_ROUTING: { system: 'target', service: 'BOM', entitySet: 'A_BillOfMaterialHeader', version: 'v2' },
+  INSPECTION_PLAN: { system: 'target', service: 'INSPECTION_PLAN', entitySet: 'A_InspectionPlan', version: 'v2' },
+
+  // ── Fixed Assets ─────────────────────────────────────────────
+  FIXED_ASSET: { system: 'target', service: 'FIXED_ASSET', entitySet: 'A_FixedAsset', version: 'v2' },
+
+  // ── HR ───────────────────────────────────────────────────────
+  EMPLOYEE_MASTER: { system: 'target', service: 'EMPLOYEE', entitySet: 'A_BusinessPartner', version: 'v2' },
+
+  // ── Extended (EWM, TM, GTS, BW) ─────────────────────────────
+  WAREHOUSE_STRUCTURE: { system: 'target', service: 'WAREHOUSE', entitySet: 'A_Warehouse', version: 'v2' },
+  TRANSPORT_ROUTE: { system: 'target', service: 'TRANSPORT_ROUTE', entitySet: 'A_TransportationRoute', version: 'v2' },
+  TRADE_COMPLIANCE: { system: 'target', service: 'TRADE_COMPLIANCE', entitySet: 'A_ProductCompliance', version: 'v2' },
+  BW_EXTRACTOR: { system: 'source', service: 'BW_EXTRACTOR', entitySet: 'DataSource', version: 'v2' },
+
+  // ── Interfaces ───────────────────────────────────────────────
+  RFC_DESTINATION: { system: 'source', service: 'RFC_DESTINATION', entitySet: 'RFCDestination', version: 'v2', transport: 'rfc' },
+  IDOC_CONFIG: { system: 'source', service: 'IDOC_CONFIG', entitySet: 'IDocType', version: 'v2', transport: 'rfc' },
+  WEB_SERVICE: { system: 'source', service: 'WEB_SERVICE', entitySet: 'WebServiceEndpoint', version: 'v2' },
+  BATCH_JOB: { system: 'source', service: 'BATCH_JOB', entitySet: 'BackgroundJob', version: 'v2', transport: 'rfc' },
+
+  // ── Configuration ────────────────────────────────────────────
+  FI_CONFIG: { system: 'source', service: 'FI_CONFIG', entitySet: 'CompanyCode', version: 'v2', transport: 'rfc' },
+  CO_CONFIG: { system: 'source', service: 'CO_CONFIG', entitySet: 'ControllingArea', version: 'v2', transport: 'rfc' },
+  MM_CONFIG: { system: 'source', service: 'MM_CONFIG', entitySet: 'PurchasingOrganization', version: 'v2', transport: 'rfc' },
+  SD_CONFIG: { system: 'source', service: 'SD_CONFIG', entitySet: 'SalesOrganization', version: 'v2', transport: 'rfc' },
 };
 
 class LiveConnector {

@@ -3,16 +3,19 @@
  *
  * Central registry for all migration objects.
  * Auto-registers built-in objects; supports custom object registration.
+ * Supports dependency-ordered execution via DependencyGraph.
  */
 
 const Logger = require('../../lib/logger');
 const { MigrationObjectError } = require('../../lib/errors');
+const { DependencyGraph } = require('../dependency-graph');
 
 class MigrationObjectRegistry {
   constructor() {
     this._classes = new Map();
     this._cache = new Map();
     this.logger = new Logger('mig-registry');
+    this._depGraph = new DependencyGraph();
     this._registerBuiltins();
   }
 
@@ -54,32 +57,66 @@ class MigrationObjectRegistry {
     });
   }
 
-  /** Run all registered migration objects sequentially */
+  /**
+   * Run all registered migration objects in dependency order.
+   * Objects within the same execution wave run in parallel.
+   *
+   * @param {object} gateway - { mode: 'mock' | 'live' }
+   * @param {object} [options]
+   * @param {boolean} [options.parallel=true] - Run independent objects in parallel waves
+   * @param {string[]} [options.objectIds] - Subset of objects to run (default: all)
+   * @param {Function} [options.onProgress] - Callback(objectId, result) per completed object
+   */
   async runAll(gateway, options = {}) {
-    const ids = this.listObjectIds();
+    const parallel = options.parallel !== false;
+    const requestedIds = options.objectIds || this.listObjectIds();
     const results = [];
+    const resultMap = new Map();
     const start = Date.now();
     let completed = 0;
     let failed = 0;
 
-    for (const id of ids) {
-      const obj = this.createObject(id, gateway, options);
-      this.logger.info(`Running ${obj.name} (${obj.objectId})...`);
-      const result = await obj.run();
-      results.push(result);
-      if (result.status === 'error' || result.status === 'validation_failed') {
-        failed++;
+    // Get dependency-ordered execution waves
+    const waves = this._depGraph.getExecutionWaves(requestedIds);
+    this.logger.info(`Execution plan: ${waves.length} waves for ${requestedIds.length} objects`);
+
+    for (let waveIdx = 0; waveIdx < waves.length; waveIdx++) {
+      const wave = waves[waveIdx];
+      this.logger.info(`Wave ${waveIdx + 1}/${waves.length}: [${wave.join(', ')}]`);
+
+      const runOne = async (id) => {
+        const obj = this.createObject(id, gateway, options);
+        this.logger.info(`Running ${obj.name} (${obj.objectId})...`);
+        const result = await obj.run();
+        resultMap.set(id, result);
+        results.push(result);
+        if (result.status === 'error' || result.status === 'validation_failed') {
+          failed++;
+        } else {
+          completed++;
+        }
+        if (options.onProgress) {
+          try { options.onProgress(id, result); } catch { /* ignore callback errors */ }
+        }
+      };
+
+      if (parallel && wave.length > 1) {
+        await Promise.all(wave.map(id => runOne(id)));
       } else {
-        completed++;
+        for (const id of wave) {
+          await runOne(id);
+        }
       }
     }
 
     return {
       results,
       stats: {
-        total: ids.length,
+        total: requestedIds.length,
         completed,
         failed,
+        waves: waves.length,
+        executionOrder: waves,
         totalDurationMs: Date.now() - start,
       },
     };

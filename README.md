@@ -9,7 +9,7 @@ Replaces 6-month migration timelines with automated, code-driven execution. Ever
 ```mermaid
 graph TB
     subgraph "Migration Engine (874 rules, 42 objects, 52 processes)"
-        ASSESS[Phase 1: Assess<br/>874 custom code rules<br/>22 SAP modules]
+        ASSESS[Phase 1: Assess<br/>874 custom code rules<br/>21 SAP modules]
         REMED[Phase 2: Remediate<br/>Auto-fix suggestions<br/>per rule]
         PROFILE[Phase 3: Profile<br/>Data quality analysis<br/>Fuzzy duplicate detection]
         SDT[Phase 4: SDT<br/>52 E2E test scenarios<br/>Auto-generated]
@@ -48,7 +48,7 @@ graph TB
 1. Click **Code > Codespaces > New codespace** on this repository
 2. Wait for setup to complete (installs SAP tools automatically)
 3. Run `npm run watch` — server starts on port 4004
-4. Run `npm test` — 2195 tests across 188 files
+4. Run `npm test` — 2610 tests across 191 files
 
 ### Local Development
 ```bash
@@ -70,7 +70,7 @@ docker compose up
 ### Run Migration Assessment
 ```bash
 npm run assess                    # Scan custom code against 874 rules
-npm test                          # Run full test suite (2195 tests)
+npm test                          # Run full test suite (2610 tests)
 npm run lint                      # ESLint code quality check
 node -e "
   const R = require('./migration/objects/registry');
@@ -94,8 +94,9 @@ node -e "
 | **Cutover Planner** | Critical path + rollback | Dependency-aware task scheduling, 15-item go/no-go checklist, 8-step rollback plan |
 | **Security** | 5 modules | Input validation, rate limiting, audit logging, security headers, CORS |
 | **Monitoring** | 4 modules | Health/readiness probes, Prometheus metrics, request correlation IDs |
-| **Live Connectivity** | 18 service mappings | OData V2/V4 with CSRF, batch, retry, pagination; RFC pool + table reader |
-| **Dependency Graph** | 42 objects | Topological sort, execution waves, circular detection |
+| **Live Connectivity** | 42 service mappings | OData V2/V4 with CSRF, batch, retry, pagination; RFC pool + table reader |
+| **Dependency Graph** | 42 objects | Topological sort, execution waves, parallel wave execution |
+| **Migration Bridge** | Extraction → Migration | Forensic discovery feeds migration planning, scoping, risk assessment |
 | **Checkpoint/Resume** | File-based | Save/restore migration state, crash recovery, cleanup |
 | **CI/CD** | GitHub Actions | Lint + test + security + Docker build, multi-node matrix (20/22) |
 | **CAP Backend** | OData V4 | Customer service with draft support, business partner API |
@@ -107,7 +108,7 @@ node -e "
 
 | Phase | What | How | Output |
 |-------|------|-----|--------|
-| **1. Assess** | Scan custom code + interfaces | 874 rules across 22 modules, interface scanner | Risk score, findings by severity |
+| **1. Assess** | Scan custom code + interfaces | 874 rules across 21 modules, interface scanner | Risk score, findings by severity |
 | **2. Remediate** | Fix flagged items | Per-rule remediation guidance, priority ranking | Clean code baseline |
 | **3. Profile** | Analyze data quality | Levenshtein fuzzy matching, referential integrity | Quality report per object |
 | **4. SDT** | Generate test scenarios | Auto-derive from objects + process catalog | 52+ executable test cases |
@@ -168,7 +169,7 @@ npm run watch        # Start CAP server with live reload
 npm run discover     # Run API Discovery in mock mode
 npm run agent        # Run AI Agent workflow in mock mode
 npm run assess       # Run migration assessment
-npm test             # Run 2195 tests across 188 files
+npm test             # Run 2610 tests across 191 files
 npm run lint         # Run ESLint
 npm run format       # Run Prettier
 npm run docker:build # Build Docker image
@@ -189,7 +190,7 @@ npm run docker:build # Build Docker image
 - **SAP CAP (Node.js)** — Backend framework
 - **SAP Fiori Elements / UI5** — Frontend
 - **SQLite in-memory** — Local database
-- **vitest** — Test framework (2195 tests, 188 files)
+- **vitest** — Test framework (2610 tests, 191 files)
 - **ESLint + Prettier** — Code quality
 - **Docker** — Containerization
 - **GitHub Actions** — CI/CD
