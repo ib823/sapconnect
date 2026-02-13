@@ -1,8 +1,8 @@
 const ewmRules = require('../../../migration/rules/ewm-rules');
 
 describe('EWM Rules', () => {
-  it('exports 10 rules', () => {
-    expect(ewmRules).toHaveLength(10);
+  it('exports 28 rules', () => {
+    expect(ewmRules).toHaveLength(28);
   });
 
   it('all have SIMPL-EWM prefix', () => {

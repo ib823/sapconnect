@@ -73,7 +73,7 @@ describe('TestScenarioEngine', () => {
 
     it('generates process scenarios from catalog', () => {
       const result = engine.generateFromMigrationResults(mockResults);
-      expect(result.scenarios.process.length).toBeGreaterThanOrEqual(18);
+      expect(result.scenarios.process.length).toBeGreaterThanOrEqual(50);
     });
 
     it('stats total equals sum of all categories', () => {
@@ -179,9 +179,9 @@ describe('TestScenarioEngine', () => {
   // ── Process scenarios ──────────────────────────────────────
 
   describe('_generateProcessScenarios', () => {
-    it('generates all 18 catalog processes', () => {
+    it('generates all 52 catalog processes', () => {
       const scenarios = engine._generateProcessScenarios();
-      expect(scenarios.length).toBe(18);
+      expect(scenarios.length).toBe(52);
     });
 
     it('all scenarios have required fields', () => {
@@ -196,29 +196,25 @@ describe('TestScenarioEngine', () => {
       }
     });
 
-    it('covers all core modules', () => {
+    it('covers all 14 modules', () => {
       const scenarios = engine._generateProcessScenarios();
       const modules = new Set(scenarios.map(s => s.module));
-      expect(modules.has('FI')).toBe(true);
-      expect(modules.has('MM')).toBe(true);
-      expect(modules.has('SD')).toBe(true);
-      expect(modules.has('CO')).toBe(true);
-      expect(modules.has('PP')).toBe(true);
-      expect(modules.has('QM')).toBe(true);
-      expect(modules.has('PS')).toBe(true);
+      for (const m of ['FI','MM','SD','CO','PP','QM','PS','HR','PM','EWM','TM','GTS','PLM','BW']) {
+        expect(modules.has(m)).toBe(true);
+      }
     });
 
-    it('has 7 FI processes', () => {
+    it('has 11 FI processes', () => {
       const scenarios = engine._generateProcessScenarios();
       const fi = scenarios.filter(s => s.module === 'FI');
-      expect(fi).toHaveLength(7);
+      expect(fi).toHaveLength(11);
     });
 
     it('filters by module when configured', () => {
       const filtered = new TestScenarioEngine({ modules: ['SD'] });
       const scenarios = filtered._generateProcessScenarios();
       expect(scenarios.every(s => s.module === 'SD')).toBe(true);
-      expect(scenarios).toHaveLength(3);
+      expect(scenarios).toHaveLength(6);
     });
   });
 

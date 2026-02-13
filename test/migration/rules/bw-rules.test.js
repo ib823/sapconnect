@@ -2,7 +2,7 @@ const bwRules = require('../../../migration/rules/bw-rules');
 
 describe('BW Rules', () => {
   it('exports 8 rules', () => {
-    expect(bwRules).toHaveLength(8);
+    expect(bwRules).toHaveLength(28);
   });
 
   it('all have SIMPL-BW prefix', () => {
@@ -45,10 +45,10 @@ describe('BW Rules', () => {
     expect(rule.pattern.test('RSA1 admin')).toBe(true);
   });
 
-  it('has critical FI extractor rule', () => {
+  it('has critical rules', () => {
     const critical = bwRules.filter(r => r.severity === 'critical');
-    expect(critical.length).toBe(1);
-    expect(critical[0].id).toBe('SIMPL-BW-001');
+    expect(critical.length).toBe(3);
+    expect(critical.some(r => r.id === 'SIMPL-BW-001')).toBe(true);
   });
 
   it('covers extractors, embedded analytics, custom, and data model categories', () => {

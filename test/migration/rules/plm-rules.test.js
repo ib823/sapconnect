@@ -2,7 +2,7 @@ const plmRules = require('../../../migration/rules/plm-rules');
 
 describe('PLM Rules', () => {
   it('exports 8 rules', () => {
-    expect(plmRules).toHaveLength(8);
+    expect(plmRules).toHaveLength(28);
   });
 
   it('all have SIMPL-PLM prefix', () => {

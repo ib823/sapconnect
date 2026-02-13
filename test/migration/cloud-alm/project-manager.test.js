@@ -16,7 +16,7 @@ describe('ProjectManager', () => {
       expect(result.sourceSystem).toBe('ECC');
       expect(result.targetRelease).toBe('S4HANA_2023');
       expect(result.modules).toEqual(['FI', 'CO', 'MM', 'SD']);
-      expect(result.objectCount).toBe(24);
+      expect(result.objectCount).toBe(42);
     });
 
     it('throws on duplicate project ID', () => {
@@ -78,7 +78,7 @@ describe('ProjectManager', () => {
       mgr.createProject({ projectId: 'PRJ-001' });
       const result = await mgr.runProject('PRJ-001', { mode: 'mock' });
       expect(result.projectId).toBe('PRJ-001');
-      expect(result.stats.total).toBe(24);
+      expect(result.stats.total).toBe(42);
       expect(result.timestamp).toBeDefined();
     });
 

@@ -1,8 +1,8 @@
 const tmRules = require('../../../migration/rules/tm-rules');
 
 describe('TM Rules', () => {
-  it('exports 8 rules', () => {
-    expect(tmRules).toHaveLength(8);
+  it('exports 24 rules', () => {
+    expect(tmRules).toHaveLength(24);
   });
 
   it('all have SIMPL-TM prefix', () => {

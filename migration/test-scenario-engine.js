@@ -432,6 +432,470 @@ class TestScenarioEngine {
         ],
         expectedOutcome: 'Project executed and settled',
       },
+
+      // ── Human Resources (HR) ──────────────────────────────────
+      {
+        id: 'PROC-HR-001', module: 'HR', name: 'Employee Hire',
+        description: 'Hire employee with org assignment, personal data, and payroll setup',
+        priority: 'critical', estimatedDurationSec: 60,
+        steps: [
+          { action: 'CREATE', api: 'SuccessFactors Employee Central', data: 'Personal data (IT0002)' },
+          { action: 'POST', api: 'Org assignment (IT0001)', data: 'Company, personnel area, position' },
+          { action: 'POST', api: 'Payroll status (IT0003)', data: 'Payroll area assignment' },
+          { action: 'VERIFY', check: 'Employee active in org structure' },
+          { action: 'VERIFY', check: 'Payroll master data complete' },
+        ],
+        expectedOutcome: 'Employee hired and ready for payroll',
+      },
+      {
+        id: 'PROC-HR-002', module: 'HR', name: 'Payroll Run',
+        description: 'Execute payroll for a personnel area',
+        priority: 'critical', estimatedDurationSec: 180,
+        steps: [
+          { action: 'EXECUTE', api: 'Payroll simulation' },
+          { action: 'VERIFY', check: 'Gross-to-net calculation correct' },
+          { action: 'EXECUTE', api: 'Payroll production run' },
+          { action: 'POST', api: 'Posting to FI', data: 'Payroll posting run' },
+          { action: 'VERIFY', check: 'FI documents created for wages/salaries' },
+          { action: 'VERIFY', check: 'Bank transfer file generated' },
+        ],
+        expectedOutcome: 'Payroll executed, FI posted, bank file ready',
+      },
+      {
+        id: 'PROC-HR-003', module: 'HR', name: 'Employee Transfer',
+        description: 'Transfer employee between org units with cost center change',
+        priority: 'high', estimatedDurationSec: 30,
+        steps: [
+          { action: 'POST', api: 'Org assignment change (IT0001)', data: 'New org unit, position, cost center' },
+          { action: 'VERIFY', check: 'Employee appears in new org unit' },
+          { action: 'VERIFY', check: 'Cost center assignment updated' },
+        ],
+        expectedOutcome: 'Employee transferred, cost allocation updated',
+      },
+      {
+        id: 'PROC-HR-004', module: 'HR', name: 'Time Recording',
+        description: 'Record working time and absences',
+        priority: 'high', estimatedDurationSec: 30,
+        steps: [
+          { action: 'POST', api: 'Time sheet entry (CATS)', data: 'Daily working hours' },
+          { action: 'POST', api: 'Absence record (IT2001)', data: 'Vacation request' },
+          { action: 'VERIFY', check: 'Time evaluation completed' },
+          { action: 'VERIFY', check: 'Absence quota deducted' },
+        ],
+        expectedOutcome: 'Time recorded and evaluated',
+      },
+      {
+        id: 'PROC-HR-005', module: 'HR', name: 'Employee Termination',
+        description: 'Terminate employee and process final payroll',
+        priority: 'high', estimatedDurationSec: 60,
+        steps: [
+          { action: 'POST', api: 'Action (IT0000)', data: 'Termination action with reason' },
+          { action: 'EXECUTE', api: 'Final payroll run' },
+          { action: 'VERIFY', check: 'Employee status set to withdrawn' },
+          { action: 'VERIFY', check: 'Final settlement calculated' },
+        ],
+        expectedOutcome: 'Employee terminated, final pay processed',
+      },
+
+      // ── Plant Maintenance (PM) ─────────────────────────────────
+      {
+        id: 'PROC-PM-001', module: 'PM', name: 'Corrective Maintenance',
+        description: 'Create notification, work order, confirm, and technically complete',
+        priority: 'critical', estimatedDurationSec: 90,
+        steps: [
+          { action: 'CREATE', api: 'Maintenance notification (M2)', data: 'Malfunction report' },
+          { action: 'CREATE', api: 'Maintenance order from notification', data: 'PM01 order' },
+          { action: 'EXECUTE', api: 'Release order' },
+          { action: 'POST', api: 'Goods issue for spare parts' },
+          { action: 'POST', api: 'Time confirmation' },
+          { action: 'EXECUTE', api: 'Technically complete order' },
+          { action: 'VERIFY', check: 'Order costs settled' },
+        ],
+        expectedOutcome: 'Equipment repaired, costs captured',
+      },
+      {
+        id: 'PROC-PM-002', module: 'PM', name: 'Preventive Maintenance',
+        description: 'Execute time-based preventive maintenance plan',
+        priority: 'high', estimatedDurationSec: 60,
+        steps: [
+          { action: 'EXECUTE', api: 'Maintenance plan scheduling' },
+          { action: 'VERIFY', check: 'Maintenance call generated' },
+          { action: 'CREATE', api: 'Work order from maintenance call' },
+          { action: 'POST', api: 'Confirmation and completion' },
+          { action: 'VERIFY', check: 'Next planned date updated' },
+        ],
+        expectedOutcome: 'Preventive maintenance executed on schedule',
+      },
+      {
+        id: 'PROC-PM-003', module: 'PM', name: 'Equipment Breakdown Analysis',
+        description: 'Record breakdown, analyze root cause, update catalog',
+        priority: 'medium', estimatedDurationSec: 45,
+        steps: [
+          { action: 'CREATE', api: 'Breakdown notification', data: 'With damage/cause codes' },
+          { action: 'POST', api: 'Root cause analysis', data: 'Catalog code assignment' },
+          { action: 'VERIFY', check: 'MTBF/MTTR statistics updated' },
+        ],
+        expectedOutcome: 'Breakdown documented, analytics updated',
+      },
+
+      // ── Extended Warehouse Management (EWM) ────────────────────
+      {
+        id: 'PROC-EWM-001', module: 'EWM', name: 'Inbound Process',
+        description: 'Receive goods, putaway, and confirm warehouse task',
+        priority: 'critical', estimatedDurationSec: 90,
+        steps: [
+          { action: 'CREATE', api: 'Inbound delivery notification' },
+          { action: 'POST', api: 'Goods receipt in EWM' },
+          { action: 'EXECUTE', api: 'Putaway warehouse task creation' },
+          { action: 'POST', api: 'Confirm putaway task' },
+          { action: 'VERIFY', check: 'Product stored in destination bin' },
+          { action: 'VERIFY', check: 'Stock synchronized with ERP' },
+        ],
+        expectedOutcome: 'Goods received and putaway completed',
+      },
+      {
+        id: 'PROC-EWM-002', module: 'EWM', name: 'Outbound Process',
+        description: 'Pick, pack, and ship outbound delivery',
+        priority: 'critical', estimatedDurationSec: 90,
+        steps: [
+          { action: 'CREATE', api: 'Outbound delivery order' },
+          { action: 'EXECUTE', api: 'Wave assignment and release' },
+          { action: 'POST', api: 'Pick warehouse task confirmation' },
+          { action: 'POST', api: 'Packing (HU creation)' },
+          { action: 'POST', api: 'Goods issue and loading' },
+          { action: 'VERIFY', check: 'Delivery shipped, stock reduced' },
+        ],
+        expectedOutcome: 'Outbound delivery shipped',
+      },
+      {
+        id: 'PROC-EWM-003', module: 'EWM', name: 'Physical Inventory in WH',
+        description: 'Warehouse physical inventory count and adjustment',
+        priority: 'high', estimatedDurationSec: 60,
+        steps: [
+          { action: 'CREATE', api: 'Physical inventory document' },
+          { action: 'POST', api: 'Count entry per bin' },
+          { action: 'POST', api: 'Difference analysis and posting' },
+          { action: 'VERIFY', check: 'Bin stock adjusted to counted quantity' },
+        ],
+        expectedOutcome: 'Warehouse stock reconciled with physical count',
+      },
+
+      // ── Transportation Management (TM) ─────────────────────────
+      {
+        id: 'PROC-TM-001', module: 'TM', name: 'Freight Order Execution',
+        description: 'Create freight order, assign carrier, track delivery',
+        priority: 'high', estimatedDurationSec: 60,
+        steps: [
+          { action: 'CREATE', api: 'Freight order', data: 'From delivery requirement' },
+          { action: 'EXECUTE', api: 'Carrier selection and tendering' },
+          { action: 'POST', api: 'Carrier acceptance' },
+          { action: 'VERIFY', check: 'Freight order dispatched' },
+          { action: 'POST', api: 'POD (Proof of Delivery)' },
+          { action: 'VERIFY', check: 'Freight cost document created' },
+        ],
+        expectedOutcome: 'Freight order completed, costs settled',
+      },
+      {
+        id: 'PROC-TM-002', module: 'TM', name: 'Freight Settlement',
+        description: 'Settle freight charges and post to FI',
+        priority: 'high', estimatedDurationSec: 30,
+        steps: [
+          { action: 'CREATE', api: 'Freight settlement document' },
+          { action: 'POST', api: 'Invoice verification for freight' },
+          { action: 'VERIFY', check: 'FI document posted for freight charges' },
+        ],
+        expectedOutcome: 'Freight costs settled to FI',
+      },
+
+      // ── Global Trade Services (GTS) ────────────────────────────
+      {
+        id: 'PROC-GTS-001', module: 'GTS', name: 'Export Compliance Check',
+        description: 'Screen sales order against denied party list and export controls',
+        priority: 'critical', estimatedDurationSec: 30,
+        steps: [
+          { action: 'TRIGGER', api: 'SPL screening on sales order' },
+          { action: 'VERIFY', check: 'Screening result returned (passed/blocked)' },
+          { action: 'TRIGGER', api: 'Export control classification check' },
+          { action: 'VERIFY', check: 'ECCN/license determination complete' },
+        ],
+        expectedOutcome: 'Trade compliance check passed, order released',
+      },
+      {
+        id: 'PROC-GTS-002', module: 'GTS', name: 'Customs Declaration',
+        description: 'Generate and submit customs export declaration',
+        priority: 'high', estimatedDurationSec: 60,
+        steps: [
+          { action: 'CREATE', api: 'Customs declaration', data: 'From delivery document' },
+          { action: 'EXECUTE', api: 'HS code determination' },
+          { action: 'EXECUTE', api: 'Preference calculation' },
+          { action: 'POST', api: 'Submit to customs authority' },
+          { action: 'VERIFY', check: 'Declaration status: submitted' },
+        ],
+        expectedOutcome: 'Customs declaration filed',
+      },
+
+      // ── Product Lifecycle Management (PLM) ─────────────────────
+      {
+        id: 'PROC-PLM-001', module: 'PLM', name: 'Engineering Change',
+        description: 'Create ECN, update BOM and routing, release',
+        priority: 'high', estimatedDurationSec: 60,
+        steps: [
+          { action: 'CREATE', api: 'Engineering change notice (ECN)' },
+          { action: 'POST', api: 'BOM change under ECN' },
+          { action: 'POST', api: 'Routing change under ECN' },
+          { action: 'EXECUTE', api: 'ECN approval workflow' },
+          { action: 'EXECUTE', api: 'Release ECN' },
+          { action: 'VERIFY', check: 'New BOM/routing effective from change date' },
+        ],
+        expectedOutcome: 'Engineering change released, BOM/routing updated',
+      },
+      {
+        id: 'PROC-PLM-002', module: 'PLM', name: 'Recipe Management',
+        description: 'Create process order recipe with parameters',
+        priority: 'medium', estimatedDurationSec: 45,
+        steps: [
+          { action: 'CREATE', api: 'Master recipe', data: 'Operations and phases' },
+          { action: 'POST', api: 'Process parameters and limits' },
+          { action: 'VERIFY', check: 'Recipe validated against specification' },
+        ],
+        expectedOutcome: 'Recipe created and validated',
+      },
+
+      // ── Business Warehouse (BW) ────────────────────────────────
+      {
+        id: 'PROC-BW-001', module: 'BW', name: 'Data Extraction to BW/4HANA',
+        description: 'Verify CDS-based extractors replace classic BW extractors',
+        priority: 'high', estimatedDurationSec: 60,
+        steps: [
+          { action: 'EXECUTE', api: 'CDS extraction run (replaces 0FI_GL_14)' },
+          { action: 'VERIFY', check: 'Data loaded into BW/4HANA ADSO' },
+          { action: 'VERIFY', check: 'Record count matches source' },
+          { action: 'VERIFY', check: 'Key figure aggregates match' },
+        ],
+        expectedOutcome: 'BW data extraction successful via CDS views',
+      },
+
+      // ── Additional FI Processes ────────────────────────────────
+      {
+        id: 'PROC-FI-008', module: 'FI', name: 'Bank Reconciliation',
+        description: 'Import bank statement and auto-match open items',
+        priority: 'high', estimatedDurationSec: 60,
+        steps: [
+          { action: 'POST', api: 'Electronic bank statement import' },
+          { action: 'EXECUTE', api: 'Auto-matching rules execution' },
+          { action: 'VERIFY', check: 'Matched items cleared' },
+          { action: 'VERIFY', check: 'Unmatched items flagged for manual review' },
+        ],
+        expectedOutcome: 'Bank statement reconciled',
+      },
+      {
+        id: 'PROC-FI-009', module: 'FI', name: 'Dunning Run',
+        description: 'Execute dunning program for overdue receivables',
+        priority: 'medium', estimatedDurationSec: 60,
+        steps: [
+          { action: 'EXECUTE', api: 'Dunning proposal run' },
+          { action: 'VERIFY', check: 'Overdue items selected' },
+          { action: 'EXECUTE', api: 'Dunning notice print/email' },
+          { action: 'VERIFY', check: 'Dunning level updated on open items' },
+        ],
+        expectedOutcome: 'Dunning notices sent, levels updated',
+      },
+      {
+        id: 'PROC-FI-010', module: 'FI', name: 'Intercompany Posting',
+        description: 'Post intercompany transaction and verify both company codes',
+        priority: 'high', estimatedDurationSec: 30,
+        steps: [
+          { action: 'POST', api: 'Cross-company journal entry' },
+          { action: 'VERIFY', check: 'Sending company code document created' },
+          { action: 'VERIFY', check: 'Receiving company code document created' },
+          { action: 'VERIFY', check: 'IC clearing accounts balanced' },
+        ],
+        expectedOutcome: 'Intercompany posting balanced across entities',
+      },
+
+      // ── Additional MM Processes ────────────────────────────────
+      {
+        id: 'PROC-MM-004', module: 'MM', name: 'Consignment Processing',
+        description: 'Receive consignment stock and settle with vendor',
+        priority: 'medium', estimatedDurationSec: 60,
+        steps: [
+          { action: 'POST', api: 'Consignment goods receipt' },
+          { action: 'VERIFY', check: 'Consignment stock visible (separate from own)' },
+          { action: 'POST', api: 'Consignment issue to production' },
+          { action: 'EXECUTE', api: 'Consignment settlement' },
+          { action: 'VERIFY', check: 'Vendor liability created on settlement' },
+        ],
+        expectedOutcome: 'Consignment consumed and settled',
+      },
+      {
+        id: 'PROC-MM-005', module: 'MM', name: 'Subcontracting',
+        description: 'Send components to subcontractor and receive finished goods',
+        priority: 'high', estimatedDurationSec: 60,
+        steps: [
+          { action: 'CREATE', api: 'Subcontracting PO' },
+          { action: 'POST', api: 'Transfer components to subcontractor' },
+          { action: 'POST', api: 'Goods receipt of finished product' },
+          { action: 'VERIFY', check: 'Component stock at subcontractor consumed' },
+          { action: 'VERIFY', check: 'Finished goods in unrestricted stock' },
+        ],
+        expectedOutcome: 'Subcontracting cycle completed',
+      },
+
+      // ── Additional SD Processes ────────────────────────────────
+      {
+        id: 'PROC-SD-004', module: 'SD', name: 'Intercompany Sales',
+        description: 'Cross-company sales with intercompany billing',
+        priority: 'high', estimatedDurationSec: 90,
+        steps: [
+          { action: 'CREATE', api: 'Intercompany sales order' },
+          { action: 'CREATE', api: 'Delivery from supplying plant' },
+          { action: 'POST', api: 'Goods issue from supplying company' },
+          { action: 'CREATE', api: 'Customer billing document' },
+          { action: 'CREATE', api: 'Intercompany billing document' },
+          { action: 'VERIFY', check: 'Revenue in selling company' },
+          { action: 'VERIFY', check: 'COGS in supplying company' },
+        ],
+        expectedOutcome: 'Intercompany sales completed with dual billing',
+      },
+      {
+        id: 'PROC-SD-005', module: 'SD', name: 'Third-Party Sales',
+        description: 'Sales order fulfilled by direct delivery from vendor',
+        priority: 'medium', estimatedDurationSec: 60,
+        steps: [
+          { action: 'CREATE', api: 'Third-party sales order' },
+          { action: 'VERIFY', check: 'Purchase requisition auto-created' },
+          { action: 'CREATE', api: 'PO to vendor' },
+          { action: 'POST', api: 'Statistical goods receipt' },
+          { action: 'CREATE', api: 'Customer billing' },
+          { action: 'VERIFY', check: 'Revenue recognized, no stock movement' },
+        ],
+        expectedOutcome: 'Third-party order fulfilled',
+      },
+
+      // ── Additional CO Processes ────────────────────────────────
+      {
+        id: 'PROC-CO-003', module: 'CO', name: 'Product Costing',
+        description: 'Standard cost estimate for finished product',
+        priority: 'high', estimatedDurationSec: 60,
+        steps: [
+          { action: 'EXECUTE', api: 'Cost estimate run', data: 'BOM explosion + routing valuation' },
+          { action: 'VERIFY', check: 'Material cost component split calculated' },
+          { action: 'EXECUTE', api: 'Mark and release standard price' },
+          { action: 'VERIFY', check: 'Standard price updated in material master' },
+        ],
+        expectedOutcome: 'Standard cost estimated and released',
+      },
+      {
+        id: 'PROC-CO-004', module: 'CO', name: 'Profit Center Reporting',
+        description: 'Verify profit center balance after period close',
+        priority: 'medium', estimatedDurationSec: 30,
+        steps: [
+          { action: 'EXECUTE', api: 'Profit center balance report' },
+          { action: 'VERIFY', check: 'Revenue and costs by profit center correct' },
+          { action: 'VERIFY', check: 'Eliminations applied for IC' },
+        ],
+        expectedOutcome: 'Profit center P&L verified',
+      },
+
+      // ── Additional PP Processes ────────────────────────────────
+      {
+        id: 'PROC-PP-002', module: 'PP', name: 'MRP Run',
+        description: 'Execute MRP and verify planned orders',
+        priority: 'high', estimatedDurationSec: 120,
+        steps: [
+          { action: 'EXECUTE', api: 'MRP run (single-item or total)' },
+          { action: 'VERIFY', check: 'Planned orders created for shortages' },
+          { action: 'VERIFY', check: 'Purchase requisitions for external procurement' },
+          { action: 'VERIFY', check: 'Stock/requirements list correct' },
+        ],
+        expectedOutcome: 'MRP executed, supply elements generated',
+      },
+      {
+        id: 'PROC-PP-003', module: 'PP', name: 'Process Order (Batch)',
+        description: 'Execute batch manufacturing process order',
+        priority: 'high', estimatedDurationSec: 90,
+        steps: [
+          { action: 'CREATE', api: 'Process order with batch classification' },
+          { action: 'EXECUTE', api: 'Release and print shop floor papers' },
+          { action: 'POST', api: 'Batch goods receipt with classification' },
+          { action: 'VERIFY', check: 'Batch created with characteristics' },
+          { action: 'VERIFY', check: 'Batch determination possible for next order' },
+        ],
+        expectedOutcome: 'Batch produced and classified',
+      },
+
+      // ── Additional QM Processes ────────────────────────────────
+      {
+        id: 'PROC-QM-002', module: 'QM', name: 'Calibration Management',
+        description: 'Calibrate test equipment and record results',
+        priority: 'medium', estimatedDurationSec: 45,
+        steps: [
+          { action: 'CREATE', api: 'Calibration order', data: 'For test equipment' },
+          { action: 'POST', api: 'Calibration results recording' },
+          { action: 'VERIFY', check: 'Equipment status updated (calibrated/failed)' },
+          { action: 'VERIFY', check: 'Next calibration date set' },
+        ],
+        expectedOutcome: 'Test equipment calibrated and certified',
+      },
+
+      // ── Additional PS Processes ────────────────────────────────
+      {
+        id: 'PROC-PS-002', module: 'PS', name: 'Investment Program',
+        description: 'Create investment program and assign capital projects',
+        priority: 'medium', estimatedDurationSec: 60,
+        steps: [
+          { action: 'CREATE', api: 'Investment program', data: 'Budget hierarchy' },
+          { action: 'POST', api: 'Assign projects to program positions' },
+          { action: 'EXECUTE', api: 'Budget distribution' },
+          { action: 'VERIFY', check: 'Projects within approved budget' },
+        ],
+        expectedOutcome: 'Investment program budgets distributed to projects',
+      },
+
+      // ── Cross-Module Integration ───────────────────────────────
+      {
+        id: 'PROC-INT-001', module: 'MM', name: 'Service Procurement',
+        description: 'Procure services with entry sheet and acceptance',
+        priority: 'medium', estimatedDurationSec: 60,
+        steps: [
+          { action: 'CREATE', api: 'Service PO', data: 'With service specifications' },
+          { action: 'CREATE', api: 'Service entry sheet' },
+          { action: 'EXECUTE', api: 'Service acceptance' },
+          { action: 'POST', api: 'Invoice verification for service' },
+          { action: 'VERIFY', check: 'Service costs posted to cost object' },
+        ],
+        expectedOutcome: 'Service procured and invoiced',
+      },
+      {
+        id: 'PROC-INT-002', module: 'SD', name: 'Make-to-Order',
+        description: 'Sales order triggers production and is delivered',
+        priority: 'high', estimatedDurationSec: 120,
+        steps: [
+          { action: 'CREATE', api: 'Sales order (MTO)', data: 'Individual customer requirement' },
+          { action: 'VERIFY', check: 'Planned order auto-created for production' },
+          { action: 'EXECUTE', api: 'Convert to production order' },
+          { action: 'POST', api: 'Production confirmation and GR' },
+          { action: 'CREATE', api: 'Delivery and billing' },
+          { action: 'VERIFY', check: 'Individual PO stock assigned to sales order' },
+        ],
+        expectedOutcome: 'Make-to-order fulfilled end-to-end',
+      },
+      {
+        id: 'PROC-INT-003', module: 'FI', name: 'Year-End Close',
+        description: 'Full fiscal year-end closing sequence',
+        priority: 'critical', estimatedDurationSec: 300,
+        steps: [
+          { action: 'EXECUTE', api: 'Asset depreciation final run' },
+          { action: 'EXECUTE', api: 'CO period-end closing' },
+          { action: 'EXECUTE', api: 'GR/IR regrouping' },
+          { action: 'EXECUTE', api: 'Foreign currency revaluation' },
+          { action: 'EXECUTE', api: 'Financial statement close' },
+          { action: 'EXECUTE', api: 'Balance carry-forward' },
+          { action: 'VERIFY', check: 'Retained earnings updated' },
+          { action: 'VERIFY', check: 'New fiscal year opened' },
+        ],
+        expectedOutcome: 'Year-end close completed, new year ready',
+      },
     ];
   }
 

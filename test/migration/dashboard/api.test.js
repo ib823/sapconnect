@@ -25,7 +25,7 @@ describe('DashboardAPI', () => {
   describe('getSummary', () => {
     it('returns summary with object and rule counts', () => {
       const summary = api.getSummary();
-      expect(summary.totalObjects).toBe(24);
+      expect(summary.totalObjects).toBe(42);
       expect(summary.totalRules).toBeGreaterThan(200);
       expect(summary.timestamp).toBeDefined();
     });
@@ -46,7 +46,7 @@ describe('DashboardAPI', () => {
       await api.runAll();
       const summary = api.getSummary();
       expect(summary.lastRun).not.toBeNull();
-      expect(summary.lastRun.objectsRun).toBe(24);
+      expect(summary.lastRun.objectsRun).toBe(42);
       expect(summary.runHistory.length).toBe(1);
     });
   });
@@ -54,9 +54,9 @@ describe('DashboardAPI', () => {
   // ── getObjects ─────────────────────────────────────────────
 
   describe('getObjects', () => {
-    it('returns all 24 objects', () => {
+    it('returns all 42 objects', () => {
       const objects = api.getObjects();
-      expect(objects).toHaveLength(24);
+      expect(objects).toHaveLength(42);
     });
 
     it('each object has expected fields', () => {
@@ -152,7 +152,7 @@ describe('DashboardAPI', () => {
     it('runs all objects and returns status', async () => {
       const result = await api.runAll();
       expect(result.status).toBeDefined();
-      expect(result.stats.total).toBe(24);
+      expect(result.stats.total).toBe(42);
       expect(result.timestamp).toBeDefined();
     });
 

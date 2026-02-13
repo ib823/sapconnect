@@ -1,8 +1,8 @@
 const gtsRules = require('../../../migration/rules/gts-rules');
 
 describe('GTS Rules', () => {
-  it('exports 8 rules', () => {
-    expect(gtsRules).toHaveLength(8);
+  it('exports 24 rules', () => {
+    expect(gtsRules).toHaveLength(24);
   });
 
   it('all have SIMPL-GTS prefix', () => {
@@ -43,9 +43,9 @@ describe('GTS Rules', () => {
     expect(rule.pattern.test('STAWN table')).toBe(true);
   });
 
-  it('has critical screening rule', () => {
+  it('has critical screening rules', () => {
     const critical = gtsRules.filter(r => r.severity === 'critical');
-    expect(critical.length).toBe(1);
+    expect(critical.length).toBe(3);
   });
 
   it('covers compliance, customs, preference, and license categories', () => {

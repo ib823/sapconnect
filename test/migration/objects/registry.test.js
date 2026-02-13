@@ -8,9 +8,10 @@ describe('MigrationObjectRegistry', () => {
     registry = new MigrationObjectRegistry();
   });
 
-  it('registers 24 built-in objects', () => {
+  it('registers 42 built-in objects', () => {
     const ids = registry.listObjectIds();
-    expect(ids).toHaveLength(24);
+    expect(ids).toHaveLength(42);
+    // Original 24
     expect(ids).toContain('GL_BALANCE');
     expect(ids).toContain('BUSINESS_PARTNER');
     expect(ids).toContain('MATERIAL_MASTER');
@@ -35,6 +36,25 @@ describe('MigrationObjectRegistry', () => {
     expect(ids).toContain('TRADE_COMPLIANCE');
     expect(ids).toContain('BOM_ROUTING');
     expect(ids).toContain('BW_EXTRACTOR');
+    // New 18
+    expect(ids).toContain('GL_ACCOUNT_MASTER');
+    expect(ids).toContain('CUSTOMER_OPEN_ITEM');
+    expect(ids).toContain('VENDOR_OPEN_ITEM');
+    expect(ids).toContain('BANK_MASTER');
+    expect(ids).toContain('EMPLOYEE_MASTER');
+    expect(ids).toContain('EQUIPMENT_MASTER');
+    expect(ids).toContain('WORK_CENTER');
+    expect(ids).toContain('MAINTENANCE_ORDER');
+    expect(ids).toContain('PRODUCTION_ORDER');
+    expect(ids).toContain('SOURCE_LIST');
+    expect(ids).toContain('SCHEDULING_AGREEMENT');
+    expect(ids).toContain('PRICING_CONDITION');
+    expect(ids).toContain('FUNCTIONAL_LOCATION');
+    expect(ids).toContain('BATCH_MASTER');
+    expect(ids).toContain('PURCHASE_CONTRACT');
+    expect(ids).toContain('COST_ELEMENT');
+    expect(ids).toContain('ASSET_ACQUISITION');
+    expect(ids).toContain('PROFIT_SEGMENT');
   });
 
   it('getObject returns cached instance', () => {
@@ -56,7 +76,7 @@ describe('MigrationObjectRegistry', () => {
 
   it('listObjects returns metadata', () => {
     const objs = registry.listObjects(mockGw);
-    expect(objs).toHaveLength(24);
+    expect(objs).toHaveLength(42);
     expect(objs[0]).toHaveProperty('objectId');
     expect(objs[0]).toHaveProperty('name');
   });
@@ -70,9 +90,9 @@ describe('MigrationObjectRegistry', () => {
 
   it('runAll runs all 19 objects', async () => {
     const result = await registry.runAll(mockGw);
-    expect(result.results).toHaveLength(24);
-    expect(result.stats.total).toBe(24);
-    expect(result.stats.completed + result.stats.failed).toBe(24);
+    expect(result.results).toHaveLength(42);
+    expect(result.stats.total).toBe(42);
+    expect(result.stats.completed + result.stats.failed).toBe(42);
     expect(result.stats.totalDurationMs).toBeDefined();
   });
 
