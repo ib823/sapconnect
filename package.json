@@ -23,6 +23,13 @@
     "discover": "node discovery/discover.js",
     "agent": "node agent/agent.js",
     "assess": "node migration/assess.js",
+    "remediate": "node migration/remediate.js",
+    "profile": "node migration/profile.js",
+    "sdt": "node migration/sdt.js",
+    "configure": "node migration/configure.js",
+    "provision": "node migration/provision.js",
+    "test-migrate": "node migration/test-migrate.js",
+    "cutover": "node migration/cutover.js",
     "test": "echo \"No tests yet\" && exit 0"
   },
   "cds": {

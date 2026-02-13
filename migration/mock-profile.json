@@ -1,0 +1,80 @@
+{
+  "metadata": {
+    "phase": 3,
+    "description": "Data Profiling Results",
+    "timestamp": "2025-02-13T00:00:00Z",
+    "mode": "mock"
+  },
+  "tables": {
+    "FI": [
+      { "table": "BKPF", "description": "Accounting Document Header", "records": 12450000, "sizeMB": 4200, "lastUpdated": "2025-02-12", "oldestRecord": "2008-01-15", "growthPerYear": 850000 },
+      { "table": "BSEG", "description": "Accounting Document Segment", "records": 87200000, "sizeMB": 42000, "lastUpdated": "2025-02-12", "oldestRecord": "2008-01-15", "growthPerYear": 6100000 },
+      { "table": "BSIS", "description": "GL Open Items", "records": 3200000, "sizeMB": 1100, "lastUpdated": "2025-02-12", "oldestRecord": "2010-03-01", "growthPerYear": 220000 },
+      { "table": "BSAS", "description": "GL Cleared Items", "records": 18500000, "sizeMB": 6300, "lastUpdated": "2025-02-11", "oldestRecord": "2008-01-15", "growthPerYear": 1200000 },
+      { "table": "BSID", "description": "Customer Open Items", "records": 1800000, "sizeMB": 620, "lastUpdated": "2025-02-12", "oldestRecord": "2012-06-01", "growthPerYear": 140000 },
+      { "table": "BSAD", "description": "Customer Cleared Items", "records": 14200000, "sizeMB": 4900, "lastUpdated": "2025-02-11", "oldestRecord": "2008-01-15", "growthPerYear": 980000 },
+      { "table": "BSIK", "description": "Vendor Open Items", "records": 950000, "sizeMB": 330, "lastUpdated": "2025-02-12", "oldestRecord": "2013-01-01", "growthPerYear": 80000 },
+      { "table": "BSAK", "description": "Vendor Cleared Items", "records": 11800000, "sizeMB": 4100, "lastUpdated": "2025-02-11", "oldestRecord": "2008-01-15", "growthPerYear": 820000 },
+      { "table": "ACDOCA", "description": "Universal Journal (target)", "records": 0, "sizeMB": 0, "lastUpdated": null, "oldestRecord": null, "growthPerYear": 0 }
+    ],
+    "MM": [
+      { "table": "EKKO", "description": "Purchase Order Header", "records": 2340000, "sizeMB": 890, "lastUpdated": "2025-02-12", "oldestRecord": "2009-04-01", "growthPerYear": 156000 },
+      { "table": "EKPO", "description": "Purchase Order Items", "records": 6780000, "sizeMB": 2300, "lastUpdated": "2025-02-12", "oldestRecord": "2009-04-01", "growthPerYear": 452000 },
+      { "table": "MKPF", "description": "Material Document Header", "records": 8900000, "sizeMB": 2100, "lastUpdated": "2025-02-12", "oldestRecord": "2008-06-01", "growthPerYear": 530000 },
+      { "table": "MSEG", "description": "Material Document Items", "records": 24500000, "sizeMB": 9800, "lastUpdated": "2025-02-12", "oldestRecord": "2008-06-01", "growthPerYear": 1460000 },
+      { "table": "MARA", "description": "Material Master General", "records": 185000, "sizeMB": 120, "lastUpdated": "2025-02-10", "oldestRecord": "2008-01-01", "growthPerYear": 8500 },
+      { "table": "MARC", "description": "Material Master Plant", "records": 420000, "sizeMB": 210, "lastUpdated": "2025-02-10", "oldestRecord": "2008-01-01", "growthPerYear": 19000 }
+    ],
+    "SD": [
+      { "table": "VBAK", "description": "Sales Order Header", "records": 3100000, "sizeMB": 1200, "lastUpdated": "2025-02-12", "oldestRecord": "2009-01-01", "growthPerYear": 200000 },
+      { "table": "VBAP", "description": "Sales Order Items", "records": 8900000, "sizeMB": 3400, "lastUpdated": "2025-02-12", "oldestRecord": "2009-01-01", "growthPerYear": 575000 },
+      { "table": "LIKP", "description": "Delivery Header", "records": 2800000, "sizeMB": 980, "lastUpdated": "2025-02-12", "oldestRecord": "2009-03-01", "growthPerYear": 180000 },
+      { "table": "LIPS", "description": "Delivery Items", "records": 7200000, "sizeMB": 2700, "lastUpdated": "2025-02-12", "oldestRecord": "2009-03-01", "growthPerYear": 465000 },
+      { "table": "VBRK", "description": "Billing Document Header", "records": 2600000, "sizeMB": 910, "lastUpdated": "2025-02-12", "oldestRecord": "2009-01-01", "growthPerYear": 168000 },
+      { "table": "KNA1", "description": "Customer Master", "records": 42000, "sizeMB": 28, "lastUpdated": "2025-02-08", "oldestRecord": "2008-01-01", "growthPerYear": 2100 }
+    ],
+    "HR": [
+      { "table": "PA0001", "description": "HR Master - Org Assignment", "records": 890000, "sizeMB": 340, "lastUpdated": "2025-02-01", "oldestRecord": "2008-01-01", "growthPerYear": 52000 },
+      { "table": "PA0002", "description": "HR Master - Personal Data", "records": 45000, "sizeMB": 18, "lastUpdated": "2025-01-31", "oldestRecord": "2008-01-01", "growthPerYear": 2600 },
+      { "table": "PA0008", "description": "HR Master - Basic Pay", "records": 320000, "sizeMB": 125, "lastUpdated": "2025-02-01", "oldestRecord": "2008-01-01", "growthPerYear": 18800 }
+    ],
+    "PP": [
+      { "table": "AUFK", "description": "Production Order Header", "records": 1450000, "sizeMB": 520, "lastUpdated": "2025-02-12", "oldestRecord": "2010-01-01", "growthPerYear": 97000 },
+      { "table": "AFKO", "description": "Production Order Operations", "records": 4200000, "sizeMB": 1500, "lastUpdated": "2025-02-12", "oldestRecord": "2010-01-01", "growthPerYear": 280000 }
+    ],
+    "PM": [
+      { "table": "EQUI", "description": "Equipment Master", "records": 28000, "sizeMB": 12, "lastUpdated": "2025-01-15", "oldestRecord": "2009-06-01", "growthPerYear": 1800 },
+      { "table": "IFLOS", "description": "Functional Location", "records": 8500, "sizeMB": 4, "lastUpdated": "2025-01-10", "oldestRecord": "2009-06-01", "growthPerYear": 550 }
+    ]
+  },
+  "staleData": [
+    { "table": "BSEG", "staleRecords": 34000000, "stalePercent": 39, "cutoffDate": "2018-01-01", "recommendation": "Archive records older than 7 years before migration" },
+    { "table": "BSAS", "staleRecords": 8200000, "stalePercent": 44, "cutoffDate": "2018-01-01", "recommendation": "Archive cleared GL items older than 7 years" },
+    { "table": "BSAD", "staleRecords": 6100000, "stalePercent": 43, "cutoffDate": "2018-01-01", "recommendation": "Archive cleared customer items" },
+    { "table": "BSAK", "staleRecords": 5200000, "stalePercent": 44, "cutoffDate": "2018-01-01", "recommendation": "Archive cleared vendor items" },
+    { "table": "MSEG", "staleRecords": 9800000, "stalePercent": 40, "cutoffDate": "2018-01-01", "recommendation": "Archive old material documents" },
+    { "table": "EKKO", "staleRecords": 620000, "stalePercent": 26, "cutoffDate": "2018-01-01", "recommendation": "Archive completed/closed POs older than 7 years" }
+  ],
+  "duplicates": [
+    { "table": "KNA1", "duplicateRecords": 340, "duplicatePercent": 0.8, "description": "Duplicate customer master records (potential BP merge candidates)" },
+    { "table": "LFA1", "duplicateRecords": 120, "duplicatePercent": 0.5, "description": "Duplicate vendor master records (potential BP merge candidates)" },
+    { "table": "MARA", "duplicateRecords": 2800, "duplicatePercent": 1.5, "description": "Materials with duplicate descriptions across plants" }
+  ],
+  "orphans": [
+    { "table": "BSEG", "orphanRecords": 1200, "description": "Line items without matching BKPF header" },
+    { "table": "EKPO", "orphanRecords": 450, "description": "PO items without matching EKKO header" },
+    { "table": "VBAP", "orphanRecords": 230, "description": "Sales order items without matching VBAK header" }
+  ],
+  "summary": {
+    "totalTables": 28,
+    "totalRecords": 224538500,
+    "totalSizeMB": 90649,
+    "totalSizeGB": 88.5,
+    "staleRecords": 63920000,
+    "stalePercent": 28,
+    "duplicateRecords": 3260,
+    "orphanRecords": 1880,
+    "dataQualityScore": 72,
+    "recommendation": "Archive 28% stale data before migration to reduce volume and migration time"
+  }
+}

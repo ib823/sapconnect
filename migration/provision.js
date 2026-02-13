@@ -1,0 +1,261 @@
+#!/usr/bin/env node
+
+/**
+ * S/4HANA BTP Provisioning CLI
+ *
+ * Usage:
+ *   npm run provision                          # Mock mode
+ *   npm run provision -- --format md           # Markdown output
+ *   npm run provision -- --landscape cf-eu10   # EU landscape
+ *   npm run provision -- --tier premium        # Premium tier
+ */
+
+const SapGateway = require('../agent/sap-gateway');
+const Provisioner = require('./provisioner');
+
+function parseArgs(argv) {
+  const args = {
+    format: 'terminal',
+    clientName: 'SAP Client',
+    landscape: 'cf-us10',
+    tier: 'standard',
+  };
+
+  for (let i = 2; i < argv.length; i++) {
+    switch (argv[i]) {
+      case '--format':
+      case '-f':
+        args.format = argv[++i];
+        break;
+      case '--client':
+      case '-c':
+        args.clientName = argv[++i];
+        break;
+      case '--landscape':
+        args.landscape = argv[++i];
+        break;
+      case '--tier':
+        args.tier = argv[++i];
+        break;
+      case '--sap-system':
+      case '-s':
+        args.sapSystem = argv[++i];
+        break;
+      case '--vsp-path':
+      case '-P':
+        args.vspPath = argv[++i];
+        break;
+      case '--vsp-system':
+      case '-S':
+        args.vspSystem = argv[++i];
+        break;
+      case '--verbose':
+      case '-v':
+        args.verbose = true;
+        break;
+      case '--help':
+      case '-h':
+        printHelp();
+        process.exit(0);
+        break;
+      default:
+        if (argv[i].startsWith('-')) {
+          console.error(`Unknown flag: ${argv[i]}`);
+          printHelp();
+          process.exit(1);
+        }
+        break;
+    }
+  }
+
+  return args;
+}
+
+function printHelp() {
+  console.log(`
+S/4HANA BTP Service Provisioning
+==================================
+
+Generates Terraform configuration for BTP subaccount and services
+required for S/4HANA Cloud migration. Simulates provisioning status.
+
+Runs in mock mode by default (no BTP access required).
+
+Usage:
+  npm run provision [options]
+
+Options:
+  -f, --format <fmt>       Output format: terminal (default) or md
+  -c, --client <name>      Client name for the report header
+  --landscape <region>     BTP landscape (default: cf-us10)
+  --tier <tier>            Service tier: standard (default) or premium
+  -s, --sap-system <url>   SAP system URL
+  -P, --vsp-path <path>    Path to vsp binary
+  -S, --vsp-system <name>  vsp system profile
+  -v, --verbose            Show detailed provisioning logs
+  -h, --help               Show this help
+
+Examples:
+  npm run provision
+  npm run provision -- --format md --client "Acme Corp"
+  npm run provision -- --landscape cf-eu10 --tier premium
+  `);
+}
+
+function formatNumber(n) {
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+function formatTerminal(result, clientName, args) {
+  const lines = [];
+  const w = 70;
+
+  lines.push('');
+  lines.push('='.repeat(w));
+  lines.push('  S/4HANA BTP Provisioning Report');
+  lines.push('='.repeat(w));
+  lines.push(`  Client:      ${clientName}`);
+  lines.push(`  Date:        ${new Date().toISOString().split('T')[0]}`);
+  lines.push(`  Landscape:   ${args.landscape}`);
+  lines.push(`  Tier:        ${args.tier}`);
+  lines.push('='.repeat(w));
+  lines.push('');
+
+  // Summary
+  lines.push('-'.repeat(w));
+  lines.push('  PROVISIONING SUMMARY');
+  lines.push('-'.repeat(w));
+  lines.push('');
+  lines.push(`  Total Services:    ${result.stats.totalServices}`);
+  lines.push(`  Provisioned:       ${result.stats.provisioned}`);
+  lines.push(`  Pending:           ${result.stats.pending}`);
+  lines.push(`  Errors:            ${result.stats.errors}`);
+  lines.push(`  Est. Monthly Cost: $${formatNumber(result.stats.estimatedMonthlyCost)}`);
+  lines.push('');
+
+  // Service list
+  lines.push('-'.repeat(w));
+  lines.push('  SERVICES');
+  lines.push('-'.repeat(w));
+  lines.push('');
+
+  const categories = {};
+  for (const svc of result.services) {
+    if (!categories[svc.category]) categories[svc.category] = [];
+    categories[svc.category].push(svc);
+  }
+
+  for (const [cat, services] of Object.entries(categories)) {
+    lines.push(`  ${cat}:`);
+    for (const svc of services) {
+      const required = svc.required ? '*' : ' ';
+      const cost = svc.estimatedCost > 0 ? `$${formatNumber(svc.estimatedCost)}/mo` : 'included';
+      lines.push(`   ${required} ${svc.name.padEnd(35)} ${svc.plan.padEnd(18)} ${cost}`);
+    }
+    lines.push('');
+  }
+
+  lines.push('  * = required for migration');
+  lines.push('');
+
+  // Terraform snippet
+  lines.push('-'.repeat(w));
+  lines.push('  TERRAFORM CONFIG (excerpt)');
+  lines.push('-'.repeat(w));
+  lines.push('');
+  const tfLines = result.terraform.split('\n').slice(0, 20);
+  for (const l of tfLines) {
+    lines.push(`  ${l}`);
+  }
+  lines.push('  ...');
+  lines.push('');
+
+  lines.push('='.repeat(w));
+  lines.push('  Provisioning report generated by SAP Connect Migration Tool');
+  lines.push('='.repeat(w));
+
+  return lines.join('\n');
+}
+
+function formatMarkdown(result, clientName, args) {
+  const lines = [];
+
+  lines.push('# S/4HANA BTP Provisioning Report');
+  lines.push('');
+  lines.push('| Field | Value |');
+  lines.push('| --- | --- |');
+  lines.push(`| Client | ${clientName} |`);
+  lines.push(`| Date | ${new Date().toISOString().split('T')[0]} |`);
+  lines.push(`| Landscape | ${args.landscape} |`);
+  lines.push(`| Tier | ${args.tier} |`);
+  lines.push(`| Total Services | ${result.stats.totalServices} |`);
+  lines.push(`| Est. Monthly Cost | $${formatNumber(result.stats.estimatedMonthlyCost)} |`);
+  lines.push('');
+
+  lines.push('## Services');
+  lines.push('');
+  lines.push('| Service | Plan | Category | Required | Cost/Mo |');
+  lines.push('| --- | --- | --- | --- | --- |');
+  for (const svc of result.services) {
+    const cost = svc.estimatedCost > 0 ? `$${formatNumber(svc.estimatedCost)}` : 'included';
+    lines.push(`| ${svc.name} | ${svc.plan} | ${svc.category} | ${svc.required ? 'Yes' : 'No'} | ${cost} |`);
+  }
+  lines.push('');
+
+  lines.push('## Terraform Configuration');
+  lines.push('');
+  lines.push('```hcl');
+  lines.push(result.terraform);
+  lines.push('```');
+  lines.push('');
+
+  lines.push('---');
+  lines.push('*Provisioning report generated by SAP Connect Migration Tool*');
+
+  return lines.join('\n');
+}
+
+async function main() {
+  const args = parseArgs(process.argv);
+
+  const gateway = new SapGateway({
+    system: args.sapSystem,
+    vspPath: args.vspPath,
+    vspSystem: args.vspSystem,
+    verbose: args.verbose,
+  });
+
+  console.log('');
+  console.log(`  Mode: ${gateway.mode.toUpperCase()}`);
+  console.log(`  Landscape: ${args.landscape}`);
+  console.log(`  Tier: ${args.tier}`);
+  console.log('  Planning BTP service provisioning...');
+  console.log('');
+
+  try {
+    const provisioner = new Provisioner(gateway, {
+      verbose: args.verbose,
+      landscape: args.landscape,
+      tier: args.tier,
+    });
+    const result = await provisioner.provision();
+
+    console.log(`  Planned ${result.stats.totalServices} services, est. $${formatNumber(result.stats.estimatedMonthlyCost)}/month`);
+    console.log('');
+
+    const isMarkdown = args.format === 'md' || args.format === 'markdown';
+    if (isMarkdown) {
+      console.log(formatMarkdown(result, args.clientName, args));
+    } else {
+      console.log(formatTerminal(result, args.clientName, args));
+    }
+  } catch (err) {
+    console.error(`Provisioning failed: ${err.message}`);
+    if (args.verbose) {
+      console.error(err.stack);
+    }
+    process.exit(1);
+  }
+}
+
+main();
