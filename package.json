@@ -14,7 +14,8 @@
   "devDependencies": {
     "@cap-js/sqlite": "^1",
     "@sap/cds-dk": "^8",
-    "@sap/ux-specification": "latest"
+    "@sap/ux-specification": "latest",
+    "vitest": "^3"
   },
   "scripts": {
     "start": "cds-serve",
@@ -30,7 +31,9 @@
     "provision": "node migration/provision.js",
     "test-migrate": "node migration/test-migrate.js",
     "cutover": "node migration/cutover.js",
-    "test": "echo \"No tests yet\" && exit 0"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "cds": {
     "requires": {

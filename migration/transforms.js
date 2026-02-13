@@ -350,4 +350,77 @@ function hasTransform(ruleId) {
   return ruleId in TRANSFORMS;
 }
 
+// ── New transforms for expanded rules ────────────────────────────
+
+// ABAP: HEADER LINE removal
+TRANSFORMS['SIMPL-ABAP-005'] = {
+  id: 'SIMPL-ABAP-005',
+  description: 'Remove WITH HEADER LINE from declarations',
+  apply(source, finding) {
+    const changes = [];
+    let result = source;
+    result = result.replace(/\s+WITH\s+HEADER\s+LINE/gi, (match) => {
+      changes.push({ type: 'replace', from: match.trim(), to: '(removed HEADER LINE)' });
+      return '';
+    });
+    return { source: result, changes };
+  },
+};
+
+// ABAP: RANGES → TYPE RANGE OF
+TRANSFORMS['SIMPL-ABAP-006'] = {
+  id: 'SIMPL-ABAP-006',
+  description: 'Replace RANGES with TYPE RANGE OF',
+  apply(source, finding) {
+    const changes = [];
+    let result = source;
+    result = result.replace(
+      /RANGES\s+(\w+)\s+FOR\s+(\w+)/gi,
+      (match, name, field) => {
+        const replacement = `DATA ${name} TYPE RANGE OF ${field}`;
+        changes.push({ type: 'replace', from: match, to: replacement });
+        return replacement;
+      }
+    );
+    return { source: result, changes };
+  },
+};
+
+// ABAP: SELECT * → explicit columns (flag only — columns are context-dependent)
+TRANSFORMS['SIMPL-ABAP-004'] = {
+  id: 'SIMPL-ABAP-004',
+  description: 'Flag SELECT * for manual column specification',
+  apply(source, finding) {
+    const changes = [];
+    let result = source;
+    result = result.replace(
+      /(\s*)(SELECT\s+\*\s+FROM\s+(BKPF|EKKO|EKPO|VBAK|VBAP|MARA|MARC|MARD)\b)/gi,
+      (match, ws, stmt, table) => {
+        const comment = `${ws}" TODO(S/4): Replace SELECT * with explicit columns for ${table}\n`;
+        changes.push({ type: 'comment', note: `Specify columns for ${table}` });
+        return `${comment}${ws}${stmt}`;
+      }
+    );
+    return { source: result, changes };
+  },
+};
+
+// ABAP: TABLES declaration → comment
+TRANSFORMS['SIMPL-ABAP-015'] = {
+  id: 'SIMPL-ABAP-015',
+  description: 'Flag TABLES declarations for removal',
+  apply(source, finding) {
+    const changes = [];
+    let result = source;
+    result = result.replace(
+      /^(\s*)(TABLES:\s+\w+.*)/gim,
+      (match, ws, stmt) => {
+        changes.push({ type: 'comment', note: 'Remove TABLES declaration' });
+        return `${ws}" TODO(S/4): Replace TABLES with typed DATA declarations\n${ws}${stmt}`;
+      }
+    );
+    return { source: result, changes };
+  },
+};
+
 module.exports = { getTransform, getAllTransforms, hasTransform };

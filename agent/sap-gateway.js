@@ -1,13 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
+const SapConnection = require('../lib/sap-connection');
+const Logger = require('../lib/logger');
 
 /**
  * SapGateway - Abstraction layer for SAP RFC/API calls
  *
  * Three modes:
  * 1. vsp mode: uses vibing-steampunk CLI for live SAP access via ADT
- * 2. Live mode: connects to a real SAP system via RFC (not yet implemented)
+ * 2. Live mode: connects to a real SAP system via OData APIs
  * 3. Mock mode (default): reads from mock-responses.json
  */
 class SapGateway {
@@ -28,6 +30,18 @@ class SapGateway {
     this.password = options.password || process.env.SAP_PASSWORD;
     this.verbose = options.verbose || false;
     this.mockData = null;
+    this._log = new Logger('gateway', { level: this.verbose ? 'debug' : 'info' });
+
+    // Live mode: initialize SAP connection
+    this._connection = null;
+    this._odataClient = null;
+    if (this.mode === 'live' && this.system) {
+      this._connection = new SapConnection({
+        name: 'gateway-live',
+        baseUrl: this.system,
+        authProvider: this._buildLiveAuth(options),
+      });
+    }
   }
 
   /** Resolve vsp binary path from explicit arg, env var, or null */
@@ -51,7 +65,7 @@ class SapGateway {
     }
     cmdArgs.push(...args);
 
-    this._log(`vsp ${cmdArgs.join(' ')}`);
+    this._log.debug(`vsp ${cmdArgs.join(' ')}`);
 
     const result = spawnSync(this.vspPath, cmdArgs, {
       encoding: 'utf8',
@@ -86,28 +100,33 @@ class SapGateway {
     return this.mockData;
   }
 
-  /** Log verbose messages */
-  _log(msg) {
-    if (this.verbose) {
-      console.log(`  [gateway] ${msg}`);
+  /** Build auth provider for live mode from constructor options */
+  _buildLiveAuth(options) {
+    const { BasicAuthProvider } = require('../lib/odata/auth');
+    const user = options.username || process.env.SAP_USERNAME;
+    const pass = options.password || process.env.SAP_PASSWORD;
+    if (user && pass) {
+      return new BasicAuthProvider(user, pass);
     }
+    // Fallback: no auth (will fail on real systems, but won't crash constructor)
+    return { getHeaders: async () => ({}), getAgent: () => null };
   }
 
-  /**
-   * Print live-mode-not-implemented message and fall back to mock
-   * Same pattern as discovery/scanner.js scanLive()
-   */
-  _liveNotImplemented(method) {
-    console.log(`  [gateway] Live mode not yet implemented for ${method}.`);
-    console.log('  [gateway] To implement, add SAP RFC connection via node-rfc:');
-    console.log('    - npm install node-rfc');
-    console.log('    - Configure RFC destination in sapnwrfc.ini');
-    console.log('    - Call ABAP function modules: RFC_READ_TABLE, SLIN, etc.');
-    console.log('  [gateway] Falling back to mock data.\n');
+  /** Get or initialize the live OData client */
+  async _getLiveClient() {
+    if (!this._odataClient && this._connection) {
+      this._odataClient = await this._connection.connect();
+    }
+    return this._odataClient;
+  }
+
+  /** Fall back to mock with a warning when live call fails */
+  _liveFallback(method, err) {
+    this._log.warn(`Live ${method} failed, falling back to mock`, { error: err.message });
   }
 
   async readAbapSource(objectName, objectType) {
-    this._log(`read_abap_source: ${objectName} (${objectType || 'auto'})`);
+    this._log.debug(`read_abap_source: ${objectName} (${objectType || 'auto'})`);
 
     if (this.mode === 'vsp') {
       try {
@@ -124,7 +143,16 @@ class SapGateway {
     }
 
     if (this.mode === 'live') {
-      this._liveNotImplemented('read_abap_source');
+      try {
+        const client = await this._getLiveClient();
+        const type = objectType || 'CLAS';
+        const typePath = type === 'CLAS' ? 'classes' : type === 'PROG' ? 'programs/programs' : 'programs/includes';
+        const adtPath = `/sap/bc/adt/${typePath}/${objectName.toLowerCase()}/source/main`;
+        const source = await client.get(adtPath, {});
+        return { object_name: objectName, object_type: type, source: typeof source === 'string' ? source : JSON.stringify(source) };
+      } catch (err) {
+        this._liveFallback('readAbapSource', err);
+      }
     }
     const data = this._loadMockData();
     const source = data.abapSources[objectName];
@@ -141,13 +169,22 @@ class SapGateway {
   }
 
   async writeAbapSource(objectName, source, objectType, packageName) {
-    this._log(`write_abap_source: ${objectName} -> ${packageName || 'default'}`);
+    this._log.debug(`write_abap_source: ${objectName} -> ${packageName || 'default'}`);
 
     if (this.mode === 'vsp') {
       this._vspNotSupported('write_abap_source');
     }
     if (this.mode === 'live') {
-      this._liveNotImplemented('write_abap_source');
+      try {
+        const client = await this._getLiveClient();
+        const type = objectType || 'CLAS';
+        const typePath = type === 'CLAS' ? 'classes' : 'programs/includes';
+        const adtPath = `/sap/bc/adt/${typePath}/${objectName.toLowerCase()}/source/main`;
+        await client.patch(adtPath, source);
+        return { object_name: objectName, object_type: type, package: packageName || '$TMP', status: 'SAVED', lines: source ? source.split('\n').length : 0 };
+      } catch (err) {
+        this._liveFallback('writeAbapSource', err);
+      }
     }
     return {
       object_name: objectName,
@@ -159,13 +196,24 @@ class SapGateway {
   }
 
   async listObjects(packageName) {
-    this._log(`list_objects: ${packageName}`);
+    this._log.debug(`list_objects: ${packageName}`);
 
     if (this.mode === 'vsp') {
       this._vspNotSupported('list_objects');
     }
     if (this.mode === 'live') {
-      this._liveNotImplemented('list_objects');
+      try {
+        const client = await this._getLiveClient();
+        const data = await client.get('/sap/bc/adt/repository/informationsystem/search', {
+          operation: 'quickSearch',
+          query: `package:${packageName}`,
+          maxResults: '200',
+        });
+        const objects = Array.isArray(data) ? data : (data.d && data.d.results) || [];
+        return { package: packageName, object_count: objects.length, objects };
+      } catch (err) {
+        this._liveFallback('listObjects', err);
+      }
     }
     const data = this._loadMockData();
     const pkg = data.packageObjects[packageName];
@@ -181,7 +229,7 @@ class SapGateway {
   }
 
   async searchRepository(query, objectType) {
-    this._log(`search_repository: "${query}" (type: ${objectType || 'all'})`);
+    this._log.debug(`search_repository: "${query}" (type: ${objectType || 'all'})`);
 
     if (this.mode === 'vsp') {
       try {
@@ -195,8 +243,6 @@ class SapGateway {
           .filter((line) => line.trim())
           .map((line) => {
             const trimmed = line.trim();
-            // vsp search output: parse each line as a result
-            // Format varies; treat each non-empty line as an object reference
             const parts = trimmed.split(/\s+/);
             return {
               name: parts[0] || trimmed,
@@ -218,7 +264,17 @@ class SapGateway {
     }
 
     if (this.mode === 'live') {
-      this._liveNotImplemented('search_repository');
+      try {
+        const client = await this._getLiveClient();
+        const params = { operation: 'quickSearch', query, maxResults: '50' };
+        if (objectType) params.objectType = objectType;
+        const data = await client.get('/sap/bc/adt/repository/informationsystem/search', params);
+        const results = Array.isArray(data) ? data : (data.d && data.d.results) || [];
+        const filtered = objectType ? results.filter((r) => r.type === objectType) : results;
+        return { query, result_count: filtered.length, results: filtered };
+      } catch (err) {
+        this._liveFallback('searchRepository', err);
+      }
     }
     const data = this._loadMockData();
     const key = query.toLowerCase().replace(/\s+/g, '_');
@@ -234,13 +290,19 @@ class SapGateway {
   }
 
   async getDataDictionary(objectName) {
-    this._log(`get_data_dictionary: ${objectName}`);
+    this._log.debug(`get_data_dictionary: ${objectName}`);
 
     if (this.mode === 'vsp') {
       this._vspNotSupported('get_data_dictionary');
     }
     if (this.mode === 'live') {
-      this._liveNotImplemented('get_data_dictionary');
+      try {
+        const client = await this._getLiveClient();
+        const data = await client.get(`/sap/bc/adt/ddic/tables/${objectName.toLowerCase()}`);
+        return { object_name: objectName, ...data };
+      } catch (err) {
+        this._liveFallback('getDataDictionary', err);
+      }
     }
     const data = this._loadMockData();
     const ddic = data.dataDictionary[objectName];
@@ -254,13 +316,22 @@ class SapGateway {
   }
 
   async activateObject(objectName, objectType) {
-    this._log(`activate_object: ${objectName}`);
+    this._log.debug(`activate_object: ${objectName}`);
 
     if (this.mode === 'vsp') {
       this._vspNotSupported('activate_object');
     }
     if (this.mode === 'live') {
-      this._liveNotImplemented('activate_object');
+      try {
+        const client = await this._getLiveClient();
+        await client.post('/sap/bc/adt/activation', {
+          adtcore_name: objectName,
+          adtcore_type: objectType || 'CLAS',
+        });
+        return { object_name: objectName, object_type: objectType || 'CLAS', status: 'ACTIVE', warnings: [] };
+      } catch (err) {
+        this._liveFallback('activateObject', err);
+      }
     }
     return {
       object_name: objectName,
@@ -271,13 +342,22 @@ class SapGateway {
   }
 
   async runUnitTests(objectName, withCoverage) {
-    this._log(`run_unit_tests: ${objectName} (coverage: ${!!withCoverage})`);
+    this._log.debug(`run_unit_tests: ${objectName} (coverage: ${!!withCoverage})`);
 
     if (this.mode === 'vsp') {
       this._vspNotSupported('run_unit_tests');
     }
     if (this.mode === 'live') {
-      this._liveNotImplemented('run_unit_tests');
+      try {
+        const client = await this._getLiveClient();
+        const runResult = await client.post('/sap/bc/adt/abapunit/testruns', {
+          'program:name': objectName,
+          'program:withCoverage': withCoverage ? 'true' : 'false',
+        });
+        return { object_name: objectName, ...runResult };
+      } catch (err) {
+        this._liveFallback('runUnitTests', err);
+      }
     }
     const data = this._loadMockData();
     const result = data.unitTests[objectName];
@@ -292,13 +372,21 @@ class SapGateway {
   }
 
   async runSyntaxCheck(objectName, objectType) {
-    this._log(`run_syntax_check: ${objectName}`);
+    this._log.debug(`run_syntax_check: ${objectName}`);
 
     if (this.mode === 'vsp') {
       this._vspNotSupported('run_syntax_check');
     }
     if (this.mode === 'live') {
-      this._liveNotImplemented('run_syntax_check');
+      try {
+        const client = await this._getLiveClient();
+        const type = objectType || 'CLAS';
+        const typePath = type === 'CLAS' ? 'classes' : 'programs/includes';
+        const result = await client.post(`/sap/bc/adt/${typePath}/${objectName.toLowerCase()}/source/main`, null);
+        return { object_name: objectName, ...result };
+      } catch (err) {
+        this._liveFallback('runSyntaxCheck', err);
+      }
     }
     const data = this._loadMockData();
     const result = data.syntaxCheck[objectName];

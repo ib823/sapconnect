@@ -229,6 +229,39 @@ class Analyzer {
   }
 
   /**
+   * Enrich analysis with interface, ATC, and usage data.
+   * Adjusts readiness score based on interface complexity and ATC severity.
+   */
+  enrichAnalysis(analysis, { interfaceData, atcData, usageData } = {}) {
+    if (interfaceData) {
+      // Interface complexity penalty: High=-5, Very High=-10
+      const complexityPenalty = {
+        'Very High': 10,
+        'High': 5,
+        'Medium': 2,
+        'Low': 0,
+      };
+      const penalty = complexityPenalty[interfaceData.summary.interfaceComplexity] || 0;
+      analysis.summary.readinessScore = Math.max(0, analysis.summary.readinessScore - penalty);
+      analysis.summary.readinessGrade = this._readinessGrade(analysis.summary.readinessScore);
+      analysis.interfaceSummary = interfaceData.summary;
+    }
+
+    if (atcData) {
+      // ATC priority 1 findings further reduce score
+      const p1Count = atcData.summary.byPriority[1] || 0;
+      const atcPenalty = Math.min(p1Count * 2, 15); // cap at 15
+      analysis.summary.readinessScore = Math.max(0, analysis.summary.readinessScore - atcPenalty);
+      analysis.summary.readinessGrade = this._readinessGrade(analysis.summary.readinessScore);
+      analysis.atcSummary = atcData.summary;
+    }
+
+    if (usageData) {
+      analysis.usageSummary = usageData.summary;
+    }
+  }
+
+  /**
    * Sort findings: critical first, then by object name
    */
   _sortFindings(findings) {

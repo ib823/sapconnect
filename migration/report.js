@@ -12,6 +12,9 @@ class AssessmentReport {
     this.scan = scanResult;
     this.clientName = options.clientName || 'SAP Client';
     this.systemId = options.systemId || 'ECC';
+    this.interfaceData = options.interfaceData || null;
+    this.atcData = options.atcData || null;
+    this.usageData = options.usageData || null;
   }
 
   /**
@@ -119,6 +122,72 @@ class AssessmentReport {
         if (f.matches.length > 0 && f.matches[0].line > 0) {
           const sample = f.matches[0];
           lines.push(`      Line ${sample.line}: ${sample.content.substring(0, 60)}`);
+        }
+        lines.push('');
+      }
+    }
+
+    // Interface Inventory (optional)
+    if (this.interfaceData) {
+      lines.push('-'.repeat(w));
+      lines.push('  INTERFACE INVENTORY');
+      lines.push('-'.repeat(w));
+      lines.push('');
+      const iSummary = this.interfaceData.summary;
+      lines.push(`  RFC Destinations:     ${iSummary.totalRfcDestinations} (${iSummary.activeRfcDestinations} active)`);
+      lines.push(`  IDoc Flows:           ${iSummary.totalIdocFlows}`);
+      lines.push(`  Web Services:         ${iSummary.totalWebServices}`);
+      lines.push(`  Batch Jobs:           ${iSummary.totalBatchJobs}`);
+      lines.push(`  Daily IDoc Volume:    ${iSummary.estimatedDailyIdocVolume.toLocaleString()}`);
+      lines.push(`  Interface Complexity: ${iSummary.interfaceComplexity}`);
+      lines.push('');
+
+      lines.push('  Top IDoc Flows by Volume:');
+      const topIdocs = [...this.interfaceData.idocTypes]
+        .sort((a, b) => b.volume - a.volume)
+        .slice(0, 5);
+      for (const idoc of topIdocs) {
+        lines.push(`    ${idoc.messageType.padEnd(15)} ${idoc.direction.padEnd(10)} ${String(idoc.volume).padStart(6)}/day  ${idoc.description}`);
+      }
+      lines.push('');
+    }
+
+    // ATC Findings (optional)
+    if (this.atcData) {
+      lines.push('-'.repeat(w));
+      lines.push('  ATC S/4HANA READINESS CHECK');
+      lines.push('-'.repeat(w));
+      lines.push('');
+      const aSummary = this.atcData.summary;
+      lines.push(`  Check Variant:        ${aSummary.checkVariant}`);
+      lines.push(`  Objects Checked:      ${aSummary.objectsChecked}`);
+      lines.push(`  Objects with Findings:${String(aSummary.objectsWithFindings).padStart(2)}`);
+      lines.push(`  Total Findings:       ${aSummary.totalFindings}`);
+      lines.push(`    Priority 1 (Error): ${aSummary.byPriority[1]}`);
+      lines.push(`    Priority 2 (Warn):  ${aSummary.byPriority[2]}`);
+      lines.push(`    Priority 3 (Info):  ${aSummary.byPriority[3]}`);
+      lines.push('');
+    }
+
+    // Usage Analysis (optional)
+    if (this.usageData) {
+      lines.push('-'.repeat(w));
+      lines.push('  USAGE ANALYSIS');
+      lines.push('-'.repeat(w));
+      lines.push('');
+      const uSummary = this.usageData.summary;
+      lines.push(`  Total Objects:        ${uSummary.totalObjects}`);
+      lines.push(`  Active (in use):      ${uSummary.activeObjects}`);
+      lines.push(`  Low Usage:            ${uSummary.lowUsageObjects}`);
+      lines.push(`  Dead Code:            ${uSummary.deadCodeObjects} (${uSummary.deadCodePercentage}%)`);
+      lines.push('');
+      if (this.usageData.deadCode.length > 0) {
+        lines.push('  Potential Dead Code:');
+        for (const dead of this.usageData.deadCode.slice(0, 10)) {
+          lines.push(`    - ${dead.object}: ${dead.reason}`);
+        }
+        if (this.usageData.deadCode.length > 10) {
+          lines.push(`    ... and ${this.usageData.deadCode.length - 10} more`);
         }
         lines.push('');
       }
@@ -245,6 +314,50 @@ class AssessmentReport {
         lines.push('```');
         lines.push('');
       }
+    }
+
+    // Interface Inventory (optional)
+    if (this.interfaceData) {
+      lines.push('## Interface Inventory');
+      lines.push('');
+      const iSummary = this.interfaceData.summary;
+      lines.push('| Metric | Value |');
+      lines.push('| --- | --- |');
+      lines.push(`| RFC Destinations | ${iSummary.totalRfcDestinations} (${iSummary.activeRfcDestinations} active) |`);
+      lines.push(`| IDoc Flows | ${iSummary.totalIdocFlows} |`);
+      lines.push(`| Web Services | ${iSummary.totalWebServices} |`);
+      lines.push(`| Batch Jobs | ${iSummary.totalBatchJobs} |`);
+      lines.push(`| Daily IDoc Volume | ${iSummary.estimatedDailyIdocVolume.toLocaleString()} |`);
+      lines.push(`| Interface Complexity | **${iSummary.interfaceComplexity}** |`);
+      lines.push('');
+    }
+
+    // ATC Findings (optional)
+    if (this.atcData) {
+      lines.push('## ATC S/4HANA Readiness Check');
+      lines.push('');
+      const aSummary = this.atcData.summary;
+      lines.push(`- **Check Variant:** ${aSummary.checkVariant}`);
+      lines.push(`- **Objects Checked:** ${aSummary.objectsChecked}`);
+      lines.push(`- **Total Findings:** ${aSummary.totalFindings}`);
+      lines.push(`- Priority 1 (Error): ${aSummary.byPriority[1]}`);
+      lines.push(`- Priority 2 (Warning): ${aSummary.byPriority[2]}`);
+      lines.push(`- Priority 3 (Info): ${aSummary.byPriority[3]}`);
+      lines.push('');
+    }
+
+    // Usage Analysis (optional)
+    if (this.usageData) {
+      lines.push('## Usage Analysis');
+      lines.push('');
+      const uSummary = this.usageData.summary;
+      lines.push('| Metric | Value |');
+      lines.push('| --- | --- |');
+      lines.push(`| Total Objects | ${uSummary.totalObjects} |`);
+      lines.push(`| Active | ${uSummary.activeObjects} |`);
+      lines.push(`| Low Usage | ${uSummary.lowUsageObjects} |`);
+      lines.push(`| Dead Code | ${uSummary.deadCodeObjects} (${uSummary.deadCodePercentage}%) |`);
+      lines.push('');
     }
 
     // Remediation Roadmap

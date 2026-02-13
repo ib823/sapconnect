@@ -1,0 +1,24 @@
+{
+  "source": {
+    "baseUrl": "https://ecc-host:44300",
+    "odataVersion": "v2",
+    "timeout": 30000,
+    "auth": {
+      "type": "basic",
+      "username": "SAP_USER",
+      "password": "SAP_PASS"
+    }
+  },
+  "target": {
+    "baseUrl": "https://s4hana-host.s4hana.cloud.sap",
+    "odataVersion": "v4",
+    "timeout": 30000,
+    "auth": {
+      "type": "oauth2",
+      "tokenUrl": "https://s4hana-host.authentication.eu10.hana.ondemand.com/oauth/token",
+      "clientId": "your-client-id",
+      "clientSecret": "your-client-secret",
+      "scope": ""
+    }
+  }
+}

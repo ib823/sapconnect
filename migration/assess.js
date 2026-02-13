@@ -14,6 +14,9 @@ const SapGateway = require('../agent/sap-gateway');
 const Scanner = require('./scanner');
 const Analyzer = require('./analyzer');
 const AssessmentReport = require('./report');
+const InterfaceScanner = require('./interface-scanner');
+const UsageAnalyzer = require('./usage-analyzer');
+const AtcClient = require('./atc-client');
 
 function parseArgs(argv) {
   const args = {
@@ -46,6 +49,15 @@ function parseArgs(argv) {
       case '--vsp-system':
       case '-S':
         args.vspSystem = argv[++i];
+        break;
+      case '--interfaces':
+        args.interfaces = true;
+        break;
+      case '--atc':
+        args.atc = true;
+        break;
+      case '--usage':
+        args.usage = true;
         break;
       case '--verbose':
       case '-v':
@@ -89,6 +101,9 @@ Options:
   -s, --sap-system <url>   SAP system URL (enables live connection)
   -P, --vsp-path <path>    Path to vsp binary (enables vsp mode)
   -S, --vsp-system <name>  vsp system profile (from .vsp.json)
+  --interfaces             Include interface inventory in assessment
+  --atc                    Run ATC S/4HANA readiness check
+  --usage                  Analyze object usage and dead code
   -v, --verbose            Show detailed scan/analysis logs
   -h, --help               Show this help
 
@@ -139,10 +154,50 @@ async function main() {
     const analyzer = new Analyzer({ verbose: args.verbose });
     const analysis = analyzer.analyze(scanResult);
 
+    // Optional: Interface inventory
+    let interfaceData = null;
+    if (args.interfaces) {
+      console.log('  Scanning interfaces...');
+      const ifScanner = new InterfaceScanner(gateway, { verbose: args.verbose });
+      interfaceData = await ifScanner.scan();
+      console.log(`  Found ${interfaceData.summary.totalRfcDestinations} RFC destinations, ${interfaceData.summary.totalIdocFlows} IDoc flows`);
+      console.log('');
+    }
+
+    // Optional: ATC check
+    let atcData = null;
+    if (args.atc) {
+      console.log('  Running ATC S/4HANA readiness check...');
+      const atcClient = new AtcClient(gateway, { verbose: args.verbose });
+      const objectNames = scanResult.objects.map((o) => o.name);
+      atcData = await atcClient.runCheck(objectNames);
+      console.log(`  ATC: ${atcData.summary.totalFindings} findings across ${atcData.summary.objectsWithFindings} objects`);
+      console.log('');
+    }
+
+    // Optional: Usage analysis
+    let usageData = null;
+    if (args.usage) {
+      console.log('  Analyzing object usage...');
+      const usageAnalyzer = new UsageAnalyzer(gateway, { verbose: args.verbose });
+      const objectNames = scanResult.objects.map((o) => o.name);
+      usageData = await usageAnalyzer.analyze(objectNames);
+      console.log(`  Usage: ${usageData.summary.deadCodeObjects} potential dead code objects (${usageData.summary.deadCodePercentage}%)`);
+      console.log('');
+    }
+
+    // Factor optional data into analysis
+    if (interfaceData || atcData) {
+      analyzer.enrichAnalysis(analysis, { interfaceData, atcData, usageData });
+    }
+
     // Phase 3: Report
     const report = new AssessmentReport(analysis, scanResult, {
       clientName: args.clientName,
       systemId: args.systemId,
+      interfaceData,
+      atcData,
+      usageData,
     });
 
     const isMarkdown = args.format === 'md' || args.format === 'markdown';

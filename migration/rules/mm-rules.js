@@ -1,0 +1,237 @@
+/**
+ * Materials Management (MM) Simplification Rules
+ *
+ * Covers: MATNR 40 chars, MRP changes, batch management,
+ * inventory valuation, goods movement, invoice verification.
+ */
+
+module.exports = [
+  // ── Material Master ────────────────────────────────────────
+  {
+    id: 'SIMPL-MM-001',
+    category: 'Material Management - Material Master',
+    severity: 'medium',
+    title: 'Material number length changed to 40',
+    description: 'MATNR extended from 18 to 40 characters. Hardcoded length assumptions break.',
+    pattern: /MATNR.*(?:TYPE C LENGTH 18|CHAR18|\(18\))/i,
+    patternType: 'source',
+    remediation: 'Use TYPE matnr (dictionary type) instead of hardcoded lengths.',
+    simplificationId: 'S4TWL-MM-001',
+  },
+  {
+    id: 'SIMPL-MM-002',
+    category: 'Material Management - Material Master',
+    severity: 'medium',
+    title: 'Material type configuration changes',
+    description: 'Material types have new industry sector handling and product type concept.',
+    pattern: /\bT134\b/i,
+    patternType: 'source',
+    remediation: 'Review material type configuration for product master changes.',
+    simplificationId: 'S4TWL-MM-002',
+  },
+  {
+    id: 'SIMPL-MM-003',
+    category: 'Material Management - Material Master',
+    severity: 'low',
+    title: 'MARA/MARC field changes',
+    description: 'Several MARA/MARC fields removed or restructured in S/4HANA.',
+    pattern: /\b(MARA-MFRNR|MARA-MFRPN|MARC-MMSTA)\b/i,
+    patternType: 'source',
+    remediation: 'Review material master field usage against S/4HANA data model.',
+    simplificationId: 'S4TWL-MM-003',
+  },
+
+  // ── MRP ────────────────────────────────────────────────────
+  {
+    id: 'SIMPL-MM-004',
+    category: 'Material Management - MRP',
+    severity: 'high',
+    title: 'Classic MRP replaced by MRP Live',
+    description: 'Classic MRP (MD01/MD02) replaced by MRP Live (MD01N). MDTB/MDKP tables changed.',
+    pattern: /\b(MD01|MD02|MDTB|MDKP|MDTC)\b/i,
+    patternType: 'source',
+    remediation: 'Migrate to MRP Live. Review MRP exit usage (EXIT_SAPLMD01*).',
+    simplificationId: 'S4TWL-MM-MRP-001',
+  },
+  {
+    id: 'SIMPL-MM-005',
+    category: 'Material Management - MRP',
+    severity: 'medium',
+    title: 'Demand-driven MRP (DDMRP) available',
+    description: 'S/4HANA supports DDMRP for buffer-based planning. Consider migration.',
+    pattern: /\bMD04\b/i,
+    patternType: 'source',
+    remediation: 'Evaluate DDMRP for eligible materials with variable demand.',
+    simplificationId: 'S4TWL-MM-MRP-002',
+  },
+  {
+    id: 'SIMPL-MM-006',
+    category: 'Material Management - MRP',
+    severity: 'medium',
+    title: 'Planned order changes',
+    description: 'Planned orders (PLAF) table structure changed in MRP Live.',
+    pattern: /\bPLAF\b/i,
+    patternType: 'source',
+    remediation: 'Review planned order access for MRP Live compatibility.',
+    simplificationId: 'S4TWL-MM-MRP-003',
+  },
+
+  // ── Batch Management ───────────────────────────────────────
+  {
+    id: 'SIMPL-MM-007',
+    category: 'Material Management - Batch',
+    severity: 'medium',
+    title: 'Batch management classification changes',
+    description: 'Batch classification (MCH1, MCHA) has new batch derivation features.',
+    pattern: /\b(MCH1|MCHA|MCHB)\b/i,
+    patternType: 'source',
+    remediation: 'Review batch management for new classification and derivation.',
+    simplificationId: 'S4TWL-MM-BATCH-001',
+  },
+
+  // ── Inventory Valuation ────────────────────────────────────
+  {
+    id: 'SIMPL-MM-008',
+    category: 'Material Management - Valuation',
+    severity: 'high',
+    title: 'Material Ledger mandatory for valuation',
+    description: 'Material Ledger is mandatory in S/4HANA. All valuation goes through ML.',
+    pattern: /\b(MBEW|CKMLRUNPERIOD|CKMLPRKEPH)\b/i,
+    patternType: 'source',
+    remediation: 'Activate Material Ledger. Review valuation procedures.',
+    simplificationId: 'S4TWL-MM-VAL-001',
+  },
+  {
+    id: 'SIMPL-MM-009',
+    category: 'Material Management - Valuation',
+    severity: 'medium',
+    title: 'Split valuation changes',
+    description: 'Split valuation (MBEW with BWTAR) changed with mandatory ML.',
+    pattern: /\bMBEW.*BWTAR|BWTAR.*MBEW\b/i,
+    patternType: 'source',
+    remediation: 'Review split valuation configuration with Material Ledger.',
+    simplificationId: 'S4TWL-MM-VAL-002',
+  },
+
+  // ── Goods Movement ─────────────────────────────────────────
+  {
+    id: 'SIMPL-MM-010',
+    category: 'Material Management - Goods Movement',
+    severity: 'high',
+    title: 'BAPI_GOODSMVT_CREATE changes',
+    description: 'BAPI_GOODSMVT_CREATE has new parameters and changed behavior in S/4HANA.',
+    pattern: /\bBAPI_GOODSMVT_CREATE\b/i,
+    patternType: 'source',
+    remediation: 'Review BAPI parameters. Consider API_MATERIAL_DOCUMENT_SRV OData service.',
+    simplificationId: 'S4TWL-MM-GM-001',
+  },
+  {
+    id: 'SIMPL-MM-011',
+    category: 'Material Management - Goods Movement',
+    severity: 'medium',
+    title: 'MKPF/MSEG table changes',
+    description: 'Material document tables MKPF (header) and MSEG (items) have structural changes.',
+    pattern: /\b(MKPF|MSEG)\b/i,
+    patternType: 'source',
+    remediation: 'Review material document field usage. Use CDS views I_MaterialDocumentHeader.',
+    simplificationId: 'S4TWL-MM-GM-002',
+  },
+  {
+    id: 'SIMPL-MM-012',
+    category: 'Material Management - Goods Movement',
+    severity: 'medium',
+    title: 'Movement type customization changes',
+    description: 'Movement type configuration (T156, T156B) has new fields for ML integration.',
+    pattern: /\b(T156|T156B|T156M)\b/i,
+    patternType: 'source',
+    remediation: 'Review movement type configuration for ML and ACDOCA.',
+    simplificationId: 'S4TWL-MM-GM-003',
+  },
+
+  // ── Invoice Verification ───────────────────────────────────
+  {
+    id: 'SIMPL-MM-013',
+    category: 'Material Management - Invoice',
+    severity: 'medium',
+    title: 'Invoice verification changes',
+    description: 'RBKP/RSEG (logistics invoice tables) have structural changes.',
+    pattern: /\b(RBKP|RSEG)\b/i,
+    patternType: 'source',
+    remediation: 'Review invoice verification. Consider migration to central invoice management.',
+    simplificationId: 'S4TWL-MM-IV-001',
+  },
+  {
+    id: 'SIMPL-MM-014',
+    category: 'Material Management - Invoice',
+    severity: 'low',
+    title: 'MR8M reversal changes',
+    description: 'Invoice reversal (MR8M) behavior changed in S/4HANA.',
+    pattern: /\bMR8M\b/i,
+    patternType: 'source',
+    remediation: 'Review invoice reversal processes.',
+    simplificationId: 'S4TWL-MM-IV-002',
+  },
+
+  // ── Purchasing ─────────────────────────────────────────────
+  {
+    id: 'SIMPL-MM-015',
+    category: 'Material Management - Purchasing',
+    severity: 'medium',
+    title: 'Purchase order BAPI changes',
+    description: 'BAPI_PO_CREATE1 and BAPI_PO_CHANGE have new parameters in S/4HANA.',
+    pattern: /\b(BAPI_PO_CREATE1|BAPI_PO_CHANGE)\b/i,
+    patternType: 'source',
+    remediation: 'Review BAPI parameters. Consider API_PURCHASEORDER_PROCESS_SRV.',
+    simplificationId: 'S4TWL-MM-PO-001',
+  },
+  {
+    id: 'SIMPL-MM-016',
+    category: 'Material Management - Purchasing',
+    severity: 'medium',
+    title: 'EKKO/EKPO structural changes',
+    description: 'Purchase document tables EKKO/EKPO have new fields and changed structures.',
+    pattern: /\b(EKKO|EKPO)\b/i,
+    patternType: 'source',
+    remediation: 'Review PO document field usage against S/4HANA data model.',
+    simplificationId: 'S4TWL-MM-PO-002',
+  },
+
+  // ── Source Determination ───────────────────────────────────
+  {
+    id: 'SIMPL-MM-017',
+    category: 'Material Management - Sourcing',
+    severity: 'low',
+    title: 'Source list/info record changes',
+    description: 'EINA/EINE (purchasing info records) have structural changes.',
+    pattern: /\b(EINA|EINE)\b/i,
+    patternType: 'source',
+    remediation: 'Review purchasing info records for S/4HANA compatibility.',
+    simplificationId: 'S4TWL-MM-SRC-001',
+  },
+
+  // ── Physical Inventory ─────────────────────────────────────
+  {
+    id: 'SIMPL-MM-018',
+    category: 'Material Management - Inventory',
+    severity: 'low',
+    title: 'Physical inventory document changes',
+    description: 'IKPF (PI document header) has new fields for S/4HANA.',
+    pattern: /\b(IKPF|ISEG)\b/i,
+    patternType: 'source',
+    remediation: 'Review physical inventory processes.',
+    simplificationId: 'S4TWL-MM-PI-001',
+  },
+
+  // ── Reservation ────────────────────────────────────────────
+  {
+    id: 'SIMPL-MM-019',
+    category: 'Material Management - Reservation',
+    severity: 'low',
+    title: 'Reservation management changes',
+    description: 'RKPF/RESB (reservation tables) have structural changes.',
+    pattern: /\b(RKPF|RESB)\b/i,
+    patternType: 'source',
+    remediation: 'Review reservation management processes.',
+    simplificationId: 'S4TWL-MM-RES-001',
+  },
+];
