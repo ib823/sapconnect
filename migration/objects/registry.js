@@ -108,6 +108,10 @@ class MigrationObjectRegistry {
       IDOC_CONFIG: require('./idoc-config'),
       WEB_SERVICE: require('./web-service'),
       BATCH_JOB: require('./batch-job'),
+      FI_CONFIG: require('./fi-config'),
+      CO_CONFIG: require('./co-config'),
+      MM_CONFIG: require('./mm-config'),
+      SD_CONFIG: require('./sd-config'),
     };
     for (const [id, cls] of Object.entries(builtins)) {
       this.registerClass(id, cls);

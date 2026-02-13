@@ -8,9 +8,9 @@ describe('MigrationObjectRegistry', () => {
     registry = new MigrationObjectRegistry();
   });
 
-  it('registers 15 built-in objects', () => {
+  it('registers 19 built-in objects', () => {
     const ids = registry.listObjectIds();
-    expect(ids).toHaveLength(15);
+    expect(ids).toHaveLength(19);
     expect(ids).toContain('GL_BALANCE');
     expect(ids).toContain('BUSINESS_PARTNER');
     expect(ids).toContain('MATERIAL_MASTER');
@@ -26,6 +26,10 @@ describe('MigrationObjectRegistry', () => {
     expect(ids).toContain('IDOC_CONFIG');
     expect(ids).toContain('WEB_SERVICE');
     expect(ids).toContain('BATCH_JOB');
+    expect(ids).toContain('FI_CONFIG');
+    expect(ids).toContain('CO_CONFIG');
+    expect(ids).toContain('MM_CONFIG');
+    expect(ids).toContain('SD_CONFIG');
   });
 
   it('getObject returns cached instance', () => {
@@ -47,7 +51,7 @@ describe('MigrationObjectRegistry', () => {
 
   it('listObjects returns metadata', () => {
     const objs = registry.listObjects(mockGw);
-    expect(objs).toHaveLength(15);
+    expect(objs).toHaveLength(19);
     expect(objs[0]).toHaveProperty('objectId');
     expect(objs[0]).toHaveProperty('name');
   });
@@ -59,11 +63,11 @@ describe('MigrationObjectRegistry', () => {
     expect(a).not.toBe(b);
   });
 
-  it('runAll runs all 15 objects', async () => {
+  it('runAll runs all 19 objects', async () => {
     const result = await registry.runAll(mockGw);
-    expect(result.results).toHaveLength(15);
-    expect(result.stats.total).toBe(15);
-    expect(result.stats.completed + result.stats.failed).toBe(15);
+    expect(result.results).toHaveLength(19);
+    expect(result.stats.total).toBe(19);
+    expect(result.stats.completed + result.stats.failed).toBe(19);
     expect(result.stats.totalDurationMs).toBeDefined();
   });
 
