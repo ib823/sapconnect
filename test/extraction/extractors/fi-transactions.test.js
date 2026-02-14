@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 const FITransactionsExtractor = require('../../../extraction/extractors/fi-transactions');
 const ExtractionContext = require('../../../extraction/extraction-context');
 

@@ -11,6 +11,48 @@
 
 const Logger = require('../../lib/logger');
 
+/**
+ * SocialNetworkResult
+ */
+class SocialNetworkResult {
+  constructor({ handoverMatrix, workingTogether, resourceUtilization, activityResourceMatrix, sodViolations, centralityMetrics, resourceCount, caseCount }) {
+    this.handoverMatrix = handoverMatrix;
+    this.workingTogether = workingTogether;
+    this.resourceUtilization = resourceUtilization;
+    this.activityResourceMatrix = activityResourceMatrix;
+    this.sodViolations = sodViolations;
+    this.centralityMetrics = centralityMetrics;
+    this.resourceCount = resourceCount;
+    this.caseCount = caseCount;
+  }
+
+  getSummary() {
+    return {
+      resourceCount: this.resourceCount,
+      caseCount: this.caseCount,
+      totalHandovers: this.handoverMatrix.totalHandovers,
+      uniqueHandoverPairs: this.handoverMatrix.uniquePairs,
+      casesWithMultipleResources: this.workingTogether.casesWithMultipleResources,
+      workloadBalanced: this.resourceUtilization.workloadDistribution.isBalanced,
+      sodViolations: this.sodViolations.totalViolations,
+      sodRulesViolated: this.sodViolations.rulesViolated,
+      mostCentralResource: this.centralityMetrics.length > 0 ? this.centralityMetrics[0].resource : null,
+    };
+  }
+
+  toJSON() {
+    return {
+      summary: this.getSummary(),
+      handoverMatrix: this.handoverMatrix,
+      workingTogether: this.workingTogether,
+      resourceUtilization: this.resourceUtilization,
+      activityResourceMatrix: this.activityResourceMatrix,
+      sodViolations: this.sodViolations,
+      centralityMetrics: this.centralityMetrics,
+    };
+  }
+}
+
 class SocialNetworkMiner {
   /**
    * @param {object} [options]
@@ -355,48 +397,6 @@ class SocialNetworkMiner {
   _getTraces(eventLog) {
     const traces = eventLog.traces || eventLog._traces;
     return traces instanceof Map ? traces : new Map(Object.entries(traces || {}));
-  }
-}
-
-/**
- * SocialNetworkResult
- */
-class SocialNetworkResult {
-  constructor({ handoverMatrix, workingTogether, resourceUtilization, activityResourceMatrix, sodViolations, centralityMetrics, resourceCount, caseCount }) {
-    this.handoverMatrix = handoverMatrix;
-    this.workingTogether = workingTogether;
-    this.resourceUtilization = resourceUtilization;
-    this.activityResourceMatrix = activityResourceMatrix;
-    this.sodViolations = sodViolations;
-    this.centralityMetrics = centralityMetrics;
-    this.resourceCount = resourceCount;
-    this.caseCount = caseCount;
-  }
-
-  getSummary() {
-    return {
-      resourceCount: this.resourceCount,
-      caseCount: this.caseCount,
-      totalHandovers: this.handoverMatrix.totalHandovers,
-      uniqueHandoverPairs: this.handoverMatrix.uniquePairs,
-      casesWithMultipleResources: this.workingTogether.casesWithMultipleResources,
-      workloadBalanced: this.resourceUtilization.workloadDistribution.isBalanced,
-      sodViolations: this.sodViolations.totalViolations,
-      sodRulesViolated: this.sodViolations.rulesViolated,
-      mostCentralResource: this.centralityMetrics.length > 0 ? this.centralityMetrics[0].resource : null,
-    };
-  }
-
-  toJSON() {
-    return {
-      summary: this.getSummary(),
-      handoverMatrix: this.handoverMatrix,
-      workingTogether: this.workingTogether,
-      resourceUtilization: this.resourceUtilization,
-      activityResourceMatrix: this.activityResourceMatrix,
-      sodViolations: this.sodViolations,
-      centralityMetrics: this.centralityMetrics,
-    };
   }
 }
 

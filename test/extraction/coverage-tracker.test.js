@@ -1,8 +1,6 @@
 /**
  * Tests for Coverage Tracker
  */
-import { describe, it, expect, beforeEach } from 'vitest';
-
 const CoverageTracker = require('../../extraction/coverage-tracker');
 
 describe('CoverageTracker', () => {

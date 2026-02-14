@@ -7,6 +7,58 @@
 
 const Logger = require('../../lib/logger');
 
+/**
+ * PerformanceResult
+ */
+class PerformanceResult {
+  constructor({ caseDurations, activityStats, transitionStats, bottlenecks, throughput, slaCompliance, trends, caseCount, eventCount }) {
+    this.caseDurations = caseDurations;
+    this.activityStats = activityStats;
+    this.transitionStats = transitionStats;
+    this.bottlenecks = bottlenecks;
+    this.throughput = throughput;
+    this.slaCompliance = slaCompliance;
+    this.trends = trends;
+    this.caseCount = caseCount;
+    this.eventCount = eventCount;
+  }
+
+  getSummary() {
+    return {
+      caseCount: this.caseCount,
+      eventCount: this.eventCount,
+      avgCaseDurationMs: this.caseDurations.stats.mean,
+      medianCaseDurationMs: this.caseDurations.stats.median,
+      p90CaseDurationMs: this.caseDurations.stats.p90,
+      topBottleneck: this.bottlenecks.length > 0 ? this.bottlenecks[0].location : null,
+      topBottleneckMedianMs: this.bottlenecks.length > 0
+        ? (this.bottlenecks[0].medianWaitMs || this.bottlenecks[0].medianServiceMs)
+        : 0,
+      throughputPerDay: this.throughput.arrivalRatePerDay,
+      slaBreaches: this.slaCompliance.filter(s => s.status === 'breached').length,
+      trend: this.trends.trend,
+      outlierCount: this.caseDurations.outliers.length,
+    };
+  }
+
+  toJSON() {
+    return {
+      summary: this.getSummary(),
+      caseDurations: {
+        stats: this.caseDurations.stats,
+        outlierCount: this.caseDurations.outliers.length,
+        outliers: this.caseDurations.outliers.slice(0, 20),
+      },
+      activityStats: this.activityStats,
+      transitionStats: this.transitionStats,
+      bottlenecks: this.bottlenecks.slice(0, 20),
+      throughput: this.throughput,
+      slaCompliance: this.slaCompliance,
+      trends: this.trends,
+    };
+  }
+}
+
 class PerformanceAnalyzer {
   /**
    * @param {object} [options]
@@ -472,58 +524,6 @@ class PerformanceAnalyzer {
         direction: c.durationMs > upperBound ? 'slow' : 'fast',
         deviationFromMedian: Math.round(((c.durationMs - stats.median) / (stats.median || 1)) * 100),
       }));
-  }
-}
-
-/**
- * PerformanceResult
- */
-class PerformanceResult {
-  constructor({ caseDurations, activityStats, transitionStats, bottlenecks, throughput, slaCompliance, trends, caseCount, eventCount }) {
-    this.caseDurations = caseDurations;
-    this.activityStats = activityStats;
-    this.transitionStats = transitionStats;
-    this.bottlenecks = bottlenecks;
-    this.throughput = throughput;
-    this.slaCompliance = slaCompliance;
-    this.trends = trends;
-    this.caseCount = caseCount;
-    this.eventCount = eventCount;
-  }
-
-  getSummary() {
-    return {
-      caseCount: this.caseCount,
-      eventCount: this.eventCount,
-      avgCaseDurationMs: this.caseDurations.stats.mean,
-      medianCaseDurationMs: this.caseDurations.stats.median,
-      p90CaseDurationMs: this.caseDurations.stats.p90,
-      topBottleneck: this.bottlenecks.length > 0 ? this.bottlenecks[0].location : null,
-      topBottleneckMedianMs: this.bottlenecks.length > 0
-        ? (this.bottlenecks[0].medianWaitMs || this.bottlenecks[0].medianServiceMs)
-        : 0,
-      throughputPerDay: this.throughput.arrivalRatePerDay,
-      slaBreaches: this.slaCompliance.filter(s => s.status === 'breached').length,
-      trend: this.trends.trend,
-      outlierCount: this.caseDurations.outliers.length,
-    };
-  }
-
-  toJSON() {
-    return {
-      summary: this.getSummary(),
-      caseDurations: {
-        stats: this.caseDurations.stats,
-        outlierCount: this.caseDurations.outliers.length,
-        outliers: this.caseDurations.outliers.slice(0, 20),
-      },
-      activityStats: this.activityStats,
-      transitionStats: this.transitionStats,
-      bottlenecks: this.bottlenecks.slice(0, 20),
-      throughput: this.throughput,
-      slaCompliance: this.slaCompliance,
-      trends: this.trends,
-    };
   }
 }
 

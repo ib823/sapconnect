@@ -10,6 +10,55 @@
 
 const Logger = require('../../lib/logger');
 
+/**
+ * VariantAnalysisResult — Output of the Variant Analyzer
+ */
+class VariantAnalysisResult {
+  constructor({ variants, totalVariantCount, totalCaseCount, happyPath, rework, clusters, deviations, rootCauses }) {
+    this.variants = variants;
+    this.totalVariantCount = totalVariantCount;
+    this.totalCaseCount = totalCaseCount;
+    this.happyPath = happyPath;
+    this.rework = rework;
+    this.clusters = clusters;
+    this.deviations = deviations;
+    this.rootCauses = rootCauses;
+  }
+
+  /** Summary statistics */
+  getSummary() {
+    return {
+      totalVariants: this.totalVariantCount,
+      totalCases: this.totalCaseCount,
+      happyPathRate: this.happyPath ? this.happyPath.frequency : 0,
+      reworkRate: this.rework.reworkRate,
+      firstTimeRightRate: this.rework.firstTimeRightRate,
+      clusterCount: this.clusters.length,
+      top5VariantsCoverage: this.variants.slice(0, 5).reduce((s, v) => s + v.frequency, 0),
+      top10VariantsCoverage: this.variants.slice(0, 10).reduce((s, v) => s + v.frequency, 0),
+    };
+  }
+
+  toJSON() {
+    return {
+      summary: this.getSummary(),
+      happyPath: this.happyPath,
+      rework: this.rework,
+      variants: this.variants.map(v => ({
+        rank: v.rank,
+        activities: v.activities,
+        caseCount: v.caseCount,
+        frequency: v.frequency,
+        hasRework: v.hasRework,
+        durationStats: v.durationStats,
+      })),
+      clusters: this.clusters,
+      deviations: this.deviations,
+      rootCauses: this.rootCauses,
+    };
+  }
+}
+
 class VariantAnalyzer {
   /**
    * @param {object} [options]
@@ -479,55 +528,6 @@ class VariantAnalyzer {
     }
 
     return rootCauses.sort((a, b) => b.lift - a.lift);
-  }
-}
-
-/**
- * VariantAnalysisResult — Output of the Variant Analyzer
- */
-class VariantAnalysisResult {
-  constructor({ variants, totalVariantCount, totalCaseCount, happyPath, rework, clusters, deviations, rootCauses }) {
-    this.variants = variants;
-    this.totalVariantCount = totalVariantCount;
-    this.totalCaseCount = totalCaseCount;
-    this.happyPath = happyPath;
-    this.rework = rework;
-    this.clusters = clusters;
-    this.deviations = deviations;
-    this.rootCauses = rootCauses;
-  }
-
-  /** Summary statistics */
-  getSummary() {
-    return {
-      totalVariants: this.totalVariantCount,
-      totalCases: this.totalCaseCount,
-      happyPathRate: this.happyPath ? this.happyPath.frequency : 0,
-      reworkRate: this.rework.reworkRate,
-      firstTimeRightRate: this.rework.firstTimeRightRate,
-      clusterCount: this.clusters.length,
-      top5VariantsCoverage: this.variants.slice(0, 5).reduce((s, v) => s + v.frequency, 0),
-      top10VariantsCoverage: this.variants.slice(0, 10).reduce((s, v) => s + v.frequency, 0),
-    };
-  }
-
-  toJSON() {
-    return {
-      summary: this.getSummary(),
-      happyPath: this.happyPath,
-      rework: this.rework,
-      variants: this.variants.map(v => ({
-        rank: v.rank,
-        activities: v.activities,
-        caseCount: v.caseCount,
-        frequency: v.frequency,
-        hasRework: v.hasRework,
-        durationStats: v.durationStats,
-      })),
-      clusters: this.clusters,
-      deviations: this.deviations,
-      rootCauses: this.rootCauses,
-    };
   }
 }
 

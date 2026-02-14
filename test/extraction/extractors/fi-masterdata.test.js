@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 const FIMasterDataExtractor = require('../../../extraction/extractors/fi-masterdata');
 const ExtractionContext = require('../../../extraction/extraction-context');
 

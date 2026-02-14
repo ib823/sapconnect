@@ -13,6 +13,140 @@
 
 const Logger = require('../../lib/logger');
 
+/**
+ * ProcessModel — Output of the Heuristic Miner
+ *
+ * Represents a discovered process as a dependency net with
+ * activities, edges, gateways, and loop information.
+ */
+class ProcessModel {
+  constructor({ activities, edges, startActivities, endActivities, loopsL1, loopsL2, gateways, dfMatrix, depMatrix, caseCount, eventCount }) {
+    this.activities = activities;
+    this.edges = edges;
+    this.startActivities = startActivities;
+    this.endActivities = endActivities;
+    this.loopsL1 = loopsL1 || [];
+    this.loopsL2 = loopsL2 || [];
+    this.gateways = gateways || [];
+    this.dfMatrix = dfMatrix;
+    this.depMatrix = depMatrix;
+    this.caseCount = caseCount;
+    this.eventCount = eventCount;
+  }
+
+  /** Get all successor activities for a given activity */
+  getSuccessors(activity) {
+    return this.edges.filter(e => e.source === activity).map(e => e.target);
+  }
+
+  /** Get all predecessor activities for a given activity */
+  getPredecessors(activity) {
+    return this.edges.filter(e => e.target === activity).map(e => e.source);
+  }
+
+  /** Check if a transition exists in the model */
+  hasTransition(from, to) {
+    return this.edges.some(e => e.source === from && e.target === to);
+  }
+
+  /** Get edge details for a specific transition */
+  getEdge(from, to) {
+    return this.edges.find(e => e.source === from && e.target === to) || null;
+  }
+
+  /** Activities with length-1 loops (self-repetition) */
+  getSelfLoopActivities() {
+    return this.loopsL1.map(l => l.activity);
+  }
+
+  /** Get all AND-split gateways */
+  getAndSplits() {
+    return this.gateways.filter(g => g.type === 'and' && g.gatewayType === 'split');
+  }
+
+  /** Get all XOR-split gateways (decision points) */
+  getXorSplits() {
+    return this.gateways.filter(g => g.type === 'xor' && g.gatewayType === 'split');
+  }
+
+  /** Get the directly-follows count between two activities */
+  getDirectlyFollowsCount(a, b) {
+    const row = this.dfMatrix.get(a);
+    return row ? (row.get(b) || 0) : 0;
+  }
+
+  /** Get the dependency measure between two activities */
+  getDependencyMeasure(a, b) {
+    const row = this.depMatrix.get(a);
+    return row ? (row.get(b) || 0) : 0;
+  }
+
+  /** Convert to serializable JSON */
+  toJSON() {
+    return {
+      activities: this.activities,
+      edges: this.edges,
+      startActivities: this.startActivities,
+      endActivities: this.endActivities,
+      loopsL1: this.loopsL1,
+      loopsL2: this.loopsL2,
+      gateways: this.gateways,
+      stats: {
+        activityCount: this.activities.length,
+        edgeCount: this.edges.length,
+        gatewayCount: this.gateways.length,
+        loopCount: this.loopsL1.length + this.loopsL2.length,
+        caseCount: this.caseCount,
+        eventCount: this.eventCount,
+      },
+    };
+  }
+
+  /** Generate a human-readable process description */
+  toText() {
+    const lines = [];
+    lines.push(`Process Model: ${this.activities.length} activities, ${this.edges.length} edges`);
+    lines.push(`Cases: ${this.caseCount}, Events: ${this.eventCount}`);
+    lines.push('');
+    lines.push('Start Activities:');
+    for (const s of this.startActivities) {
+      lines.push(`  → ${s.activity} (${s.count} cases)`);
+    }
+    lines.push('');
+    lines.push('Edges (dependency):');
+    for (const e of this.edges.sort((a, b) => b.frequency - a.frequency)) {
+      lines.push(`  ${e.source} → ${e.target} [freq=${e.frequency}, dep=${e.dependency}]`);
+    }
+    if (this.loopsL1.length > 0) {
+      lines.push('');
+      lines.push('Self-loops:');
+      for (const l of this.loopsL1) {
+        lines.push(`  ↻ ${l.activity} [freq=${l.frequency}]`);
+      }
+    }
+    if (this.loopsL2.length > 0) {
+      lines.push('');
+      lines.push('Length-2 loops:');
+      for (const l of this.loopsL2) {
+        lines.push(`  ↻ ${l.activities[0]} ↔ ${l.activities[1]} [freq=${l.frequency}]`);
+      }
+    }
+    if (this.gateways.length > 0) {
+      lines.push('');
+      lines.push('Gateways:');
+      for (const g of this.gateways) {
+        lines.push(`  ${g.type.toUpperCase()}-${g.gatewayType}: ${g.activity} → [${g.branches.join(', ')}]`);
+      }
+    }
+    lines.push('');
+    lines.push('End Activities:');
+    for (const e of this.endActivities) {
+      lines.push(`  ${e.activity} → ■ (${e.count} cases)`);
+    }
+    return lines.join('\n');
+  }
+}
+
 class HeuristicMiner {
   /**
    * @param {object} [options]
@@ -377,140 +511,6 @@ class HeuristicMiner {
     if (coOccurrenceRate > (1 - this.andThreshold)) return 'and';
     if (coOccurrenceRate < this.andThreshold) return 'xor';
     return 'or'; // Mixed — inclusive OR
-  }
-}
-
-/**
- * ProcessModel — Output of the Heuristic Miner
- *
- * Represents a discovered process as a dependency net with
- * activities, edges, gateways, and loop information.
- */
-class ProcessModel {
-  constructor({ activities, edges, startActivities, endActivities, loopsL1, loopsL2, gateways, dfMatrix, depMatrix, caseCount, eventCount }) {
-    this.activities = activities;
-    this.edges = edges;
-    this.startActivities = startActivities;
-    this.endActivities = endActivities;
-    this.loopsL1 = loopsL1 || [];
-    this.loopsL2 = loopsL2 || [];
-    this.gateways = gateways || [];
-    this.dfMatrix = dfMatrix;
-    this.depMatrix = depMatrix;
-    this.caseCount = caseCount;
-    this.eventCount = eventCount;
-  }
-
-  /** Get all successor activities for a given activity */
-  getSuccessors(activity) {
-    return this.edges.filter(e => e.source === activity).map(e => e.target);
-  }
-
-  /** Get all predecessor activities for a given activity */
-  getPredecessors(activity) {
-    return this.edges.filter(e => e.target === activity).map(e => e.source);
-  }
-
-  /** Check if a transition exists in the model */
-  hasTransition(from, to) {
-    return this.edges.some(e => e.source === from && e.target === to);
-  }
-
-  /** Get edge details for a specific transition */
-  getEdge(from, to) {
-    return this.edges.find(e => e.source === from && e.target === to) || null;
-  }
-
-  /** Activities with length-1 loops (self-repetition) */
-  getSelfLoopActivities() {
-    return this.loopsL1.map(l => l.activity);
-  }
-
-  /** Get all AND-split gateways */
-  getAndSplits() {
-    return this.gateways.filter(g => g.type === 'and' && g.gatewayType === 'split');
-  }
-
-  /** Get all XOR-split gateways (decision points) */
-  getXorSplits() {
-    return this.gateways.filter(g => g.type === 'xor' && g.gatewayType === 'split');
-  }
-
-  /** Get the directly-follows count between two activities */
-  getDirectlyFollowsCount(a, b) {
-    const row = this.dfMatrix.get(a);
-    return row ? (row.get(b) || 0) : 0;
-  }
-
-  /** Get the dependency measure between two activities */
-  getDependencyMeasure(a, b) {
-    const row = this.depMatrix.get(a);
-    return row ? (row.get(b) || 0) : 0;
-  }
-
-  /** Convert to serializable JSON */
-  toJSON() {
-    return {
-      activities: this.activities,
-      edges: this.edges,
-      startActivities: this.startActivities,
-      endActivities: this.endActivities,
-      loopsL1: this.loopsL1,
-      loopsL2: this.loopsL2,
-      gateways: this.gateways,
-      stats: {
-        activityCount: this.activities.length,
-        edgeCount: this.edges.length,
-        gatewayCount: this.gateways.length,
-        loopCount: this.loopsL1.length + this.loopsL2.length,
-        caseCount: this.caseCount,
-        eventCount: this.eventCount,
-      },
-    };
-  }
-
-  /** Generate a human-readable process description */
-  toText() {
-    const lines = [];
-    lines.push(`Process Model: ${this.activities.length} activities, ${this.edges.length} edges`);
-    lines.push(`Cases: ${this.caseCount}, Events: ${this.eventCount}`);
-    lines.push('');
-    lines.push('Start Activities:');
-    for (const s of this.startActivities) {
-      lines.push(`  → ${s.activity} (${s.count} cases)`);
-    }
-    lines.push('');
-    lines.push('Edges (dependency):');
-    for (const e of this.edges.sort((a, b) => b.frequency - a.frequency)) {
-      lines.push(`  ${e.source} → ${e.target} [freq=${e.frequency}, dep=${e.dependency}]`);
-    }
-    if (this.loopsL1.length > 0) {
-      lines.push('');
-      lines.push('Self-loops:');
-      for (const l of this.loopsL1) {
-        lines.push(`  ↻ ${l.activity} [freq=${l.frequency}]`);
-      }
-    }
-    if (this.loopsL2.length > 0) {
-      lines.push('');
-      lines.push('Length-2 loops:');
-      for (const l of this.loopsL2) {
-        lines.push(`  ↻ ${l.activities[0]} ↔ ${l.activities[1]} [freq=${l.frequency}]`);
-      }
-    }
-    if (this.gateways.length > 0) {
-      lines.push('');
-      lines.push('Gateways:');
-      for (const g of this.gateways) {
-        lines.push(`  ${g.type.toUpperCase()}-${g.gatewayType}: ${g.activity} → [${g.branches.join(', ')}]`);
-      }
-    }
-    lines.push('');
-    lines.push('End Activities:');
-    for (const e of this.endActivities) {
-      lines.push(`  ${e.activity} → ■ (${e.count} cases)`);
-    }
-    return lines.join('\n');
   }
 }
 

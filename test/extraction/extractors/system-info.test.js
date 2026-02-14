@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 const SystemInfoExtractor = require('../../../extraction/extractors/system-info');
 const ExtractionContext = require('../../../extraction/extraction-context');
 

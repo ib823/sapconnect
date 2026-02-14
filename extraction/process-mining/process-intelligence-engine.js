@@ -27,6 +27,86 @@ const { getReferenceModel } = require('./reference-models');
 const { getProcessConfig } = require('./sap-table-config');
 
 // ─────────────────────────────────────────────────────────────────────────────
+// ProcessIntelligenceReport
+// ─────────────────────────────────────────────────────────────────────────────
+
+class ProcessIntelligenceReport {
+  constructor({ processId, referenceModelName, eventLogSummary, phases, recommendations, executiveSummary, errors, duration, timestamp }) {
+    this.processId = processId;
+    this.referenceModelName = referenceModelName;
+    this.eventLogSummary = eventLogSummary;
+    this.phases = phases;
+    this.recommendations = recommendations;
+    this.executiveSummary = executiveSummary;
+    this.errors = errors;
+    this.duration = duration;
+    this.timestamp = timestamp;
+  }
+
+  /**
+   * Get a compact summary for dashboards.
+   */
+  getSummary() {
+    return {
+      processId: this.processId,
+      referenceModel: this.referenceModelName,
+      cases: this.eventLogSummary?.caseCount,
+      events: this.eventLogSummary?.eventCount,
+      variantCount: this.phases.variantAnalysis?.totalVariants,
+      fitness: this.phases.conformance?.fitness,
+      precision: this.phases.conformance?.precision,
+      conformanceRate: this.phases.conformance?.conformanceRate,
+      bottleneckCount: this.phases.performance?.bottlenecks?.length || 0,
+      sodViolations: this.phases.socialNetwork?.sodViolations?.totalViolations || 0,
+      recommendationCount: this.recommendations.length,
+      highSeverityCount: this.recommendations.filter(r => r.severity === 'high').length,
+      errors: this.errors.length,
+      duration: this.duration,
+    };
+  }
+
+  /**
+   * Get only the high-severity recommendations.
+   */
+  getCriticalFindings() {
+    return this.recommendations.filter(r => r.severity === 'high');
+  }
+
+  /**
+   * Get the analysis for a specific phase.
+   */
+  getPhase(name) {
+    return this.phases[name] || null;
+  }
+
+  /**
+   * List completed phase names.
+   */
+  getCompletedPhases() {
+    return Object.keys(this.phases);
+  }
+
+  toJSON() {
+    return {
+      summary: this.getSummary(),
+      executiveSummary: this.executiveSummary,
+      recommendations: this.recommendations,
+      phases: {
+        variantAnalysis: this.phases.variantAnalysis?.toJSON?.() || this.phases.variantAnalysis,
+        processModel: this.phases.processModel?.toJSON?.() || this.phases.processModel,
+        conformance: this.phases.conformance?.toJSON?.() || this.phases.conformance,
+        performance: this.phases.performance?.toJSON?.() || this.phases.performance,
+        socialNetwork: this.phases.socialNetwork?.toJSON?.() || this.phases.socialNetwork,
+        kpis: this.phases.kpis?.toJSON?.() || this.phases.kpis,
+      },
+      errors: this.errors,
+      duration: this.duration,
+      timestamp: this.timestamp,
+    };
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // ProcessIntelligenceEngine
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -418,86 +498,6 @@ class ProcessIntelligenceEngine {
     if (ms < 3600000) return `${(ms / 60000).toFixed(1)}min`;
     if (ms < 86400000) return `${(ms / 3600000).toFixed(1)}h`;
     return `${(ms / 86400000).toFixed(1)}d`;
-  }
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// ProcessIntelligenceReport
-// ─────────────────────────────────────────────────────────────────────────────
-
-class ProcessIntelligenceReport {
-  constructor({ processId, referenceModelName, eventLogSummary, phases, recommendations, executiveSummary, errors, duration, timestamp }) {
-    this.processId = processId;
-    this.referenceModelName = referenceModelName;
-    this.eventLogSummary = eventLogSummary;
-    this.phases = phases;
-    this.recommendations = recommendations;
-    this.executiveSummary = executiveSummary;
-    this.errors = errors;
-    this.duration = duration;
-    this.timestamp = timestamp;
-  }
-
-  /**
-   * Get a compact summary for dashboards.
-   */
-  getSummary() {
-    return {
-      processId: this.processId,
-      referenceModel: this.referenceModelName,
-      cases: this.eventLogSummary?.caseCount,
-      events: this.eventLogSummary?.eventCount,
-      variantCount: this.phases.variantAnalysis?.totalVariants,
-      fitness: this.phases.conformance?.fitness,
-      precision: this.phases.conformance?.precision,
-      conformanceRate: this.phases.conformance?.conformanceRate,
-      bottleneckCount: this.phases.performance?.bottlenecks?.length || 0,
-      sodViolations: this.phases.socialNetwork?.sodViolations?.totalViolations || 0,
-      recommendationCount: this.recommendations.length,
-      highSeverityCount: this.recommendations.filter(r => r.severity === 'high').length,
-      errors: this.errors.length,
-      duration: this.duration,
-    };
-  }
-
-  /**
-   * Get only the high-severity recommendations.
-   */
-  getCriticalFindings() {
-    return this.recommendations.filter(r => r.severity === 'high');
-  }
-
-  /**
-   * Get the analysis for a specific phase.
-   */
-  getPhase(name) {
-    return this.phases[name] || null;
-  }
-
-  /**
-   * List completed phase names.
-   */
-  getCompletedPhases() {
-    return Object.keys(this.phases);
-  }
-
-  toJSON() {
-    return {
-      summary: this.getSummary(),
-      executiveSummary: this.executiveSummary,
-      recommendations: this.recommendations,
-      phases: {
-        variantAnalysis: this.phases.variantAnalysis?.toJSON?.() || this.phases.variantAnalysis,
-        processModel: this.phases.processModel?.toJSON?.() || this.phases.processModel,
-        conformance: this.phases.conformance?.toJSON?.() || this.phases.conformance,
-        performance: this.phases.performance?.toJSON?.() || this.phases.performance,
-        socialNetwork: this.phases.socialNetwork?.toJSON?.() || this.phases.socialNetwork,
-        kpis: this.phases.kpis?.toJSON?.() || this.phases.kpis,
-      },
-      errors: this.errors,
-      duration: this.duration,
-      timestamp: this.timestamp,
-    };
   }
 }
 

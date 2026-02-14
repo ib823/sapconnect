@@ -1,8 +1,6 @@
 /**
  * Tests for Base Extractor
  */
-import { describe, it, expect, vi } from 'vitest';
-
 const BaseExtractor = require('../../extraction/base-extractor');
 const ExtractionContext = require('../../extraction/extraction-context');
 

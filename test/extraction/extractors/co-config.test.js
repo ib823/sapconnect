@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 const COConfigExtractor = require('../../../extraction/extractors/co-config');
 const ExtractionContext = require('../../../extraction/extraction-context');
 

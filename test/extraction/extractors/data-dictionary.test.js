@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 const DataDictionaryExtractor = require('../../../extraction/extractors/data-dictionary');
 const ExtractionContext = require('../../../extraction/extraction-context');
 

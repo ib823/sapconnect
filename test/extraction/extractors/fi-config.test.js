@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 const FIConfigExtractor = require('../../../extraction/extractors/fi-config');
 const ExtractionContext = require('../../../extraction/extraction-context');
 

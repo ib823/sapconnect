@@ -1,9 +1,8 @@
 /**
  * Tests for Checkpoint Manager
  */
-import { describe, it, expect, afterEach } from 'vitest';
-import fs from 'fs';
-import path from 'path';
+const fs = require('fs');
+const path = require('path');
 
 const CheckpointManager = require('../../extraction/checkpoint-manager');
 

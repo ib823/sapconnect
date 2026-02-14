@@ -1,8 +1,6 @@
 /**
  * Tests for Extractor Registry
  */
-import { describe, it, expect, beforeEach } from 'vitest';
-
 const ExtractorRegistry = require('../../extraction/extractor-registry');
 const BaseExtractor = require('../../extraction/base-extractor');
 const ExtractionContext = require('../../extraction/extraction-context');

@@ -14,6 +14,58 @@
 
 const Logger = require('../../lib/logger');
 
+/**
+ * KPIReport
+ */
+class KPIReport {
+  constructor({ timeKPIs, qualityKPIs, volumeKPIs, conformanceKPIs, resourceKPIs, processKPIs, caseCount, eventCount }) {
+    this.timeKPIs = timeKPIs;
+    this.qualityKPIs = qualityKPIs;
+    this.volumeKPIs = volumeKPIs;
+    this.conformanceKPIs = conformanceKPIs;
+    this.resourceKPIs = resourceKPIs;
+    this.processKPIs = processKPIs;
+    this.caseCount = caseCount;
+    this.eventCount = eventCount;
+  }
+
+  /**
+   * Get a flat list of all KPIs with their values.
+   */
+  getAllKPIs() {
+    const all = [];
+    const addKPIs = (category, kpis) => {
+      for (const [key, kpi] of Object.entries(kpis)) {
+        if (kpi && kpi.name) {
+          all.push({ category, key, ...kpi });
+        }
+      }
+    };
+
+    addKPIs('Time', this.timeKPIs);
+    addKPIs('Quality', this.qualityKPIs);
+    addKPIs('Volume', this.volumeKPIs);
+    addKPIs('Conformance', this.conformanceKPIs);
+    addKPIs('Resource', this.resourceKPIs);
+    addKPIs('Process', this.processKPIs);
+
+    return all;
+  }
+
+  toJSON() {
+    return {
+      caseCount: this.caseCount,
+      eventCount: this.eventCount,
+      time: this.timeKPIs,
+      quality: this.qualityKPIs,
+      volume: this.volumeKPIs,
+      conformance: this.conformanceKPIs,
+      resource: this.resourceKPIs,
+      process: this.processKPIs,
+    };
+  }
+}
+
 class KPIEngine {
   /**
    * @param {object} [options]
@@ -469,58 +521,6 @@ class KPIEngine {
     if (timestamp instanceof Date) return timestamp.getTime();
     const ms = new Date(timestamp).getTime();
     return isNaN(ms) ? null : ms;
-  }
-}
-
-/**
- * KPIReport
- */
-class KPIReport {
-  constructor({ timeKPIs, qualityKPIs, volumeKPIs, conformanceKPIs, resourceKPIs, processKPIs, caseCount, eventCount }) {
-    this.timeKPIs = timeKPIs;
-    this.qualityKPIs = qualityKPIs;
-    this.volumeKPIs = volumeKPIs;
-    this.conformanceKPIs = conformanceKPIs;
-    this.resourceKPIs = resourceKPIs;
-    this.processKPIs = processKPIs;
-    this.caseCount = caseCount;
-    this.eventCount = eventCount;
-  }
-
-  /**
-   * Get a flat list of all KPIs with their values.
-   */
-  getAllKPIs() {
-    const all = [];
-    const addKPIs = (category, kpis) => {
-      for (const [key, kpi] of Object.entries(kpis)) {
-        if (kpi && kpi.name) {
-          all.push({ category, key, ...kpi });
-        }
-      }
-    };
-
-    addKPIs('Time', this.timeKPIs);
-    addKPIs('Quality', this.qualityKPIs);
-    addKPIs('Volume', this.volumeKPIs);
-    addKPIs('Conformance', this.conformanceKPIs);
-    addKPIs('Resource', this.resourceKPIs);
-    addKPIs('Process', this.processKPIs);
-
-    return all;
-  }
-
-  toJSON() {
-    return {
-      caseCount: this.caseCount,
-      eventCount: this.eventCount,
-      time: this.timeKPIs,
-      quality: this.qualityKPIs,
-      volume: this.volumeKPIs,
-      conformance: this.conformanceKPIs,
-      resource: this.resourceKPIs,
-      process: this.processKPIs,
-    };
   }
 }
 

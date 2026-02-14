@@ -15,6 +15,47 @@
 
 const Logger = require('../../lib/logger');
 
+/**
+ * ConformanceResult
+ */
+class ConformanceResult {
+  constructor({ fitness, precision, conformanceRate, fullyConformantCases, totalCases, counters, caseResults, deviationStats, referenceModelName }) {
+    this.fitness = fitness;
+    this.precision = precision;
+    this.conformanceRate = conformanceRate;
+    this.fullyConformantCases = fullyConformantCases;
+    this.totalCases = totalCases;
+    this.counters = counters;
+    this.caseResults = caseResults;
+    this.deviationStats = deviationStats;
+    this.referenceModelName = referenceModelName;
+  }
+
+  getSummary() {
+    return {
+      referenceModel: this.referenceModelName,
+      fitness: this.fitness,
+      precision: this.precision,
+      conformanceRate: this.conformanceRate,
+      fullyConformantCases: this.fullyConformantCases,
+      totalCases: this.totalCases,
+      totalDeviations: this.deviationStats.totalDeviations,
+      topDeviationType: Object.keys(this.deviationStats.byType)[0] || 'none',
+    };
+  }
+
+  toJSON() {
+    return {
+      summary: this.getSummary(),
+      fitness: this.fitness,
+      precision: this.precision,
+      counters: this.counters,
+      deviationStats: this.deviationStats,
+      caseResults: this.caseResults,
+    };
+  }
+}
+
 class ConformanceChecker {
   /**
    * @param {object} [options]
@@ -358,47 +399,6 @@ class ConformanceChecker {
   _getTraces(eventLog) {
     const traces = eventLog.traces || eventLog._traces;
     return traces instanceof Map ? traces : new Map(Object.entries(traces || {}));
-  }
-}
-
-/**
- * ConformanceResult
- */
-class ConformanceResult {
-  constructor({ fitness, precision, conformanceRate, fullyConformantCases, totalCases, counters, caseResults, deviationStats, referenceModelName }) {
-    this.fitness = fitness;
-    this.precision = precision;
-    this.conformanceRate = conformanceRate;
-    this.fullyConformantCases = fullyConformantCases;
-    this.totalCases = totalCases;
-    this.counters = counters;
-    this.caseResults = caseResults;
-    this.deviationStats = deviationStats;
-    this.referenceModelName = referenceModelName;
-  }
-
-  getSummary() {
-    return {
-      referenceModel: this.referenceModelName,
-      fitness: this.fitness,
-      precision: this.precision,
-      conformanceRate: this.conformanceRate,
-      fullyConformantCases: this.fullyConformantCases,
-      totalCases: this.totalCases,
-      totalDeviations: this.deviationStats.totalDeviations,
-      topDeviationType: Object.keys(this.deviationStats.byType)[0] || 'none',
-    };
-  }
-
-  toJSON() {
-    return {
-      summary: this.getSummary(),
-      fitness: this.fitness,
-      precision: this.precision,
-      counters: this.counters,
-      deviationStats: this.deviationStats,
-      caseResults: this.caseResults,
-    };
   }
 }
 

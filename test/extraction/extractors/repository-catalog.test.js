@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 const RepositoryCatalogExtractor = require('../../../extraction/extractors/repository-catalog');
 const ExtractionContext = require('../../../extraction/extraction-context');
 
