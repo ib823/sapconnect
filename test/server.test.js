@@ -14,6 +14,7 @@ const { createApp, installCrashHandlers } = require('../server');
 const { HealthCheck } = require('../lib/monitoring/health');
 const { MetricsCollector } = require('../lib/monitoring/metrics');
 const { AuditLogger } = require('../lib/security/audit-logger');
+const { ApiKeyAuth } = require('../lib/security/api-key-auth');
 
 // ── HTTP test helper ─────────────────────────────────────────
 
@@ -350,6 +351,61 @@ describe('server.js — createApp', () => {
 
     it('should attach _processMining reference', () => {
       expect(app._processMining).toBe(true);
+    });
+
+    it('should attach _apiKeyAuth reference', () => {
+      expect(app._apiKeyAuth).toBeDefined();
+      expect(app._apiKeyAuth).toBeInstanceOf(ApiKeyAuth);
+      expect(app._apiKeyAuth.isEnabled()).toBe(false); // no API_KEY in test
+    });
+
+    it('should attach _migrationPlan reference', () => {
+      expect(app._migrationPlan).toBe(true);
+    });
+
+    it('should attach _export reference', () => {
+      expect(app._export).toBe(true);
+    });
+
+    it('should have expanded forensicState with eventLog and latestPlan', () => {
+      expect(app._forensicState).toHaveProperty('eventLog', null);
+      expect(app._forensicState).toHaveProperty('eventLogs');
+      expect(app._forensicState).toHaveProperty('latestPlan', null);
+    });
+  });
+
+  // ── API Key Auth ──────────────────────────────────────────
+
+  describe('API key auth integration', () => {
+    it('should create app with API key auth enabled', () => {
+      const securedApp = createApp({ NODE_ENV: 'test', LOG_LEVEL: 'error', API_KEY: 'test-secret' });
+      expect(securedApp._apiKeyAuth.isEnabled()).toBe(true);
+    });
+  });
+
+  // ── Migration Plan endpoints ──────────────────────────────
+
+  describe('GET /api/migration/plan/latest', () => {
+    it('should return 404 when no plan exists', async () => {
+      const res = await request(app).get('/api/migration/plan/latest');
+      expect(res.status).toBe(404);
+      expect(res.body.error).toBeDefined();
+    });
+  });
+
+  // ── Export endpoints ──────────────────────────────────────
+
+  describe('GET /api/export/forensic/json', () => {
+    it('should return 404 when no report', async () => {
+      const res = await request(app).get('/api/export/forensic/json');
+      expect(res.status).toBe(404);
+    });
+  });
+
+  describe('GET /api/export/event-log/csv', () => {
+    it('should return 404 when no event log', async () => {
+      const res = await request(app).get('/api/export/event-log/csv');
+      expect(res.status).toBe(404);
     });
   });
 

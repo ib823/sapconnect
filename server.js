@@ -23,7 +23,7 @@ const { loadConfig, validateConfig } = require('./lib/config');
 const Logger = require('./lib/logger');
 
 // Security
-const { securityHeaders, cors, RateLimiter, AuditLogger } = require('./lib/security');
+const { securityHeaders, cors, RateLimiter, AuditLogger, ApiKeyAuth } = require('./lib/security');
 
 // Monitoring
 const { HealthCheck, MetricsCollector, RequestContext } = require('./lib/monitoring');
@@ -40,6 +40,12 @@ const { createDashboardRouter } = require('./extraction/report/dashboard-api');
 
 // Process Mining API
 const { createProcessMiningRouter } = require('./extraction/process-mining/api');
+
+// Migration Plan API
+const { createMigrationPlanRouter } = require('./extraction/migration-plan-api');
+
+// Data Export API
+const { createExportRouter } = require('./extraction/export-api');
 
 // Extraction registry (for platform summary)
 const ExtractorRegistry = require('./extraction/extractor-registry');
@@ -86,6 +92,10 @@ function createApp(configOverrides = {}) {
 
   const auditLogger = new AuditLogger({ store: 'memory' });
   app.use(auditLogger.middleware());
+
+  // ── API Key Auth ───────────────────────────────────────────
+  const apiKeyAuth = new ApiKeyAuth({ apiKey: config.apiKey });
+  app.use(apiKeyAuth.middleware());
 
   // ── Monitoring middleware ──────────────────────────────────
   const requestContext = new RequestContext();
@@ -155,11 +165,20 @@ function createApp(configOverrides = {}) {
     running: false,
     progress: {},
     startedAt: null,
+    eventLog: null,
+    eventLogs: {},
+    latestPlan: null,
   };
   app.use(createDashboardRouter(forensicState));
 
   // ── Process Mining API ─────────────────────────────────────
   app.use(createProcessMiningRouter());
+
+  // ── Migration Plan API ─────────────────────────────────────
+  app.use(createMigrationPlanRouter(forensicState));
+
+  // ── Data Export API ────────────────────────────────────────
+  app.use(createExportRouter(forensicState));
 
   // ── Platform Summary ───────────────────────────────────────
   app.get('/api/platform/summary', (_req, res) => {
@@ -209,6 +228,9 @@ function createApp(configOverrides = {}) {
   app._dashboard = dashboard;
   app._forensicState = forensicState;
   app._processMining = true;
+  app._apiKeyAuth = apiKeyAuth;
+  app._migrationPlan = true;
+  app._export = true;
 
   return app;
 }

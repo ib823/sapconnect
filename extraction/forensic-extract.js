@@ -78,6 +78,7 @@ async function main() {
     case 'gaps': return runGaps(flags);
     case 'coverage': return runCoverage(flags);
     case 'dashboard': return runDashboard(flags);
+    case 'plan': return runPlan(flags);
     default:
       log.error(`Unknown command: ${command}`);
       printUsage();
@@ -128,6 +129,24 @@ async function runFull(flags) {
   log.info(`Extraction complete in ${output.durationMs}ms`);
   log.info(`Confidence: ${output.confidence.overall}% (${output.confidence.grade})`);
   log.info(`Gaps: ${output.gapReport.totalGapCount || 0}`);
+
+  // Auto-generate migration plan
+  try {
+    const MigrationBridge = require('./migration-bridge');
+    const bridge = new MigrationBridge();
+    const forensicResult = {
+      results: output.results instanceof Map ? Object.fromEntries(output.results) : (output.results || {}),
+      confidence: output.confidence || {},
+      gapReport: output.gapReport || {},
+      humanValidation: [],
+    };
+    const plan = bridge.plan(forensicResult);
+    const planPath = path.join(outputDir, 'migration-plan.json');
+    fs.writeFileSync(planPath, JSON.stringify(plan, null, 2));
+    log.info(`Migration plan saved: ${planPath} (${plan.scope.totalObjects} objects)`);
+  } catch (err) {
+    log.warn(`Auto migration plan generation failed: ${err.message}`);
+  }
 }
 
 async function runModule(flags) {
@@ -190,6 +209,40 @@ async function runCoverage(flags) {
 
   const data = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
   console.log(JSON.stringify(data.confidenceAssessment, null, 2));
+}
+
+async function runPlan(flags) {
+  const outputDir = path.resolve('.sapconnect-output');
+  const jsonPath = path.join(outputDir, 'forensic-report.json');
+
+  if (!fs.existsSync(jsonPath)) {
+    log.error('No extraction data found. Run "forensic-extract full" first.');
+    process.exit(1);
+  }
+
+  log.info('Generating migration plan from extraction results...');
+  const data = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+
+  const MigrationBridge = require('./migration-bridge');
+  const bridge = new MigrationBridge();
+  const forensicResult = {
+    results: data.results || {},
+    confidence: data.confidenceAssessment || {},
+    gapReport: data.gapAnalysis || {},
+    humanValidation: data.humanValidation || [],
+  };
+
+  const planOptions = {};
+  if (flags.modules) planOptions.includeModules = flags.modules;
+
+  const plan = bridge.plan(forensicResult, planOptions);
+  const planPath = path.join(outputDir, 'migration-plan.json');
+  fs.writeFileSync(planPath, JSON.stringify(plan, null, 2));
+
+  log.info(`Migration plan saved: ${planPath}`);
+  log.info(`  Objects: ${plan.scope.totalObjects}`);
+  log.info(`  Waves: ${plan.executionPlan.totalWaves}`);
+  log.info(`  Estimated hours: ${plan.effort.totalEstimatedHours}`);
 }
 
 async function runDashboard(flags) {
@@ -267,6 +320,7 @@ Commands:
   report   Generate report from last extraction
   gaps     Show gap analysis
   coverage Show coverage metrics
+  plan     Generate migration plan from extraction
   dashboard Start the dashboard API server
 
 Options:

@@ -4,7 +4,8 @@ info:
   description: |
     REST API for the SAP S/4HANA Migration Platform.
     Provides migration status, object progress, rule analysis,
-    reconciliation, and test scenario management.
+    reconciliation, test scenario management, forensic extraction,
+    process mining, data export, and migration planning.
   version: 1.0.0
   contact:
     name: SAP Connect Team
@@ -31,6 +32,19 @@ tags:
     description: Audit log query and statistics
   - name: Info
     description: Application information
+  - name: Forensic
+    description: Forensic extraction endpoints
+  - name: ProcessMining
+    description: Process mining analysis endpoints
+  - name: Platform
+    description: Platform-wide summary
+  - name: MigrationPlan
+    description: Migration planning from forensic results
+  - name: Export
+    description: Data export endpoints
+
+security:
+  - ApiKeyAuth: []
 
 paths:
   /health:
@@ -39,6 +53,7 @@ paths:
       summary: Liveness probe
       description: Returns basic health status. Used by orchestrators for liveness checks.
       operationId: getHealth
+      security: []
       responses:
         '200':
           description: Service is alive
@@ -53,6 +68,7 @@ paths:
       summary: Readiness probe
       description: Returns readiness status including dependency checks.
       operationId: getReady
+      security: []
       responses:
         '200':
           description: Service is ready
@@ -73,6 +89,7 @@ paths:
       summary: Application metrics
       description: Returns metrics in Prometheus or JSON format based on Accept header.
       operationId: getMetrics
+      security: []
       responses:
         '200':
           description: Metrics data
@@ -315,7 +332,651 @@ paths:
               schema:
                 $ref: '#/components/schemas/InfoResponse'
 
+  # ── Forensic endpoints ──────────────────────────────────────
+
+  /api/forensic/summary:
+    get:
+      tags: [Forensic]
+      summary: Forensic extraction summary
+      operationId: getForensicSummary
+      responses:
+        '200':
+          description: System overview from forensic extraction
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/forensic/modules:
+    get:
+      tags: [Forensic]
+      summary: List detected SAP modules
+      operationId: getForensicModules
+      responses:
+        '200':
+          description: Module inventory
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/forensic/modules/{id}:
+    get:
+      tags: [Forensic]
+      summary: Get module detail
+      operationId: getForensicModule
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Module report
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: No data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/forensic/processes:
+    get:
+      tags: [Forensic]
+      summary: List detected business processes
+      operationId: getForensicProcesses
+      responses:
+        '200':
+          description: Process catalog
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/forensic/processes/{id}:
+    get:
+      tags: [Forensic]
+      summary: Get process detail
+      operationId: getForensicProcess
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Process detail
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Process not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/forensic/config/{module}:
+    get:
+      tags: [Forensic]
+      summary: Get module configuration interpretations
+      operationId: getForensicConfig
+      parameters:
+        - name: module
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Configuration interpretations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /api/forensic/code:
+    get:
+      tags: [Forensic]
+      summary: Custom code analysis
+      operationId: getForensicCode
+      responses:
+        '200':
+          description: Custom code statistics
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/forensic/security:
+    get:
+      tags: [Forensic]
+      summary: Security analysis
+      operationId: getForensicSecurity
+      responses:
+        '200':
+          description: Security findings
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/forensic/interfaces:
+    get:
+      tags: [Forensic]
+      summary: Interface analysis
+      operationId: getForensicInterfaces
+      responses:
+        '200':
+          description: Interface findings
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/forensic/gaps:
+    get:
+      tags: [Forensic]
+      summary: Gap analysis
+      operationId: getForensicGaps
+      responses:
+        '200':
+          description: Gap report
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/forensic/confidence:
+    get:
+      tags: [Forensic]
+      summary: Confidence assessment
+      operationId: getForensicConfidence
+      responses:
+        '200':
+          description: Confidence scores
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/forensic/coverage:
+    get:
+      tags: [Forensic]
+      summary: Coverage report
+      operationId: getForensicCoverage
+      responses:
+        '200':
+          description: Coverage metrics
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/forensic/extract:
+    post:
+      tags: [Forensic]
+      summary: Trigger forensic extraction
+      operationId: triggerExtraction
+      responses:
+        '200':
+          description: Extraction started
+          content:
+            application/json:
+              schema:
+                type: object
+        '409':
+          description: Extraction already in progress
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/forensic/progress:
+    get:
+      tags: [Forensic]
+      summary: Extraction progress
+      operationId: getForensicProgress
+      responses:
+        '200':
+          description: Progress state
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # ── Process Mining endpoints ─────────────────────────────────
+
+  /api/process-mining/processes:
+    get:
+      tags: [ProcessMining]
+      summary: List SAP processes
+      operationId: listProcesses
+      responses:
+        '200':
+          description: Process list
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/process-mining/processes/{id}:
+    get:
+      tags: [ProcessMining]
+      summary: Get process config
+      operationId: getProcessConfig
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Process configuration
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Process not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/process-mining/processes/{id}/reference-model:
+    get:
+      tags: [ProcessMining]
+      summary: Get reference model
+      operationId: getProcessReferenceModel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Reference process model
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Reference model not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/process-mining/analyze:
+    post:
+      tags: [ProcessMining]
+      summary: Full process analysis
+      operationId: analyzeProcess
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventLogInput'
+      responses:
+        '200':
+          description: Analysis report
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/process-mining/discover:
+    post:
+      tags: [ProcessMining]
+      summary: Heuristic mining
+      operationId: discoverProcess
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventLogInput'
+      responses:
+        '200':
+          description: Discovered process model
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/process-mining/conformance:
+    post:
+      tags: [ProcessMining]
+      summary: Conformance checking
+      operationId: checkConformance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventLogInput'
+      responses:
+        '200':
+          description: Conformance result
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/process-mining/performance:
+    post:
+      tags: [ProcessMining]
+      summary: Performance analysis
+      operationId: analyzePerformance
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventLogInput'
+      responses:
+        '200':
+          description: Performance metrics
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/process-mining/variants:
+    post:
+      tags: [ProcessMining]
+      summary: Variant analysis
+      operationId: analyzeVariants
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventLogInput'
+      responses:
+        '200':
+          description: Variant analysis
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/process-mining/social-network:
+    post:
+      tags: [ProcessMining]
+      summary: Social network mining
+      operationId: analyzeSocialNetwork
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventLogInput'
+      responses:
+        '200':
+          description: Social network analysis
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/process-mining/kpis:
+    post:
+      tags: [ProcessMining]
+      summary: KPI calculation
+      operationId: calculateKPIs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventLogInput'
+      responses:
+        '200':
+          description: KPI results
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/process-mining/demo/{processId}:
+    get:
+      tags: [ProcessMining]
+      summary: Demo analysis
+      operationId: getDemoAnalysis
+      parameters:
+        - name: processId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Demo analysis with synthetic data
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Process not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ── Platform Summary ────────────────────────────────────────
+
+  /api/platform/summary:
+    get:
+      tags: [Platform]
+      summary: Platform summary
+      operationId: getPlatformSummary
+      responses:
+        '200':
+          description: Unified platform overview
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # ── Migration Plan endpoints ────────────────────────────────
+
+  /api/migration/plan:
+    post:
+      tags: [MigrationPlan]
+      summary: Generate migration plan
+      operationId: createMigrationPlan
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                forensicResult:
+                  type: object
+                  description: Forensic extraction results (optional — falls back to server state)
+                options:
+                  type: object
+                  description: Plan generation options
+      responses:
+        '200':
+          description: Generated migration plan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MigrationPlan'
+        '400':
+          description: No forensic data available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/migration/plan/latest:
+    get:
+      tags: [MigrationPlan]
+      summary: Get latest migration plan
+      operationId: getLatestMigrationPlan
+      responses:
+        '200':
+          description: Latest migration plan
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MigrationPlan'
+        '404':
+          description: No plan available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ── Export endpoints ────────────────────────────────────────
+
+  /api/export/forensic/json:
+    get:
+      tags: [Export]
+      summary: Download forensic report (JSON)
+      operationId: exportForensicJson
+      responses:
+        '200':
+          description: Forensic report as downloadable JSON
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: No report available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/export/forensic/markdown:
+    get:
+      tags: [Export]
+      summary: Download forensic report (Markdown)
+      operationId: exportForensicMarkdown
+      responses:
+        '200':
+          description: Forensic report as downloadable Markdown
+          content:
+            text/markdown:
+              schema:
+                type: string
+        '404':
+          description: No report available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/export/event-log/csv:
+    get:
+      tags: [Export]
+      summary: Download event log (CSV)
+      operationId: exportEventLogCsv
+      responses:
+        '200':
+          description: Event log as downloadable CSV
+          content:
+            text/csv:
+              schema:
+                type: string
+        '404':
+          description: No event log available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/export/event-log/xes:
+    get:
+      tags: [Export]
+      summary: Download event log (XES)
+      operationId: exportEventLogXes
+      responses:
+        '200':
+          description: Event log as downloadable XES (XML)
+          content:
+            application/xml:
+              schema:
+                type: string
+        '404':
+          description: No event log available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/export/event-log/json:
+    get:
+      tags: [Export]
+      summary: Download event log (JSON)
+      operationId: exportEventLogJson
+      responses:
+        '200':
+          description: Event log as downloadable JSON
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: No event log available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/export/migration/plan/json:
+    get:
+      tags: [Export]
+      summary: Download migration plan (JSON)
+      operationId: exportMigrationPlanJson
+      responses:
+        '200':
+          description: Migration plan as downloadable JSON
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MigrationPlan'
+        '404':
+          description: No plan available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: |
+        API key authentication. Required when API_KEY environment variable is set.
+        Pass via X-API-Key header or apiKey query parameter.
+        Exempt paths: /health, /ready, /metrics
+
   schemas:
     HealthResponse:
       type: object
@@ -655,3 +1316,70 @@ components:
         uptime:
           type: integer
           description: Uptime in seconds
+
+    EventLogInput:
+      type: object
+      required:
+        - events
+      properties:
+        events:
+          type: array
+          items:
+            type: object
+            required:
+              - caseId
+              - activity
+              - timestamp
+            properties:
+              caseId:
+                type: string
+              activity:
+                type: string
+              timestamp:
+                type: string
+                format: date-time
+              resource:
+                type: string
+        options:
+          type: object
+
+    MigrationPlan:
+      type: object
+      properties:
+        generatedAt:
+          type: string
+          format: date-time
+        scope:
+          type: object
+          properties:
+            activeModules:
+              type: array
+              items:
+                type: string
+            totalObjects:
+              type: integer
+            totalEstimatedRecords:
+              type: integer
+        objects:
+          type: array
+          items:
+            type: object
+        executionPlan:
+          type: object
+          properties:
+            waves:
+              type: array
+              items:
+                type: object
+            totalWaves:
+              type: integer
+        effort:
+          type: object
+        risks:
+          type: array
+          items:
+            type: object
+        recommendations:
+          type: array
+          items:
+            type: object
