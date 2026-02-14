@@ -141,7 +141,7 @@ describe('tools', () => {
       expect(result.map((t) => t.name)).toEqual(reversed);
     });
 
-    it('should return tool objects in Claude API format', () => {
+    it('should return tool objects in standard API format', () => {
       const result = getToolsForRole(['read_abap_source']);
       expect(result[0]).toHaveProperty('name');
       expect(result[0]).toHaveProperty('description');

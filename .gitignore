@@ -13,3 +13,5 @@ coverage/
 .migration-checkpoints/
 .sapconnect-checkpoints/
 *.log
+CLAUDE.md
+.claude/

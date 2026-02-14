@@ -8,7 +8,7 @@ Replaces 6-month migration timelines with automated, code-driven execution. Ever
 
 ```mermaid
 graph TB
-    subgraph "Migration Engine (874 rules, 42 objects, 52 processes)"
+    subgraph "Migration Engine (874 rules, 42 objects, 52 processes, 43 MCP tools)"
         ASSESS[Phase 1: Assess<br/>874 custom code rules<br/>21 SAP modules]
         REMED[Phase 2: Remediate<br/>Auto-fix suggestions<br/>per rule]
         PROFILE[Phase 3: Profile<br/>Data quality analysis<br/>Fuzzy duplicate detection]
@@ -29,7 +29,14 @@ graph TB
         CAP[CAP Backend<br/>OData V4 + Draft]
         FE[Fiori Elements UI]
         DIS[API Discovery Scanner]
-        AG[AI Agent<br/>Claude-powered]
+        AG[AI Agent<br/>AI-powered]
+    end
+
+    subgraph "Ecosystem (Pillars 6-8)"
+        SIG[Signavio<br/>BPMN parser<br/>Process-to-config]
+        TESTENG[Testing Engine<br/>AI test generation<br/>31 templates]
+        CLOUD[Cloud Modules<br/>SF, Ariba, Concur, SAC]
+        MCP[MCP Server<br/>43 SAP tools<br/>JSON-RPC 2.0]
     end
 
     subgraph "Connectivity"
@@ -48,7 +55,7 @@ graph TB
 1. Click **Code > Codespaces > New codespace** on this repository
 2. Wait for setup to complete (installs SAP tools automatically)
 3. Run `npm run watch` — server starts on port 4004
-4. Run `npm test` — 2610 tests across 191 files
+4. Run `npm test` — 4359 tests across 234 files
 
 ### Local Development
 ```bash
@@ -70,7 +77,7 @@ docker compose up
 ### Run Migration Assessment
 ```bash
 npm run assess                    # Scan custom code against 874 rules
-npm test                          # Run full test suite (2610 tests)
+npm test                          # Run full test suite (4359 tests)
 npm run lint                      # ESLint code quality check
 node -e "
   const R = require('./migration/objects/registry');
@@ -102,7 +109,14 @@ node -e "
 | **CAP Backend** | OData V4 | Customer service with draft support, business partner API |
 | **Fiori Elements** | List Report + Object Page | Auto-generated UI from annotations |
 | **API Discovery** | Scanner CLI | Discovers released APIs, events, and extension points |
-| **AI Agent** | Claude-powered | Multi-agent ABAP development assistant |
+| **AI Agent** | AI-powered | Multi-agent ABAP development assistant |
+| **Signavio** | BPMN 2.0 parser | Process model import, SAP config mapping, complexity analysis |
+| **Testing Engine** | 31 templates, 6 modules | AI test generation from NL/config/BPMN, multi-format reporting |
+| **SuccessFactors** | OData V2, 13 entity sets | CRUD, batch, effective dating, CSRF, metadata |
+| **Ariba** | Procurement APIs | POs, requisitions, contracts, suppliers, reporting |
+| **Concur** | REST V4 + SCIM 2.0 | Expenses, travel, user provisioning, list management |
+| **SAC** | Analytics Cloud | Models, stories, data import, dimensions, planning |
+| **MCP Server** | 43 tools, 4 resources | SAP tools for AI assistants via JSON-RPC 2.0 |
 
 ## 8-Phase Migration Methodology
 
@@ -169,7 +183,7 @@ npm run watch        # Start CAP server with live reload
 npm run discover     # Run API Discovery in mock mode
 npm run agent        # Run AI Agent workflow in mock mode
 npm run assess       # Run migration assessment
-npm test             # Run 2610 tests across 191 files
+npm test             # Run 4359 tests across 234 files
 npm run lint         # Run ESLint
 npm run format       # Run Prettier
 npm run docker:build # Build Docker image
@@ -190,7 +204,7 @@ npm run docker:build # Build Docker image
 - **SAP CAP (Node.js)** — Backend framework
 - **SAP Fiori Elements / UI5** — Frontend
 - **SQLite in-memory** — Local database
-- **vitest** — Test framework (2610 tests, 191 files)
+- **vitest** — Test framework (4359 tests, 234 files)
 - **ESLint + Prettier** — Code quality
 - **Docker** — Containerization
 - **GitHub Actions** — CI/CD

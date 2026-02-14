@@ -117,7 +117,7 @@ class AgentResult {
  *
  * Sequences agents through the ABAP development workflow.
  * In mock mode, returns pre-built outputs from mock-responses.json.
- * In live mode (future), will call the Claude API with agent system prompts.
+ * In live mode (future), will call the AI API with agent system prompts.
  */
 class Orchestrator {
   constructor(options = {}) {
@@ -217,12 +217,12 @@ class Orchestrator {
   }
 
   /**
-   * Live agent execution - calls Claude API (not yet implemented)
+   * Live agent execution - calls AI API (not yet implemented)
    */
   async _runLiveAgent(agent, requirement, context) {
-    this.logger.warn('Live mode requires ANTHROPIC_API_KEY.');
-    this.logger.info('To implement, add Claude API calls:');
-    this.logger.info('  - npm install @anthropic-ai/sdk');
+    this.logger.warn('Live mode requires AI_API_KEY.');
+    this.logger.info('To implement, add AI API calls:');
+    this.logger.info('  - Install the AI SDK of your choice');
     this.logger.info('  - Use agent.systemPrompt as the system message');
     this.logger.info('  - Pass requirement + context as user message');
     this.logger.info('  - Register agent.tools for function calling');

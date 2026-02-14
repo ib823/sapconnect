@@ -42,6 +42,18 @@ tags:
     description: Migration planning from forensic results
   - name: Export
     description: Data export endpoints
+  - name: Signavio
+    description: Signavio process model integration
+  - name: Testing
+    description: Test generation and execution
+  - name: CloudSF
+    description: SAP SuccessFactors integration
+  - name: CloudAriba
+    description: SAP Ariba integration
+  - name: CloudConcur
+    description: SAP Concur integration
+  - name: CloudSAC
+    description: SAP Analytics Cloud integration
 
 security:
   - ApiKeyAuth: []
@@ -961,6 +973,583 @@ paths:
                 $ref: '#/components/schemas/MigrationPlan'
         '404':
           description: No plan available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ── Signavio endpoints ──────────────────────────────────────
+
+  /api/signavio/models:
+    get:
+      tags: [Signavio]
+      summary: List Signavio process models
+      operationId: listSignavioModels
+      responses:
+        '200':
+          description: List of process models
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  models:
+                    type: array
+                    items:
+                      type: object
+                  total:
+                    type: integer
+
+  /api/signavio/models/{id}:
+    get:
+      tags: [Signavio]
+      summary: Get Signavio model by ID
+      operationId: getSignavioModel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Process model detail
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Model not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/signavio/models/{id}/bpmn:
+    get:
+      tags: [Signavio]
+      summary: Export model as BPMN XML
+      operationId: exportSignavioBpmn
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: BPMN XML export
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  modelId:
+                    type: string
+                  revisionId:
+                    type: string
+                  bpmn:
+                    type: string
+        '404':
+          description: Model not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/signavio/models/{id}/parse:
+    post:
+      tags: [Signavio]
+      summary: Parse BPMN into configuration steps
+      operationId: parseSignavioBpmn
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bpmnXml:
+                  type: string
+      responses:
+        '200':
+          description: Parsed configuration steps
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  modelId:
+                    type: string
+                  configSteps:
+                    type: array
+                    items:
+                      type: object
+                  complexity:
+                    type: object
+        '404':
+          description: Model not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/signavio/search:
+    get:
+      tags: [Signavio]
+      summary: Search Signavio models
+      operationId: searchSignavioModels
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Search query
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  query:
+                    type: string
+                  results:
+                    type: array
+                    items:
+                      type: object
+                  total:
+                    type: integer
+
+  /api/signavio/dictionary:
+    get:
+      tags: [Signavio]
+      summary: Get process glossary
+      operationId: getSignavioDictionary
+      responses:
+        '200':
+          description: Glossary entries
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  entries:
+                    type: array
+                    items:
+                      type: object
+                  total:
+                    type: integer
+
+  # ── Testing endpoints ──────────────────────────────────────
+
+  /api/testing/generate:
+    post:
+      tags: [Testing]
+      summary: Generate test cases
+      operationId: generateTestCases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: [description, config, bpmn]
+                input:
+                  type: string
+      responses:
+        '200':
+          description: Generated test cases
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  testCases:
+                    type: array
+                    items:
+                      type: object
+                  generatedAt:
+                    type: string
+                    format: date-time
+
+  /api/testing/templates:
+    get:
+      tags: [Testing]
+      summary: List test templates
+      operationId: listTestTemplates
+      parameters:
+        - name: module
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by SAP module (FI, SD, MM, etc.)
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [smoke, regression, integration]
+          description: Filter by test type
+      responses:
+        '200':
+          description: Test templates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  templates:
+                    type: array
+                    items:
+                      type: object
+                  total:
+                    type: integer
+
+  /api/testing/templates/{id}:
+    get:
+      tags: [Testing]
+      summary: Get test template by ID
+      operationId: getTestTemplate
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Test template detail
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Template not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/testing/templates/{id}/instantiate:
+    post:
+      tags: [Testing]
+      summary: Instantiate test template with variables
+      operationId: instantiateTestTemplate
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                variables:
+                  type: object
+                  additionalProperties:
+                    type: string
+      responses:
+        '200':
+          description: Instantiated test case
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Template not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/testing/execute:
+    post:
+      tags: [Testing]
+      summary: Execute test suite
+      operationId: executeTestSuite
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                testCases:
+                  type: array
+                  items:
+                    type: object
+      responses:
+        '200':
+          description: Test execution results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  summary:
+                    type: object
+                    properties:
+                      total:
+                        type: integer
+                      passed:
+                        type: integer
+                      failed:
+                        type: integer
+                  results:
+                    type: array
+                    items:
+                      type: object
+                  executedAt:
+                    type: string
+                    format: date-time
+
+  /api/testing/report:
+    get:
+      tags: [Testing]
+      summary: Get latest test report
+      operationId: getTestReport
+      responses:
+        '200':
+          description: Test report
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  summary:
+                    type: object
+                  modules:
+                    type: object
+
+  # ── Cloud SF endpoints ─────────────────────────────────────
+
+  /api/cloud/sf/entities/{entitySet}:
+    get:
+      tags: [CloudSF]
+      summary: Query SuccessFactors entities
+      operationId: querySFEntities
+      parameters:
+        - name: entitySet
+          in: path
+          required: true
+          schema:
+            type: string
+          example: PerPerson
+      responses:
+        '200':
+          description: Entity query results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  entitySet:
+                    type: string
+                  results:
+                    type: array
+                    items:
+                      type: object
+                  total:
+                    type: integer
+        '404':
+          description: Entity set not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags: [CloudSF]
+      summary: Create SuccessFactors entity
+      operationId: createSFEntity
+      parameters:
+        - name: entitySet
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Entity created
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # ── Cloud Ariba endpoints ──────────────────────────────────
+
+  /api/cloud/ariba/purchase-orders:
+    get:
+      tags: [CloudAriba]
+      summary: Query Ariba purchase orders
+      operationId: getAribaPurchaseOrders
+      responses:
+        '200':
+          description: Purchase order list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  purchaseOrders:
+                    type: array
+                    items:
+                      type: object
+                  total:
+                    type: integer
+
+  /api/cloud/ariba/contracts:
+    get:
+      tags: [CloudAriba]
+      summary: Query Ariba contracts
+      operationId: getAribaContracts
+      responses:
+        '200':
+          description: Contract list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contracts:
+                    type: array
+                    items:
+                      type: object
+                  total:
+                    type: integer
+
+  # ── Cloud Concur endpoints ─────────────────────────────────
+
+  /api/cloud/concur/expense-reports:
+    get:
+      tags: [CloudConcur]
+      summary: Query Concur expense reports
+      operationId: getConcurExpenseReports
+      responses:
+        '200':
+          description: Expense report list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  expenseReports:
+                    type: array
+                    items:
+                      type: object
+                  total:
+                    type: integer
+
+  /api/cloud/concur/users:
+    post:
+      tags: [CloudConcur]
+      summary: Provision Concur user
+      operationId: provisionConcurUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+      responses:
+        '201':
+          description: User provisioned
+          content:
+            application/json:
+              schema:
+                type: object
+
+  # ── Cloud SAC endpoints ────────────────────────────────────
+
+  /api/cloud/sac/models:
+    get:
+      tags: [CloudSAC]
+      summary: List SAC models
+      operationId: listSACModels
+      responses:
+        '200':
+          description: SAC model list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  models:
+                    type: array
+                    items:
+                      type: object
+                  total:
+                    type: integer
+
+  /api/cloud/sac/models/{id}/import:
+    post:
+      tags: [CloudSAC]
+      summary: Import data into SAC model
+      operationId: importSACData
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+      responses:
+        '200':
+          description: Import result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  modelId:
+                    type: string
+                  importStatus:
+                    type: string
+                  rowsImported:
+                    type: integer
+                  importedAt:
+                    type: string
+                    format: date-time
+        '404':
+          description: Model not found
           content:
             application/json:
               schema:

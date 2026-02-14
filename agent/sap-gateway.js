@@ -86,7 +86,7 @@ class SapGateway {
   /** Log that a method requires MCP mode and fall back to mock */
   _vspNotSupported(method) {
     this._log.warn(`vsp CLI does not support ${method}.`);
-    this._log.info('For full capability, use vsp as an MCP server in Claude Code.');
+    this._log.info('For full capability, use vsp as an MCP server in your AI assistant.');
     this._log.info('See .mcp.json.example for configuration.');
     this._log.warn('Falling back to mock data.');
   }

@@ -1,6 +1,6 @@
 # SAP AI Agent
 
-Multi-agent ABAP development assistant powered by Claude AI. Analyzes requirements, designs solutions, generates code, runs tests, and reviews implementations — all following SAP Clean Core principles.
+Multi-agent ABAP development assistant powered by AI. Analyzes requirements, designs solutions, generates code, runs tests, and reviews implementations — all following SAP Clean Core principles.
 
 ## Quick Start
 
@@ -33,7 +33,7 @@ agent.js           CLI entry point (parses args, dispatches commands)
   ├── orchestrator.js  Sequences agents, manages context passing
   │     │
   │     ├── agents.js      Role definitions + system prompts
-  │     └── tools.js       Tool definitions for Claude function calling
+  │     └── tools.js       Tool definitions for AI function calling
   │           │
   │           └── sap-gateway.js   SAP abstraction (mock / vsp / live)
   │                 │
@@ -53,7 +53,7 @@ The demo scenario is **"Add a custom vendor rating field to purchase orders"**. 
 - **Unit Tests**: 3/3 passing, 87% statement coverage
 - **Syntax Check**: Clean, no errors
 
-Each agent returns pre-built analysis for this scenario, demonstrating the full workflow without needing a real SAP system or Claude API key.
+Each agent returns pre-built analysis for this scenario, demonstrating the full workflow without needing a real SAP system or AI API key.
 
 ## SAP Tools
 
@@ -112,7 +112,7 @@ Read operations (`read_abap_source`, `search_repository`) run against the live S
 
 ### MCP Integration (Full Capability)
 
-For full access to all 99 vsp tools, configure vsp as an MCP server for Claude Code. Copy `.mcp.json.example` to `.mcp.json` and fill in your SAP credentials:
+For full access to all 99 vsp tools, configure vsp as an MCP server for your AI assistant. Copy `.mcp.json.example` to `.mcp.json` and fill in your SAP credentials:
 
 ```json
 {
@@ -130,7 +130,7 @@ For full access to all 99 vsp tools, configure vsp as an MCP server for Claude C
 }
 ```
 
-This gives Claude Code direct access to ADT operations: reading/writing ABAP, running tests, activating objects, managing transports, and more.
+This gives the AI assistant direct access to ADT operations: reading/writing ABAP, running tests, activating objects, managing transports, and more.
 
 ### Live Mode (RFC — Future)
 
@@ -152,7 +152,7 @@ Commands:
 Options:
   -f, --format <fmt>       terminal (default) or md
   -s, --sap-system <url>   SAP system URL
-  -k, --api-key <key>      Anthropic API key
+  -k, --api-key <key>      AI API key
   -P, --vsp-path <path>    Path to vsp binary (enables vsp mode)
   -S, --vsp-system <name>  vsp system profile (from .vsp.json)
   -v, --verbose            Detailed execution logs

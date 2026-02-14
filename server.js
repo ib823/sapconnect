@@ -47,6 +47,15 @@ const { createMigrationPlanRouter } = require('./extraction/migration-plan-api')
 // Data Export API
 const { createExportRouter } = require('./extraction/export-api');
 
+// Signavio API
+const { createSignavioRouter } = require('./extraction/signavio-api');
+
+// Testing API
+const { createTestingRouter } = require('./extraction/testing-api');
+
+// Cloud API
+const { createCloudRouter } = require('./extraction/cloud-api');
+
 // Extraction registry (for platform summary)
 const ExtractorRegistry = require('./extraction/extractor-registry');
 
@@ -168,6 +177,9 @@ function createApp(configOverrides = {}) {
     eventLog: null,
     eventLogs: {},
     latestPlan: null,
+    signavio: null,
+    testing: null,
+    cloud: null,
   };
   app.use(createDashboardRouter(forensicState));
 
@@ -179,6 +191,15 @@ function createApp(configOverrides = {}) {
 
   // ── Data Export API ────────────────────────────────────────
   app.use(createExportRouter(forensicState));
+
+  // ── Signavio API ─────────────────────────────────────────
+  app.use(createSignavioRouter(forensicState));
+
+  // ── Testing API ──────────────────────────────────────────
+  app.use(createTestingRouter(forensicState));
+
+  // ── Cloud API ────────────────────────────────────────────
+  app.use(createCloudRouter(forensicState));
 
   // ── Platform Summary ───────────────────────────────────────
   app.get('/api/platform/summary', (_req, res) => {
@@ -231,6 +252,9 @@ function createApp(configOverrides = {}) {
   app._apiKeyAuth = apiKeyAuth;
   app._migrationPlan = true;
   app._export = true;
+  app._signavio = true;
+  app._testing = true;
+  app._cloud = true;
 
   return app;
 }

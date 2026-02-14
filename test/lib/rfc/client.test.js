@@ -29,7 +29,7 @@ describe('RfcClient', () => {
 
   describe('constructor', () => {
     it('should store connection params and options', () => {
-      expect(client.connectionParams).toBe(connParams);
+      expect(client.connectionParams).toStrictEqual(connParams);
       expect(client.timeout).toBe(5000);
       expect(client.retries).toBe(1);
       expect(client.isConnected).toBe(false);

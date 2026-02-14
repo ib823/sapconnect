@@ -1,8 +1,8 @@
 /**
- * Tool Definitions for Claude Function Calling
+ * Tool Definitions for AI Function Calling
  *
  * 8 tools that agents can use to interact with the SAP system.
- * Each tool is defined in Claude API format with name, description, and input_schema.
+ * Each tool is defined in standard API format with name, description, and input_schema.
  */
 
 const TOOLS = [
@@ -113,7 +113,7 @@ for (const tool of TOOLS) {
 /**
  * Get tool definitions allowed for a given agent role
  * @param {string[]} allowedNames - List of tool names the agent can use
- * @returns {object[]} Array of tool definitions in Claude API format
+ * @returns {object[]} Array of tool definitions in standard API format
  */
 function getToolsForRole(allowedNames) {
   return allowedNames

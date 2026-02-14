@@ -367,6 +367,24 @@ describe('server.js — createApp', () => {
       expect(app._export).toBe(true);
     });
 
+    it('should attach _signavio reference', () => {
+      expect(app._signavio).toBe(true);
+    });
+
+    it('should attach _testing reference', () => {
+      expect(app._testing).toBe(true);
+    });
+
+    it('should attach _cloud reference', () => {
+      expect(app._cloud).toBe(true);
+    });
+
+    it('should have signavio, testing, cloud in forensicState', () => {
+      expect(app._forensicState).toHaveProperty('signavio', null);
+      expect(app._forensicState).toHaveProperty('testing', null);
+      expect(app._forensicState).toHaveProperty('cloud', null);
+    });
+
     it('should have expanded forensicState with eventLog and latestPlan', () => {
       expect(app._forensicState).toHaveProperty('eventLog', null);
       expect(app._forensicState).toHaveProperty('eventLogs');
@@ -406,6 +424,28 @@ describe('server.js — createApp', () => {
     it('should return 404 when no event log', async () => {
       const res = await request(app).get('/api/export/event-log/csv');
       expect(res.status).toBe(404);
+    });
+  });
+
+  // ── Pillar 6-8 endpoints ──────────────────────────────────
+
+  describe('Pillar 6-8 endpoints respond', () => {
+    it('GET /api/signavio/models should return 200', async () => {
+      const res = await request(app).get('/api/signavio/models');
+      expect(res.status).toBe(200);
+      expect(res.body.models).toBeDefined();
+    });
+
+    it('GET /api/testing/templates should return 200', async () => {
+      const res = await request(app).get('/api/testing/templates');
+      expect(res.status).toBe(200);
+      expect(res.body.templates).toBeDefined();
+    });
+
+    it('GET /api/cloud/sac/models should return 200', async () => {
+      const res = await request(app).get('/api/cloud/sac/models');
+      expect(res.status).toBe(200);
+      expect(res.body.models).toBeDefined();
     });
   });
 

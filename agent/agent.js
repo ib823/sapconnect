@@ -74,7 +74,7 @@ function printHelp() {
 SAP AI Agent - ABAP Development Assistant
 ==========================================
 
-Multi-agent workflow for ABAP development powered by Claude AI.
+Multi-agent workflow for ABAP development powered by AI.
 Runs in mock mode by default (no SAP system or API key required).
 
 Usage:
@@ -91,14 +91,14 @@ Commands:
 Options:
   -f, --format <fmt>       Output format: terminal (default) or md
   -s, --sap-system <url>   SAP system URL (enables live SAP connection)
-  -k, --api-key <key>      Anthropic API key (enables live Claude calls)
+  -k, --api-key <key>      AI API key (enables live AI calls)
   -P, --vsp-path <path>    Path to vsp binary (enables vsp mode)
   -S, --vsp-system <name>  vsp system profile name (from .vsp.json)
   -v, --verbose            Show detailed execution logs
   -h, --help               Show this help
 
 Environment Variables:
-  ANTHROPIC_API_KEY        Anthropic API key (alternative to --api-key)
+  AI_API_KEY               AI API key (alternative to --api-key)
   SAP_HOSTNAME             SAP system hostname
   SAP_USERNAME             SAP system username
   SAP_PASSWORD             SAP system password
@@ -150,7 +150,7 @@ async function main() {
   });
 
   const orchestrator = new Orchestrator({
-    apiKey: args.apiKey || process.env.ANTHROPIC_API_KEY,
+    apiKey: args.apiKey || process.env.AI_API_KEY,
     verbose: args.verbose,
     gateway,
   });
