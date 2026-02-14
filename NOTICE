@@ -1,5 +1,5 @@
 SAP Connect
-Copyright 2024-2026 ib823 (SAP Connect Contributors)
+Copyright 2024-2026 SAP Connect Contributors
 
 This product is licensed under the Apache License, Version 2.0.
 See the LICENSE file for the full license text.
@@ -8,11 +8,11 @@ See the LICENSE file for the full license text.
 ORIGINAL WORK
 ================================================================================
 
-SAP Connect is an original work authored by SAP Connect Contributors. All platform architecture,
-migration engine logic, forensic extraction framework, process mining algorithms,
-greenfield automation, AI orchestration, MCP server implementation, cloud module
+SAP Connect is an original work. All platform architecture, migration engine
+logic, forensic extraction framework, process mining algorithms, greenfield
+automation, AI orchestration, MCP server implementation, cloud module
 integrations, testing automation engine, and associated test suites are original
-creations by the author.
+creations.
 
 ================================================================================
 THIRD-PARTY OPEN SOURCE COMPONENTS

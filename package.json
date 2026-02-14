@@ -7,7 +7,7 @@
   },
   "repository": "https://github.com/ib823/sapconnect",
   "license": "Apache-2.0",
-  "author": "ib823",
+  "author": "SAP Connect Contributors",
   "dependencies": {
     "@sap/cds": "^8",
     "@sap/xssec": "^4",

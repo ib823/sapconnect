@@ -224,7 +224,7 @@ npm run docker:build # Build Docker image
 
 ## License
 
-Copyright 2024-2026 **ib823** Contributors
+Copyright 2024-2026 SAP Connect Contributors
 
 Licensed under the [Apache License, Version 2.0](LICENSE). You may use, modify, and distribute this software under the terms of the license. Attribution to the original author must be preserved. See the [NOTICE](NOTICE) file for third-party acknowledgments and trademark notices.
 

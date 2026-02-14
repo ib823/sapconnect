@@ -1,17 +1,32 @@
+# Dependencies
 node_modules/
+
+# Build output
+dist/
+gen/
+resources/
+mta_archives/
+*.mtar
+coverage/
+out/
+.next/
+
+# SAP / runtime
 *.db
 *.sqlite
 default-env.json
 .env
-mta_archives/
-gen/
-resources/
-dist/
-*.mtar
 connection.properties
-coverage/
 .migration-checkpoints/
 .sapconnect-checkpoints/
+
+# Logs
 *.log
+
+# IDE / local tooling
 CLAUDE.md
 .claude/
+
+# Internal planning (never commit)
+*BPP*.md
+*PLAN*.md
