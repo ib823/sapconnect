@@ -377,9 +377,9 @@ describe('BdcEngine', () => {
   });
 
   describe('listTemplateTypes', () => {
-    it('should return all 7 built-in types plus custom', () => {
+    it('should return all 55 built-in types plus custom', () => {
       const types = engine.listTemplateTypes();
-      expect(types.length).toBe(8); // 7 built-in + custom
+      expect(types.length).toBe(56); // 55 built-in + custom
     });
 
     it('should include transaction codes for each type', () => {
@@ -495,8 +495,9 @@ describe('BdcEngine', () => {
   });
 
   describe('SCREEN_SEQUENCES', () => {
-    it('should define all 7 template types', () => {
+    it('should define all 55 template types', () => {
       const types = Object.keys(SCREEN_SEQUENCES);
+      expect(types.length).toBe(55);
       expect(types).toContain('company_code');
       expect(types).toContain('plant');
       expect(types).toContain('sales_org');
