@@ -1,0 +1,119 @@
+@import 'tailwindcss';
+
+:root {
+  /* Brand */
+  --color-brand: #0A66FF;
+  --color-brand-hover: #0852CC;
+  --color-brand-subtle: #E8F0FE;
+  --color-brand-dark: #7AA2FF;
+
+  /* Surfaces */
+  --color-bg: #FFFFFF;
+  --color-surface: #F8F9FB;
+  --color-surface-raised: #FFFFFF;
+  --color-border: #E2E5EA;
+
+  /* Text */
+  --color-text-primary: #0D1526;
+  --color-text-secondary: #5A6170;
+  --color-text-tertiary: #8B92A0;
+
+  /* Semantic */
+  --color-success: #0D9244;
+  --color-warning: #C27803;
+  --color-danger: #D92B2B;
+  --color-focus: #0A66FF;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-size-h1: 3rem;
+  --font-size-h2: 2.25rem;
+  --font-size-h3: 1.5rem;
+  --font-size-h4: 1.25rem;
+  --font-size-body-l: 1.125rem;
+  --font-size-body-m: 1rem;
+  --font-size-body-s: 0.875rem;
+  --font-size-caption: 0.75rem;
+  --leading-heading: 1.15;
+  --leading-body: 1.6;
+
+  /* Spacing */
+  --space-section: 5rem;
+  --space-component: 2.5rem;
+  --radius-card: 16px;
+  --radius-button: 10px;
+  --radius-chip: 999px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-brand: #7AA2FF;
+    --color-brand-hover: #99B8FF;
+    --color-brand-subtle: #1A2744;
+    --color-bg: #0D1117;
+    --color-surface: #161B22;
+    --color-surface-raised: #1C2128;
+    --color-border: #30363D;
+    --color-text-primary: #F0F3F6;
+    --color-text-secondary: #9CA3AF;
+    --color-text-tertiary: #6B7280;
+    --color-focus: #7AA2FF;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  line-height: var(--leading-body);
+}
+
+.container-site {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-brand);
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 var(--radius-button) var(--radius-button);
+}
+.skip-to-content:focus {
+  left: 1rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
