@@ -221,3 +221,11 @@ npm run docker:build # Build Docker image
 - [Demo Script](docs/demo-script.md)
 - [API Discovery](discovery/README.md)
 - [AI Agent](agent/README.md)
+
+## License
+
+Copyright 2024-2026 **ib823** Contributors
+
+Licensed under the [Apache License, Version 2.0](LICENSE). You may use, modify, and distribute this software under the terms of the license. Attribution to the original author must be preserved. See the [NOTICE](NOTICE) file for third-party acknowledgments and trademark notices.
+
+This is an independent, community-driven project. It is **not** an official SAP product. SAP, S/4HANA, SuccessFactors, Ariba, Concur, Signavio, Analytics Cloud, and all related trademarks are the property of SAP SE.

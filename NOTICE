@@ -1,0 +1,112 @@
+SAP Connect
+Copyright 2024-2026 ib823 (SAP Connect Contributors)
+
+This product is licensed under the Apache License, Version 2.0.
+See the LICENSE file for the full license text.
+
+================================================================================
+ORIGINAL WORK
+================================================================================
+
+SAP Connect is an original work authored by SAP Connect Contributors. All platform architecture,
+migration engine logic, forensic extraction framework, process mining algorithms,
+greenfield automation, AI orchestration, MCP server implementation, cloud module
+integrations, testing automation engine, and associated test suites are original
+creations by the author.
+
+================================================================================
+THIRD-PARTY OPEN SOURCE COMPONENTS
+================================================================================
+
+This software incorporates or depends on open source components, each governed
+by their own respective licenses. Key dependencies include:
+
+  - SAP Cloud Application Programming Model (@sap/cds) — SAP Developer License
+    https://cap.cloud.sap
+  - SAP XSSEC (@sap/xssec) — SAP Developer License
+  - Express.js (express) — MIT License
+    Copyright (c) TJ Holowaychuk and contributors
+  - Passport.js (passport) — MIT License
+    Copyright (c) Jared Hanson
+  - Vitest (vitest) — MIT License
+    Copyright (c) Anthony Fu and Vitest contributors
+  - ESLint (eslint) — MIT License
+    Copyright OpenJS Foundation and contributors
+  - Prettier (prettier) — MIT License
+    Copyright (c) James Long and contributors
+  - SQLite for CAP (@cap-js/sqlite) — Apache License 2.0
+  - PostgreSQL for CAP (@cap-js/postgres) — Apache License 2.0
+
+Optional dependencies (not required for core operation):
+  - node-rfc — Apache License 2.0
+    Copyright (c) SAP SE
+  - abap-adt-api — MIT License
+
+A complete listing of all dependency licenses can be generated with:
+  npx license-checker --summary
+
+================================================================================
+TRADEMARK NOTICES
+================================================================================
+
+This software is an independent, community-driven tool. It is NOT an official
+SAP product and is not endorsed by, affiliated with, or sponsored by SAP SE
+or any of its subsidiaries.
+
+The following trademarks are the property of their respective owners and are
+used in this software solely for identification and interoperability purposes:
+
+  SAP, SAP S/4HANA, SAP BTP (Business Technology Platform), SAP CAP (Cloud
+  Application Programming Model), SAP Fiori, SAP Cloud ALM, ABAP, SAP GUI,
+  SAP NetWeaver, and SAP ERP are trademarks or registered trademarks of
+  SAP SE or its affiliates in Germany and other countries.
+
+  SAP Signavio is a trademark of Signavio GmbH, an SAP company.
+
+  SAP SuccessFactors is a trademark of SuccessFactors, Inc., an SAP company.
+
+  SAP Ariba is a trademark of Ariba, Inc., an SAP company.
+
+  SAP Concur is a trademark of Concur Technologies, Inc., an SAP company.
+
+  SAP Analytics Cloud (SAC) is a trademark of SAP SE.
+
+  BAPI, IDoc, RFC (Remote Function Call), BPMN, and other SAP-specific
+  technical terms are trademarks or proprietary designations of SAP SE.
+
+  Node.js is a trademark of the OpenJS Foundation.
+
+  Docker is a trademark of Docker, Inc.
+
+  GitHub is a trademark of GitHub, Inc.
+
+  PostgreSQL is a trademark of the PostgreSQL Community Association of Canada.
+
+All other trademarks mentioned in this software are the property of their
+respective owners.
+
+================================================================================
+DISCLAIMER
+================================================================================
+
+THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. THE AUTHOR
+MAKES NO REPRESENTATIONS OR WARRANTIES REGARDING THE ACCURACY, COMPLETENESS,
+OR SUITABILITY OF THIS SOFTWARE FOR ANY PARTICULAR PURPOSE.
+
+This software interacts with SAP systems via publicly documented APIs (OData,
+RFC, ADT REST). Users are solely responsible for ensuring compliance with their
+own SAP licensing agreements, data protection regulations, and organizational
+policies when using this software with SAP systems.
+
+The inclusion of API client implementations for SAP cloud products (SuccessFactors,
+Ariba, Concur, Analytics Cloud, Signavio) does not imply any license to those
+products. Users must hold valid licenses from SAP SE to access those services.
+
+================================================================================
+ATTRIBUTION REQUIREMENT
+================================================================================
+
+As required by Section 4(d) of the Apache License 2.0, any redistribution or
+derivative work must include this NOTICE file. Attribution to the original
+authors must be preserved in all copies or substantial portions of the
+software.
