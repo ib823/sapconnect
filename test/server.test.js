@@ -10,7 +10,7 @@
  */
 
 const http = require('http');
-const { createApp } = require('../server');
+const { createApp, installCrashHandlers } = require('../server');
 const { HealthCheck } = require('../lib/monitoring/health');
 const { MetricsCollector } = require('../lib/monitoring/metrics');
 const { AuditLogger } = require('../lib/security/audit-logger');
@@ -283,6 +283,81 @@ describe('server.js — createApp', () => {
 
       // With CORS_ORIGINS='*' (the default), the header should be set
       expect(res.headers['access-control-allow-origin']).toBeDefined();
+    });
+  });
+
+  // ── Forensic API routes ──────────────────────────────────
+
+  describe('GET /api/forensic/summary', () => {
+    it('should return forensic summary (no extraction data)', async () => {
+      const res = await request(app).get('/api/forensic/summary');
+      expect(res.status).toBe(200);
+      expect(res.body.status).toBe('no_extraction');
+    });
+  });
+
+  describe('GET /api/forensic/modules', () => {
+    it('should return forensic modules (empty when no data)', async () => {
+      const res = await request(app).get('/api/forensic/modules');
+      expect(res.status).toBe(200);
+      expect(res.body.modules).toEqual([]);
+    });
+  });
+
+  describe('GET /api/forensic/progress', () => {
+    it('should return forensic progress state', async () => {
+      const res = await request(app).get('/api/forensic/progress');
+      expect(res.status).toBe(200);
+      expect(res.body.running).toBe(false);
+    });
+  });
+
+  // ── Process Mining API routes ──────────────────────────────
+
+  describe('GET /api/process-mining/processes', () => {
+    it('should return process list through server', async () => {
+      const res = await request(app).get('/api/process-mining/processes');
+      expect(res.status).toBe(200);
+      expect(res.body.processes).toBeDefined();
+      expect(res.body.processes.length).toBe(7);
+    });
+  });
+
+  // ── Platform Summary ──────────────────────────────────────
+
+  describe('GET /api/platform/summary', () => {
+    it('should return unified platform summary', async () => {
+      const res = await request(app).get('/api/platform/summary');
+      expect(res.status).toBe(200);
+      expect(res.body.timestamp).toBeDefined();
+      expect(res.body.migration).toBeDefined();
+      expect(typeof res.body.migration.objects).toBe('number');
+      expect(Array.isArray(res.body.migration.objectIds)).toBe(true);
+      expect(res.body.forensic).toBeDefined();
+      expect(typeof res.body.forensic.extractors).toBe('number');
+      expect(res.body.processMining).toBeDefined();
+      expect(res.body.processMining.processes).toBe(7);
+    });
+  });
+
+  // ── Test references ───────────────────────────────────────
+
+  describe('test references', () => {
+    it('should attach _forensicState reference', () => {
+      expect(app._forensicState).toBeDefined();
+      expect(app._forensicState.running).toBe(false);
+    });
+
+    it('should attach _processMining reference', () => {
+      expect(app._processMining).toBe(true);
+    });
+  });
+
+  // ── Crash handlers ────────────────────────────────────────
+
+  describe('installCrashHandlers', () => {
+    it('should be a function', () => {
+      expect(typeof installCrashHandlers).toBe('function');
     });
   });
 

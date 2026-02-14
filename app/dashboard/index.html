@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAP Connect — Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="header">
+    <h1>SAP Connect</h1>
+    <ul class="nav-tabs">
+      <li><a href="#overview" data-page="overview" class="active">Overview</a></li>
+      <li><a href="#migration" data-page="migration">Migration</a></li>
+      <li><a href="#process-mining" data-page="process-mining">Process Mining</a></li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <div id="page-overview" class="page active"></div>
+    <div id="page-migration" class="page"></div>
+    <div id="page-process-mining" class="page"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <script src="api-client.js"></script>
+  <script src="charts.js"></script>
+  <script src="pages/overview.js"></script>
+  <script src="pages/migration.js"></script>
+  <script src="pages/process-mining.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

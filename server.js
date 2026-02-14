@@ -4,8 +4,9 @@
  * Wires together:
  *  - Security: headers, CORS, rate limiting, audit logging
  *  - Monitoring: health, readiness, metrics, request context
- *  - API: migration dashboard, run controls
+ *  - API: migration dashboard, forensic extraction, process mining
  *  - Error handling: structured JSON responses
+ *  - Crash handlers: uncaughtException, unhandledRejection, SIGTERM/SIGINT
  *
  * This server runs alongside the CAP server. CAP handles the
  * OData/Fiori endpoints; this handles the migration REST API,
@@ -30,9 +31,21 @@ const { HealthCheck, MetricsCollector, RequestContext } = require('./lib/monitor
 // Error handling
 const { errorHandler, notFoundHandler } = require('./lib/middleware/error-handler');
 
-// Dashboard
+// Migration Dashboard
 const DashboardAPI = require('./migration/dashboard/api');
 const MigrationObjectRegistry = require('./migration/objects/registry');
+
+// Forensic Dashboard
+const { createDashboardRouter } = require('./extraction/report/dashboard-api');
+
+// Process Mining API
+const { createProcessMiningRouter } = require('./extraction/process-mining/api');
+
+// Extraction registry (for platform summary)
+const ExtractorRegistry = require('./extraction/extractor-registry');
+
+// Process mining config (for platform summary)
+const { getAllProcessIds } = require('./extraction/process-mining/sap-table-config');
 
 /**
  * Create and configure the Express app.
@@ -119,7 +132,7 @@ function createApp(configOverrides = {}) {
     res.json(auditLogger.getStats());
   });
 
-  // ── Dashboard API ──────────────────────────────────────────
+  // ── Migration Dashboard API ────────────────────────────────
   const gateway = { mode: config.migrationMode };
   const registry = new MigrationObjectRegistry();
 
@@ -129,6 +142,47 @@ function createApp(configOverrides = {}) {
     verbose: config.logLevel === 'debug',
   });
   dashboard.registerRoutes(app);
+
+  // ── Forensic Dashboard API ─────────────────────────────────
+  const forensicState = {
+    report: null,
+    processCatalog: null,
+    interpretations: [],
+    results: {},
+    gapReport: {},
+    confidence: { overall: 0, grade: 'N/A' },
+    coverageTracker: null,
+    running: false,
+    progress: {},
+    startedAt: null,
+  };
+  app.use(createDashboardRouter(forensicState));
+
+  // ── Process Mining API ─────────────────────────────────────
+  app.use(createProcessMiningRouter());
+
+  // ── Platform Summary ───────────────────────────────────────
+  app.get('/api/platform/summary', (_req, res) => {
+    const migrationIds = registry.listObjectIds();
+    const extractors = ExtractorRegistry.getAll();
+    const processIds = getAllProcessIds();
+
+    res.json({
+      timestamp: new Date().toISOString(),
+      migration: {
+        objects: migrationIds.length,
+        objectIds: migrationIds,
+      },
+      forensic: {
+        extractors: extractors.length,
+        extractorIds: extractors.map((e) => e.id),
+      },
+      processMining: {
+        processes: processIds.length,
+        processIds,
+      },
+    });
+  });
 
   // ── Info endpoint ──────────────────────────────────────────
   app.get('/api/info', (_req, res) => {
@@ -153,22 +207,64 @@ function createApp(configOverrides = {}) {
   app._auditLogger = auditLogger;
   app._rateLimiter = rateLimiter;
   app._dashboard = dashboard;
+  app._forensicState = forensicState;
+  app._processMining = true;
 
   return app;
+}
+
+/**
+ * Install process-level crash handlers for production resilience.
+ * @param {object} log — Logger instance
+ * @param {http.Server} [server] — HTTP server for graceful shutdown
+ */
+function installCrashHandlers(log, server) {
+  process.on('uncaughtException', (err) => {
+    log.error('Uncaught exception — shutting down', { error: err.message, stack: err.stack });
+    process.exit(1);
+  });
+
+  process.on('unhandledRejection', (reason) => {
+    const message = reason instanceof Error ? reason.message : String(reason);
+    log.error('Unhandled rejection — shutting down', { reason: message });
+    process.exit(1);
+  });
+
+  const gracefulShutdown = (signal) => {
+    log.info(`Received ${signal} — graceful shutdown`);
+    if (server) {
+      server.close(() => {
+        log.info('HTTP server closed');
+        process.exit(0);
+      });
+      // Force exit after 10s if graceful close stalls
+      setTimeout(() => process.exit(0), 10000).unref();
+    } else {
+      process.exit(0);
+    }
+  };
+
+  process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+  process.on('SIGINT', () => gracefulShutdown('SIGINT'));
 }
 
 // ── CLI entrypoint ─────────────────────────────────────────
 if (require.main === module) {
   const app = createApp();
+  const log = new Logger('server');
   const port = app._config.port === 4004 ? 4005 : app._config.port; // avoid collision with CAP
-  app.listen(port, app._config.host, () => {
+  const server = app.listen(port, app._config.host, () => {
     console.log(`SAP Connect Migration API running at http://${app._config.host}:${port}`);
-    console.log(`  Health:    http://localhost:${port}/health`);
-    console.log(`  Ready:     http://localhost:${port}/ready`);
-    console.log(`  Metrics:   http://localhost:${port}/metrics`);
-    console.log(`  Dashboard: http://localhost:${port}/api/dashboard/summary`);
-    console.log(`  Mode:      ${app._config.migrationMode}`);
+    console.log(`  Health:      http://localhost:${port}/health`);
+    console.log(`  Ready:       http://localhost:${port}/ready`);
+    console.log(`  Metrics:     http://localhost:${port}/metrics`);
+    console.log(`  Dashboard:   http://localhost:${port}/api/dashboard/summary`);
+    console.log(`  Forensic:    http://localhost:${port}/api/forensic/summary`);
+    console.log(`  Mining:      http://localhost:${port}/api/process-mining/processes`);
+    console.log(`  Platform:    http://localhost:${port}/api/platform/summary`);
+    console.log(`  Mode:        ${app._config.migrationMode}`);
   });
+  installCrashHandlers(log, server);
 }
 
-module.exports = { createApp };
+module.exports = { createApp, installCrashHandlers };
