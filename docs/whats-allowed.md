@@ -23,7 +23,7 @@
 
 ## Public Cloud
 
-SAP S/4HANA Public Cloud is the most restrictive but most future-proof option.
+SAP Public Cloud is the most restrictive but most future-proof option.
 
 **What you CAN do:**
 - Use any released API via Communication Arrangements
@@ -40,7 +40,7 @@ SAP S/4HANA Public Cloud is the most restrictive but most future-proof option.
 
 ## Private Cloud
 
-SAP S/4HANA Private Cloud gives more flexibility but with upgrade risks.
+SAP Private Cloud gives more flexibility but with upgrade risks.
 
 **Additional capabilities over Public Cloud:**
 - Classic ABAP development
@@ -53,7 +53,7 @@ SAP S/4HANA Private Cloud gives more flexibility but with upgrade risks.
 
 ## BTP-Only
 
-For scenarios where there's no S/4HANA system, only BTP services.
+For scenarios where there is no on-premise SAP system, only BTP services.
 
 **What you CAN do:**
 - Build full-stack CAP applications

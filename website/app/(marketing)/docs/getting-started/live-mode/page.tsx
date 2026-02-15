@@ -236,7 +236,7 @@ export SAP_PASSWORD="YOUR_SAP_PASSWORD"
               <strong className="text-[var(--color-text-primary)]">RFC SDK is optional.</strong>{' '}
               If node-rfc is not installed, SAP Connect automatically falls back
               to OData and ADT REST APIs. This is the recommended approach for
-              SAP S/4HANA Cloud (Public Cloud) where RFC is not available.
+              SAP Cloud environments where RFC is not available.
             </p>
           </Card>
         </div>

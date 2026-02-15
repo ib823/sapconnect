@@ -48,6 +48,11 @@ const securityFeatures = [
     description:
       'Transport management is never bypassed. All AI-generated and automated SAP artifacts pass through the full safety pipeline: Generate, Quality Check, Human Review, and Transport Import. Rollback is always available via transport reversal. No direct production writes are permitted.',
   },
+  {
+    title: 'XSUAA Authentication',
+    description:
+      'Native integration with SAP Authorization and Trust Management (XSUAA) for production deployments. JWT tokens are validated with scope-based access control (read, write, admin). Supports SAP BTP multi-tenant authentication with automatic token refresh and secure credential handling.',
+  },
 ];
 
 export default function SecurityPage() {

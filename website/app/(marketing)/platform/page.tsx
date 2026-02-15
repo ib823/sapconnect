@@ -36,7 +36,7 @@ const differentiators = [
   {
     title: 'Full test coverage',
     description:
-      '4,591 automated tests covering extraction, migration, process mining, security, and AI safety gates.',
+      '4,910 automated tests covering extraction, migration, process mining, security, and AI safety gates.',
   },
 ];
 

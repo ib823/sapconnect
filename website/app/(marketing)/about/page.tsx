@@ -29,7 +29,7 @@ export default function AboutPage() {
             </h2>
             <p className="mb-4 text-[var(--font-size-body-m)] leading-relaxed text-[var(--color-text-secondary)]">
               SAP migrations are among the most complex and expensive IT
-              projects an organization undertakes. A typical S/4HANA migration
+              projects an organization undertakes. A typical SAP migration
               takes 6 to 18 months, involves dozens of consultants, and costs
               millions of dollars. The majority of that time and cost goes
               toward repetitive, manual tasks: scanning custom code,

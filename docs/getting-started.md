@@ -46,12 +46,22 @@ Open `http://localhost:4004` to see the launcher page with links to:
 ### 2. Browse the OData Service
 
 Try these URLs:
-- `http://localhost:4004/api/customers/Customers` - All customers
-- `http://localhost:4004/api/customers/Projects` - All projects
-- `http://localhost:4004/api/customers/getProjectStats()` - Statistics
-- `http://localhost:4004/api/customers/$metadata` - Service metadata
+- `http://localhost:4004/api/customers/Customers` -- All customers
+- `http://localhost:4004/api/customers/Projects` -- All projects
+- `http://localhost:4004/api/customers/getProjectStats()` -- Statistics
+- `http://localhost:4004/api/customers/$metadata` -- Service metadata
 
-### 3. Run API Discovery
+### 3. Run the Full Test Suite
+
+```bash
+# Run all 4,910 tests across 251 files
+npm test
+
+# Run a specific test file
+npx vitest run test/migration/transform-coverage.test.js
+```
+
+### 4. Run API Discovery
 
 ```bash
 # Mock mode (no SAP system needed)
@@ -61,28 +71,62 @@ npm run discover
 npm run discover -- --format md
 ```
 
-### 4. Open the Fiori App
+### 5. Open the Fiori App
 
 Navigate to the Customers app from the launcher page or directly at:
 `http://localhost:4004/customers/webapp/index.html`
 
-### 5. Try Draft Editing
+### 6. Try Draft Editing
 
 1. Open the Customers list
 2. Click a customer to open the Object Page
 3. Click **Edit** to start a draft session
 4. Make changes and click **Save**
 
+### 7. Run a Migration Assessment
+
+```bash
+# Scan custom code against 874 rules
+npm run assess
+
+# Run all 42 migration objects in mock mode
+node -e "
+  const R = require('./migration/objects/registry');
+  const r = new R();
+  r.runAll({ mode: 'mock' }).then(res => console.log(JSON.stringify(res.stats, null, 2)))
+"
+```
+
+### 8. Explore the Dashboard
+
+Start the Express server on port 4005 and open the dashboard:
+- Extraction progress with real-time SSE streaming
+- Migration status and reconciliation reports
+- Process mining results
+
 ## Project Structure
 
 ```
 sapconnect/
-├── db/          Data model and seed data
-├── srv/         OData service and custom handlers
-├── app/         Fiori Elements frontend
-├── discovery/   API Discovery CLI tool
-├── clients/     Per-client configuration templates
-└── docs/        Documentation
+├── db/              Data model and seed data
+├── srv/             OData service and custom handlers
+├── app/             Fiori Elements frontend + dashboard
+├── extraction/      Forensic extraction engine (35 extractors)
+├── migration/       ETLV migration framework (42 objects, 881 rules)
+├── agent/           AI agent orchestrator (5 agents)
+├── lib/             Core libraries
+│   ├── rfc/         RFC client, pool, table reader
+│   ├── odata/       OData client, batch, auth
+│   ├── adt/         ADT REST client
+│   ├── security/    Input validation, rate limiting, audit, XSUAA
+│   ├── monitoring/  Health checks, metrics, request context
+│   ├── greenfield/  BDC engine, BAPI catalog, transport
+│   ├── mcp/         MCP server (43 SAP tools)
+│   └── ai/          Safety gates, audit trail
+├── discovery/       API Discovery CLI tool
+├── clients/         Per-client configuration templates
+├── website/         Marketing website (Next.js)
+└── docs/            Documentation
 ```
 
 ## Next Steps

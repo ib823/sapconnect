@@ -12,7 +12,7 @@ Direct API calls to SAP systems via released OData/REST services.
 sequenceDiagram
     participant App as BTP App (CAP)
     participant Dest as BTP Destination
-    participant SAP as S/4HANA API
+    participant SAP as SAP API
 
     App->>Dest: Request via destination
     Dest->>SAP: Authenticated API call
@@ -45,7 +45,7 @@ React to business events from SAP in real-time via Event Mesh.
 
 ```mermaid
 sequenceDiagram
-    participant SAP as S/4HANA
+    participant SAP as SAP System
     participant EM as Event Mesh
     participant App as BTP App
 

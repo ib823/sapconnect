@@ -68,7 +68,7 @@ export default function HomePage() {
               >
                 Open-source platform that automates migration assessment, data
                 profiling, configuration, and testing. 874 rules. 42 migration
-                objects. 4,591 tests.
+                objects. 4,910 tests.
               </p>
               <div className="flex flex-wrap gap-3 pt-2">
                 <Button href="/docs" variant="primary">
@@ -201,7 +201,7 @@ export default function HomePage() {
                 <li>Rule-based remediation provides fix suggestions with confidence scores for every finding.</li>
                 <li>Data profiling runs early, catching duplicates and gaps before they become blockers.</li>
                 <li>Pre-built migration objects with 1,600+ field mappings eliminate template creation from scratch.</li>
-                <li>4,591 automated tests validate every step, delivering weeks-not-months project timelines.</li>
+                <li>4,910 automated tests validate every step, delivering weeks-not-months project timelines.</li>
               </ul>
             </Card>
           </div>
@@ -459,7 +459,7 @@ export default function HomePage() {
                 className="text-3xl font-bold m-0 tabular-nums"
                 style={{ color: 'var(--color-brand)' }}
               >
-                4,591
+                4,910
               </p>
               <p
                 className="text-sm m-0"

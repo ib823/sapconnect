@@ -2,7 +2,7 @@
 
 ## What is Clean Core?
 
-Clean Core is SAP's strategy for keeping S/4HANA systems upgrade-safe. It means:
+Clean Core is SAP's strategy for keeping SAP systems upgrade-safe. It means:
 
 - **No modifications** to SAP standard code
 - **Extensions run outside** the SAP core (on BTP or via released APIs)
@@ -38,7 +38,7 @@ SAP releases APIs through Communication Scenarios. Only these are guaranteed sta
 Use SAP Event Mesh for real-time integration instead of polling APIs:
 
 ```
-SAP S/4HANA --> Event Mesh --> BTP App
+SAP System --> Event Mesh --> BTP App
   (event)       (topic)      (subscriber)
 ```
 

@@ -20,8 +20,8 @@ const CAPABILITIES: Capability[] = [
     id: 'forensic-discovery',
     title: 'Forensic Discovery',
     summary:
-      'Automated deep-scan of existing SAP ECC systems to catalog custom code, configurations, interfaces, and usage patterns before migration.',
-    icon: '\uD83D\uDD0D',
+      'Automated deep-scan of existing SAP systems to catalog custom code, configurations, interfaces, and usage patterns before migration.',
+    icon: 'FD',
     stats: {
       extractors: 35,
       sapModules: 8,
@@ -31,7 +31,7 @@ const CAPABILITIES: Capability[] = [
     problem:
       'Manual system assessments take consultants 4-8 weeks of interviews, spreadsheets, and guesswork. Critical customizations are missed, causing rework during migration.',
     whatItAutomates:
-      'Connects to the source SAP system via RFC and ADT, runs 35 specialized extractors across all modules, and produces a structured inventory of custom code, configuration, transactions, interfaces, enhancements, and usage telemetry.',
+      'Connects to the source SAP system via RFC and ADT, runs 35 specialized extractors across all modules, and produces a structured inventory of custom code, configuration, transactions, interfaces, enhancements, and usage telemetry. Includes an archiving advisor that identifies data reduction opportunities before migration.',
     inputs: [
       'RFC connection parameters (ashost, sysnr, client, credentials)',
       'Optional: ADT endpoint for source code extraction',
@@ -43,11 +43,12 @@ const CAPABILITIES: Capability[] = [
       'Usage frequency heatmap per transaction',
       'Interface catalog (RFC, IDoc, BAPI, Web Service)',
       'Enhancement and modification registry',
+      'Archiving advisor report with data reduction estimates',
     ],
     validationLogic:
       'Each extractor validates its output against a JSON schema. Cross-references are checked: e.g., every custom program referenced in a transaction must appear in the code inventory. Completeness score is calculated as extracted categories / total available categories.',
     evidence:
-      '35 extractor classes with full test coverage. Mock and live modes verified against SAP IDES and S/4HANA sandbox systems. Extraction results match manual SE16 spot-checks within 99.2% accuracy.',
+      '35 extractor classes with full test coverage. Mock and live modes verified against SAP sandbox systems. Extraction results match manual spot-checks within 99.2% accuracy.',
     apiMapping:
       'RFC_READ_TABLE, BBP_RFC_READ_TABLE, /SAPDS/RFC_READ_TABLE for table reads. REPOSITORY_INFOSYSTEM for code objects. ADT /sap/bc/adt/discovery for source. SE16N-equivalent queries for config tables.',
     runbookSnippet: `const { ForensicOrchestrator } = require('./extraction/orchestrator');
@@ -62,8 +63,8 @@ console.log(\`Extracted \${results.summary.totalObjects} objects\`);`,
     id: 'data-migration',
     title: 'Data Migration',
     summary:
-      'End-to-end ETLV framework handling extraction, transformation, loading, and validation of 42 SAP business objects with 1,600+ field mappings.',
-    icon: '\uD83D\uDCE6',
+      'End-to-end ETLV framework handling extraction, transformation, loading, and validation of 42 SAP business objects with 1,600+ field mappings and selective migration support.',
+    icon: 'DM',
     stats: {
       migrationObjects: 42,
       fieldMappings: '1,600+',
@@ -73,10 +74,10 @@ console.log(\`Extracted \${results.summary.totalObjects} objects\`);`,
     problem:
       'Data migration is the highest-risk workstream in any SAP project. Manual mapping spreadsheets become stale, transformation logic is scattered across scripts, and validation happens too late.',
     whatItAutomates:
-      'Provides a code-driven ETLV pipeline for each of 42 business objects. Source data is extracted via RFC, transformed through 881 rules (value mappings, concatenations, lookups, derivations), loaded via BAPIs or IDocs, and validated with automated reconciliation.',
+      'Provides a code-driven ETLV pipeline for each of 42 business objects. Source data is extracted via RFC, transformed through 881 rules (value mappings, concatenations, lookups, derivations), loaded via BAPIs or IDocs, and validated with automated reconciliation. Supports selective migration by module or individual object with automatic dependency resolution.',
     inputs: [
       'Source system RFC connection',
-      'Target S/4HANA RFC or OData connection',
+      'Target SAP RFC or OData connection',
       'Migration scope (object list, company codes, date ranges)',
       'Custom value mapping overrides (optional)',
     ],
@@ -107,7 +108,7 @@ console.log(\`Migrated \${result.recordsLoaded} of \${result.recordsExtracted}\`
     title: 'Process Mining',
     summary:
       'Discovers actual business process flows from SAP change documents and status tables, identifying bottlenecks and deviations across 52 process variants.',
-    icon: '\uD83D\uDCC8',
+    icon: 'PM',
     stats: {
       processVariants: 52,
       rules: 874,
@@ -115,7 +116,7 @@ console.log(\`Migrated \${result.recordsLoaded} of \${result.recordsExtracted}\`
     },
     domainTags: ['assessment'],
     problem:
-      'Organizations assume their processes match documentation, but actual execution diverges significantly. Without process mining, migration teams replicate inefficient processes into S/4HANA.',
+      'Organizations assume their processes match documentation, but actual execution diverges significantly. Without process mining, migration teams replicate inefficient processes into new SAP environments.',
     whatItAutomates:
       'Reads SAP change document tables (CDHDR/CDPOS), status tables (JEST/JSTO), and workflow logs to reconstruct actual process flows. Applies conformance checking against reference models and identifies bottlenecks, rework loops, and unauthorized deviations.',
     inputs: [
@@ -150,8 +151,8 @@ console.log(\`Found \${analysis.variants.length} process variants\`);`,
     id: 'custom-code-analysis',
     title: 'Custom Code Analysis',
     summary:
-      'Scans ABAP custom code for S/4HANA compatibility issues, applies 874 rules across 21 check categories, and generates remediation plans.',
-    icon: '\uD83D\uDEE0\uFE0F',
+      'Scans ABAP custom code for SAP compatibility issues, applies 874 rules across 21 check categories, and generates remediation plans.',
+    icon: 'CA',
     stats: {
       rules: 874,
       checkCategories: 21,
@@ -159,13 +160,13 @@ console.log(\`Found \${analysis.variants.length} process variants\`);`,
     },
     domainTags: ['assessment'],
     problem:
-      'Large SAP landscapes contain 5,000-50,000 custom ABAP objects. Manual code review for S/4HANA compatibility is prohibitively expensive and error-prone.',
+      'Large SAP landscapes contain 5,000-50,000 custom ABAP objects. Manual code review for compatibility is prohibitively expensive and error-prone.',
     whatItAutomates:
       'Extracts all custom code objects via ADT, applies 874 compatibility rules (deprecated APIs, removed tables, changed data elements, new syntax requirements), classifies findings by severity, and generates fix recommendations with estimated effort.',
     inputs: [
       'ADT connection to source SAP system',
       'Optional: RFC connection for usage frequency data',
-      'Target S/4HANA release (2021, 2022, 2023)',
+      'Target SAP release version',
       'Optional: scope filter (namespace, package, transport)',
     ],
     outputs: [
@@ -178,7 +179,7 @@ console.log(\`Found \${analysis.variants.length} process variants\`);`,
     validationLogic:
       'Each rule is validated against SAP simplification item database. False positive rate is measured against manually reviewed sample sets. Rules with > 5% false positive rate are flagged for refinement.',
     evidence:
-      '874 rules derived from SAP Simplification Items database, S/4HANA release notes, and ABAP language changes. Rule set tested against 12,000 synthetic code samples with known compatibility issues.',
+      '874 rules derived from SAP Simplification Items database, release notes, and ABAP language changes. Rule set tested against 12,000 synthetic code samples with known compatibility issues.',
     apiMapping:
       'ADT /sap/bc/adt/programs/source, /sap/bc/adt/functions/groups, /sap/bc/adt/oo/classes. ATC run API for cross-referencing. REPOSITORY_INFOSYSTEM for object enumeration.',
     runbookSnippet: `const { CodeAnalyzer } = require('./extraction/code-analyzer');
@@ -194,8 +195,8 @@ console.log(\`Found \${report.findings.length} compatibility issues\`);`,
     id: 'configuration-automation',
     title: 'Configuration Automation',
     summary:
-      'Generates and executes BDC (Batch Data Communication) sequences for S/4HANA configuration, covering 55 transactions across 12 modules.',
-    icon: '\u2699\uFE0F',
+      'Generates and executes BDC (Batch Data Communication) sequences for SAP configuration, covering 55 transactions across 12 modules with transport management.',
+    icon: 'CF',
     stats: {
       bdcSequences: 55,
       modules: 12,
@@ -203,11 +204,11 @@ console.log(\`Found \${report.findings.length} compatibility issues\`);`,
     },
     domainTags: ['greenfield'],
     problem:
-      'S/4HANA greenfield implementations require thousands of IMG configuration steps. Manual configuration is slow, inconsistent across environments, and impossible to version-control.',
+      'SAP greenfield implementations require thousands of configuration steps. Manual configuration is slow, inconsistent across environments, and impossible to version-control.',
     whatItAutomates:
-      'Generates BDC recording sequences from configuration templates, executes them against target S/4HANA systems via RFC, handles screen navigation and error recovery, and produces audit logs of all configuration changes.',
+      'Generates BDC recording sequences from configuration templates, executes them against target SAP systems via RFC, handles screen navigation and error recovery, and produces audit logs of all configuration changes. All changes are tracked through transport requests.',
     inputs: [
-      'Target S/4HANA RFC connection',
+      'Target SAP RFC connection',
       'Configuration template (module + variant)',
       'Parameter values (company codes, currencies, chart of accounts, etc.)',
       'Optional: source system config for delta comparison',
@@ -222,7 +223,7 @@ console.log(\`Found \${report.findings.length} compatibility issues\`);`,
     validationLogic:
       'Each BDC step validates the return message against expected success patterns. Configuration values are read back and compared to input parameters. Transport consistency is verified by checking all dependent config objects are captured.',
     evidence:
-      '55 BDC templates covering FI, CO, MM, SD, PP, PM, QM, HR, WM, LE, PS, and CA modules. Templates tested against S/4HANA 2023 FPS01 sandbox with 100% execution success rate on clean systems.',
+      '55 BDC templates covering FI, CO, MM, SD, PP, PM, QM, HR, WM, LE, PS, and CA modules. Templates tested against SAP 2023 FPS01 sandbox with 100% execution success rate on clean systems.',
     apiMapping:
       'BDC_INSERT for session creation, RFC_CALL_TRANSACTION_USING for direct execution. BAPI_CTREQUEST_CREATE for transport management. SM35 session monitoring.',
     runbookSnippet: `const { BDCEngine } = require('./lib/greenfield/bdc-engine');
@@ -238,7 +239,7 @@ console.log(\`Config applied: \${result.stepsCompleted} steps\`);`,
     title: 'Data Quality',
     summary:
       'Profiles, cleanses, and enriches source data using fuzzy matching, standardization rules, and cross-reference validation before migration.',
-    icon: '\u2728',
+    icon: 'DQ',
     stats: {
       checksPerObject: 6,
       fuzzyAlgorithms: 4,
@@ -246,7 +247,7 @@ console.log(\`Config applied: \${result.stepsCompleted} steps\`);`,
     },
     domainTags: ['data'],
     problem:
-      'Source system data accumulated over decades contains duplicates, inconsistent formatting, missing fields, and orphaned records. Loading dirty data into S/4HANA creates downstream failures.',
+      'Source system data accumulated over decades contains duplicates, inconsistent formatting, missing fields, and orphaned records. Loading dirty data into a new SAP environment creates downstream failures.',
     whatItAutomates:
       'Runs data profiling to identify quality issues, applies fuzzy matching (Levenshtein, Jaro-Winkler, Soundex, n-gram) for duplicate detection, standardizes addresses and naming conventions, validates referential integrity, and generates cleansing action recommendations.',
     inputs: [
@@ -282,7 +283,7 @@ console.log(\`Quality score: \${report.overallScore}%\`);`,
     title: 'Reconciliation',
     summary:
       'Automated six-point validation comparing source and target systems post-migration, covering all 42 migration objects with full audit trails.',
-    icon: '\u2705',
+    icon: 'RC',
     stats: {
       checksPerObject: 6,
       migrationObjects: 42,
@@ -290,12 +291,12 @@ console.log(\`Quality score: \${report.overallScore}%\`);`,
     },
     domainTags: ['data'],
     problem:
-      'Post-migration reconciliation is typically manual: consultants run SE16 queries, export to Excel, and compare counts. This misses subtle data corruption and takes weeks to complete.',
+      'Post-migration reconciliation is typically manual: consultants run queries, export to spreadsheets, and compare counts. This misses subtle data corruption and takes weeks to complete.',
     whatItAutomates:
       'Connects to both source and target systems simultaneously, runs six validation checks per object (record counts, key integrity, amount checksums, referential integrity, business rules, duplicate detection), and produces a consolidated reconciliation report.',
     inputs: [
       'Source system RFC connection',
-      'Target S/4HANA RFC or OData connection',
+      'Target SAP RFC or OData connection',
       'Migration scope (objects, company codes, date ranges)',
       'Tolerance thresholds per check type',
     ],
@@ -326,8 +327,8 @@ console.log(\`Overall health: \${report.healthScore}%\`);`,
     id: 'testing-automation',
     title: 'Testing Automation',
     summary:
-      'Generates and executes end-to-end test scenarios for migrated SAP processes, covering 30+ templates across 6 core modules.',
-    icon: '\uD83E\uDDEA',
+      'Generates and executes end-to-end test scenarios for migrated SAP processes, with a live test harness supporting dry-run validation and 30+ templates across 6 core modules.',
+    icon: 'TA',
     stats: {
       testTemplates: '30+',
       modules: 6,
@@ -337,9 +338,9 @@ console.log(\`Overall health: \${report.healthScore}%\`);`,
     problem:
       'Post-migration testing relies on manual test scripts executed by business users. Test coverage is inconsistent, regression testing is expensive, and defects are found too late in the cycle.',
     whatItAutomates:
-      'Generates test scenarios from process templates, executes them against the target S/4HANA system via BAPI and GUI scripting, validates expected outcomes, and produces test evidence documentation for audit and sign-off.',
+      'Generates test scenarios from process templates, executes them against the target SAP system via BAPI and GUI scripting, validates expected outcomes, and produces test evidence documentation for audit and sign-off. A live test harness supports dry-run mode for safe validation before production execution.',
     inputs: [
-      'Target S/4HANA RFC connection',
+      'Target SAP RFC connection',
       'Test scope (modules, processes, company codes)',
       'Test data sets (master data, transactional data)',
       'Expected outcome definitions (optional overrides)',
@@ -354,7 +355,7 @@ console.log(\`Overall health: \${report.healthScore}%\`);`,
     validationLogic:
       'Each test step validates BAPI return messages and database state changes. Idempotency is enforced: tests create, verify, and clean up their own data. Flaky test detection flags tests with inconsistent results across 3 runs.',
     evidence:
-      '30+ test templates covering order-to-cash (SO, delivery, billing, payment), procure-to-pay (PR, PO, GR, IR, payment), record-to-report (journal entry, period close, reporting). Templates validated against S/4HANA sandbox.',
+      '30+ test templates covering order-to-cash (SO, delivery, billing, payment), procure-to-pay (PR, PO, GR, IR, payment), record-to-report (journal entry, period close, reporting). Templates validated against SAP sandbox.',
     apiMapping:
       'BAPI_SALESORDER_CREATEFROMDAT2, BAPI_OUTB_DELIVERY_CREATE_SLS, BAPI_BILLINGDOC_CREATEMULTIPLE for OTC. BAPI_PO_CREATE1, BAPI_GOODSMVT_CREATE for PTP. BAPI_ACC_DOCUMENT_POST for RTR.',
     runbookSnippet: `const { TestRunner } = require('./testing/runner');
@@ -370,8 +371,8 @@ console.log(\`\${results.passed}/\${results.total} tests passed\`);`,
     id: 'cutover-planning',
     title: 'Cutover Planning',
     summary:
-      'Generates dependency-aware cutover runbooks with critical path analysis, rollback procedures, and real-time progress tracking.',
-    icon: '\uD83D\uDCC5',
+      'Generates dependency-aware cutover runbooks with critical path analysis, rollback procedures, and real-time progress tracking via server-sent events.',
+    icon: 'CP',
     stats: {
       taskTemplates: '200+',
       criticalPathAnalysis: 'Yes',
@@ -379,9 +380,9 @@ console.log(\`\${results.passed}/\${results.total} tests passed\`);`,
     },
     domainTags: ['execution'],
     problem:
-      'Cutover weekends are the highest-risk phase of SAP migrations. Manual runbooks in Excel lack dependency tracking, real-time status, and automated rollback procedures.',
+      'Cutover weekends are the highest-risk phase of SAP migrations. Manual runbooks in spreadsheets lack dependency tracking, real-time status, and automated rollback procedures.',
     whatItAutomates:
-      'Generates cutover task lists from templates, computes critical path and parallel execution windows, tracks real-time progress during execution, triggers automated rollback procedures on failure, and produces post-cutover validation reports.',
+      'Generates cutover task lists from templates, computes critical path and parallel execution windows, tracks real-time progress during execution via SSE streaming, triggers automated rollback procedures on failure, and produces post-cutover validation reports.',
     inputs: [
       'Migration scope (objects, systems, waves)',
       'System landscape (source, target, middleware)',
@@ -415,8 +416,8 @@ console.log(\`\${plan.tasks.length} tasks, critical path: \${plan.criticalPathHo
     id: 'cloud-integration',
     title: 'Cloud Integration',
     summary:
-      'Automates integration setup for SAP cloud products including SuccessFactors, Ariba, Concur, and SAP Analytics Cloud.',
-    icon: '\u2601\uFE0F',
+      'Automates integration setup for SAP cloud products including SuccessFactors, Ariba, Concur, and SAP Analytics Cloud with multi-source connection management.',
+    icon: 'CI',
     stats: {
       cloudProducts: 4,
       integrationPatterns: 12,
@@ -424,11 +425,11 @@ console.log(\`\${plan.tasks.length} tasks, critical path: \${plan.criticalPathHo
     },
     domainTags: ['cloud'],
     problem:
-      'S/4HANA implementations increasingly require integration with SAP cloud suite products. Each product has different APIs, authentication methods, and data models, making integration complex and time-consuming.',
+      'SAP implementations increasingly require integration with cloud suite products. Each product has different APIs, authentication methods, and data models, making integration complex and time-consuming.',
     whatItAutomates:
-      'Generates integration configurations for SuccessFactors (employee data sync), Ariba (procurement), Concur (expense management), and SAP Analytics Cloud (reporting). Handles OAuth setup, field mapping generation, error handling, and monitoring configuration.',
+      'Generates integration configurations for SuccessFactors (employee data sync), Ariba (procurement), Concur (expense management), and SAP Analytics Cloud (reporting). Handles OAuth setup, field mapping generation, error handling, and monitoring configuration. Multi-source connection manager coordinates across system landscapes.',
     inputs: [
-      'S/4HANA OData or RFC connection',
+      'SAP OData or RFC connection',
       'Cloud product tenant URL and credentials',
       'Integration scope (data entities, sync frequency)',
       'Custom field mapping overrides (optional)',
@@ -445,11 +446,11 @@ console.log(\`\${plan.tasks.length} tasks, critical path: \${plan.criticalPathHo
     evidence:
       '8 prebuilt connectors covering the most common integration patterns: employee master data, organizational structure, purchase orders, invoices, expense reports, cost center hierarchy, GL actuals, and plan data. Each connector tested against sandbox tenants.',
     apiMapping:
-      'SuccessFactors OData V2 API, Ariba Network SOAP/REST APIs, Concur REST V4 API, SAC Import Data Management API. S/4HANA side: OData V4 (A_BusinessPartner, A_PurchaseOrder, etc.) and RFC (BAPI_COSTCENTER_GETLIST, etc.).',
+      'SuccessFactors OData V2 API, Ariba Network SOAP/REST APIs, Concur REST V4 API, SAC Import Data Management API. SAP side: OData V4 (A_BusinessPartner, A_PurchaseOrder, etc.) and RFC (BAPI_COSTCENTER_GETLIST, etc.).',
     runbookSnippet: `const { CloudIntegration } = require('./lib/greenfield/cloud-integration');
 const integrator = new CloudIntegration({ mode: 'live' });
 const result = await integrator.setup({
-  s4hana: { baseUrl: 'https://s4h.example.com', auth: { type: 'basic' } },
+  target: { baseUrl: 'https://sap.example.com', auth: { type: 'basic' } },
   product: 'successfactors',
   tenant: 'https://api.successfactors.com',
   scope: ['employee-master', 'org-structure']
@@ -460,8 +461,8 @@ console.log(\`Integration configured: \${result.flowsCreated} flows\`);`,
     id: 'ai-tooling',
     title: 'AI Tooling',
     summary:
-      'MCP server exposing 43 SAP-aware tools for AI agents, enabling natural language interaction with SAP systems through a multi-agent architecture.',
-    icon: '\uD83E\uDD16',
+      'MCP server exposing 43 SAP-aware tools for AI agents, enabling natural language interaction with SAP systems through a multi-agent architecture with live execution support.',
+    icon: 'AI',
     stats: {
       mcpTools: 43,
       agents: 5,
@@ -471,7 +472,7 @@ console.log(\`Integration configured: \${result.flowsCreated} flows\`);`,
     problem:
       'AI assistants lack SAP domain knowledge and safe system access. Generic LLM integrations risk executing destructive operations without proper validation, transport management, or audit trails.',
     whatItAutomates:
-      'Provides a Model Context Protocol (MCP) server with 43 tools spanning system discovery, data queries, configuration reading, code analysis, and guided write operations. A multi-agent architecture (5 specialized agents) handles complex multi-step SAP tasks with built-in safety gates.',
+      'Provides a Model Context Protocol (MCP) server with 43 tools spanning system discovery, data queries, configuration reading, code analysis, and guided write operations. A multi-agent architecture (5 specialized agents) handles complex multi-step SAP tasks with built-in safety gates. Supports live agent execution with tool-use loops and multi-provider LLM abstraction.',
     inputs: [
       'Natural language instructions from AI assistant',
       'SAP system connection configuration',
@@ -495,7 +496,7 @@ console.log(\`Integration configured: \${result.flowsCreated} flows\`);`,
 const server = new MCPServer({
   connections: {
     rfc: { ashost: '10.0.1.50', sysnr: '00', client: '100' },
-    odata: { baseUrl: 'https://s4h.example.com/sap/opu/odata' }
+    odata: { baseUrl: 'https://sap.example.com/sap/opu/odata' }
   },
   safety: { mode: 'guided-writes', requireTransport: true }
 });

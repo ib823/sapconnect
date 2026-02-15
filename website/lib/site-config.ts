@@ -1,11 +1,12 @@
 export const SITE = {
   name: 'SAP Connect',
-  tagline: 'Enterprise S/4HANA Migration Platform',
+  tagline: 'Enterprise SAP Migration Platform',
   description: 'Open-source platform replacing 6-month SAP migration timelines with automated, code-driven execution.',
   repo: 'https://github.com/ib823/sapconnect',
 } as const;
 
 export const NAV_ITEMS = [
+  { label: 'Solution', href: '/solution' },
   { label: 'Platform', href: '/platform' },
   { label: 'Capabilities', href: '/capabilities' },
   { label: 'Docs', href: '/docs' },
@@ -14,6 +15,7 @@ export const NAV_ITEMS = [
 
 export const FOOTER_LINKS = {
   Product: [
+    { label: 'Solution Overview', href: '/solution' },
     { label: 'Platform', href: '/platform' },
     { label: 'Capabilities', href: '/capabilities' },
     { label: 'Security', href: '/security' },
@@ -35,6 +37,6 @@ export const STATS = {
   rules: 874,
   migrationObjects: 42,
   fieldMappings: '1,600+',
-  tests: '4,591',
+  tests: '4,910',
   mcpTools: 43,
 } as const;

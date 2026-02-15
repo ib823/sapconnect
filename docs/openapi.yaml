@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: SAP Connect Migration Dashboard API
   description: |
-    REST API for the SAP S/4HANA Migration Platform.
+    REST API for the SAP Connect Migration Platform.
     Provides migration status, object progress, rule analysis,
     reconciliation, test scenario management, forensic extraction,
     process mining, data export, and migration planning.

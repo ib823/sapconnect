@@ -9,7 +9,7 @@ const steps: TimelineStep[] = [
   {
     number: 1,
     title: 'Assess',
-    description: 'Scan custom code for S/4HANA incompatibilities and generate a prioritized remediation backlog.',
+    description: 'Scan custom code for SAP compatibility issues and generate a prioritized remediation backlog.',
     metric: '874 rules across 21 modules',
   },
   {

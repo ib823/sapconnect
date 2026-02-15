@@ -14,7 +14,7 @@ const roles: RoleContent[] = [
     heading: 'Reduce cost and financial risk',
     points: [
       'Cut consultant spend by automating 70% of repetitive migration tasks, saving an average of 40% on total project cost.',
-      'De-risk go-live with 4,591 automated tests and six-check reconciliation for every migration object.',
+      'De-risk go-live with 4,910 automated tests and six-check reconciliation for every migration object.',
       'Accelerate time-to-value: projects that previously required 12-18 months complete in as few as 8-12 weeks.',
       'Avoid budget overruns with transparent, rule-based effort estimates instead of consultant guesswork.',
     ],
