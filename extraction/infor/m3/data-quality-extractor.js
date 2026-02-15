@@ -59,7 +59,7 @@ class InforM3DataQualityExtractor extends BaseExtractor {
     if (totalRecords > 0) {
       const fields = Object.keys(records[0]);
       for (const field of fields) {
-        const populated = records.filter(r => r[field] != null && r[field] !== '').length;
+        const populated = records.filter(r => r[field] !== null && r[field] !== undefined && r[field] !== '').length;
         completeness[field] = {
           populated,
           nullCount: totalRecords - populated,
