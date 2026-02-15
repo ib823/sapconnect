@@ -69,7 +69,7 @@ For scenarios where there is no on-premise SAP system, only BTP services.
 
 ## This Toolkit's Approach
 
-SAP Connect follows **Public Cloud** restrictions by default:
+SEN follows **Public Cloud** restrictions by default:
 - Uses only released API patterns
 - Builds side-by-side on CAP/BTP
 - Uses Fiori Elements (standard UI)

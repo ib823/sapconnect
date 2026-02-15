@@ -1,6 +1,6 @@
 # Demo Script
 
-Step-by-step walkthrough for demonstrating SAP Connect to clients and stakeholders.
+Step-by-step walkthrough for demonstrating SEN to clients and stakeholders.
 
 ## Setup (Before the Demo)
 
@@ -16,7 +16,7 @@ Open the browser to `http://localhost:4004`.
 
 **Show the launcher page** (`http://localhost:4004`)
 
-> "This is SAP Connect -- a self-contained development toolkit that demonstrates how we build extensions for SAP systems following Clean Core principles."
+> "This is SEN -- a self-contained development toolkit that demonstrates how we build extensions for SAP systems following Clean Core principles."
 
 > "Everything here runs in a GitHub Codespace. No SAP system needed for demos -- we use mock data that mirrors a real SAP environment."
 
@@ -105,7 +105,7 @@ npm run discover
 
 **Show the extraction dashboard** on port 4005.
 
-> "During live operations, SAP Connect streams real-time progress via server-sent events. You can monitor extraction, migration, and testing as they happen."
+> "During live operations, SEN streams real-time progress via server-sent events. You can monitor extraction, migration, and testing as they happen."
 
 **Key points:**
 - Per-extractor progress tracking
@@ -116,7 +116,7 @@ npm run discover
 
 **Show** the `clients/` directory.
 
-> "SAP Connect supports multiple clients without separate environments. Each client has their own configuration -- we just swap the .env file to switch contexts."
+> "SEN supports multiple clients without separate environments. Each client has their own configuration -- we just swap the .env file to switch contexts."
 
 **Show** `clients/_template/.env.template`
 
@@ -124,7 +124,7 @@ npm run discover
 
 ## Closing (1 min)
 
-> "To summarize: SAP Connect gives us a complete development environment for SAP extensions and migrations that follows Clean Core principles, runs anywhere via Codespaces, supports multiple clients, and is backed by 4,910 automated tests. Everything we've built here deploys to SAP BTP when ready for production."
+> "To summarize: SEN gives us a complete development environment for SAP extensions and migrations that follows Clean Core principles, runs anywhere via Codespaces, supports multiple clients, and is backed by 4,910 automated tests. Everything we've built here deploys to SAP BTP when ready for production."
 
 ## FAQ Responses
 

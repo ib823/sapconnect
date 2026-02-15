@@ -1,7 +1,7 @@
 _schema-version: "3.1"
 ID: sapconnect
 version: 1.0.0
-description: SAP Connect — Unified SAP Migration & Implementation Platform
+description: SEN — Universal ERP Migration Platform
 
 parameters:
   enable-parallel-deployments: true

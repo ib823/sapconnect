@@ -4,7 +4,7 @@
     "id": "sapconnect.customers",
     "type": "application",
     "title": "Manage Customers",
-    "description": "SAP Connect - Customer Management",
+    "description": "SEN - Customer Management",
     "applicationVersion": { "version": "1.0.0" },
     "dataSources": {
       "mainService": {

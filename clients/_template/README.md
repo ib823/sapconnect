@@ -1,6 +1,6 @@
 # Client Setup Template
 
-Use this template to configure SAP Connect for a new client.
+Use this template to configure SEN for a new client.
 
 ## Steps
 

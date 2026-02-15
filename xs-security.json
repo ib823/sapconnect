@@ -4,11 +4,11 @@
   "scopes": [
     {
       "name": "$XSAPPNAME.Read",
-      "description": "Read access to SAP Connect APIs"
+      "description": "Read access to SEN APIs"
     },
     {
       "name": "$XSAPPNAME.Write",
-      "description": "Write access to SAP Connect APIs (migration, extraction)"
+      "description": "Write access to SEN APIs (migration, extraction)"
     },
     {
       "name": "$XSAPPNAME.Admin",
@@ -34,18 +34,18 @@
   ],
   "role-collections": [
     {
-      "name": "SAP Connect Viewer",
-      "description": "Read-only access to SAP Connect",
+      "name": "SEN Viewer",
+      "description": "Read-only access to SEN",
       "role-template-references": ["$XSAPPNAME.Viewer"]
     },
     {
-      "name": "SAP Connect Operator",
-      "description": "Operator access to SAP Connect",
+      "name": "SEN Operator",
+      "description": "Operator access to SEN",
       "role-template-references": ["$XSAPPNAME.Operator"]
     },
     {
-      "name": "SAP Connect Administrator",
-      "description": "Full administrative access to SAP Connect",
+      "name": "SEN Administrator",
+      "description": "Full administrative access to SEN",
       "role-template-references": ["$XSAPPNAME.Administrator"]
     }
   ]

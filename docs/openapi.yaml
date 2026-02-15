@@ -1,14 +1,14 @@
 openapi: 3.0.3
 info:
-  title: SAP Connect Migration Dashboard API
+  title: SEN Migration Dashboard API
   description: |
-    REST API for the SAP Connect Migration Platform.
+    REST API for the SEN Migration Platform.
     Provides migration status, object progress, rule analysis,
     reconciliation, test scenario management, forensic extraction,
     process mining, data export, and migration planning.
   version: 1.0.0
   contact:
-    name: SAP Connect Team
+    name: SEN Team
   license:
     name: Proprietary
 

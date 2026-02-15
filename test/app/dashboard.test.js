@@ -31,8 +31,8 @@ describe('Dashboard HTML structure', () => {
     expect(indexHtml).toContain('</html>');
   });
 
-  it('should include SAP Connect title', () => {
-    expect(indexHtml).toContain('<title>SAP Connect');
+  it('should include SEN title', () => {
+    expect(indexHtml).toContain('<title>SEN');
   });
 
   it('should link to styles.css', () => {

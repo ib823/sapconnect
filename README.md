@@ -1,6 +1,6 @@
-# SAP Connect
+# S⋈N
 
-Enterprise-grade SAP migration platform and Clean Core development toolkit.
+Universal ERP migration platform. Any ERP to SAP S/4HANA.
 
 Replaces 6-month migration timelines with automated, code-driven execution. Everything runs in a GitHub Codespace -- no SAP credentials required for development and testing.
 
@@ -239,7 +239,7 @@ npm run docker:build # Build Docker image
 
 ## License
 
-Copyright 2024-2026 SAP Connect Contributors
+Copyright 2024-2026 SEN Contributors
 
 Licensed under the [Apache License, Version 2.0](LICENSE). You may use, modify, and distribute this software under the terms of the license. Attribution to the original author must be preserved. See the [NOTICE](NOTICE) file for third-party acknowledgments and trademark notices.
 

@@ -2,7 +2,7 @@
 
 ## System Architecture
 
-SAP Connect follows a layered architecture with dual server design and three connectivity protocols:
+SEN follows a layered architecture with dual server design and three connectivity protocols:
 
 ```mermaid
 graph TB

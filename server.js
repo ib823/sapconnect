@@ -1,5 +1,5 @@
 /**
- * SAP Connect — Express Server Bootstrap
+ * SEN — Express Server Bootstrap
  *
  * Wires together:
  *  - Security: headers, CORS, rate limiting, audit logging
@@ -333,7 +333,7 @@ if (require.main === module) {
   const log = new Logger('server');
   const port = app._config.port === 4004 ? 4005 : app._config.port; // avoid collision with CAP
   const server = app.listen(port, app._config.host, () => {
-    console.log(`SAP Connect Migration API running at http://${app._config.host}:${port}`);
+    console.log(`SEN Migration API running at http://${app._config.host}:${port}`);
     console.log(`  Health:      http://localhost:${port}/health`);
     console.log(`  Ready:       http://localhost:${port}/ready`);
     console.log(`  Metrics:     http://localhost:${port}/metrics`);

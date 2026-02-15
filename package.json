@@ -1,13 +1,13 @@
 {
   "name": "sapconnect",
   "version": "1.0.0",
-  "description": "SAP Connect - Enterprise SAP S/4HANA Migration Platform & Clean Core Development Toolkit",
+  "description": "SEN — Universal ERP Migration Platform",
   "engines": {
     "node": ">=20.0.0"
   },
   "repository": "https://github.com/ib823/sapconnect",
   "license": "Apache-2.0",
-  "author": "SAP Connect Contributors",
+  "author": "SEN Contributors",
   "dependencies": {
     "@sap/cds": "^8",
     "@sap/xssec": "^4",
