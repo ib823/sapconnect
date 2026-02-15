@@ -139,8 +139,8 @@ export default function PricingPage() {
                 </li>
               ))}
             </ul>
-            <Button href="/contact" variant="primary" className="w-full">
-              Contact us
+            <Button href="/docs" variant="primary" className="w-full">
+              Get started
             </Button>
           </Card>
         </div>

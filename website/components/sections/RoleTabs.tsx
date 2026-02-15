@@ -10,33 +10,39 @@ interface RoleContent {
 
 const roles: RoleContent[] = [
   {
+    label: 'CEO',
+    heading: 'Accelerate your SAP transformation',
+    points: [
+      'Reduce migration timelines from 12-18 months to weeks, freeing capital for strategic initiatives.',
+      'Eliminate vendor lock-in with an open-source platform you fully own and control.',
+      'Present board-ready audit trails that demonstrate governance at every stage.',
+    ],
+  },
+  {
     label: 'CFO',
     heading: 'Reduce cost and financial risk',
     points: [
-      'Cut consultant spend by automating 70% of repetitive migration tasks, saving an average of 40% on total project cost.',
-      'De-risk go-live with 4,910 automated tests and six-check reconciliation for every migration object.',
-      'Accelerate time-to-value: projects that previously required 12-18 months complete in as few as 8-12 weeks.',
-      'Avoid budget overruns with transparent, rule-based effort estimates instead of consultant guesswork.',
+      'Cut project costs by 40% through automation of repetitive migration tasks.',
+      'De-risk go-live with 4,910 automated tests validating every operation.',
+      'Accelerate time-to-value with projects completing in weeks, not months.',
     ],
   },
   {
     label: 'CIO',
-    heading: 'Enterprise-grade architecture and integration',
+    heading: 'Enterprise architecture, zero lock-in',
     points: [
-      'Connect via RFC, OData V2/V4, or ADT REST APIs with automatic CSRF handling, connection pooling, and retry logic.',
-      'Extend with 43 MCP tools that expose SAP operations to AI agents with built-in safety gates and audit trails.',
-      'Operate in mock or live mode -- validate everything offline before touching production systems.',
-      'Deploy on-premises, in SAP BTP, or any cloud provider. No vendor lock-in. Apache 2.0 licensed.',
+      'Connect via RFC, OData, or ADT REST with automatic retry and pooling.',
+      '43 MCP tools give AI agents safe, audited access to SAP operations.',
+      'Deploy anywhere: on-premises, BTP, AWS, Azure, or GCP. Apache 2.0 licensed.',
     ],
   },
   {
     label: 'Program Lead',
-    heading: 'Predictable timelines and full visibility',
+    heading: 'Predictable timelines, full visibility',
     points: [
-      '9-phase migration timeline from assessment through cutover, with automated milestones and go/no-go gates.',
-      '874 custom code rules scan 21 modules in minutes, replacing weeks of manual code review.',
-      '42 pre-built migration objects with 1,600+ field mappings eliminate template creation from scratch.',
-      'Real-time dashboards surface extraction progress, data quality scores, and test pass rates across all workstreams.',
+      '8-phase migration lifecycle with automated milestones and go/no-go gates.',
+      '874 rules scan 21 modules in minutes, replacing weeks of manual review.',
+      '42 pre-built migration objects with 1,600+ field mappings, ready to use.',
     ],
   },
 ];

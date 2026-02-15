@@ -95,8 +95,8 @@ export default function ROICalculator() {
                 {slider.label}
               </label>
               <span
-                className="text-sm font-semibold tabular-nums"
-                style={{ color: 'var(--color-brand)' }}
+                className="text-sm font-bold tabular-nums"
+                style={{ color: 'var(--color-text-primary)' }}
               >
                 {values[slider.id]}
                 {slider.suffix ?? ''}
@@ -178,7 +178,7 @@ export default function ROICalculator() {
             </p>
             <p
               className="text-2xl font-bold m-0 tabular-nums"
-              style={{ color: 'var(--color-brand)' }}
+              style={{ color: 'var(--color-text-primary)' }}
             >
               {result.automatedMonths}{' '}
               <span className="text-sm font-normal" style={{ color: 'var(--color-text-secondary)' }}>

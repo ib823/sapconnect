@@ -9,7 +9,7 @@ export interface LogoProps {
 function DeltaMark({ size }: { size: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M16 4L29 28H3L16 4Z" stroke="var(--color-brand, #0A66FF)" strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
+      <path d="M16 4L29 28H3L16 4Z" stroke="var(--color-brand, #1d1d1f)" strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
     </svg>
   );
 }

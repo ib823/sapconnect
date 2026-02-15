@@ -12,7 +12,7 @@ export default function AnnouncementBar() {
       className="relative flex items-center justify-center px-4 text-sm text-white"
       style={{
         height: '36px',
-        background: 'linear-gradient(90deg, var(--color-brand), var(--color-brand-hover))',
+        background: '#1d1d1f',
       }}
     >
       <p className="m-0 text-center text-xs sm:text-sm">

@@ -38,7 +38,7 @@ const docSections = [
     title: 'Clean Core Guide',
     description:
       'Assess your custom code against SAP Clean Core principles. Understand released API checks, modification analysis, and extensibility pattern recommendations.',
-    href: '/capabilities/clean-core',
+    href: '/solution',
   },
   {
     title: 'API Reference (OpenAPI)',

@@ -2,32 +2,33 @@
 
 :root {
   /* Brand */
-  --color-brand: #0A66FF;
-  --color-brand-hover: #0852CC;
-  --color-brand-subtle: #E8F0FE;
-  --color-brand-dark: #7AA2FF;
+  --color-brand: #1d1d1f;
+  --color-brand-hover: #000000;
+  --color-brand-subtle: #F5F5F7;
+  --color-brand-dark: #F5F5F7;
 
   /* Surfaces */
   --color-bg: #FFFFFF;
-  --color-surface: #F8F9FB;
+  --color-surface: #F5F5F7;
   --color-surface-raised: #FFFFFF;
-  --color-border: #E2E5EA;
+  --color-border: #D2D2D7;
 
   /* Text */
-  --color-text-primary: #0D1526;
-  --color-text-secondary: #5A6170;
-  --color-text-tertiary: #8B92A0;
+  --color-text-primary: #1d1d1f;
+  --color-text-secondary: #6e6e73;
+  --color-text-tertiary: #86868b;
 
   /* Semantic */
-  --color-success: #0D9244;
-  --color-warning: #C27803;
-  --color-danger: #D92B2B;
-  --color-focus: #0A66FF;
+  --color-success: #1d7d3f;
+  --color-warning: #b25000;
+  --color-danger: #c41e1e;
+  --color-focus: #1d1d1f;
 
   /* Typography */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --font-size-h1: 3rem;
+  --tracking-heading: -0.03em;
+  --font-size-h1: 3.5rem;
   --font-size-h2: 2.25rem;
   --font-size-h3: 1.5rem;
   --font-size-h4: 1.25rem;
@@ -39,7 +40,8 @@
   --leading-body: 1.6;
 
   /* Spacing */
-  --space-section: 5rem;
+  --space-section: 7rem;
+  --space-section-lg: 9rem;
   --space-component: 2.5rem;
   --radius-card: 16px;
   --radius-button: 10px;
@@ -48,17 +50,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-brand: #7AA2FF;
-    --color-brand-hover: #99B8FF;
-    --color-brand-subtle: #1A2744;
-    --color-bg: #0D1117;
-    --color-surface: #161B22;
-    --color-surface-raised: #1C2128;
-    --color-border: #30363D;
-    --color-text-primary: #F0F3F6;
-    --color-text-secondary: #9CA3AF;
-    --color-text-tertiary: #6B7280;
-    --color-focus: #7AA2FF;
+    --color-brand: #F5F5F7;
+    --color-brand-hover: #FFFFFF;
+    --color-brand-subtle: #1d1d1f;
+    --color-bg: #000000;
+    --color-surface: #1d1d1f;
+    --color-surface-raised: #2d2d2d;
+    --color-border: #424245;
+    --color-text-primary: #F5F5F7;
+    --color-text-secondary: #86868b;
+    --color-text-tertiary: #6e6e73;
+    --color-focus: #F5F5F7;
   }
 }
 
