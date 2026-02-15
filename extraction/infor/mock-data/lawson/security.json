@@ -1,0 +1,65 @@
+{
+  "users": [
+    {
+      "USER_ID": "LADMIN",
+      "USER_NAME": "Lawson Administrator",
+      "USER_CLASS": "ADMIN",
+      "STATUS": "ACTIVE",
+      "LAST_LOGIN": "2024-01-15"
+    },
+    {
+      "USER_ID": "JDOE",
+      "USER_NAME": "Jane Doe",
+      "USER_CLASS": "STANDARD",
+      "STATUS": "ACTIVE",
+      "LAST_LOGIN": "2024-01-15"
+    },
+    {
+      "USER_ID": "RJONES",
+      "USER_NAME": "Robert Jones",
+      "USER_CLASS": "STANDARD",
+      "STATUS": "ACTIVE",
+      "LAST_LOGIN": "2024-01-14"
+    }
+  ],
+  "securityClasses": [
+    {
+      "CLASS": "ADMIN",
+      "DESCRIPTION": "System Administrators",
+      "MEMBER_COUNT": 2
+    },
+    {
+      "CLASS": "AP_CLERK",
+      "DESCRIPTION": "AP Clerks",
+      "MEMBER_COUNT": 5
+    },
+    {
+      "CLASS": "GL_ANALYST",
+      "DESCRIPTION": "GL Analysts",
+      "MEMBER_COUNT": 3
+    }
+  ],
+  "tokenAccess": [
+    {
+      "USER_ID": "JDOE",
+      "TOKEN": "AP10.1",
+      "ACCESS_LEVEL": "FULL"
+    },
+    {
+      "USER_ID": "JDOE",
+      "TOKEN": "AP20.1",
+      "ACCESS_LEVEL": "FULL"
+    },
+    {
+      "USER_ID": "RJONES",
+      "TOKEN": "GL40.1",
+      "ACCESS_LEVEL": "READ"
+    }
+  ],
+  "summary": {
+    "totalUsers": 3,
+    "totalClasses": 3,
+    "totalTokenAccess": 3,
+    "extractedAt": "2024-01-20T09:20:00Z"
+  }
+}

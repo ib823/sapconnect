@@ -20,6 +20,8 @@ class ExtractionContext {
   constructor(opts = {}) {
     this._rfcPool = opts.rfcPool || null;
     this._odataClient = opts.odataClient || null;
+    this._sourceAdapter = opts.sourceAdapter || null;
+    this._sourceSystem = opts.sourceSystem || 'SAP';
     this._mode = opts.mode || 'mock';
     this._checkpoint = new CheckpointManager(opts.checkpointDir);
     this._coverage = new CoverageTracker();
@@ -29,6 +31,8 @@ class ExtractionContext {
 
   get rfc() { return this._rfcPool; }
   get odata() { return this._odataClient; }
+  get sourceAdapter() { return this._sourceAdapter; }
+  get sourceSystem() { return this._sourceSystem; }
   get mode() { return this._mode; }
 
   get system() { return this._systemInfo; }

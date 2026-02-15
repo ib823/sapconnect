@@ -1,0 +1,100 @@
+{
+  "users": [
+    { "t$user": "jsmith", "t$name": "John Smith", "t$dept": "Procurement", "t$cpnb": 100, "t$actv": true, "t$llog": "2024-01-15T08:00:00Z", "t$type": "Named" },
+    { "t$user": "mwilson", "t$name": "Mary Wilson", "t$dept": "Finance", "t$cpnb": 100, "t$actv": true, "t$llog": "2024-01-15T07:45:00Z", "t$type": "Named" },
+    { "t$user": "rbrown", "t$name": "Robert Brown", "t$dept": "Warehouse", "t$cpnb": 100, "t$actv": true, "t$llog": "2024-01-14T16:00:00Z", "t$type": "Named" },
+    { "t$user": "ljones", "t$name": "Lisa Jones", "t$dept": "Sales", "t$cpnb": 100, "t$actv": true, "t$llog": "2024-01-15T09:00:00Z", "t$type": "Named" },
+    { "t$user": "aparker", "t$name": "Alice Parker", "t$dept": "Finance", "t$cpnb": 100, "t$actv": true, "t$llog": "2024-01-15T08:30:00Z", "t$type": "Named" },
+    { "t$user": "cwhite", "t$name": "Charles White", "t$dept": "Finance", "t$cpnb": 100, "t$actv": true, "t$llog": "2024-01-15T07:30:00Z", "t$type": "Named" },
+    { "t$user": "hmueller", "t$name": "Hans Mueller", "t$dept": "Procurement", "t$cpnb": 200, "t$actv": true, "t$llog": "2024-01-15T08:00:00Z", "t$type": "Named" },
+    { "t$user": "kschmidt", "t$name": "Klaus Schmidt", "t$dept": "Management", "t$cpnb": 200, "t$actv": true, "t$llog": "2024-01-14T17:00:00Z", "t$type": "Named" },
+    { "t$user": "atan", "t$name": "Amy Tan", "t$dept": "Sales", "t$cpnb": 300, "t$actv": true, "t$llog": "2024-01-15T02:00:00Z", "t$type": "Named" },
+    { "t$user": "wlim", "t$name": "William Lim", "t$dept": "Warehouse", "t$cpnb": 300, "t$actv": true, "t$llog": "2024-01-14T10:00:00Z", "t$type": "Named" }
+  ],
+  "roles": [
+    { "t$role": "LN_BUYER", "t$desc": "Purchasing Buyer", "t$type": "Functional", "t$nprm": 45, "t$actv": true },
+    { "t$role": "LN_AP_CLERK", "t$desc": "Accounts Payable Clerk", "t$type": "Functional", "t$nprm": 38, "t$actv": true },
+    { "t$role": "LN_AR_CLERK", "t$desc": "Accounts Receivable Clerk", "t$type": "Functional", "t$nprm": 35, "t$actv": true },
+    { "t$role": "LN_GL_ACCT", "t$desc": "General Ledger Accountant", "t$type": "Functional", "t$nprm": 52, "t$actv": true },
+    { "t$role": "LN_SALES_REP", "t$desc": "Sales Representative", "t$type": "Functional", "t$nprm": 40, "t$actv": true },
+    { "t$role": "LN_WH_OPER", "t$desc": "Warehouse Operator", "t$type": "Functional", "t$nprm": 28, "t$actv": true },
+    { "t$role": "LN_FIN_MGR", "t$desc": "Finance Manager", "t$type": "Managerial", "t$nprm": 85, "t$actv": true },
+    { "t$role": "LN_ADMIN", "t$desc": "System Administrator", "t$type": "Technical", "t$nprm": 150, "t$actv": true }
+  ],
+  "roleAssignments": [
+    { "t$user": "jsmith", "t$role": "LN_BUYER", "t$cpnb": 100, "t$from": "2022-01-01", "t$to": null },
+    { "t$user": "jsmith", "t$role": "LN_AP_CLERK", "t$cpnb": 100, "t$from": "2023-06-01", "t$to": null },
+    { "t$user": "mwilson", "t$role": "LN_FIN_MGR", "t$cpnb": 100, "t$from": "2021-03-15", "t$to": null },
+    { "t$user": "mwilson", "t$role": "LN_GL_ACCT", "t$cpnb": 100, "t$from": "2021-03-15", "t$to": null },
+    { "t$user": "mwilson", "t$role": "LN_AP_CLERK", "t$cpnb": 100, "t$from": "2021-03-15", "t$to": null },
+    { "t$user": "rbrown", "t$role": "LN_WH_OPER", "t$cpnb": 100, "t$from": "2022-06-01", "t$to": null },
+    { "t$user": "ljones", "t$role": "LN_SALES_REP", "t$cpnb": 100, "t$from": "2021-09-01", "t$to": null },
+    { "t$user": "ljones", "t$role": "LN_AR_CLERK", "t$cpnb": 100, "t$from": "2023-01-15", "t$to": null },
+    { "t$user": "aparker", "t$role": "LN_AP_CLERK", "t$cpnb": 100, "t$from": "2022-02-01", "t$to": null },
+    { "t$user": "aparker", "t$role": "LN_AR_CLERK", "t$cpnb": 100, "t$from": "2022-02-01", "t$to": null },
+    { "t$user": "cwhite", "t$role": "LN_GL_ACCT", "t$cpnb": 100, "t$from": "2020-06-01", "t$to": null },
+    { "t$user": "cwhite", "t$role": "LN_FIN_MGR", "t$cpnb": 100, "t$from": "2023-09-01", "t$to": null },
+    { "t$user": "hmueller", "t$role": "LN_BUYER", "t$cpnb": 200, "t$from": "2022-04-01", "t$to": null },
+    { "t$user": "hmueller", "t$role": "LN_AP_CLERK", "t$cpnb": 200, "t$from": "2022-04-01", "t$to": null },
+    { "t$user": "kschmidt", "t$role": "LN_FIN_MGR", "t$cpnb": 200, "t$from": "2021-01-01", "t$to": null },
+    { "t$user": "kschmidt", "t$role": "LN_GL_ACCT", "t$cpnb": 200, "t$from": "2021-01-01", "t$to": null },
+    { "t$user": "kschmidt", "t$role": "LN_BUYER", "t$cpnb": 200, "t$from": "2023-01-01", "t$to": null },
+    { "t$user": "atan", "t$role": "LN_SALES_REP", "t$cpnb": 300, "t$from": "2022-07-01", "t$to": null },
+    { "t$user": "atan", "t$role": "LN_AR_CLERK", "t$cpnb": 300, "t$from": "2023-03-01", "t$to": null },
+    { "t$user": "wlim", "t$role": "LN_WH_OPER", "t$cpnb": 300, "t$from": "2022-08-01", "t$to": null },
+    { "t$user": "wlim", "t$role": "LN_BUYER", "t$cpnb": 300, "t$from": "2023-11-01", "t$to": null },
+    { "t$user": "cwhite", "t$role": "LN_AP_CLERK", "t$cpnb": 100, "t$from": "2020-06-01", "t$to": "2023-08-31" },
+    { "t$user": "jsmith", "t$role": "LN_WH_OPER", "t$cpnb": 100, "t$from": "2022-01-01", "t$to": "2023-05-31" },
+    { "t$user": "aparker", "t$role": "LN_GL_ACCT", "t$cpnb": 100, "t$from": "2022-02-01", "t$to": null },
+    { "t$user": "mwilson", "t$role": "LN_ADMIN", "t$cpnb": 100, "t$from": "2023-01-01", "t$to": null }
+  ],
+  "sodViolations": [
+    {
+      "t$vlid": "SOD001",
+      "t$user": "jsmith",
+      "t$role1": "LN_BUYER",
+      "t$role2": "LN_AP_CLERK",
+      "t$desc": "User can create purchase orders and process vendor invoices",
+      "t$risk": "High",
+      "t$type": "Create PO / Approve Invoice",
+      "t$cpnb": 100,
+      "t$ddat": "2024-01-10"
+    },
+    {
+      "t$vlid": "SOD002",
+      "t$user": "aparker",
+      "t$role1": "LN_AP_CLERK",
+      "t$role2": "LN_AR_CLERK",
+      "t$desc": "User can process both payables and receivables",
+      "t$risk": "Medium",
+      "t$type": "AP Processing / AR Processing",
+      "t$cpnb": 100,
+      "t$ddat": "2024-01-10"
+    },
+    {
+      "t$vlid": "SOD003",
+      "t$user": "kschmidt",
+      "t$role1": "LN_FIN_MGR",
+      "t$role2": "LN_BUYER",
+      "t$desc": "Manager can approve and create purchase orders",
+      "t$risk": "High",
+      "t$type": "PO Approval / PO Creation",
+      "t$cpnb": 200,
+      "t$ddat": "2024-01-10"
+    }
+  ],
+  "summary": {
+    "totalUsers": 10,
+    "activeUsers": 10,
+    "totalRoles": 8,
+    "totalRoleAssignments": 25,
+    "activeAssignments": 23,
+    "expiredAssignments": 2,
+    "avgRolesPerUser": 2.3,
+    "maxRolesPerUser": 5,
+    "sodViolations": 3,
+    "highRiskViolations": 2,
+    "mediumRiskViolations": 1,
+    "extractedAt": "2024-01-15T11:05:00Z"
+  }
+}

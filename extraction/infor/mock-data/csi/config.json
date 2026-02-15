@@ -1,0 +1,78 @@
+{
+  "sites": [
+    {
+      "Site": "MAIN",
+      "SiteDesc": "Main Manufacturing Site",
+      "SiteGroup": "US_PLANTS",
+      "CurrCode": "USD",
+      "LangCode": "en-US",
+      "Active": true,
+      "Addr1": "1200 Industrial Blvd",
+      "City": "Grand Rapids",
+      "State": "MI",
+      "Zip": "49503",
+      "Country": "US"
+    },
+    {
+      "Site": "WEST",
+      "SiteDesc": "West Coast Distribution Center",
+      "SiteGroup": "US_PLANTS",
+      "CurrCode": "USD",
+      "LangCode": "en-US",
+      "Active": true,
+      "Addr1": "8500 Pacific Ave",
+      "City": "Portland",
+      "State": "OR",
+      "Zip": "97201",
+      "Country": "US"
+    }
+  ],
+  "companyParams": {
+    "CompanyName": "Precision Manufacturing Inc.",
+    "CompanyCode": "PMI",
+    "FiscalYearStart": "01",
+    "DefaultCurrCode": "USD",
+    "DefaultSite": "MAIN",
+    "DecimalPlaces": 2,
+    "DateFormat": "MM/dd/yyyy",
+    "CostMethod": "S",
+    "AutoNumbering": true,
+    "MultiSiteEnabled": true,
+    "MultiCurrencyEnabled": true,
+    "LotTracking": true,
+    "SerialTracking": true,
+    "BarcodingEnabled": true,
+    "ApsEnabled": false,
+    "QualityEnabled": true,
+    "WarrantyTracking": false
+  },
+  "systemPreferences": [
+    { "ParmName": "GLPostAfterClose", "ParmValue": "0", "Description": "Allow GL Posting After Period Close" },
+    { "ParmName": "AutoAllocate", "ParmValue": "1", "Description": "Automatic Inventory Allocation" },
+    { "ParmName": "DefaultWhse", "ParmValue": "MAIN", "Description": "Default Warehouse" },
+    { "ParmName": "RequireApproval", "ParmValue": "1", "Description": "Require PO Approval" },
+    { "ParmName": "ApprovalThreshold", "ParmValue": "5000.00", "Description": "PO Approval Threshold Amount" },
+    { "ParmName": "BackflushLabor", "ParmValue": "1", "Description": "Backflush Labor on Job Move" },
+    { "ParmName": "BackflushMaterial", "ParmValue": "1", "Description": "Backflush Material on Job Move" },
+    { "ParmName": "ShipEarlyDays", "ParmValue": "3", "Description": "Allow Ship Early Days" },
+    { "ParmName": "ExpirationTracking", "ParmValue": "1", "Description": "Track Lot Expiration Dates" },
+    { "ParmName": "NegativeInventory", "ParmValue": "0", "Description": "Allow Negative Inventory" },
+    { "ParmName": "AutoReceive", "ParmValue": "0", "Description": "Auto Receive on PO Voucher" },
+    { "ParmName": "DefaultTaxSystem", "ParmValue": "AVATAX", "Description": "Default Tax Calculation System" }
+  ],
+  "currencySettings": [
+    { "CurrCode": "USD", "Description": "US Dollar", "Symbol": "$", "DecimalPlaces": 2, "IsBase": true },
+    { "CurrCode": "EUR", "Description": "Euro", "Symbol": "\u20ac", "DecimalPlaces": 2, "IsBase": false },
+    { "CurrCode": "CAD", "Description": "Canadian Dollar", "Symbol": "C$", "DecimalPlaces": 2, "IsBase": false },
+    { "CurrCode": "GBP", "Description": "British Pound", "Symbol": "\u00a3", "DecimalPlaces": 2, "IsBase": false }
+  ],
+  "analysis": {
+    "siteCount": 2,
+    "multiSite": true,
+    "multiCurrency": true,
+    "lotTracking": true,
+    "serialTracking": true,
+    "costMethod": "Standard",
+    "systemAge": "Production since 2018"
+  }
+}

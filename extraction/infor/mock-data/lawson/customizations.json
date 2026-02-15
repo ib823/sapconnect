@@ -1,0 +1,44 @@
+{
+  "customPrograms": [
+    {
+      "PROGRAM": "CUS001",
+      "DESCRIPTION": "Custom AP Approval Workflow",
+      "MODULE": "AP",
+      "STATUS": "ACTIVE",
+      "LINES_OF_CODE": 450
+    },
+    {
+      "PROGRAM": "CUS002",
+      "DESCRIPTION": "GL Auto-Posting Rules",
+      "MODULE": "GL",
+      "STATUS": "ACTIVE",
+      "LINES_OF_CODE": 280
+    },
+    {
+      "PROGRAM": "CUS003",
+      "DESCRIPTION": "HR Onboarding Automation",
+      "MODULE": "HR",
+      "STATUS": "ACTIVE",
+      "LINES_OF_CODE": 620
+    }
+  ],
+  "userExits": [
+    {
+      "EXIT_ID": "UE001",
+      "PROGRAM": "AP10.1",
+      "DESCRIPTION": "Vendor validation exit",
+      "STATUS": "ACTIVE"
+    },
+    {
+      "EXIT_ID": "UE002",
+      "PROGRAM": "GL40.1",
+      "DESCRIPTION": "Journal posting validation",
+      "STATUS": "ACTIVE"
+    }
+  ],
+  "summary": {
+    "totalCustomPrograms": 3,
+    "totalUserExits": 2,
+    "extractedAt": "2024-01-20T09:10:00Z"
+  }
+}

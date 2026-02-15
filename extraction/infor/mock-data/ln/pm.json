@@ -1,0 +1,52 @@
+{
+  "equipment": [
+    { "t$eqid": "EQ-CNC-001", "t$desc": "CNC Milling Center 5-Axis", "t$type": "MACH", "t$locn": "FL-PROD-01", "t$whno": "WH200", "t$cpnb": 200, "t$mfgr": "DMG Mori", "t$modl": "DMU 50", "t$srnb": "DM-2019-45821", "t$indt": "2019-06-15", "t$stat": "ACT", "t$crit": "A" },
+    { "t$eqid": "EQ-CNC-002", "t$desc": "CNC Lathe Heavy Duty", "t$type": "MACH", "t$locn": "FL-PROD-01", "t$whno": "WH200", "t$cpnb": 200, "t$mfgr": "Mazak", "t$modl": "QTN 350", "t$srnb": "MZ-2020-12045", "t$indt": "2020-03-20", "t$stat": "ACT", "t$crit": "A" },
+    { "t$eqid": "EQ-CNC-003", "t$desc": "CNC Milling Center 3-Axis", "t$type": "MACH", "t$locn": "FL-PROD-02", "t$whno": "WH200", "t$cpnb": 200, "t$mfgr": "Haas", "t$modl": "VF-4", "t$srnb": "HS-2021-88730", "t$indt": "2021-01-10", "t$stat": "ACT", "t$crit": "B" },
+    { "t$eqid": "EQ-GRD-001", "t$desc": "Surface Grinder Precision", "t$type": "MACH", "t$locn": "FL-PROD-02", "t$whno": "WH200", "t$cpnb": 200, "t$mfgr": "Studer", "t$modl": "S41", "t$srnb": "ST-2018-33210", "t$indt": "2018-09-01", "t$stat": "ACT", "t$crit": "B" },
+    { "t$eqid": "EQ-CST-001", "t$desc": "Iron Casting Furnace", "t$type": "MACH", "t$locn": "FL-CAST-01", "t$whno": "WH200", "t$cpnb": 200, "t$mfgr": "Inductotherm", "t$modl": "VIP 500", "t$srnb": "IT-2017-71002", "t$indt": "2017-04-15", "t$stat": "ACT", "t$crit": "A" },
+    { "t$eqid": "EQ-TST-001", "t$desc": "Hydrostatic Test Bench", "t$type": "TEST", "t$locn": "FL-QC-01", "t$whno": "WH200", "t$cpnb": 200, "t$mfgr": "Maximator", "t$modl": "HPU 100", "t$srnb": "MX-2020-55412", "t$indt": "2020-07-01", "t$stat": "ACT", "t$crit": "A" },
+    { "t$eqid": "EQ-TST-002", "t$desc": "Dynamic Balance Machine", "t$type": "TEST", "t$locn": "FL-QC-01", "t$whno": "WH200", "t$cpnb": 200, "t$mfgr": "Schenck", "t$modl": "CAB 740", "t$srnb": "SC-2019-22081", "t$indt": "2019-11-20", "t$stat": "ACT", "t$crit": "B" },
+    { "t$eqid": "EQ-CRN-001", "t$desc": "Overhead Crane 10T", "t$type": "INFR", "t$locn": "FL-PROD-01", "t$whno": "WH200", "t$cpnb": 200, "t$mfgr": "Demag", "t$modl": "EKDR 10", "t$srnb": "DG-2016-90115", "t$indt": "2016-02-28", "t$stat": "ACT", "t$crit": "A" },
+    { "t$eqid": "EQ-CMP-001", "t$desc": "Air Compressor 30HP", "t$type": "UTIL", "t$locn": "FL-UTIL-01", "t$whno": "WH200", "t$cpnb": 200, "t$mfgr": "Atlas Copco", "t$modl": "GA 30", "t$srnb": "AC-2019-44501", "t$indt": "2019-05-10", "t$stat": "ACT", "t$crit": "A" },
+    { "t$eqid": "EQ-SWG-001", "t$desc": "Cable Swaging Machine", "t$type": "MACH", "t$locn": "FL-PROD-03", "t$whno": "WH100", "t$cpnb": 100, "t$mfgr": "Loos", "t$modl": "SWG-250", "t$srnb": "LS-2020-67820", "t$indt": "2020-08-15", "t$stat": "ACT", "t$crit": "B" },
+    { "t$eqid": "EQ-CUT-001", "t$desc": "Automated Cable Cutter", "t$type": "MACH", "t$locn": "FL-PROD-03", "t$whno": "WH100", "t$cpnb": 100, "t$mfgr": "Schleuniger", "t$modl": "CC2200", "t$srnb": "SH-2021-15540", "t$indt": "2021-03-01", "t$stat": "ACT", "t$crit": "B" },
+    { "t$eqid": "EQ-LTH-001", "t$desc": "CNC Lathe Shaft Production", "t$type": "MACH", "t$locn": "FL-PROD-04", "t$whno": "WH100", "t$cpnb": 100, "t$mfgr": "Doosan", "t$modl": "Puma 3100", "t$srnb": "DS-2020-28340", "t$indt": "2020-11-05", "t$stat": "ACT", "t$crit": "A" },
+    { "t$eqid": "EQ-LTH-002", "t$desc": "CNC Lathe Shaft Production 2", "t$type": "MACH", "t$locn": "FL-PROD-04", "t$whno": "WH100", "t$cpnb": 100, "t$mfgr": "Doosan", "t$modl": "Puma 3100", "t$srnb": "DS-2021-28420", "t$indt": "2021-06-15", "t$stat": "MNT", "t$crit": "A" },
+    { "t$eqid": "EQ-FRK-001", "t$desc": "Forklift 3T Electric", "t$type": "VEHI", "t$locn": "FL-WH-01", "t$whno": "WH100", "t$cpnb": 100, "t$mfgr": "Toyota", "t$modl": "8FBE30", "t$srnb": "TY-2022-40155", "t$indt": "2022-01-20", "t$stat": "ACT", "t$crit": "C" },
+    { "t$eqid": "EQ-FRK-002", "t$desc": "Forklift 5T Diesel", "t$type": "VEHI", "t$locn": "FL-WH-02", "t$whno": "WH200", "t$cpnb": 200, "t$mfgr": "Linde", "t$modl": "H50D", "t$srnb": "LN-2021-30622", "t$indt": "2021-09-10", "t$stat": "ACT", "t$crit": "C" }
+  ],
+  "functionalLocations": [
+    { "t$floc": "FL-PROD-01", "t$desc": "Production Hall 1 - Heavy Machining", "t$whno": "WH200", "t$cpnb": 200, "t$type": "PROD", "t$prnt": "" },
+    { "t$floc": "FL-PROD-02", "t$desc": "Production Hall 2 - Light Machining", "t$whno": "WH200", "t$cpnb": 200, "t$type": "PROD", "t$prnt": "" },
+    { "t$floc": "FL-PROD-03", "t$desc": "Production Area 3 - Cable Assembly", "t$whno": "WH100", "t$cpnb": 100, "t$type": "PROD", "t$prnt": "" },
+    { "t$floc": "FL-PROD-04", "t$desc": "Production Area 4 - Shaft Manufacturing", "t$whno": "WH100", "t$cpnb": 100, "t$type": "PROD", "t$prnt": "" },
+    { "t$floc": "FL-CAST-01", "t$desc": "Casting Foundry", "t$whno": "WH200", "t$cpnb": 200, "t$type": "PROD", "t$prnt": "" },
+    { "t$floc": "FL-QC-01", "t$desc": "Quality Control Lab", "t$whno": "WH200", "t$cpnb": 200, "t$type": "QC", "t$prnt": "" },
+    { "t$floc": "FL-UTIL-01", "t$desc": "Utilities - Compressed Air", "t$whno": "WH200", "t$cpnb": 200, "t$type": "UTIL", "t$prnt": "" },
+    { "t$floc": "FL-WH-01", "t$desc": "Warehouse Operations US", "t$whno": "WH100", "t$cpnb": 100, "t$type": "WH", "t$prnt": "" }
+  ],
+  "maintenanceSchedules": [
+    { "t$msid": "MS-001", "t$eqid": "EQ-CNC-001", "t$desc": "CNC 5-Axis Monthly PM", "t$freq": "monthly", "t$dura": 4.0, "t$cuni": "HR", "t$last": "2024-01-15", "t$next": "2024-02-15", "t$stat": "ACT" },
+    { "t$msid": "MS-002", "t$eqid": "EQ-CNC-001", "t$desc": "CNC 5-Axis Annual Overhaul", "t$freq": "yearly", "t$dura": 40.0, "t$cuni": "HR", "t$last": "2023-06-15", "t$next": "2024-06-15", "t$stat": "ACT" },
+    { "t$msid": "MS-003", "t$eqid": "EQ-CNC-002", "t$desc": "Lathe Monthly Maintenance", "t$freq": "monthly", "t$dura": 3.0, "t$cuni": "HR", "t$last": "2024-01-20", "t$next": "2024-02-20", "t$stat": "ACT" },
+    { "t$msid": "MS-004", "t$eqid": "EQ-CST-001", "t$desc": "Furnace Weekly Inspection", "t$freq": "weekly", "t$dura": 1.5, "t$cuni": "HR", "t$last": "2024-02-09", "t$next": "2024-02-16", "t$stat": "ACT" },
+    { "t$msid": "MS-005", "t$eqid": "EQ-CST-001", "t$desc": "Furnace Quarterly Lining Check", "t$freq": "quarterly", "t$dura": 16.0, "t$cuni": "HR", "t$last": "2023-12-01", "t$next": "2024-03-01", "t$stat": "ACT" },
+    { "t$msid": "MS-006", "t$eqid": "EQ-TST-001", "t$desc": "Test Bench Calibration", "t$freq": "quarterly", "t$dura": 8.0, "t$cuni": "HR", "t$last": "2024-01-10", "t$next": "2024-04-10", "t$stat": "ACT" },
+    { "t$msid": "MS-007", "t$eqid": "EQ-CRN-001", "t$desc": "Crane Annual Statutory Inspection", "t$freq": "yearly", "t$dura": 8.0, "t$cuni": "HR", "t$last": "2023-08-01", "t$next": "2024-08-01", "t$stat": "ACT" },
+    { "t$msid": "MS-008", "t$eqid": "EQ-CMP-001", "t$desc": "Compressor Monthly Service", "t$freq": "monthly", "t$dura": 2.0, "t$cuni": "HR", "t$last": "2024-01-25", "t$next": "2024-02-25", "t$stat": "ACT" },
+    { "t$msid": "MS-009", "t$eqid": "EQ-LTH-001", "t$desc": "Lathe Monthly PM", "t$freq": "monthly", "t$dura": 3.0, "t$cuni": "HR", "t$last": "2024-02-05", "t$next": "2024-03-05", "t$stat": "ACT" },
+    { "t$msid": "MS-010", "t$eqid": "EQ-FRK-001", "t$desc": "Forklift Quarterly Inspection", "t$freq": "quarterly", "t$dura": 2.0, "t$cuni": "HR", "t$last": "2024-01-15", "t$next": "2024-04-15", "t$stat": "ACT" }
+  ],
+  "summary": {
+    "totalEquipment": 15,
+    "activeEquipment": 14,
+    "maintenanceEquipment": 1,
+    "functionalLocations": 8,
+    "maintenanceSchedules": 10,
+    "criticalityA": 7,
+    "criticalityB": 5,
+    "criticalityC": 2,
+    "extractedAt": "2024-01-15T11:35:00Z"
+  }
+}

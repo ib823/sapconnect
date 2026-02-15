@@ -1,0 +1,55 @@
+{
+  "items": [
+    {
+      "MMITNO": "FG-1001",
+      "MMITDS": "Finished Good A",
+      "MMITTY": "001",
+      "MMITGR": "FG",
+      "MMSTAT": "20",
+      "MMUNMS": "EA",
+      "MMNEWE": 10.5,
+      "MMGRWE": 12.3
+    },
+    {
+      "MMITNO": "FG-1002",
+      "MMITDS": "Finished Good B",
+      "MMITTY": "001",
+      "MMITGR": "FG",
+      "MMSTAT": "20",
+      "MMUNMS": "EA",
+      "MMNEWE": 5.2,
+      "MMGRWE": 6
+    },
+    {
+      "MMITNO": "RM-2001",
+      "MMITDS": "Raw Material A",
+      "MMITTY": "002",
+      "MMITGR": "RM",
+      "MMSTAT": "20",
+      "MMUNMS": "KG",
+      "MMNEWE": 1,
+      "MMGRWE": 1
+    }
+  ],
+  "itemFacility": [
+    {
+      "M9ITNO": "FG-1001",
+      "M9FACI": "F01",
+      "M9ORTY": "MO",
+      "M9PLCD": "MRP",
+      "M9LEAQ": 14
+    },
+    {
+      "M9ITNO": "RM-2001",
+      "M9FACI": "F01",
+      "M9ORTY": "PO",
+      "M9PLCD": "MRP",
+      "M9LEAQ": 7
+    }
+  ],
+  "summary": {
+    "totalItems": 3,
+    "totalItemFacility": 2,
+    "extractedAt": "2024-01-15T10:50:00Z"
+  }
+}

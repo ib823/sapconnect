@@ -1,0 +1,71 @@
+{
+  "bolScripts": [
+    { "t$scid": "BOL001", "t$name": "so_validation.4gl", "t$desc": "Sales order validation before save", "t$sess": "tdisg6100m000", "t$type": "Before Save", "t$lang": "4GL", "t$lines": 245, "t$cpnb": 100, "t$mdat": "2023-11-15" },
+    { "t$scid": "BOL002", "t$name": "po_approval_wf.4gl", "t$desc": "Purchase order approval workflow trigger", "t$sess": "tdpur4100m000", "t$type": "After Save", "t$lang": "4GL", "t$lines": 189, "t$cpnb": 100, "t$mdat": "2023-10-20" },
+    { "t$scid": "BOL003", "t$name": "item_default.4gl", "t$desc": "Item master default values", "t$sess": "tcibd0101m000", "t$type": "Before Display", "t$lang": "4GL", "t$lines": 132, "t$cpnb": 100, "t$mdat": "2023-08-10" },
+    { "t$scid": "BOL004", "t$name": "bp_duplicate_check.4gl", "t$desc": "Business partner duplicate detection", "t$sess": "tccom4100s000", "t$type": "Before Save", "t$lang": "4GL", "t$lines": 178, "t$cpnb": 100, "t$mdat": "2023-09-05" },
+    { "t$scid": "BOL005", "t$name": "gl_posting_rules.4gl", "t$desc": "GL posting validation rules", "t$sess": "tfgld0106s000", "t$type": "Before Save", "t$lang": "4GL", "t$lines": 312, "t$cpnb": 100, "t$mdat": "2024-01-08" },
+    { "t$scid": "BOL006", "t$name": "wh_receipt_auto.4gl", "t$desc": "Warehouse auto-receipt processing", "t$sess": "whwmd2100m000", "t$type": "After Save", "t$lang": "4GL", "t$lines": 167, "t$cpnb": 100, "t$mdat": "2023-12-01" },
+    { "t$scid": "BOL007", "t$name": "pricing_margin.4gl", "t$desc": "Sales pricing margin calculation", "t$sess": "tdsls0501m000", "t$type": "Before Save", "t$lang": "4GL", "t$lines": 98, "t$cpnb": 100, "t$mdat": "2023-07-22" },
+    { "t$scid": "BOL008", "t$name": "prod_order_bom.4gl", "t$desc": "Production order BOM explosion override", "t$sess": "tipcs0101m000", "t$type": "After Save", "t$lang": "4GL", "t$lines": 276, "t$cpnb": 100, "t$mdat": "2023-06-15" },
+    { "t$scid": "BOL009", "t$name": "interco_pricing.4gl", "t$desc": "Intercompany pricing adjustment", "t$sess": "tdisg6100m000", "t$type": "Before Save", "t$lang": "4GL", "t$lines": 154, "t$cpnb": 200, "t$mdat": "2023-11-30" },
+    { "t$scid": "BOL010", "t$name": "eu_tax_calc.4gl", "t$desc": "EU tax calculation override", "t$sess": "tdisg6100m000", "t$type": "Before Save", "t$lang": "4GL", "t$lines": 201, "t$cpnb": 200, "t$mdat": "2024-01-05" },
+    { "t$scid": "BOL011", "t$name": "sfc_reporting.4gl", "t$desc": "Shop floor reporting custom fields", "t$sess": "tisfc0101s000", "t$type": "After Save", "t$lang": "4GL", "t$lines": 87, "t$cpnb": 100, "t$mdat": "2023-05-10" },
+    { "t$scid": "BOL012", "t$name": "batch_allocation.4gl", "t$desc": "Batch allocation FIFO logic", "t$sess": "whwmd2510m000", "t$type": "Before Save", "t$lang": "4GL", "t$lines": 223, "t$cpnb": 100, "t$mdat": "2023-09-28" }
+  ],
+  "userExits": [
+    { "t$ueid": "UE001", "t$name": "u_so_credit_check", "t$desc": "Custom credit check on sales order", "t$hook": "before.save.object", "t$sess": "tdisg6100m000", "t$actv": true, "t$lines": 89 },
+    { "t$ueid": "UE002", "t$name": "u_po_budget_check", "t$desc": "Budget availability check on PO", "t$hook": "before.save.object", "t$sess": "tdpur4100m000", "t$actv": true, "t$lines": 112 },
+    { "t$ueid": "UE003", "t$name": "u_item_class_default", "t$desc": "Default item classification by group", "t$hook": "after.read.object", "t$sess": "tcibd0101m000", "t$actv": true, "t$lines": 56 },
+    { "t$ueid": "UE004", "t$name": "u_gl_period_check", "t$desc": "GL period open/close validation", "t$hook": "before.save.object", "t$sess": "tfgld0106s000", "t$actv": true, "t$lines": 73 },
+    { "t$ueid": "UE005", "t$name": "u_wh_lot_validate", "t$desc": "Warehouse lot number validation", "t$hook": "before.save.object", "t$sess": "whwmd2100m000", "t$actv": false, "t$lines": 45 }
+  ],
+  "demCustomizations": [
+    {
+      "t$dmid": "DEM001",
+      "t$desc": "Extended Sales Order Header",
+      "t$tabl": "tdisg600",
+      "t$nfld": 5,
+      "t$fields": ["x_cust_ref", "x_project_id", "x_priority", "x_ship_method", "x_approval_status"],
+      "t$mdat": "2023-04-10"
+    },
+    {
+      "t$dmid": "DEM002",
+      "t$desc": "Extended Purchase Order Header",
+      "t$tabl": "tdpur400",
+      "t$nfld": 3,
+      "t$fields": ["x_budget_code", "x_dept_approval", "x_expedite_flag"],
+      "t$mdat": "2023-05-22"
+    },
+    {
+      "t$dmid": "DEM003",
+      "t$desc": "Extended Item Master",
+      "t$tabl": "tcibd001",
+      "t$nfld": 4,
+      "t$fields": ["x_commodity_code", "x_hazmat_class", "x_country_origin", "x_shelf_life_days"],
+      "t$mdat": "2023-07-15"
+    }
+  ],
+  "chartFieldExtensions": [
+    { "t$cfid": "CF001", "t$dimn": 7, "t$desc": "Customer Segment", "t$size": 10, "t$type": "String", "t$mand": false },
+    { "t$cfid": "CF002", "t$dimn": 8, "t$desc": "Sales Channel", "t$size": 6, "t$type": "String", "t$mand": false },
+    { "t$cfid": "CF003", "t$dimn": 9, "t$desc": "Brand Code", "t$size": 8, "t$type": "String", "t$mand": false },
+    { "t$cfid": "CF004", "t$dimn": 10, "t$desc": "Plant Code", "t$size": 4, "t$type": "String", "t$mand": true }
+  ],
+  "summary": {
+    "totalBOLScripts": 12,
+    "totalUserExits": 5,
+    "activeUserExits": 4,
+    "totalDEMCustomizations": 3,
+    "totalExtendedFields": 12,
+    "totalChartFieldExtensions": 4,
+    "totalCustomCodeLines": 2262,
+    "scriptsByType": {
+      "Before Save": 6,
+      "After Save": 4,
+      "Before Display": 1,
+      "After Read": 1
+    },
+    "extractedAt": "2024-01-15T10:50:00Z"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "triggers": [
+    { "name": "OIS100_ValidateOrder", "program": "OIS100", "type": "PRE", "event": "VALIDATE", "description": "Custom order validation - checks credit limit and compliance", "status": "Active", "complexity": "High", "linesOfCode": 245, "createdBy": "DEV01", "createdDate": "20220501", "lastModified": "20231015" },
+    { "name": "OIS300_AutoConfirm", "program": "OIS300", "type": "POST", "event": "UPDATE", "description": "Auto-confirm orders under threshold amount", "status": "Active", "complexity": "Medium", "linesOfCode": 120, "createdBy": "DEV01", "createdDate": "20220601", "lastModified": "20230801" },
+    { "name": "MMS001_ItemDefaults", "program": "MMS001", "type": "PRE", "event": "ADD", "description": "Set default values for new items based on item group", "status": "Active", "complexity": "Low", "linesOfCode": 85, "createdBy": "DEV02", "createdDate": "20220715", "lastModified": "20230601" },
+    { "name": "PPS200_MOStatusChange", "program": "PPS200", "type": "POST", "event": "UPDATE", "description": "Send notification on MO status change to planning", "status": "Active", "complexity": "Medium", "linesOfCode": 150, "createdBy": "DEV01", "createdDate": "20230101", "lastModified": "20231201" },
+    { "name": "CRS610_CustomerOnboard", "program": "CRS610", "type": "POST", "event": "ADD", "description": "Trigger customer onboarding workflow via ION", "status": "Active", "complexity": "High", "linesOfCode": 310, "createdBy": "DEV02", "createdDate": "20230201", "lastModified": "20231115" },
+    { "name": "PPS330_OpReporting", "program": "PPS330", "type": "POST", "event": "UPDATE", "description": "Log operation completion to custom reporting table", "status": "Active", "complexity": "Low", "linesOfCode": 65, "createdBy": "DEV01", "createdDate": "20230401", "lastModified": "20230901" },
+    { "name": "MMS200_StockAlert", "program": "MMS200", "type": "POST", "event": "UPDATE", "description": "Alert when stock drops below safety level", "status": "Active", "complexity": "Medium", "linesOfCode": 135, "createdBy": "DEV02", "createdDate": "20230601", "lastModified": "20231201" },
+    { "name": "GLS200_JournalApproval", "program": "GLS200", "type": "PRE", "event": "UPDATE", "description": "Enforce approval workflow for large journal entries", "status": "Inactive", "complexity": "High", "linesOfCode": 280, "createdBy": "DEV01", "createdDate": "20230801", "lastModified": "20231001" }
+  ],
+  "utilities": [
+    { "name": "DateCalculator", "description": "Business date calculation with holiday calendars", "status": "Active", "linesOfCode": 190, "usedByTriggers": ["OIS100_ValidateOrder", "OIS300_AutoConfirm", "PPS200_MOStatusChange"], "createdBy": "DEV02", "createdDate": "20220401" },
+    { "name": "CreditCheckService", "description": "Real-time credit limit validation against FSLEDG", "status": "Active", "linesOfCode": 220, "usedByTriggers": ["OIS100_ValidateOrder", "CRS610_CustomerOnboard"], "createdBy": "DEV01", "createdDate": "20220501" },
+    { "name": "NotificationHelper", "description": "ION message formatting and dispatch utility", "status": "Active", "linesOfCode": 165, "usedByTriggers": ["PPS200_MOStatusChange", "CRS610_CustomerOnboard", "MMS200_StockAlert"], "createdBy": "DEV02", "createdDate": "20230101" },
+    { "name": "UnitConverter", "description": "Unit of measure conversion across M3 tables", "status": "Active", "linesOfCode": 110, "usedByTriggers": ["MMS001_ItemDefaults", "MMS200_StockAlert"], "createdBy": "DEV01", "createdDate": "20230301" }
+  ],
+  "apiExtensions": [
+    { "name": "CustomOrderAPI", "endpoint": "/m3api/custom/order", "methods": ["GET", "POST", "PUT"], "description": "Extended order API with compliance fields", "status": "Active", "version": "2.1", "linesOfCode": 380, "createdBy": "DEV01", "createdDate": "20220701" },
+    { "name": "StockInquiryAPI", "endpoint": "/m3api/custom/stock", "methods": ["GET"], "description": "Real-time stock availability across warehouses", "status": "Active", "version": "1.3", "linesOfCode": 210, "createdBy": "DEV02", "createdDate": "20230201" },
+    { "name": "SupplierPortalAPI", "endpoint": "/m3api/custom/supplier", "methods": ["GET", "POST"], "description": "Supplier self-service portal API", "status": "Active", "version": "1.0", "linesOfCode": 290, "createdBy": "DEV01", "createdDate": "20230601" }
+  ],
+  "summary": {
+    "totalTriggers": 8,
+    "activeTriggers": 7,
+    "inactiveTriggers": 1,
+    "totalUtilities": 4,
+    "totalApiExtensions": 3,
+    "totalLinesOfCode": 2960,
+    "complexityBreakdown": { "High": 3, "Medium": 3, "Low": 2 },
+    "extractedAt": "2024-01-15T10:20:00Z"
+  }
+}

@@ -16,9 +16,9 @@ describe('McpServer — Pillars 6-8 Tools', () => {
   // ─────────────────────────────────────────────────────────────────────────
 
   describe('tools/list includes Pillar 6-8 tools', () => {
-    it('should have 43 total tools (12 + 31)', async () => {
+    it('should have 58 total tools (12 + 31 + 15 Infor)', async () => {
       const result = await server._handleToolsList();
-      expect(result.tools).toHaveLength(43);
+      expect(result.tools).toHaveLength(58);
     });
 
     it('should include all signavio tools', async () => {

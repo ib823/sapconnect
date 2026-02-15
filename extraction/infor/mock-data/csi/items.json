@@ -1,0 +1,49 @@
+{
+  "items": [
+    { "Item": "ASM-1001", "Description": "Hydraulic Cylinder Assembly", "UM": "EA", "ProductCode": "ASM", "CostType": "M", "UnitCost": 485.50, "LotTracked": false, "SerialTracked": false, "PlannerCode": "JM", "BuyerCode": "SL", "ABCCode": "A", "Stat": "A", "MatlType": "M" },
+    { "Item": "ASM-1002", "Description": "Pneumatic Actuator Kit", "UM": "EA", "ProductCode": "ASM", "CostType": "M", "UnitCost": 312.75, "LotTracked": false, "SerialTracked": true, "PlannerCode": "JM", "BuyerCode": "SL", "ABCCode": "A", "Stat": "A", "MatlType": "M" },
+    { "Item": "RAW-2001", "Description": "Steel Rod 25mm x 3m", "UM": "EA", "ProductCode": "RAW", "CostType": "S", "UnitCost": 42.30, "LotTracked": true, "SerialTracked": false, "PlannerCode": "KR", "BuyerCode": "TW", "ABCCode": "B", "Stat": "A", "MatlType": "R" },
+    { "Item": "RAW-2002", "Description": "Aluminum Sheet 4x8 0.125in", "UM": "SH", "ProductCode": "RAW", "CostType": "S", "UnitCost": 78.90, "LotTracked": true, "SerialTracked": false, "PlannerCode": "KR", "BuyerCode": "TW", "ABCCode": "B", "Stat": "A", "MatlType": "R" },
+    { "Item": "RAW-2003", "Description": "Stainless Steel Tube 50mm", "UM": "EA", "ProductCode": "RAW", "CostType": "S", "UnitCost": 65.20, "LotTracked": true, "SerialTracked": false, "PlannerCode": "KR", "BuyerCode": "TW", "ABCCode": "B", "Stat": "A", "MatlType": "R" },
+    { "Item": "CMP-3001", "Description": "Bearing Assembly SKF 6205", "UM": "EA", "ProductCode": "CMP", "CostType": "S", "UnitCost": 18.45, "LotTracked": false, "SerialTracked": false, "PlannerCode": "JM", "BuyerCode": "SL", "ABCCode": "C", "Stat": "A", "MatlType": "P" },
+    { "Item": "CMP-3002", "Description": "Hydraulic Seal Kit", "UM": "KT", "ProductCode": "CMP", "CostType": "S", "UnitCost": 24.80, "LotTracked": true, "SerialTracked": false, "PlannerCode": "JM", "BuyerCode": "SL", "ABCCode": "C", "Stat": "A", "MatlType": "P" },
+    { "Item": "CMP-3003", "Description": "Precision Spring Set", "UM": "ST", "ProductCode": "CMP", "CostType": "S", "UnitCost": 9.75, "LotTracked": false, "SerialTracked": false, "PlannerCode": "JM", "BuyerCode": "TW", "ABCCode": "C", "Stat": "A", "MatlType": "P" },
+    { "Item": "CMP-3004", "Description": "O-Ring Viton 45mm", "UM": "EA", "ProductCode": "CMP", "CostType": "S", "UnitCost": 3.20, "LotTracked": true, "SerialTracked": false, "PlannerCode": "KR", "BuyerCode": "TW", "ABCCode": "C", "Stat": "A", "MatlType": "P" },
+    { "Item": "CMP-3005", "Description": "Solenoid Valve 24V DC", "UM": "EA", "ProductCode": "CMP", "CostType": "S", "UnitCost": 156.00, "LotTracked": false, "SerialTracked": true, "PlannerCode": "JM", "BuyerCode": "SL", "ABCCode": "B", "Stat": "A", "MatlType": "P" },
+    { "Item": "FG-4001", "Description": "Hydraulic Power Unit 15HP", "UM": "EA", "ProductCode": "FGD", "CostType": "M", "UnitCost": 2850.00, "LotTracked": false, "SerialTracked": true, "PlannerCode": "JM", "BuyerCode": null, "ABCCode": "A", "Stat": "A", "MatlType": "F" },
+    { "Item": "FG-4002", "Description": "Linear Actuator 500mm Stroke", "UM": "EA", "ProductCode": "FGD", "CostType": "M", "UnitCost": 1245.00, "LotTracked": false, "SerialTracked": true, "PlannerCode": "JM", "BuyerCode": null, "ABCCode": "A", "Stat": "A", "MatlType": "F" },
+    { "Item": "FG-4003", "Description": "Control Panel Assembly", "UM": "EA", "ProductCode": "FGD", "CostType": "M", "UnitCost": 3100.00, "LotTracked": false, "SerialTracked": true, "PlannerCode": "KR", "BuyerCode": null, "ABCCode": "A", "Stat": "A", "MatlType": "F" },
+    { "Item": "FG-4004", "Description": "Conveyor Drive Unit", "UM": "EA", "ProductCode": "FGD", "CostType": "M", "UnitCost": 1890.00, "LotTracked": false, "SerialTracked": true, "PlannerCode": "KR", "BuyerCode": null, "ABCCode": "A", "Stat": "A", "MatlType": "F" },
+    { "Item": "PKG-5001", "Description": "Shipping Crate Large", "UM": "EA", "ProductCode": "PKG", "CostType": "S", "UnitCost": 45.00, "LotTracked": false, "SerialTracked": false, "PlannerCode": "KR", "BuyerCode": "TW", "ABCCode": "C", "Stat": "A", "MatlType": "O" },
+    { "Item": "PKG-5002", "Description": "Foam Insert Kit", "UM": "EA", "ProductCode": "PKG", "CostType": "S", "UnitCost": 12.50, "LotTracked": false, "SerialTracked": false, "PlannerCode": "KR", "BuyerCode": "TW", "ABCCode": "C", "Stat": "A", "MatlType": "O" },
+    { "Item": "SVC-6001", "Description": "Field Service - Hydraulic", "UM": "HR", "ProductCode": "SVC", "CostType": "S", "UnitCost": 125.00, "LotTracked": false, "SerialTracked": false, "PlannerCode": null, "BuyerCode": null, "ABCCode": "B", "Stat": "A", "MatlType": "O" },
+    { "Item": "SVC-6002", "Description": "Field Service - Electrical", "UM": "HR", "ProductCode": "SVC", "CostType": "S", "UnitCost": 135.00, "LotTracked": false, "SerialTracked": false, "PlannerCode": null, "BuyerCode": null, "ABCCode": "B", "Stat": "A", "MatlType": "O" },
+    { "Item": "OBS-7001", "Description": "Legacy Pump Housing v1", "UM": "EA", "ProductCode": "OBS", "CostType": "S", "UnitCost": 220.00, "LotTracked": false, "SerialTracked": false, "PlannerCode": "JM", "BuyerCode": "SL", "ABCCode": "C", "Stat": "O", "MatlType": "M" },
+    { "Item": "OBS-7002", "Description": "Discontinued Valve Body", "UM": "EA", "ProductCode": "OBS", "CostType": "S", "UnitCost": 88.50, "LotTracked": false, "SerialTracked": false, "PlannerCode": "JM", "BuyerCode": "SL", "ABCCode": "C", "Stat": "O", "MatlType": "P" }
+  ],
+  "itemPlanning": [
+    { "Item": "ASM-1001", "Whse": "MAIN", "OrderPolicy": "D", "OrderQty": 10, "SafetyStock": 5, "LeadTime": 14, "ReorderPoint": 8 },
+    { "Item": "ASM-1002", "Whse": "MAIN", "OrderPolicy": "D", "OrderQty": 15, "SafetyStock": 5, "LeadTime": 10, "ReorderPoint": 8 },
+    { "Item": "RAW-2001", "Whse": "MAIN", "OrderPolicy": "F", "OrderQty": 100, "SafetyStock": 25, "LeadTime": 7, "ReorderPoint": 40 },
+    { "Item": "RAW-2002", "Whse": "MAIN", "OrderPolicy": "F", "OrderQty": 50, "SafetyStock": 10, "LeadTime": 10, "ReorderPoint": 20 },
+    { "Item": "FG-4001", "Whse": "MAIN", "OrderPolicy": "D", "OrderQty": 5, "SafetyStock": 2, "LeadTime": 21, "ReorderPoint": 3 },
+    { "Item": "FG-4002", "Whse": "MAIN", "OrderPolicy": "D", "OrderQty": 10, "SafetyStock": 3, "LeadTime": 14, "ReorderPoint": 5 }
+  ],
+  "itemWarehouse": [
+    { "Item": "ASM-1001", "Whse": "MAIN", "QtyOnHand": 23, "QtyAllocated": 8, "QtyOnOrder": 10, "Loc": "A-01-01", "LotTracked": false },
+    { "Item": "RAW-2001", "Whse": "MAIN", "QtyOnHand": 156, "QtyAllocated": 40, "QtyOnOrder": 100, "Loc": "B-02-03", "LotTracked": true },
+    { "Item": "FG-4001", "Whse": "MAIN", "QtyOnHand": 4, "QtyAllocated": 2, "QtyOnOrder": 5, "Loc": "C-01-01", "LotTracked": false },
+    { "Item": "FG-4002", "Whse": "MAIN", "QtyOnHand": 7, "QtyAllocated": 3, "QtyOnOrder": 10, "Loc": "C-01-02", "LotTracked": false },
+    { "Item": "FG-4001", "Whse": "WEST", "QtyOnHand": 2, "QtyAllocated": 1, "QtyOnOrder": 0, "Loc": "W-01-01", "LotTracked": false },
+    { "Item": "CMP-3001", "Whse": "MAIN", "QtyOnHand": 340, "QtyAllocated": 50, "QtyOnOrder": 200, "Loc": "D-03-02", "LotTracked": false }
+  ],
+  "analysis": {
+    "totalItems": 20,
+    "activeItems": 18,
+    "obsoleteItems": 2,
+    "lotTrackedItems": 5,
+    "serialTrackedItems": 6,
+    "productCodes": ["ASM", "RAW", "CMP", "FGD", "PKG", "SVC", "OBS"],
+    "materialTypes": { "M": 3, "R": 3, "P": 5, "F": 4, "O": 5 }
+  }
+}

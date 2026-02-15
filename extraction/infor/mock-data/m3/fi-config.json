@@ -1,0 +1,86 @@
+{
+  "chartOfAccounts": {
+    "FCHACC": "US01",
+    "name": "US Standard Chart of Accounts",
+    "accounts": [
+      { "FCAIT1": "1000", "FCAIDC": "Cash and Cash Equivalents", "FCAPTS": "BS", "FCACTY": "A", "FCSTAT": "20" },
+      { "FCAIT1": "1010", "FCAIDC": "Petty Cash", "FCAPTS": "BS", "FCACTY": "A", "FCSTAT": "20" },
+      { "FCAIT1": "1100", "FCAIDC": "Accounts Receivable", "FCAPTS": "BS", "FCACTY": "A", "FCSTAT": "20" },
+      { "FCAIT1": "1110", "FCAIDC": "Allowance for Doubtful", "FCAPTS": "BS", "FCACTY": "A", "FCSTAT": "20" },
+      { "FCAIT1": "1200", "FCAIDC": "Raw Material Inventory", "FCAPTS": "BS", "FCACTY": "A", "FCSTAT": "20" },
+      { "FCAIT1": "1210", "FCAIDC": "WIP Inventory", "FCAPTS": "BS", "FCACTY": "A", "FCSTAT": "20" },
+      { "FCAIT1": "1220", "FCAIDC": "Finished Goods Inventory", "FCAPTS": "BS", "FCACTY": "A", "FCSTAT": "20" },
+      { "FCAIT1": "1300", "FCAIDC": "Prepaid Expenses", "FCAPTS": "BS", "FCACTY": "A", "FCSTAT": "20" },
+      { "FCAIT1": "1500", "FCAIDC": "Fixed Assets - Machinery", "FCAPTS": "BS", "FCACTY": "A", "FCSTAT": "20" },
+      { "FCAIT1": "1510", "FCAIDC": "Fixed Assets - Vehicles", "FCAPTS": "BS", "FCACTY": "A", "FCSTAT": "20" },
+      { "FCAIT1": "1520", "FCAIDC": "Accumulated Depreciation", "FCAPTS": "BS", "FCACTY": "A", "FCSTAT": "20" },
+      { "FCAIT1": "2000", "FCAIDC": "Accounts Payable", "FCAPTS": "BS", "FCACTY": "L", "FCSTAT": "20" },
+      { "FCAIT1": "2010", "FCAIDC": "Accrued Liabilities", "FCAPTS": "BS", "FCACTY": "L", "FCSTAT": "20" },
+      { "FCAIT1": "2100", "FCAIDC": "Short-term Loans", "FCAPTS": "BS", "FCACTY": "L", "FCSTAT": "20" },
+      { "FCAIT1": "2200", "FCAIDC": "Tax Payable", "FCAPTS": "BS", "FCACTY": "L", "FCSTAT": "20" },
+      { "FCAIT1": "2500", "FCAIDC": "Long-term Debt", "FCAPTS": "BS", "FCACTY": "L", "FCSTAT": "20" },
+      { "FCAIT1": "3000", "FCAIDC": "Common Stock", "FCAPTS": "BS", "FCACTY": "E", "FCSTAT": "20" },
+      { "FCAIT1": "3100", "FCAIDC": "Retained Earnings", "FCAPTS": "BS", "FCACTY": "E", "FCSTAT": "20" },
+      { "FCAIT1": "4000", "FCAIDC": "Revenue - Domestic", "FCAPTS": "PL", "FCACTY": "R", "FCSTAT": "20" },
+      { "FCAIT1": "4010", "FCAIDC": "Revenue - Export", "FCAPTS": "PL", "FCACTY": "R", "FCSTAT": "20" },
+      { "FCAIT1": "4100", "FCAIDC": "Sales Returns", "FCAPTS": "PL", "FCACTY": "R", "FCSTAT": "20" },
+      { "FCAIT1": "4200", "FCAIDC": "Sales Discounts", "FCAPTS": "PL", "FCACTY": "R", "FCSTAT": "20" },
+      { "FCAIT1": "5000", "FCAIDC": "Cost of Goods Sold", "FCAPTS": "PL", "FCACTY": "X", "FCSTAT": "20" },
+      { "FCAIT1": "5100", "FCAIDC": "Direct Materials", "FCAPTS": "PL", "FCACTY": "X", "FCSTAT": "20" },
+      { "FCAIT1": "5200", "FCAIDC": "Direct Labor", "FCAPTS": "PL", "FCACTY": "X", "FCSTAT": "20" },
+      { "FCAIT1": "5300", "FCAIDC": "Manufacturing Overhead", "FCAPTS": "PL", "FCACTY": "X", "FCSTAT": "20" },
+      { "FCAIT1": "6000", "FCAIDC": "Salaries & Wages", "FCAPTS": "PL", "FCACTY": "X", "FCSTAT": "20" },
+      { "FCAIT1": "6100", "FCAIDC": "Rent Expense", "FCAPTS": "PL", "FCACTY": "X", "FCSTAT": "20" },
+      { "FCAIT1": "6200", "FCAIDC": "Utilities Expense", "FCAPTS": "PL", "FCACTY": "X", "FCSTAT": "20" },
+      { "FCAIT1": "6300", "FCAIDC": "Depreciation Expense", "FCAPTS": "PL", "FCACTY": "X", "FCSTAT": "20" }
+    ]
+  },
+  "accountingRules": [
+    {
+      "ACRULE": "AR01",
+      "ACDESC": "Standard Revenue Recognition",
+      "ACTYPE": "Revenue",
+      "ACMTHD": "Accrual",
+      "ACSTAT": "20"
+    },
+    {
+      "ACRULE": "AR02",
+      "ACDESC": "COGS at Standard Cost",
+      "ACTYPE": "Cost",
+      "ACMTHD": "Standard",
+      "ACSTAT": "20"
+    },
+    {
+      "ACRULE": "AR03",
+      "ACDESC": "Variance Analysis Rule",
+      "ACTYPE": "Variance",
+      "ACMTHD": "Standard",
+      "ACSTAT": "20"
+    },
+    {
+      "ACRULE": "AR04",
+      "ACDESC": "Intercompany Elimination",
+      "ACTYPE": "Elimination",
+      "ACMTHD": "Automatic",
+      "ACSTAT": "20"
+    }
+  ],
+  "taxConfig": [
+    { "TATXCD": "TX01", "TATXDS": "US Sales Tax Standard", "TATXRT": 7.25, "TACSCD": "US", "TATYPE": "Sales", "TASTAT": "20" },
+    { "TATXCD": "TX02", "TATXDS": "US Sales Tax Reduced", "TATXRT": 4.00, "TACSCD": "US", "TATYPE": "Sales", "TASTAT": "20" },
+    { "TATXCD": "TX03", "TATXDS": "US Sales Tax Exempt", "TATXRT": 0.00, "TACSCD": "US", "TATYPE": "Sales", "TASTAT": "20" },
+    { "TATXCD": "TX10", "TATXDS": "US Purchase Tax Standard", "TATXRT": 7.25, "TACSCD": "US", "TATYPE": "Purchase", "TASTAT": "20" },
+    { "TATXCD": "TX20", "TATXDS": "DE VAT Standard 19%", "TATXRT": 19.00, "TACSCD": "DE", "TATYPE": "Sales", "TASTAT": "20" },
+    { "TATXCD": "TX21", "TATXDS": "DE VAT Reduced 7%", "TATXRT": 7.00, "TACSCD": "DE", "TATYPE": "Sales", "TASTAT": "20" },
+    { "TATXCD": "TX22", "TATXDS": "DE Input VAT 19%", "TATXRT": 19.00, "TACSCD": "DE", "TATYPE": "Purchase", "TASTAT": "20" },
+    { "TATXCD": "TX30", "TATXDS": "EU Reverse Charge", "TATXRT": 0.00, "TACSCD": "EU", "TATYPE": "ReverseCharge", "TASTAT": "20" }
+  ],
+  "summary": {
+    "totalAccounts": 30,
+    "accountsByType": { "Asset": 11, "Liability": 5, "Equity": 2, "Revenue": 4, "Expense": 8 },
+    "totalAccountingRules": 4,
+    "totalTaxCodes": 8,
+    "countries": ["US", "DE", "EU"],
+    "extractedAt": "2024-01-15T10:10:00Z"
+  }
+}

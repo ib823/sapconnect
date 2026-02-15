@@ -1,0 +1,86 @@
+{
+  "employees": [
+    {
+      "EMPLOYEE": "E0001",
+      "EMPLOYEE_NAME": "Alice Johnson",
+      "DEPARTMENT": "NURSING",
+      "POSITION": "RN",
+      "HIRE_DATE": "2018-03-15",
+      "STATUS": "ACTIVE",
+      "COMPANY": "1"
+    },
+    {
+      "EMPLOYEE": "E0002",
+      "EMPLOYEE_NAME": "Bob Smith",
+      "DEPARTMENT": "ADMIN",
+      "POSITION": "HR Manager",
+      "HIRE_DATE": "2015-06-01",
+      "STATUS": "ACTIVE",
+      "COMPANY": "1"
+    },
+    {
+      "EMPLOYEE": "E0003",
+      "EMPLOYEE_NAME": "Carol Davis",
+      "DEPARTMENT": "FINANCE",
+      "POSITION": "Controller",
+      "HIRE_DATE": "2019-01-10",
+      "STATUS": "ACTIVE",
+      "COMPANY": "1"
+    },
+    {
+      "EMPLOYEE": "E0004",
+      "EMPLOYEE_NAME": "Dave Wilson",
+      "DEPARTMENT": "IT",
+      "POSITION": "Systems Admin",
+      "HIRE_DATE": "2020-08-20",
+      "STATUS": "ACTIVE",
+      "COMPANY": "1"
+    }
+  ],
+  "departments": [
+    {
+      "DEPARTMENT": "NURSING",
+      "DESCRIPTION": "Nursing Services",
+      "COMPANY": "1",
+      "HEAD_COUNT": 150
+    },
+    {
+      "DEPARTMENT": "ADMIN",
+      "DESCRIPTION": "Administration",
+      "COMPANY": "1",
+      "HEAD_COUNT": 25
+    },
+    {
+      "DEPARTMENT": "FINANCE",
+      "DESCRIPTION": "Finance & Accounting",
+      "COMPANY": "1",
+      "HEAD_COUNT": 15
+    },
+    {
+      "DEPARTMENT": "IT",
+      "DESCRIPTION": "Information Technology",
+      "COMPANY": "1",
+      "HEAD_COUNT": 20
+    }
+  ],
+  "positions": [
+    {
+      "POSITION": "RN",
+      "DESCRIPTION": "Registered Nurse",
+      "PAY_GRADE": "G05",
+      "STATUS": "ACTIVE"
+    },
+    {
+      "POSITION": "HR Manager",
+      "DESCRIPTION": "Human Resources Manager",
+      "PAY_GRADE": "G08",
+      "STATUS": "ACTIVE"
+    }
+  ],
+  "summary": {
+    "totalEmployees": 4,
+    "totalDepartments": 4,
+    "totalPositions": 2,
+    "extractedAt": "2024-01-20T09:00:00Z"
+  }
+}

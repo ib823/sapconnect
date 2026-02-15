@@ -1,0 +1,48 @@
+{
+  "tables": [
+    {
+      "table": "item",
+      "totalRecords": 5000,
+      "overallScore": 96.5,
+      "fields": {
+        "Item": {
+          "completeness": 100
+        },
+        "Description": {
+          "completeness": 99.8
+        }
+      }
+    },
+    {
+      "table": "customer",
+      "totalRecords": 1200,
+      "overallScore": 93.2,
+      "fields": {
+        "CustNum": {
+          "completeness": 100
+        },
+        "Name": {
+          "completeness": 100
+        }
+      }
+    }
+  ],
+  "duplicates": [
+    {
+      "table": "customer",
+      "field": "Name",
+      "count": 5
+    },
+    {
+      "table": "item",
+      "field": "Description",
+      "count": 12
+    }
+  ],
+  "summary": {
+    "tablesAnalyzed": 2,
+    "averageScore": 94.85,
+    "totalDuplicates": 17,
+    "extractedAt": "2024-01-15T12:25:00Z"
+  }
+}

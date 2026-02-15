@@ -1,0 +1,43 @@
+{
+  "customers": [
+    { "CustNum": "C000100", "Name": "Apex Industrial Solutions", "CurrCode": "USD", "TermsCode": "NET30", "CreditLimit": 50000, "CreditHold": false, "Slsman": "DM01", "CustType": "DIS", "TaxCode1": "TAX1", "Stat": "A" },
+    { "CustNum": "C000101", "Name": "Midwest Automation Corp", "CurrCode": "USD", "TermsCode": "NET30", "CreditLimit": 75000, "CreditHold": false, "Slsman": "DM01", "CustType": "OEM", "TaxCode1": "TAX1", "Stat": "A" },
+    { "CustNum": "C000102", "Name": "Pacific Hydraulics Ltd", "CurrCode": "USD", "TermsCode": "NET45", "CreditLimit": 100000, "CreditHold": false, "Slsman": "JB02", "CustType": "OEM", "TaxCode1": "TAX2", "Stat": "A" },
+    { "CustNum": "C000103", "Name": "Northern Equipment Services", "CurrCode": "CAD", "TermsCode": "NET30", "CreditLimit": 60000, "CreditHold": false, "Slsman": "JB02", "CustType": "END", "TaxCode1": "TXCA", "Stat": "A" },
+    { "CustNum": "C000104", "Name": "Global Fluid Power Inc", "CurrCode": "USD", "TermsCode": "NET60", "CreditLimit": 200000, "CreditHold": false, "Slsman": "DM01", "CustType": "OEM", "TaxCode1": "TAX1", "Stat": "A" },
+    { "CustNum": "C000105", "Name": "TechLine Manufacturing", "CurrCode": "USD", "TermsCode": "NET30", "CreditLimit": 35000, "CreditHold": false, "Slsman": "RW03", "CustType": "END", "TaxCode1": "TAX1", "Stat": "A" },
+    { "CustNum": "C000106", "Name": "Summit Mechanical Systems", "CurrCode": "USD", "TermsCode": "COD", "CreditLimit": 0, "CreditHold": false, "Slsman": "RW03", "CustType": "END", "TaxCode1": "TAX1", "Stat": "A" },
+    { "CustNum": "C000107", "Name": "Euro Precision GmbH", "CurrCode": "EUR", "TermsCode": "NET60", "CreditLimit": 150000, "CreditHold": false, "Slsman": "JB02", "CustType": "OEM", "TaxCode1": "TXEU", "Stat": "A" },
+    { "CustNum": "C000108", "Name": "Cascade Controls LLC", "CurrCode": "USD", "TermsCode": "NET30", "CreditLimit": 40000, "CreditHold": true, "Slsman": "DM01", "CustType": "DIS", "TaxCode1": "TAX1", "Stat": "A" },
+    { "CustNum": "C000109", "Name": "Delta Industrial Supply", "CurrCode": "USD", "TermsCode": "NET30", "CreditLimit": 25000, "CreditHold": false, "Slsman": "RW03", "CustType": "DIS", "TaxCode1": "TAX2", "Stat": "A" },
+    { "CustNum": "C000110", "Name": "Harbour Engineering Ltd", "CurrCode": "GBP", "TermsCode": "NET45", "CreditLimit": 80000, "CreditHold": false, "Slsman": "JB02", "CustType": "OEM", "TaxCode1": "TXUK", "Stat": "A" },
+    { "CustNum": "C000199", "Name": "Retired Customer Corp", "CurrCode": "USD", "TermsCode": "NET30", "CreditLimit": 0, "CreditHold": true, "Slsman": "DM01", "CustType": "END", "TaxCode1": "TAX1", "Stat": "I" }
+  ],
+  "customerAddresses": [
+    { "CustNum": "C000100", "CustSeq": 0, "Name": "Apex Industrial Solutions", "Addr1": "500 Commerce Dr", "City": "Detroit", "State": "MI", "Zip": "48201", "Country": "US", "AddrType": "B" },
+    { "CustNum": "C000100", "CustSeq": 1, "Name": "Apex Industrial - Warehouse", "Addr1": "502 Commerce Dr", "City": "Detroit", "State": "MI", "Zip": "48201", "Country": "US", "AddrType": "S" },
+    { "CustNum": "C000101", "CustSeq": 0, "Name": "Midwest Automation Corp", "Addr1": "1200 Tech Pkwy", "City": "Chicago", "State": "IL", "Zip": "60601", "Country": "US", "AddrType": "B" },
+    { "CustNum": "C000102", "CustSeq": 0, "Name": "Pacific Hydraulics Ltd", "Addr1": "3400 Harbor Blvd", "City": "Seattle", "State": "WA", "Zip": "98101", "Country": "US", "AddrType": "B" },
+    { "CustNum": "C000103", "CustSeq": 0, "Name": "Northern Equipment Services", "Addr1": "89 Maple Ave", "City": "Toronto", "State": "ON", "Zip": "M5H 2N2", "Country": "CA", "AddrType": "B" },
+    { "CustNum": "C000104", "CustSeq": 0, "Name": "Global Fluid Power Inc", "Addr1": "7600 Industrial Rd", "City": "Houston", "State": "TX", "Zip": "77001", "Country": "US", "AddrType": "B" },
+    { "CustNum": "C000107", "CustSeq": 0, "Name": "Euro Precision GmbH", "Addr1": "Industriestrasse 42", "City": "Stuttgart", "State": "BW", "Zip": "70173", "Country": "DE", "AddrType": "B" },
+    { "CustNum": "C000110", "CustSeq": 0, "Name": "Harbour Engineering Ltd", "Addr1": "15 Dock Lane", "City": "Southampton", "State": "Hampshire", "Zip": "SO14 2AQ", "Country": "GB", "AddrType": "B" }
+  ],
+  "customerContacts": [
+    { "CustNum": "C000100", "CustSeq": 0, "ContactName": "Sarah Mitchell", "Title": "Purchasing Manager", "Phone": "313-555-0100", "Email": "s.mitchell@apexindustrial.com" },
+    { "CustNum": "C000101", "CustSeq": 0, "ContactName": "Robert Chen", "Title": "VP Engineering", "Phone": "312-555-0201", "Email": "r.chen@midwestauto.com" },
+    { "CustNum": "C000102", "CustSeq": 0, "ContactName": "Linda Park", "Title": "Operations Director", "Phone": "206-555-0302", "Email": "l.park@pacifichydro.com" },
+    { "CustNum": "C000104", "CustSeq": 0, "ContactName": "James Wilson", "Title": "Chief Engineer", "Phone": "713-555-0400", "Email": "j.wilson@globalfluid.com" },
+    { "CustNum": "C000104", "CustSeq": 0, "ContactName": "Maria Garcia", "Title": "Purchasing Agent", "Phone": "713-555-0401", "Email": "m.garcia@globalfluid.com" },
+    { "CustNum": "C000107", "CustSeq": 0, "ContactName": "Hans Mueller", "Title": "Beschaffungsleiter", "Phone": "+49-711-555-0107", "Email": "h.mueller@europrecision.de" }
+  ],
+  "analysis": {
+    "totalCustomers": 12,
+    "activeCustomers": 11,
+    "inactiveCustomers": 1,
+    "onCreditHold": 2,
+    "customerTypes": { "OEM": 4, "DIS": 3, "END": 4 },
+    "currencies": { "USD": 8, "CAD": 1, "EUR": 1, "GBP": 1 },
+    "internationalCustomers": 3
+  }
+}

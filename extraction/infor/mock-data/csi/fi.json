@@ -1,0 +1,55 @@
+{
+  "glAccounts": [
+    {
+      "Account": "1000",
+      "Description": "Cash in Bank",
+      "AcctType": "AS",
+      "Status": "A"
+    },
+    {
+      "Account": "1100",
+      "Description": "Accounts Receivable",
+      "AcctType": "AS",
+      "Status": "A"
+    },
+    {
+      "Account": "2000",
+      "Description": "Accounts Payable",
+      "AcctType": "LI",
+      "Status": "A"
+    },
+    {
+      "Account": "4000",
+      "Description": "Revenue",
+      "AcctType": "RE",
+      "Status": "A"
+    },
+    {
+      "Account": "5000",
+      "Description": "Cost of Goods Sold",
+      "AcctType": "EX",
+      "Status": "A"
+    }
+  ],
+  "journalEntries": [
+    {
+      "JournalId": "JE-001",
+      "Account": "4000",
+      "Amount": 14250,
+      "TransDate": "2025-11-15",
+      "Type": "Revenue"
+    },
+    {
+      "JournalId": "JE-002",
+      "Account": "5000",
+      "Amount": 8500,
+      "TransDate": "2025-11-15",
+      "Type": "COGS"
+    }
+  ],
+  "summary": {
+    "totalGLAccounts": 5,
+    "totalJournalEntries": 2,
+    "extractedAt": "2024-01-15T12:05:00Z"
+  }
+}

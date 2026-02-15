@@ -1,0 +1,59 @@
+{
+  "journalEntries": [
+    {
+      "COMPANY": "1",
+      "JOURNAL_ID": "GL-2024-001",
+      "ACCT_STRING": "1-HQ-4000-00",
+      "AMOUNT": 125000,
+      "TRANS_DATE": "2024-01-10",
+      "PERIOD": "01",
+      "STATUS": "POSTED"
+    },
+    {
+      "COMPANY": "1",
+      "JOURNAL_ID": "GL-2024-002",
+      "ACCT_STRING": "1-HQ-5000-00",
+      "AMOUNT": 75000,
+      "TRANS_DATE": "2024-01-15",
+      "PERIOD": "01",
+      "STATUS": "POSTED"
+    },
+    {
+      "COMPANY": "1",
+      "JOURNAL_ID": "GL-2024-003",
+      "ACCT_STRING": "1-HOSP-4100-00",
+      "AMOUNT": 350000,
+      "TRANS_DATE": "2024-01-20",
+      "PERIOD": "01",
+      "STATUS": "POSTED"
+    }
+  ],
+  "trialBalance": [
+    {
+      "ACCOUNT": "1000",
+      "TITLE": "Cash in Bank",
+      "DEBIT": 250000,
+      "CREDIT": 0,
+      "NET": 250000
+    },
+    {
+      "ACCOUNT": "1100",
+      "TITLE": "Accounts Receivable",
+      "DEBIT": 890000,
+      "CREDIT": 0,
+      "NET": 890000
+    },
+    {
+      "ACCOUNT": "2000",
+      "TITLE": "Accounts Payable",
+      "DEBIT": 0,
+      "CREDIT": 420000,
+      "NET": -420000
+    }
+  ],
+  "summary": {
+    "totalJournalEntries": 3,
+    "totalTrialBalanceEntries": 3,
+    "extractedAt": "2024-01-20T08:50:00Z"
+  }
+}

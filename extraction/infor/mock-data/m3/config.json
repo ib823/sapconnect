@@ -1,0 +1,149 @@
+{
+  "companies": [
+    {
+      "CCCONO": 100,
+      "CCCONM": "Global Manufacturing Inc",
+      "CCDIVI": "100",
+      "CCCSCD": "US",
+      "CCLOCD": "EN",
+      "CCCOCU": "USD",
+      "CCACCU": "USD",
+      "CCSTAT": "20"
+    },
+    {
+      "CCCONO": 200,
+      "CCCONM": "European Operations GmbH",
+      "CCDIVI": "200",
+      "CCCSCD": "DE",
+      "CCLOCD": "DE",
+      "CCCOCU": "EUR",
+      "CCACCU": "EUR",
+      "CCSTAT": "20"
+    }
+  ],
+  "divisions": [
+    {
+      "CCDIVI": "100",
+      "CCCONO": 100,
+      "CCDIVN": "North America Division",
+      "CCCSCD": "US",
+      "CCDCFM": "MDY",
+      "CCACGR": "US01"
+    },
+    {
+      "CCDIVI": "110",
+      "CCCONO": 100,
+      "CCDIVN": "West Coast Operations",
+      "CCCSCD": "US",
+      "CCDCFM": "MDY",
+      "CCACGR": "US01"
+    },
+    {
+      "CCDIVI": "200",
+      "CCCONO": 200,
+      "CCDIVN": "Central Europe Division",
+      "CCCSCD": "DE",
+      "CCDCFM": "YMD",
+      "CCACGR": "EU01"
+    }
+  ],
+  "facilities": [
+    {
+      "CFFACI": "F01",
+      "CFCONO": 100,
+      "CFFACN": "Atlanta Manufacturing",
+      "CFCSCD": "US",
+      "CFSTAT": "20",
+      "CFWHLO": "WH100"
+    },
+    {
+      "CFFACI": "F02",
+      "CFCONO": 100,
+      "CFFACN": "Dallas Distribution",
+      "CFCSCD": "US",
+      "CFSTAT": "20",
+      "CFWHLO": "WH110"
+    },
+    {
+      "CFFACI": "F10",
+      "CFCONO": 200,
+      "CFFACN": "Stuttgart Plant",
+      "CFCSCD": "DE",
+      "CFSTAT": "20",
+      "CFWHLO": "WH200"
+    },
+    {
+      "CFFACI": "F11",
+      "CFCONO": 200,
+      "CFFACN": "Munich Assembly",
+      "CFCSCD": "DE",
+      "CFSTAT": "20",
+      "CFWHLO": "WH210"
+    }
+  ],
+  "warehouses": [
+    {
+      "MHWHLO": "WH100",
+      "MHCONO": 100,
+      "MHWHNM": "Atlanta Main Warehouse",
+      "MHWHTY": "10",
+      "MHFACI": "F01",
+      "MHCSCD": "US",
+      "MHSTAT": "20"
+    },
+    {
+      "MHWHLO": "WH110",
+      "MHCONO": 100,
+      "MHWHNM": "Dallas Distribution Center",
+      "MHWHTY": "20",
+      "MHFACI": "F02",
+      "MHCSCD": "US",
+      "MHSTAT": "20"
+    },
+    {
+      "MHWHLO": "WH120",
+      "MHCONO": 100,
+      "MHWHNM": "Atlanta Finished Goods",
+      "MHWHTY": "30",
+      "MHFACI": "F01",
+      "MHCSCD": "US",
+      "MHSTAT": "20"
+    },
+    {
+      "MHWHLO": "WH200",
+      "MHCONO": 200,
+      "MHWHNM": "Stuttgart Production WH",
+      "MHWHTY": "10",
+      "MHFACI": "F10",
+      "MHCSCD": "DE",
+      "MHSTAT": "20"
+    },
+    {
+      "MHWHLO": "WH210",
+      "MHCONO": 200,
+      "MHWHNM": "Munich Parts Warehouse",
+      "MHWHTY": "10",
+      "MHFACI": "F11",
+      "MHCSCD": "DE",
+      "MHSTAT": "20"
+    },
+    {
+      "MHWHLO": "WH220",
+      "MHCONO": 200,
+      "MHWHNM": "Stuttgart Shipping Dock",
+      "MHWHTY": "40",
+      "MHFACI": "F10",
+      "MHCSCD": "DE",
+      "MHSTAT": "20"
+    }
+  ],
+  "summary": {
+    "totalCompanies": 2,
+    "totalDivisions": 3,
+    "totalFacilities": 4,
+    "totalWarehouses": 6,
+    "baseCurrency": "USD",
+    "countries": ["US", "DE"],
+    "extractedAt": "2024-01-15T10:00:00Z"
+  }
+}

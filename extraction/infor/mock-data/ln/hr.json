@@ -1,0 +1,80 @@
+{
+  "employees": [
+    { "t$emno": "EMP001", "t$name": "John Smith", "t$dept": "DEPT-ENG", "t$posn": "POS-ENGMGR", "t$cpnb": 100, "t$hidt": "2018-03-15", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "M3" },
+    { "t$emno": "EMP002", "t$name": "Sarah Chen", "t$dept": "DEPT-FIN", "t$posn": "POS-FINCTL", "t$cpnb": 100, "t$hidt": "2019-06-01", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "M2" },
+    { "t$emno": "EMP003", "t$name": "Klaus Mueller", "t$dept": "DEPT-MFG", "t$posn": "POS-PRDMGR", "t$cpnb": 200, "t$hidt": "2017-01-10", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "M3" },
+    { "t$emno": "EMP004", "t$name": "Wei Lin Tan", "t$dept": "DEPT-OPS", "t$posn": "POS-OPSMGR", "t$cpnb": 300, "t$hidt": "2019-08-20", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "M2" },
+    { "t$emno": "EMP005", "t$name": "Mike Wilson", "t$dept": "DEPT-FIN", "t$posn": "POS-FINCTR", "t$cpnb": 100, "t$hidt": "2020-02-01", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "P4" },
+    { "t$emno": "EMP006", "t$name": "Anna Schmidt", "t$dept": "DEPT-MFG", "t$posn": "POS-MFGENG", "t$cpnb": 200, "t$hidt": "2020-05-15", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "P3" },
+    { "t$emno": "EMP007", "t$name": "Robert Johnson", "t$dept": "DEPT-ENG", "t$posn": "POS-SRENG", "t$cpnb": 100, "t$hidt": "2019-01-15", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "P4" },
+    { "t$emno": "EMP008", "t$name": "Lisa Park", "t$dept": "DEPT-HR", "t$posn": "POS-HRMGR", "t$cpnb": 100, "t$hidt": "2018-07-01", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "M2" },
+    { "t$emno": "EMP009", "t$name": "Thomas Weber", "t$dept": "DEPT-MFG", "t$posn": "POS-MCHOP", "t$cpnb": 200, "t$hidt": "2019-03-01", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "P2" },
+    { "t$emno": "EMP010", "t$name": "Priya Sharma", "t$dept": "DEPT-IT", "t$posn": "POS-SYSADM", "t$cpnb": 100, "t$hidt": "2021-01-10", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "P3" },
+    { "t$emno": "EMP011", "t$name": "David Lee", "t$dept": "DEPT-SLS", "t$posn": "POS-SLSMGR", "t$cpnb": 300, "t$hidt": "2020-04-01", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "M2" },
+    { "t$emno": "EMP012", "t$name": "Maria Garcia", "t$dept": "DEPT-QC", "t$posn": "POS-QCMGR", "t$cpnb": 200, "t$hidt": "2018-11-15", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "M2" },
+    { "t$emno": "EMP013", "t$name": "James Taylor", "t$dept": "DEPT-MNT", "t$posn": "POS-MNTMGR", "t$cpnb": 200, "t$hidt": "2019-09-01", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "M2" },
+    { "t$emno": "EMP014", "t$name": "Sophie Martin", "t$dept": "DEPT-PRC", "t$posn": "POS-BUYER", "t$cpnb": 200, "t$hidt": "2021-06-01", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "P3" },
+    { "t$emno": "EMP015", "t$name": "Ahmed Hassan", "t$dept": "DEPT-LOG", "t$posn": "POS-WHSMGR", "t$cpnb": 100, "t$hidt": "2020-01-15", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "M1" },
+    { "t$emno": "EMP016", "t$name": "Yuki Tanaka", "t$dept": "DEPT-ENG", "t$posn": "POS-DSENG", "t$cpnb": 300, "t$hidt": "2021-08-01", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "P3" },
+    { "t$emno": "EMP017", "t$name": "Hans Becker", "t$dept": "DEPT-MFG", "t$posn": "POS-MCHOP", "t$cpnb": 200, "t$hidt": "2020-09-15", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "P2" },
+    { "t$emno": "EMP018", "t$name": "Emma Brown", "t$dept": "DEPT-FIN", "t$posn": "POS-ARCLK", "t$cpnb": 100, "t$hidt": "2022-01-10", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "P2" },
+    { "t$emno": "EMP019", "t$name": "Carlos Mendez", "t$dept": "DEPT-SLS", "t$posn": "POS-SLSREP", "t$cpnb": 100, "t$hidt": "2021-04-01", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "P2" },
+    { "t$emno": "EMP020", "t$name": "Lena Fischer", "t$dept": "DEPT-QC", "t$posn": "POS-QCINSP", "t$cpnb": 200, "t$hidt": "2022-03-15", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "P1" },
+    { "t$emno": "EMP021", "t$name": "Kevin Ng", "t$dept": "DEPT-LOG", "t$posn": "POS-WHSOP", "t$cpnb": 300, "t$hidt": "2021-10-01", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "P1" },
+    { "t$emno": "EMP022", "t$name": "Rachel Adams", "t$dept": "DEPT-HR", "t$posn": "POS-HRCLK", "t$cpnb": 100, "t$hidt": "2022-06-01", "t$stat": "ACT", "t$egrp": "PART", "t$jlvl": "P1" },
+    { "t$emno": "EMP023", "t$name": "Stefan Krol", "t$dept": "DEPT-MNT", "t$posn": "POS-MNTTECH", "t$cpnb": 200, "t$hidt": "2020-11-01", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "P2" },
+    { "t$emno": "EMP024", "t$name": "Jennifer White", "t$dept": "DEPT-IT", "t$posn": "POS-BANLST", "t$cpnb": 100, "t$hidt": "2021-12-01", "t$stat": "LEV", "t$egrp": "FULL", "t$jlvl": "P3" },
+    { "t$emno": "EMP025", "t$name": "Peter Zhang", "t$dept": "DEPT-SLS", "t$posn": "POS-SLSREP", "t$cpnb": 300, "t$hidt": "2022-08-15", "t$stat": "ACT", "t$egrp": "FULL", "t$jlvl": "P2" }
+  ],
+  "departments": [
+    { "t$dept": "DEPT-ENG", "t$desc": "Engineering", "t$mgr": "EMP001", "t$cpnb": 100, "t$prnt": "", "t$actv": true },
+    { "t$dept": "DEPT-FIN", "t$desc": "Finance & Accounting", "t$mgr": "EMP002", "t$cpnb": 100, "t$prnt": "", "t$actv": true },
+    { "t$dept": "DEPT-MFG", "t$desc": "Manufacturing", "t$mgr": "EMP003", "t$cpnb": 200, "t$prnt": "", "t$actv": true },
+    { "t$dept": "DEPT-OPS", "t$desc": "Operations APAC", "t$mgr": "EMP004", "t$cpnb": 300, "t$prnt": "", "t$actv": true },
+    { "t$dept": "DEPT-HR", "t$desc": "Human Resources", "t$mgr": "EMP008", "t$cpnb": 100, "t$prnt": "", "t$actv": true },
+    { "t$dept": "DEPT-IT", "t$desc": "Information Technology", "t$mgr": "EMP010", "t$cpnb": 100, "t$prnt": "", "t$actv": true },
+    { "t$dept": "DEPT-SLS", "t$desc": "Sales", "t$mgr": "EMP011", "t$cpnb": 100, "t$prnt": "", "t$actv": true },
+    { "t$dept": "DEPT-QC", "t$desc": "Quality Control", "t$mgr": "EMP012", "t$cpnb": 200, "t$prnt": "DEPT-MFG", "t$actv": true },
+    { "t$dept": "DEPT-MNT", "t$desc": "Maintenance", "t$mgr": "EMP013", "t$cpnb": 200, "t$prnt": "DEPT-MFG", "t$actv": true },
+    { "t$dept": "DEPT-PRC", "t$desc": "Procurement", "t$mgr": "EMP014", "t$cpnb": 200, "t$prnt": "DEPT-OPS", "t$actv": true },
+    { "t$dept": "DEPT-LOG", "t$desc": "Logistics & Warehousing", "t$mgr": "EMP015", "t$cpnb": 100, "t$prnt": "DEPT-OPS", "t$actv": true }
+  ],
+  "positions": [
+    { "t$posn": "POS-ENGMGR", "t$desc": "Engineering Manager", "t$dept": "DEPT-ENG", "t$jlvl": "M3", "t$head": 1, "t$fill": 1 },
+    { "t$posn": "POS-SRENG", "t$desc": "Senior Engineer", "t$dept": "DEPT-ENG", "t$jlvl": "P4", "t$head": 3, "t$fill": 1 },
+    { "t$posn": "POS-DSENG", "t$desc": "Design Engineer", "t$dept": "DEPT-ENG", "t$jlvl": "P3", "t$head": 2, "t$fill": 1 },
+    { "t$posn": "POS-FINCTL", "t$desc": "Financial Controller", "t$dept": "DEPT-FIN", "t$jlvl": "M2", "t$head": 1, "t$fill": 1 },
+    { "t$posn": "POS-FINCTR", "t$desc": "Finance Controller", "t$dept": "DEPT-FIN", "t$jlvl": "P4", "t$head": 1, "t$fill": 1 },
+    { "t$posn": "POS-ARCLK", "t$desc": "AR Clerk", "t$dept": "DEPT-FIN", "t$jlvl": "P2", "t$head": 2, "t$fill": 1 },
+    { "t$posn": "POS-PRDMGR", "t$desc": "Production Manager", "t$dept": "DEPT-MFG", "t$jlvl": "M3", "t$head": 1, "t$fill": 1 },
+    { "t$posn": "POS-MFGENG", "t$desc": "Manufacturing Engineer", "t$dept": "DEPT-MFG", "t$jlvl": "P3", "t$head": 2, "t$fill": 1 },
+    { "t$posn": "POS-MCHOP", "t$desc": "Machine Operator", "t$dept": "DEPT-MFG", "t$jlvl": "P2", "t$head": 6, "t$fill": 2 },
+    { "t$posn": "POS-OPSMGR", "t$desc": "Operations Manager", "t$dept": "DEPT-OPS", "t$jlvl": "M2", "t$head": 1, "t$fill": 1 },
+    { "t$posn": "POS-HRMGR", "t$desc": "HR Manager", "t$dept": "DEPT-HR", "t$jlvl": "M2", "t$head": 1, "t$fill": 1 },
+    { "t$posn": "POS-HRCLK", "t$desc": "HR Clerk", "t$dept": "DEPT-HR", "t$jlvl": "P1", "t$head": 1, "t$fill": 1 }
+  ],
+  "payrollConfig": {
+    "payFrequencies": [
+      { "t$cpnb": 100, "t$freq": "BI-WEEKLY", "t$ccur": "USD", "t$txjr": "US-FED" },
+      { "t$cpnb": 200, "t$freq": "MONTHLY", "t$ccur": "EUR", "t$txjr": "DE-FED" },
+      { "t$cpnb": 300, "t$freq": "MONTHLY", "t$ccur": "SGD", "t$txjr": "SG-IRAS" }
+    ],
+    "benefitPlans": [
+      { "t$plid": "BEN-MED", "t$desc": "Medical Insurance", "t$cpnb": 100, "t$emcn": 250.00, "t$ercn": 750.00 },
+      { "t$plid": "BEN-DEN", "t$desc": "Dental Insurance", "t$cpnb": 100, "t$emcn": 45.00, "t$ercn": 95.00 },
+      { "t$plid": "BEN-401K", "t$desc": "401K Retirement Plan", "t$cpnb": 100, "t$emcn": 0, "t$ercn": 0 },
+      { "t$plid": "BEN-PKV", "t$desc": "Private Health Insurance", "t$cpnb": 200, "t$emcn": 350.00, "t$ercn": 350.00 },
+      { "t$plid": "BEN-CPF", "t$desc": "Central Provident Fund", "t$cpnb": 300, "t$emcn": 0, "t$ercn": 0 }
+    ]
+  },
+  "summary": {
+    "totalEmployees": 25,
+    "activeEmployees": 23,
+    "onLeave": 1,
+    "partTime": 1,
+    "departments": 11,
+    "positions": 12,
+    "companiesCovered": [100, 200, 300],
+    "extractedAt": "2024-01-15T11:40:00Z"
+  }
+}

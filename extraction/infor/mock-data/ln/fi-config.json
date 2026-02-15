@@ -1,0 +1,166 @@
+{
+  "chartsOfAccounts": [
+    {
+      "t$cano": "USCOA",
+      "t$desc": "US Chart of Accounts",
+      "t$cpnb": 100,
+      "t$nlvl": 5,
+      "t$fdig": 10,
+      "t$actv": true
+    },
+    {
+      "t$cano": "EUCOA",
+      "t$desc": "European Chart of Accounts",
+      "t$cpnb": 200,
+      "t$nlvl": 5,
+      "t$fdig": 10,
+      "t$actv": true
+    }
+  ],
+  "dimensions": [
+    {
+      "t$dimn": 1,
+      "t$desc": "Department",
+      "t$actv": true,
+      "t$mand": true,
+      "t$type": "Standard"
+    },
+    {
+      "t$dimn": 2,
+      "t$desc": "Cost Center",
+      "t$actv": true,
+      "t$mand": true,
+      "t$type": "Standard"
+    },
+    {
+      "t$dimn": 3,
+      "t$desc": "Project",
+      "t$actv": true,
+      "t$mand": false,
+      "t$type": "Standard"
+    },
+    {
+      "t$dimn": 4,
+      "t$desc": "Region",
+      "t$actv": true,
+      "t$mand": false,
+      "t$type": "Standard"
+    },
+    {
+      "t$dimn": 5,
+      "t$desc": "Product Line",
+      "t$actv": true,
+      "t$mand": false,
+      "t$type": "User-defined"
+    },
+    {
+      "t$dimn": 6,
+      "t$desc": "Intercompany",
+      "t$actv": true,
+      "t$mand": false,
+      "t$type": "Standard"
+    }
+  ],
+  "journalGroups": [
+    {
+      "t$jgrp": "AP",
+      "t$desc": "Accounts Payable Journals",
+      "t$auto": true,
+      "t$appr": true
+    },
+    {
+      "t$jgrp": "AR",
+      "t$desc": "Accounts Receivable Journals",
+      "t$auto": true,
+      "t$appr": true
+    },
+    {
+      "t$jgrp": "GL",
+      "t$desc": "General Ledger Journals",
+      "t$auto": false,
+      "t$appr": true
+    },
+    {
+      "t$jgrp": "FA",
+      "t$desc": "Fixed Asset Journals",
+      "t$auto": true,
+      "t$appr": false
+    }
+  ],
+  "taxCodes": [
+    {
+      "t$txcd": "V0",
+      "t$desc": "Tax Exempt",
+      "t$rate": 0.00,
+      "t$type": "Sales",
+      "t$ctry": "US",
+      "t$actv": true
+    },
+    {
+      "t$txcd": "V1",
+      "t$desc": "Standard Sales Tax",
+      "t$rate": 7.50,
+      "t$type": "Sales",
+      "t$ctry": "US",
+      "t$actv": true
+    },
+    {
+      "t$txcd": "V2",
+      "t$desc": "Reduced Sales Tax",
+      "t$rate": 5.00,
+      "t$type": "Sales",
+      "t$ctry": "US",
+      "t$actv": true
+    },
+    {
+      "t$txcd": "P0",
+      "t$desc": "Purchase Tax Exempt",
+      "t$rate": 0.00,
+      "t$type": "Purchase",
+      "t$ctry": "US",
+      "t$actv": true
+    },
+    {
+      "t$txcd": "P1",
+      "t$desc": "Standard Purchase Tax",
+      "t$rate": 7.50,
+      "t$type": "Purchase",
+      "t$ctry": "US",
+      "t$actv": true
+    },
+    {
+      "t$txcd": "EU1",
+      "t$desc": "EU Standard VAT",
+      "t$rate": 19.00,
+      "t$type": "Sales",
+      "t$ctry": "DE",
+      "t$actv": true
+    },
+    {
+      "t$txcd": "EU2",
+      "t$desc": "EU Reduced VAT",
+      "t$rate": 7.00,
+      "t$type": "Sales",
+      "t$ctry": "DE",
+      "t$actv": true
+    },
+    {
+      "t$txcd": "SG1",
+      "t$desc": "Singapore GST",
+      "t$rate": 9.00,
+      "t$type": "Sales",
+      "t$ctry": "SG",
+      "t$actv": true
+    }
+  ],
+  "summary": {
+    "totalChartsOfAccounts": 2,
+    "totalDimensions": 6,
+    "activeDimensions": 6,
+    "mandatoryDimensions": 2,
+    "totalJournalGroups": 4,
+    "totalTaxCodes": 8,
+    "countries": ["US", "DE", "SG"],
+    "extractedAt": "2024-01-15T10:40:00Z"
+  }
+}

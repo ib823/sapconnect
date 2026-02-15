@@ -1,0 +1,54 @@
+{
+  "poHeaders": [
+    { "PoNum": "PO-500100", "VendNum": "V001", "VendorName": "Allied Steel Supply", "OrderDate": "2025-11-10", "Stat": "O", "Type": "R", "CurrCode": "USD", "BuyerCode": "TW", "OrigPoAmt": 8460.00, "TermsCode": "NET30", "Whse": "MAIN" },
+    { "PoNum": "PO-500101", "VendNum": "V002", "VendorName": "HydraForce Components", "OrderDate": "2025-11-12", "Stat": "O", "Type": "R", "CurrCode": "USD", "BuyerCode": "SL", "OrigPoAmt": 5940.00, "TermsCode": "NET30", "Whse": "MAIN" },
+    { "PoNum": "PO-500102", "VendNum": "V003", "VendorName": "Precision Bearings Inc", "OrderDate": "2025-11-15", "Stat": "C", "Type": "R", "CurrCode": "USD", "BuyerCode": "SL", "OrigPoAmt": 3690.00, "TermsCode": "NET30", "Whse": "MAIN" },
+    { "PoNum": "PO-500103", "VendNum": "V004", "VendorName": "Euro Metals AG", "OrderDate": "2025-11-20", "Stat": "O", "Type": "R", "CurrCode": "EUR", "BuyerCode": "TW", "OrigPoAmt": 12400.00, "TermsCode": "NET60", "Whse": "MAIN" },
+    { "PoNum": "PO-500104", "VendNum": "V005", "VendorName": "Midwest Fastener Co", "OrderDate": "2025-12-01", "Stat": "O", "Type": "R", "CurrCode": "USD", "BuyerCode": "TW", "OrigPoAmt": 1890.00, "TermsCode": "NET30", "Whse": "MAIN" },
+    { "PoNum": "PO-500105", "VendNum": "V001", "VendorName": "Allied Steel Supply", "OrderDate": "2025-12-05", "Stat": "O", "Type": "R", "CurrCode": "USD", "BuyerCode": "TW", "OrigPoAmt": 6350.00, "TermsCode": "NET30", "Whse": "MAIN" },
+    { "PoNum": "PO-500106", "VendNum": "V006", "VendorName": "Pacific Rubber & Seal", "OrderDate": "2025-12-08", "Stat": "P", "Type": "R", "CurrCode": "USD", "BuyerCode": "SL", "OrigPoAmt": 2480.00, "TermsCode": "NET30", "Whse": "MAIN" },
+    { "PoNum": "PO-500107", "VendNum": "V002", "VendorName": "HydraForce Components", "OrderDate": "2025-12-12", "Stat": "P", "Type": "B", "CurrCode": "USD", "BuyerCode": "SL", "OrigPoAmt": 15600.00, "TermsCode": "NET30", "Whse": "MAIN" }
+  ],
+  "poLines": [
+    { "PoNum": "PO-500100", "PoLine": 1, "Item": "RAW-2001", "Description": "Steel Rod 25mm x 3m", "QtyOrdered": 100, "QtyReceived": 50, "UnitCost": 42.30, "DueDate": "2025-12-10" },
+    { "PoNum": "PO-500100", "PoLine": 2, "Item": "RAW-2003", "Description": "Stainless Steel Tube 50mm", "QtyOrdered": 50, "QtyReceived": 0, "UnitCost": 65.20, "DueDate": "2025-12-10" },
+    { "PoNum": "PO-500101", "PoLine": 1, "Item": "CMP-3002", "Description": "Hydraulic Seal Kit", "QtyOrdered": 100, "QtyReceived": 100, "UnitCost": 24.80, "DueDate": "2025-12-01" },
+    { "PoNum": "PO-500101", "PoLine": 2, "Item": "CMP-3005", "Description": "Solenoid Valve 24V DC", "QtyOrdered": 20, "QtyReceived": 10, "UnitCost": 156.00, "DueDate": "2025-12-01" },
+    { "PoNum": "PO-500102", "PoLine": 1, "Item": "CMP-3001", "Description": "Bearing Assembly SKF 6205", "QtyOrdered": 200, "QtyReceived": 200, "UnitCost": 18.45, "DueDate": "2025-11-30" },
+    { "PoNum": "PO-500103", "PoLine": 1, "Item": "RAW-2002", "Description": "Aluminum Sheet 4x8 0.125in", "QtyOrdered": 100, "QtyReceived": 0, "UnitCost": 78.90, "DueDate": "2026-01-10" },
+    { "PoNum": "PO-500103", "PoLine": 2, "Item": "RAW-2001", "Description": "Steel Rod 25mm x 3m", "QtyOrdered": 80, "QtyReceived": 0, "UnitCost": 42.30, "DueDate": "2026-01-10" },
+    { "PoNum": "PO-500103", "PoLine": 3, "Item": "RAW-2003", "Description": "Stainless Steel Tube 50mm", "QtyOrdered": 30, "QtyReceived": 0, "UnitCost": 65.20, "DueDate": "2026-01-10" },
+    { "PoNum": "PO-500104", "PoLine": 1, "Item": "CMP-3003", "Description": "Precision Spring Set", "QtyOrdered": 50, "QtyReceived": 0, "UnitCost": 9.75, "DueDate": "2025-12-20" },
+    { "PoNum": "PO-500104", "PoLine": 2, "Item": "CMP-3004", "Description": "O-Ring Viton 45mm", "QtyOrdered": 200, "QtyReceived": 0, "UnitCost": 3.20, "DueDate": "2025-12-20" },
+    { "PoNum": "PO-500104", "PoLine": 3, "Item": "PKG-5001", "Description": "Shipping Crate Large", "QtyOrdered": 10, "QtyReceived": 0, "UnitCost": 45.00, "DueDate": "2025-12-20" },
+    { "PoNum": "PO-500105", "PoLine": 1, "Item": "RAW-2001", "Description": "Steel Rod 25mm x 3m", "QtyOrdered": 150, "QtyReceived": 0, "UnitCost": 42.30, "DueDate": "2026-01-05" },
+    { "PoNum": "PO-500106", "PoLine": 1, "Item": "CMP-3002", "Description": "Hydraulic Seal Kit", "QtyOrdered": 100, "QtyReceived": 0, "UnitCost": 24.80, "DueDate": "2026-01-15" },
+    { "PoNum": "PO-500107", "PoLine": 1, "Item": "CMP-3005", "Description": "Solenoid Valve 24V DC", "QtyOrdered": 100, "QtyReceived": 0, "UnitCost": 156.00, "DueDate": "2026-01-20" },
+    { "PoNum": "PO-500105", "PoLine": 2, "Item": "RAW-2003", "Description": "Stainless Steel Tube 50mm", "QtyOrdered": 5, "QtyReceived": 0, "UnitCost": 65.20, "DueDate": "2026-01-05" },
+    { "PoNum": "PO-500101", "PoLine": 3, "Item": "CMP-3004", "Description": "O-Ring Viton 45mm", "QtyOrdered": 200, "QtyReceived": 200, "UnitCost": 3.20, "DueDate": "2025-12-01" },
+    { "PoNum": "PO-500106", "PoLine": 2, "Item": "CMP-3004", "Description": "O-Ring Viton 45mm", "QtyOrdered": 500, "QtyReceived": 0, "UnitCost": 3.20, "DueDate": "2026-01-15" },
+    { "PoNum": "PO-500102", "PoLine": 2, "Item": "CMP-3003", "Description": "Precision Spring Set", "QtyOrdered": 0, "QtyReceived": 0, "UnitCost": 9.75, "DueDate": "2025-11-30" },
+    { "PoNum": "PO-500105", "PoLine": 3, "Item": "PKG-5002", "Description": "Foam Insert Kit", "QtyOrdered": 50, "QtyReceived": 0, "UnitCost": 12.50, "DueDate": "2026-01-05" },
+    { "PoNum": "PO-500107", "PoLine": 2, "Item": "CMP-3001", "Description": "Bearing Assembly SKF 6205", "QtyOrdered": 0, "QtyReceived": 0, "UnitCost": 18.45, "DueDate": "2026-01-20" }
+  ],
+  "vendors": [
+    { "VendNum": "V001", "VendName": "Allied Steel Supply", "CurrCode": "USD", "TermsCode": "NET30", "TaxCode1": "TAX1", "Stat": "A", "LeadTime": 7, "City": "Cleveland", "State": "OH", "Country": "US" },
+    { "VendNum": "V002", "VendName": "HydraForce Components", "CurrCode": "USD", "TermsCode": "NET30", "TaxCode1": "TAX1", "Stat": "A", "LeadTime": 10, "City": "Lincolnshire", "State": "IL", "Country": "US" },
+    { "VendNum": "V003", "VendName": "Precision Bearings Inc", "CurrCode": "USD", "TermsCode": "NET30", "TaxCode1": "TAX1", "Stat": "A", "LeadTime": 5, "City": "Canton", "State": "OH", "Country": "US" },
+    { "VendNum": "V004", "VendName": "Euro Metals AG", "CurrCode": "EUR", "TermsCode": "NET60", "TaxCode1": "TXEU", "Stat": "A", "LeadTime": 21, "City": "Dusseldorf", "State": "NW", "Country": "DE" },
+    { "VendNum": "V005", "VendName": "Midwest Fastener Co", "CurrCode": "USD", "TermsCode": "NET30", "TaxCode1": "TAX1", "Stat": "A", "LeadTime": 3, "City": "Milwaukee", "State": "WI", "Country": "US" },
+    { "VendNum": "V006", "VendName": "Pacific Rubber & Seal", "CurrCode": "USD", "TermsCode": "NET30", "TaxCode1": "TAX2", "Stat": "A", "LeadTime": 7, "City": "Portland", "State": "OR", "Country": "US" }
+  ],
+  "analysis": {
+    "totalPOs": 8,
+    "openPOs": 4,
+    "closedPOs": 1,
+    "plannedPOs": 2,
+    "totalLines": 20,
+    "totalVendors": 6,
+    "poTypes": { "R": 7, "B": 1 },
+    "currencies": { "USD": 7, "EUR": 1 },
+    "totalPoValue": 56810.00,
+    "avgPoValue": 7101.25
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "customViews": [
+    { "viewId": "OIS100-V01", "program": "OIS100", "description": "Custom Order Entry - Priority View", "userId": "JSMITH", "fields": ["OAORNO", "OAORDT", "OACUNO", "OACUNM", "OAORTP", "OAORST", "OARLDT"], "sortOrder": "OAORDT DESC", "filters": "OAORST<50", "shared": true },
+    { "viewId": "OIS100-V02", "program": "OIS100", "description": "Urgent Orders Only", "userId": "MJONES", "fields": ["OAORNO", "OACUNO", "OACUNM", "OAORTP", "OARLDT"], "sortOrder": "OARLDT ASC", "filters": "OAORTP=UR", "shared": false },
+    { "viewId": "MMS001-V01", "program": "MMS001", "description": "Item Master Extended View", "userId": "ALEE", "fields": ["MMITNO", "MMITDS", "MMITTY", "MMITGR", "MMSTAT", "MMUNMS", "MMNEWE", "MMGRWE"], "sortOrder": "MMITNO ASC", "filters": "", "shared": true },
+    { "viewId": "PPS200-V01", "program": "PPS200", "description": "MO Status Dashboard", "userId": "BWILSON", "fields": ["VHMFNO", "VHITNO", "VHITDS", "VHWHST", "VHSTDT", "VHFIDT"], "sortOrder": "VHSTDT ASC", "filters": "VHWHST<90", "shared": true },
+    { "viewId": "APS100-V01", "program": "APS100", "description": "Planning Board Custom", "userId": "CGARCIA", "fields": ["PLITNO", "PLPLDT", "PLQTY", "PLWHLO", "PLSTAT"], "sortOrder": "PLPLDT ASC", "filters": "", "shared": true },
+    { "viewId": "CRS610-V01", "program": "CRS610", "description": "Customer Master Compliance", "userId": "DKUMAR", "fields": ["OKCUNO", "OKCUNM", "OKYRNO", "OKCUTP", "OKSTAT", "OKCUCL"], "sortOrder": "OKCUNO ASC", "filters": "OKSTAT=20", "shared": true },
+    { "viewId": "MMS200-V01", "program": "MMS200", "description": "Stock Balance by Location", "userId": "ALEE", "fields": ["MBWHLO", "MBITNO", "MBWHSL", "MBSTQT", "MBUNIT"], "sortOrder": "MBWHLO ASC", "filters": "MBSTQT>0", "shared": true },
+    { "viewId": "ARS100-V01", "program": "ARS100", "description": "AR Aging Custom View", "userId": "EFINANCE", "fields": ["ARAINO", "ARCUNO", "ARACAM", "ARDUDT", "ARSTAT"], "sortOrder": "ARDUDT ASC", "filters": "", "shared": false },
+    { "viewId": "PPS300-V01", "program": "PPS300", "description": "Shop Floor Tracker", "userId": "BWILSON", "fields": ["VOOPNO", "VOMFNO", "VOITNO", "VOSTDT", "VOFIDT", "VOSTAT"], "sortOrder": "VOSTDT ASC", "filters": "VOSTAT<90", "shared": true },
+    { "viewId": "GLS200-V01", "program": "GLS200", "description": "GL Journal Custom View", "userId": "EFINANCE", "fields": ["ESYEA4", "ESJRNO", "ESVONO", "ESAIT1", "ESACAM", "ESCUAM"], "sortOrder": "ESYEA4 DESC,ESJRNO DESC", "filters": "", "shared": true }
+  ],
+  "customFields": [
+    { "table": "MITMAS", "fieldName": "MMCFI1", "description": "Product Compliance Code", "dataType": "A", "length": 10, "mandatory": false, "addedBy": "ADMIN", "addedDate": "20220315" },
+    { "table": "CIDMAS", "fieldName": "OKCFI1", "description": "Customer Risk Rating", "dataType": "A", "length": 2, "mandatory": true, "addedBy": "ADMIN", "addedDate": "20220401" },
+    { "table": "OOHEAD", "fieldName": "OACFI1", "description": "Order Priority Score", "dataType": "N", "length": 3, "mandatory": false, "addedBy": "ADMIN", "addedDate": "20220601" },
+    { "table": "MPHEAD", "fieldName": "IACFI1", "description": "Supplier Audit Status", "dataType": "A", "length": 5, "mandatory": false, "addedBy": "ADMIN", "addedDate": "20230101" },
+    { "table": "MWOHED", "fieldName": "VHCFI1", "description": "MO Rush Indicator", "dataType": "N", "length": 1, "mandatory": false, "addedBy": "ADMIN", "addedDate": "20230315" }
+  ],
+  "summary": {
+    "totalCustomViews": 10,
+    "sharedViews": 8,
+    "privateViews": 2,
+    "totalCustomFields": 5,
+    "tablesWithCustomFields": ["MITMAS", "CIDMAS", "OOHEAD", "MPHEAD", "MWOHED"],
+    "extractedAt": "2024-01-15T10:15:00Z"
+  }
+}

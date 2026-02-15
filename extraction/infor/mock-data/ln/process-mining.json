@@ -1,0 +1,98 @@
+{
+  "auditEvents": [
+    { "t$evid": "EVT000001", "t$proc": "P2P", "t$step": "Purchase Requisition Created", "t$user": "jsmith", "t$sess": "tdpur1100m000", "t$docn": "PR-2024-001001", "t$cpnb": 100, "t$ts": "2024-01-02T08:15:00Z", "t$stat": "Created" },
+    { "t$evid": "EVT000002", "t$proc": "P2P", "t$step": "Purchase Requisition Approved", "t$user": "mwilson", "t$sess": "tdpur1100m000", "t$docn": "PR-2024-001001", "t$cpnb": 100, "t$ts": "2024-01-02T10:30:00Z", "t$stat": "Approved" },
+    { "t$evid": "EVT000003", "t$proc": "P2P", "t$step": "Purchase Order Created", "t$user": "jsmith", "t$sess": "tdpur4100m000", "t$docn": "PO-2024-005001", "t$cpnb": 100, "t$ts": "2024-01-02T14:00:00Z", "t$stat": "Created", "t$refn": "PR-2024-001001" },
+    { "t$evid": "EVT000004", "t$proc": "P2P", "t$step": "Purchase Order Approved", "t$user": "klee", "t$sess": "tdpur4100m000", "t$docn": "PO-2024-005001", "t$cpnb": 100, "t$ts": "2024-01-02T16:45:00Z", "t$stat": "Approved" },
+    { "t$evid": "EVT000005", "t$proc": "P2P", "t$step": "Purchase Order Sent to Vendor", "t$user": "system", "t$sess": "tdpur4100m000", "t$docn": "PO-2024-005001", "t$cpnb": 100, "t$ts": "2024-01-02T17:00:00Z", "t$stat": "Sent" },
+    { "t$evid": "EVT000006", "t$proc": "P2P", "t$step": "Goods Receipt", "t$user": "rbrown", "t$sess": "whwmd2100m000", "t$docn": "GR-2024-008001", "t$cpnb": 100, "t$ts": "2024-01-10T09:20:00Z", "t$stat": "Received", "t$refn": "PO-2024-005001" },
+    { "t$evid": "EVT000007", "t$proc": "P2P", "t$step": "Invoice Receipt", "t$user": "aparker", "t$sess": "tfacp2100s000", "t$docn": "INV-2024-012001", "t$cpnb": 100, "t$ts": "2024-01-12T11:00:00Z", "t$stat": "Registered", "t$refn": "PO-2024-005001" },
+    { "t$evid": "EVT000008", "t$proc": "P2P", "t$step": "Invoice Approved", "t$user": "mwilson", "t$sess": "tfacp2100s000", "t$docn": "INV-2024-012001", "t$cpnb": 100, "t$ts": "2024-01-12T14:30:00Z", "t$stat": "Approved" },
+    { "t$evid": "EVT000009", "t$proc": "P2P", "t$step": "Payment Processed", "t$user": "system", "t$sess": "tfcmg1100s000", "t$docn": "PAY-2024-003001", "t$cpnb": 100, "t$ts": "2024-01-15T06:00:00Z", "t$stat": "Paid", "t$refn": "INV-2024-012001" },
+
+    { "t$evid": "EVT000010", "t$proc": "O2C", "t$step": "Sales Quotation Created", "t$user": "ljones", "t$sess": "tdsls1100m000", "t$docn": "SQ-2024-002001", "t$cpnb": 100, "t$ts": "2024-01-03T09:00:00Z", "t$stat": "Created" },
+    { "t$evid": "EVT000011", "t$proc": "O2C", "t$step": "Sales Order Created", "t$user": "ljones", "t$sess": "tdisg6100m000", "t$docn": "SO-2024-010001", "t$cpnb": 100, "t$ts": "2024-01-04T10:15:00Z", "t$stat": "Created", "t$refn": "SQ-2024-002001" },
+    { "t$evid": "EVT000012", "t$proc": "O2C", "t$step": "Sales Order Confirmed", "t$user": "ljones", "t$sess": "tdisg6100m000", "t$docn": "SO-2024-010001", "t$cpnb": 100, "t$ts": "2024-01-04T11:00:00Z", "t$stat": "Confirmed" },
+    { "t$evid": "EVT000013", "t$proc": "O2C", "t$step": "Warehouse Order Created", "t$user": "system", "t$sess": "whwmd2100m000", "t$docn": "WHO-2024-015001", "t$cpnb": 100, "t$ts": "2024-01-05T06:00:00Z", "t$stat": "Created", "t$refn": "SO-2024-010001" },
+    { "t$evid": "EVT000014", "t$proc": "O2C", "t$step": "Goods Shipped", "t$user": "rbrown", "t$sess": "whwmd2510m000", "t$docn": "SHP-2024-007001", "t$cpnb": 100, "t$ts": "2024-01-06T14:30:00Z", "t$stat": "Shipped", "t$refn": "WHO-2024-015001" },
+    { "t$evid": "EVT000015", "t$proc": "O2C", "t$step": "Sales Invoice Created", "t$user": "system", "t$sess": "tdsls4101m000", "t$docn": "SI-2024-020001", "t$cpnb": 100, "t$ts": "2024-01-06T15:00:00Z", "t$stat": "Created", "t$refn": "SO-2024-010001" },
+    { "t$evid": "EVT000016", "t$proc": "O2C", "t$step": "Sales Invoice Sent", "t$user": "system", "t$sess": "tdsls4101m000", "t$docn": "SI-2024-020001", "t$cpnb": 100, "t$ts": "2024-01-06T15:30:00Z", "t$stat": "Sent" },
+    { "t$evid": "EVT000017", "t$proc": "O2C", "t$step": "Payment Received", "t$user": "aparker", "t$sess": "tfacr2100s000", "t$docn": "REC-2024-004001", "t$cpnb": 100, "t$ts": "2024-01-20T09:00:00Z", "t$stat": "Received", "t$refn": "SI-2024-020001" },
+
+    { "t$evid": "EVT000018", "t$proc": "R2R", "t$step": "Journal Entry Created", "t$user": "cwhite", "t$sess": "tfgld0106s000", "t$docn": "JE-2024-030001", "t$cpnb": 100, "t$ts": "2024-01-31T08:00:00Z", "t$stat": "Created" },
+    { "t$evid": "EVT000019", "t$proc": "R2R", "t$step": "Journal Entry Approved", "t$user": "mwilson", "t$sess": "tfgld0106s000", "t$docn": "JE-2024-030001", "t$cpnb": 100, "t$ts": "2024-01-31T10:00:00Z", "t$stat": "Approved" },
+    { "t$evid": "EVT000020", "t$proc": "R2R", "t$step": "Journal Entry Posted", "t$user": "system", "t$sess": "tfgld0106s000", "t$docn": "JE-2024-030001", "t$cpnb": 100, "t$ts": "2024-01-31T10:05:00Z", "t$stat": "Posted" },
+    { "t$evid": "EVT000021", "t$proc": "R2R", "t$step": "Period Close - AP Sub-ledger", "t$user": "cwhite", "t$sess": "tfgld0201s000", "t$docn": "PC-2024-001", "t$cpnb": 100, "t$ts": "2024-02-01T08:00:00Z", "t$stat": "Closed" },
+    { "t$evid": "EVT000022", "t$proc": "R2R", "t$step": "Period Close - AR Sub-ledger", "t$user": "cwhite", "t$sess": "tfgld0201s000", "t$docn": "PC-2024-001", "t$cpnb": 100, "t$ts": "2024-02-01T08:30:00Z", "t$stat": "Closed" },
+    { "t$evid": "EVT000023", "t$proc": "R2R", "t$step": "Period Close - GL", "t$user": "mwilson", "t$sess": "tfgld0201s000", "t$docn": "PC-2024-001", "t$cpnb": 100, "t$ts": "2024-02-01T16:00:00Z", "t$stat": "Closed" },
+    { "t$evid": "EVT000024", "t$proc": "R2R", "t$step": "Financial Report Generated", "t$user": "cwhite", "t$sess": "tfgld5500m000", "t$docn": "RPT-2024-001", "t$cpnb": 100, "t$ts": "2024-02-02T09:00:00Z", "t$stat": "Generated" },
+
+    { "t$evid": "EVT000025", "t$proc": "P2P", "t$step": "Purchase Requisition Created", "t$user": "hmueller", "t$sess": "tdpur1100m000", "t$docn": "PR-2024-001050", "t$cpnb": 200, "t$ts": "2024-01-03T09:00:00Z", "t$stat": "Created" },
+    { "t$evid": "EVT000026", "t$proc": "P2P", "t$step": "Purchase Requisition Approved", "t$user": "kschmidt", "t$sess": "tdpur1100m000", "t$docn": "PR-2024-001050", "t$cpnb": 200, "t$ts": "2024-01-03T11:00:00Z", "t$stat": "Approved" },
+    { "t$evid": "EVT000027", "t$proc": "P2P", "t$step": "Purchase Order Created", "t$user": "hmueller", "t$sess": "tdpur4100m000", "t$docn": "PO-2024-005050", "t$cpnb": 200, "t$ts": "2024-01-03T14:00:00Z", "t$stat": "Created", "t$refn": "PR-2024-001050" },
+    { "t$evid": "EVT000028", "t$proc": "P2P", "t$step": "Purchase Order Approved", "t$user": "kschmidt", "t$sess": "tdpur4100m000", "t$docn": "PO-2024-005050", "t$cpnb": 200, "t$ts": "2024-01-03T16:00:00Z", "t$stat": "Approved" },
+    { "t$evid": "EVT000029", "t$proc": "P2P", "t$step": "Goods Receipt", "t$user": "fweber", "t$sess": "whwmd2100m000", "t$docn": "GR-2024-008050", "t$cpnb": 200, "t$ts": "2024-01-11T10:00:00Z", "t$stat": "Received", "t$refn": "PO-2024-005050" },
+    { "t$evid": "EVT000030", "t$proc": "P2P", "t$step": "Invoice Receipt", "t$user": "fweber", "t$sess": "tfacp2100s000", "t$docn": "INV-2024-012050", "t$cpnb": 200, "t$ts": "2024-01-13T09:00:00Z", "t$stat": "Registered", "t$refn": "PO-2024-005050" },
+
+    { "t$evid": "EVT000031", "t$proc": "O2C", "t$step": "Sales Order Created", "t$user": "ljones", "t$sess": "tdisg6100m000", "t$docn": "SO-2024-010020", "t$cpnb": 100, "t$ts": "2024-01-05T08:00:00Z", "t$stat": "Created" },
+    { "t$evid": "EVT000032", "t$proc": "O2C", "t$step": "Sales Order Confirmed", "t$user": "ljones", "t$sess": "tdisg6100m000", "t$docn": "SO-2024-010020", "t$cpnb": 100, "t$ts": "2024-01-05T08:30:00Z", "t$stat": "Confirmed" },
+    { "t$evid": "EVT000033", "t$proc": "O2C", "t$step": "Warehouse Order Created", "t$user": "system", "t$sess": "whwmd2100m000", "t$docn": "WHO-2024-015020", "t$cpnb": 100, "t$ts": "2024-01-05T09:00:00Z", "t$stat": "Created", "t$refn": "SO-2024-010020" },
+    { "t$evid": "EVT000034", "t$proc": "O2C", "t$step": "Goods Shipped", "t$user": "rbrown", "t$sess": "whwmd2510m000", "t$docn": "SHP-2024-007020", "t$cpnb": 100, "t$ts": "2024-01-07T10:00:00Z", "t$stat": "Shipped", "t$refn": "WHO-2024-015020" },
+    { "t$evid": "EVT000035", "t$proc": "O2C", "t$step": "Sales Invoice Created", "t$user": "system", "t$sess": "tdsls4101m000", "t$docn": "SI-2024-020020", "t$cpnb": 100, "t$ts": "2024-01-07T10:30:00Z", "t$stat": "Created", "t$refn": "SO-2024-010020" },
+
+    { "t$evid": "EVT000036", "t$proc": "P2P", "t$step": "Purchase Requisition Created", "t$user": "jsmith", "t$sess": "tdpur1100m000", "t$docn": "PR-2024-001100", "t$cpnb": 100, "t$ts": "2024-01-08T08:00:00Z", "t$stat": "Created" },
+    { "t$evid": "EVT000037", "t$proc": "P2P", "t$step": "Purchase Requisition Rejected", "t$user": "mwilson", "t$sess": "tdpur1100m000", "t$docn": "PR-2024-001100", "t$cpnb": 100, "t$ts": "2024-01-08T15:00:00Z", "t$stat": "Rejected" },
+    { "t$evid": "EVT000038", "t$proc": "P2P", "t$step": "Purchase Requisition Revised", "t$user": "jsmith", "t$sess": "tdpur1100m000", "t$docn": "PR-2024-001100", "t$cpnb": 100, "t$ts": "2024-01-09T09:00:00Z", "t$stat": "Revised" },
+    { "t$evid": "EVT000039", "t$proc": "P2P", "t$step": "Purchase Requisition Approved", "t$user": "mwilson", "t$sess": "tdpur1100m000", "t$docn": "PR-2024-001100", "t$cpnb": 100, "t$ts": "2024-01-09T11:00:00Z", "t$stat": "Approved" },
+
+    { "t$evid": "EVT000040", "t$proc": "O2C", "t$step": "Sales Order Created", "t$user": "atan", "t$sess": "tdisg6100m000", "t$docn": "SO-2024-010030", "t$cpnb": 300, "t$ts": "2024-01-06T02:00:00Z", "t$stat": "Created" },
+    { "t$evid": "EVT000041", "t$proc": "O2C", "t$step": "Sales Order Confirmed", "t$user": "atan", "t$sess": "tdisg6100m000", "t$docn": "SO-2024-010030", "t$cpnb": 300, "t$ts": "2024-01-06T02:30:00Z", "t$stat": "Confirmed" },
+    { "t$evid": "EVT000042", "t$proc": "O2C", "t$step": "Warehouse Order Created", "t$user": "system", "t$sess": "whwmd2100m000", "t$docn": "WHO-2024-015030", "t$cpnb": 300, "t$ts": "2024-01-06T03:00:00Z", "t$stat": "Created", "t$refn": "SO-2024-010030" },
+    { "t$evid": "EVT000043", "t$proc": "O2C", "t$step": "Goods Shipped", "t$user": "wlim", "t$sess": "whwmd2510m000", "t$docn": "SHP-2024-007030", "t$cpnb": 300, "t$ts": "2024-01-08T06:00:00Z", "t$stat": "Shipped", "t$refn": "WHO-2024-015030" },
+    { "t$evid": "EVT000044", "t$proc": "O2C", "t$step": "Sales Invoice Created", "t$user": "system", "t$sess": "tdsls4101m000", "t$docn": "SI-2024-020030", "t$cpnb": 300, "t$ts": "2024-01-08T06:30:00Z", "t$stat": "Created", "t$refn": "SO-2024-010030" },
+    { "t$evid": "EVT000045", "t$proc": "O2C", "t$step": "Payment Received", "t$user": "atan", "t$sess": "tfacr2100s000", "t$docn": "REC-2024-004030", "t$cpnb": 300, "t$ts": "2024-01-25T04:00:00Z", "t$stat": "Received", "t$refn": "SI-2024-020030" },
+
+    { "t$evid": "EVT000046", "t$proc": "R2R", "t$step": "Accrual Entry Created", "t$user": "cwhite", "t$sess": "tfgld0106s000", "t$docn": "JE-2024-030010", "t$cpnb": 100, "t$ts": "2024-01-31T09:00:00Z", "t$stat": "Created" },
+    { "t$evid": "EVT000047", "t$proc": "R2R", "t$step": "Accrual Entry Posted", "t$user": "system", "t$sess": "tfgld0106s000", "t$docn": "JE-2024-030010", "t$cpnb": 100, "t$ts": "2024-01-31T09:05:00Z", "t$stat": "Posted" },
+    { "t$evid": "EVT000048", "t$proc": "R2R", "t$step": "Intercompany Reconciliation", "t$user": "cwhite", "t$sess": "tfgld5100m000", "t$docn": "ICR-2024-001", "t$cpnb": 100, "t$ts": "2024-01-31T14:00:00Z", "t$stat": "Completed" },
+    { "t$evid": "EVT000049", "t$proc": "R2R", "t$step": "Currency Revaluation", "t$user": "system", "t$sess": "tfgld4100s000", "t$docn": "REVAL-2024-001", "t$cpnb": 100, "t$ts": "2024-01-31T18:00:00Z", "t$stat": "Completed" },
+    { "t$evid": "EVT000050", "t$proc": "R2R", "t$step": "Trial Balance Generated", "t$user": "mwilson", "t$sess": "tfgld5500m000", "t$docn": "TB-2024-001", "t$cpnb": 100, "t$ts": "2024-02-01T10:00:00Z", "t$stat": "Generated" },
+    { "t$evid": "EVT000051", "t$proc": "R2R", "t$step": "Consolidation Run", "t$user": "mwilson", "t$sess": "tfgld5600m000", "t$docn": "CON-2024-001", "t$cpnb": 100, "t$ts": "2024-02-02T14:00:00Z", "t$stat": "Completed" }
+  ],
+  "processStats": {
+    "P2P": {
+      "totalEvents": 18,
+      "avgCycleTimeDays": 13.2,
+      "minCycleTimeDays": 8.5,
+      "maxCycleTimeDays": 15.0,
+      "rejectionRate": 0.11,
+      "automationRate": 0.22
+    },
+    "O2C": {
+      "totalEvents": 19,
+      "avgCycleTimeDays": 16.5,
+      "minCycleTimeDays": 2.2,
+      "maxCycleTimeDays": 19.5,
+      "rejectionRate": 0.00,
+      "automationRate": 0.37
+    },
+    "R2R": {
+      "totalEvents": 14,
+      "avgCycleTimeDays": 2.5,
+      "periodCloseTimeDays": 2.0,
+      "rejectionRate": 0.00,
+      "automationRate": 0.29
+    }
+  },
+  "summary": {
+    "totalAuditEvents": 51,
+    "processes": ["P2P", "O2C", "R2R"],
+    "uniqueUsers": 10,
+    "companiesCovered": [100, 200, 300],
+    "dateRange": {
+      "from": "2024-01-02T08:15:00Z",
+      "to": "2024-02-02T14:00:00Z"
+    },
+    "extractedAt": "2024-01-15T11:00:00Z"
+  }
+}

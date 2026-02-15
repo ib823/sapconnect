@@ -102,9 +102,9 @@ describe('McpServer', () => {
   // ─────────────────────────────────────────────────────────────────────────
 
   describe('_handleToolsList', () => {
-    it('should return exactly 43 tools', async () => {
+    it('should return exactly 58 tools', async () => {
       const result = await server._handleToolsList();
-      expect(result.tools).toHaveLength(43);
+      expect(result.tools).toHaveLength(58);
     });
 
     it('should include all expected tool names', async () => {
@@ -412,7 +412,7 @@ describe('McpServer', () => {
     it('should process tools/list via line', async () => {
       const line = JSON.stringify({ jsonrpc: '2.0', id: 2, method: 'tools/list' });
       const result = await server.processLine(line);
-      expect(result.result.tools).toHaveLength(43);
+      expect(result.result.tools).toHaveLength(58);
     });
   });
 

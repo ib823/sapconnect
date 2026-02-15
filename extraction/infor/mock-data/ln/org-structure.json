@@ -1,0 +1,135 @@
+{
+  "financialCompanies": [
+    {
+      "t$cpnb": 100,
+      "t$cpds": "Global Manufacturing Corp",
+      "t$ccur": "USD",
+      "t$ccty": "US",
+      "t$cgrp": "MAIN",
+      "t$actv": true
+    },
+    {
+      "t$cpnb": 200,
+      "t$cpds": "European Operations GmbH",
+      "t$ccur": "EUR",
+      "t$ccty": "DE",
+      "t$cgrp": "MAIN",
+      "t$actv": true
+    },
+    {
+      "t$cpnb": 300,
+      "t$cpds": "Asia Pacific Trading Ltd",
+      "t$ccur": "SGD",
+      "t$ccty": "SG",
+      "t$cgrp": "APAC",
+      "t$actv": true
+    }
+  ],
+  "logisticCompanies": [
+    {
+      "t$lgnb": 100,
+      "t$lgds": "US Logistics Hub",
+      "t$cpnb": 100,
+      "t$actv": true,
+      "t$site": "USEAST"
+    },
+    {
+      "t$lgnb": 110,
+      "t$lgds": "US Distribution Center",
+      "t$cpnb": 100,
+      "t$actv": true,
+      "t$site": "USWEST"
+    },
+    {
+      "t$lgnb": 200,
+      "t$lgds": "DE Manufacturing Plant",
+      "t$cpnb": 200,
+      "t$actv": true,
+      "t$site": "DEMU"
+    },
+    {
+      "t$lgnb": 300,
+      "t$lgds": "SG Regional Warehouse",
+      "t$cpnb": 300,
+      "t$actv": true,
+      "t$site": "SGWH"
+    }
+  ],
+  "salesOffices": [
+    {
+      "t$slof": "SO100",
+      "t$desc": "North America Sales",
+      "t$cpnb": 100,
+      "t$lgnb": 100,
+      "t$rgnc": "NAM",
+      "t$actv": true
+    },
+    {
+      "t$slof": "SO200",
+      "t$desc": "EMEA Sales",
+      "t$cpnb": 200,
+      "t$lgnb": 200,
+      "t$rgnc": "EMEA",
+      "t$actv": true
+    },
+    {
+      "t$slof": "SO300",
+      "t$desc": "APAC Sales",
+      "t$cpnb": 300,
+      "t$lgnb": 300,
+      "t$rgnc": "APAC",
+      "t$actv": true
+    }
+  ],
+  "warehouses": [
+    {
+      "t$whno": "WH100",
+      "t$desc": "US Main Warehouse",
+      "t$lgnb": 100,
+      "t$type": "Regular",
+      "t$addr": "123 Industrial Blvd, Atlanta, GA",
+      "t$actv": true
+    },
+    {
+      "t$whno": "WH101",
+      "t$desc": "US Finished Goods",
+      "t$lgnb": 100,
+      "t$type": "FG",
+      "t$addr": "125 Industrial Blvd, Atlanta, GA",
+      "t$actv": true
+    },
+    {
+      "t$whno": "WH110",
+      "t$desc": "US West Distribution",
+      "t$lgnb": 110,
+      "t$type": "Distribution",
+      "t$addr": "500 Logistics Way, Los Angeles, CA",
+      "t$actv": true
+    },
+    {
+      "t$whno": "WH200",
+      "t$desc": "DE Plant Warehouse",
+      "t$lgnb": 200,
+      "t$type": "Production",
+      "t$addr": "Industriestr. 45, Stuttgart",
+      "t$actv": true
+    },
+    {
+      "t$whno": "WH300",
+      "t$desc": "SG Regional Hub",
+      "t$lgnb": 300,
+      "t$type": "Distribution",
+      "t$addr": "10 Changi South Lane, Singapore",
+      "t$actv": true
+    }
+  ],
+  "summary": {
+    "totalFinancialCompanies": 3,
+    "totalLogisticCompanies": 4,
+    "totalSalesOffices": 3,
+    "totalWarehouses": 5,
+    "companyGroups": ["MAIN", "APAC"],
+    "regions": ["NAM", "EMEA", "APAC"],
+    "extractedAt": "2024-01-15T10:35:00Z"
+  }
+}

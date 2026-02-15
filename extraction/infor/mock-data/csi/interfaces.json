@@ -1,0 +1,43 @@
+{
+  "idoConnections": [
+    {
+      "ConnectionId": "IDO-001",
+      "Name": "ERP to WMS",
+      "TargetSystem": "WMS",
+      "Protocol": "REST",
+      "Status": "Active"
+    },
+    {
+      "ConnectionId": "IDO-002",
+      "Name": "ERP to CRM",
+      "TargetSystem": "CRM",
+      "Protocol": "SOAP",
+      "Status": "Active"
+    }
+  ],
+  "bodInterfaces": [
+    {
+      "BodName": "SyncItem",
+      "Direction": "Outbound",
+      "Format": "XML",
+      "Status": "Active"
+    },
+    {
+      "BodName": "SyncCustomer",
+      "Direction": "Outbound",
+      "Format": "XML",
+      "Status": "Active"
+    },
+    {
+      "BodName": "ProcessPurchaseOrder",
+      "Direction": "Inbound",
+      "Format": "XML",
+      "Status": "Active"
+    }
+  ],
+  "summary": {
+    "totalIdoConnections": 2,
+    "totalBodInterfaces": 3,
+    "extractedAt": "2024-01-15T12:20:00Z"
+  }
+}

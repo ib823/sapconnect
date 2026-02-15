@@ -1,0 +1,52 @@
+{
+  "manufacturingOrders": [
+    {
+      "VHMFNO": "500001",
+      "VHITNO": "FG-1001",
+      "VHORQA": 100,
+      "VHWHST": "90",
+      "VHSTDT": "20240108",
+      "VHFIDT": "20240115",
+      "VHFACI": "F01"
+    },
+    {
+      "VHMFNO": "500002",
+      "VHITNO": "FG-1002",
+      "VHORQA": 50,
+      "VHWHST": "20",
+      "VHSTDT": "20240110",
+      "VHFIDT": "20240120",
+      "VHFACI": "F01"
+    }
+  ],
+  "operations": [
+    {
+      "VOMFNO": "500001",
+      "VOOPNO": 10,
+      "VOPLGR": "WC01",
+      "VOOPDS": "Cutting",
+      "VOSTAT": "90"
+    },
+    {
+      "VOMFNO": "500001",
+      "VOOPNO": 20,
+      "VOPLGR": "WC02",
+      "VOOPDS": "Assembly",
+      "VOSTAT": "90"
+    }
+  ],
+  "materials": [
+    {
+      "VMMFNO": "500001",
+      "VMITNO": "RM-2001",
+      "VMQTNO": 200,
+      "VMSTAT": "90"
+    }
+  ],
+  "summary": {
+    "totalMOs": 2,
+    "totalOperations": 2,
+    "totalMaterials": 1,
+    "extractedAt": "2024-01-15T11:15:00Z"
+  }
+}

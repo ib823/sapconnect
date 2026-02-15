@@ -1,0 +1,68 @@
+{
+  "users": [
+    {
+      "UserId": "admin",
+      "UserName": "System Administrator",
+      "UserGroup": "ADMIN",
+      "Status": "Active",
+      "LastLogin": "2024-01-15"
+    },
+    {
+      "UserId": "jsmith",
+      "UserName": "John Smith",
+      "UserGroup": "SALES",
+      "Status": "Active",
+      "LastLogin": "2024-01-15"
+    },
+    {
+      "UserId": "mwilson",
+      "UserName": "Mary Wilson",
+      "UserGroup": "PURCH",
+      "Status": "Active",
+      "LastLogin": "2024-01-14"
+    }
+  ],
+  "groups": [
+    {
+      "GroupName": "ADMIN",
+      "Description": "System Administrators",
+      "MemberCount": 1
+    },
+    {
+      "GroupName": "SALES",
+      "Description": "Sales Users",
+      "MemberCount": 5
+    },
+    {
+      "GroupName": "PURCH",
+      "Description": "Purchasing Users",
+      "MemberCount": 3
+    }
+  ],
+  "permissions": [
+    {
+      "GroupName": "SALES",
+      "ObjectType": "Form",
+      "ObjectName": "CoForm",
+      "AccessLevel": "Full"
+    },
+    {
+      "GroupName": "SALES",
+      "ObjectType": "Form",
+      "ObjectName": "CustomerForm",
+      "AccessLevel": "ReadOnly"
+    },
+    {
+      "GroupName": "PURCH",
+      "ObjectType": "Form",
+      "ObjectName": "PoForm",
+      "AccessLevel": "Full"
+    }
+  ],
+  "summary": {
+    "totalUsers": 3,
+    "totalGroups": 3,
+    "totalPermissions": 3,
+    "extractedAt": "2024-01-15T12:15:00Z"
+  }
+}

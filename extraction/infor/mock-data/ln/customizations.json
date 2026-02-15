@@ -1,0 +1,73 @@
+{
+  "standardSessions": [
+    { "t$sess": "tdisg6100m000", "t$desc": "Maintain Sales Orders", "t$pack": "td", "t$modn": "isg", "t$type": "Maintenance", "t$cust": false },
+    { "t$sess": "tdisg6101m000", "t$desc": "Display Sales Orders", "t$pack": "td", "t$modn": "isg", "t$type": "Display", "t$cust": false },
+    { "t$sess": "tdpur4100m000", "t$desc": "Maintain Purchase Orders", "t$pack": "td", "t$modn": "pur", "t$type": "Maintenance", "t$cust": false },
+    { "t$sess": "tdpur4101m000", "t$desc": "Display Purchase Orders", "t$pack": "td", "t$modn": "pur", "t$type": "Display", "t$cust": false },
+    { "t$sess": "tcibd0101m000", "t$desc": "Maintain Items", "t$pack": "tc", "t$modn": "ibd", "t$type": "Maintenance", "t$cust": false },
+    { "t$sess": "tccom4100s000", "t$desc": "Maintain Business Partners", "t$pack": "tc", "t$modn": "com", "t$type": "Maintenance", "t$cust": false },
+    { "t$sess": "tfgld0101s000", "t$desc": "Maintain Chart of Accounts", "t$pack": "tf", "t$modn": "gld", "t$type": "Maintenance", "t$cust": false },
+    { "t$sess": "tfgld0106s000", "t$desc": "Process Transactions", "t$pack": "tf", "t$modn": "gld", "t$type": "Process", "t$cust": false },
+    { "t$sess": "whwmd2100m000", "t$desc": "Maintain Warehouse Orders", "t$pack": "wh", "t$modn": "wmd", "t$type": "Maintenance", "t$cust": false },
+    { "t$sess": "whwmd2510m000", "t$desc": "Confirm Warehouse Activities", "t$pack": "wh", "t$modn": "wmd", "t$type": "Process", "t$cust": false },
+    { "t$sess": "tcmcs0101m000", "t$desc": "Maintain Countries", "t$pack": "tc", "t$modn": "mcs", "t$type": "Maintenance", "t$cust": false },
+    { "t$sess": "tcemm0130m000", "t$desc": "Maintain Companies", "t$pack": "tc", "t$modn": "emm", "t$type": "Maintenance", "t$cust": false },
+    { "t$sess": "tdsls0501m000", "t$desc": "Maintain Sales Prices", "t$pack": "td", "t$modn": "sls", "t$type": "Maintenance", "t$cust": false },
+    { "t$sess": "tipcs0101m000", "t$desc": "Maintain Production Orders", "t$pack": "ti", "t$modn": "pcs", "t$type": "Maintenance", "t$cust": false },
+    { "t$sess": "tisfc0101s000", "t$desc": "Shop Floor Control", "t$pack": "ti", "t$modn": "sfc", "t$type": "Process", "t$cust": false }
+  ],
+  "customerSessions": [
+    { "t$sess": "xtdisg6100m100", "t$desc": "Custom Sales Order Entry", "t$pack": "xtd", "t$modn": "isg", "t$type": "Maintenance", "t$cust": true, "t$base": "tdisg6100m000", "t$vrc": "VRC01" },
+    { "t$sess": "xtdpur4100m100", "t$desc": "Custom Purchase Order Approval", "t$pack": "xtd", "t$modn": "pur", "t$type": "Maintenance", "t$cust": true, "t$base": "tdpur4100m000", "t$vrc": "VRC01" },
+    { "t$sess": "xtcibd0101m100", "t$desc": "Custom Item Maintenance", "t$pack": "xtc", "t$modn": "ibd", "t$type": "Maintenance", "t$cust": true, "t$base": "tcibd0101m000", "t$vrc": "VRC01" },
+    { "t$sess": "xtfgld0106s100", "t$desc": "Custom Transaction Processing", "t$pack": "xtf", "t$modn": "gld", "t$type": "Process", "t$cust": true, "t$base": "tfgld0106s000", "t$vrc": "VRC01" },
+    { "t$sess": "xtccom4100s100", "t$desc": "Custom BP Maintenance with Validation", "t$pack": "xtc", "t$modn": "com", "t$type": "Maintenance", "t$cust": true, "t$base": "tccom4100s000", "t$vrc": "VRC02" },
+    { "t$sess": "xtdsls0501m100", "t$desc": "Custom Pricing with Margin Check", "t$pack": "xtd", "t$modn": "sls", "t$type": "Maintenance", "t$cust": true, "t$base": "tdsls0501m000", "t$vrc": "VRC02" },
+    { "t$sess": "xwhwmd2100m100", "t$desc": "Custom Warehouse Receipt", "t$pack": "xwh", "t$modn": "wmd", "t$type": "Maintenance", "t$cust": true, "t$base": "whwmd2100m000", "t$vrc": "VRC02" },
+    { "t$sess": "xtipcs0101m100", "t$desc": "Custom Production Order Release", "t$pack": "xti", "t$modn": "pcs", "t$type": "Maintenance", "t$cust": true, "t$base": "tipcs0101m000", "t$vrc": "VRC03" }
+  ],
+  "vrcPackages": [
+    {
+      "t$vrcc": "VRC01",
+      "t$desc": "Core Business Customizations",
+      "t$vers": "10.4",
+      "t$rels": "FP6",
+      "t$cust": "GMC",
+      "t$nsess": 4,
+      "t$nscr": 12,
+      "t$ntbl": 3,
+      "t$cdat": "2022-03-15"
+    },
+    {
+      "t$vrcc": "VRC02",
+      "t$desc": "Sales and Warehouse Extensions",
+      "t$vers": "10.4",
+      "t$rels": "FP8",
+      "t$cust": "GMC",
+      "t$nsess": 3,
+      "t$nscr": 8,
+      "t$ntbl": 2,
+      "t$cdat": "2023-06-20"
+    },
+    {
+      "t$vrcc": "VRC03",
+      "t$desc": "Manufacturing Enhancements",
+      "t$vers": "10.4",
+      "t$rels": "FP10",
+      "t$cust": "GMC",
+      "t$nsess": 1,
+      "t$nscr": 4,
+      "t$ntbl": 1,
+      "t$cdat": "2024-01-10"
+    }
+  ],
+  "summary": {
+    "totalStandardSessions": 15,
+    "totalCustomerSessions": 8,
+    "totalVRCPackages": 3,
+    "customizationRatio": 0.53,
+    "affectedModules": ["isg", "pur", "ibd", "com", "gld", "sls", "wmd", "pcs"],
+    "latestVRCDate": "2024-01-10",
+    "extractedAt": "2024-01-15T10:45:00Z"
+  }
+}

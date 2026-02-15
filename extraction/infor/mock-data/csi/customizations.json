@@ -1,0 +1,56 @@
+{
+  "userDefinedFields": [
+    {
+      "TableName": "co",
+      "FieldName": "uf_priority",
+      "DataType": "INT",
+      "Description": "Order Priority Score"
+    },
+    {
+      "TableName": "item",
+      "FieldName": "uf_compliance",
+      "DataType": "VARCHAR",
+      "Description": "Item Compliance Code"
+    },
+    {
+      "TableName": "customer",
+      "FieldName": "uf_risk",
+      "DataType": "VARCHAR",
+      "Description": "Customer Risk Rating"
+    }
+  ],
+  "customForms": [
+    {
+      "FormId": "CF-001",
+      "FormName": "Extended Order Entry",
+      "BaseForm": "CoForm",
+      "Status": "Active"
+    },
+    {
+      "FormId": "CF-002",
+      "FormName": "Custom Item Inquiry",
+      "BaseForm": "ItemForm",
+      "Status": "Active"
+    }
+  ],
+  "idoExtensions": [
+    {
+      "IdoName": "SLCos",
+      "MethodName": "ValidateOrderSp",
+      "Type": "StoredProc",
+      "Status": "Active"
+    },
+    {
+      "IdoName": "SLItems",
+      "MethodName": "GetExtendedData",
+      "Type": "StoredProc",
+      "Status": "Active"
+    }
+  ],
+  "summary": {
+    "totalUserDefinedFields": 3,
+    "totalCustomForms": 2,
+    "totalIdoExtensions": 2,
+    "extractedAt": "2024-01-15T12:10:00Z"
+  }
+}

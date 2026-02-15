@@ -1,0 +1,39 @@
+{
+  "ionConnections": [
+    { "connectionId": "ION-001", "name": "M3 to Infor OS", "type": "ION_API", "sourceSystem": "M3", "targetSystem": "InforOS", "protocol": "REST/JSON", "status": "Active", "messageTypes": ["SyncCustomer", "SyncItem", "SyncOrder"], "avgMessagesPerDay": 1200, "lastActive": "2024-01-15T08:00:00Z" },
+    { "connectionId": "ION-002", "name": "M3 to Data Lake", "type": "ION_CONNECT", "sourceSystem": "M3", "targetSystem": "DataLake", "protocol": "BOD/XML", "status": "Active", "messageTypes": ["SyncFinancials", "SyncInventory"], "avgMessagesPerDay": 5000, "lastActive": "2024-01-15T07:00:00Z" },
+    { "connectionId": "ION-003", "name": "M3 to WMS", "type": "ION_API", "sourceSystem": "M3", "targetSystem": "InforWMS", "protocol": "REST/JSON", "status": "Active", "messageTypes": ["TransferOrder", "ReceiptConfirm", "ShipConfirm"], "avgMessagesPerDay": 800, "lastActive": "2024-01-15T06:00:00Z" },
+    { "connectionId": "ION-004", "name": "M3 to EDI Gateway", "type": "ION_CONNECT", "sourceSystem": "M3", "targetSystem": "EDIGateway", "protocol": "EDIFACT", "status": "Active", "messageTypes": ["ORDERS", "DESADV", "INVOIC"], "avgMessagesPerDay": 350, "lastActive": "2024-01-15T05:00:00Z" }
+  ],
+  "miPrograms": [
+    { "miName": "OIS100MI", "description": "Customer Order Interface", "transactions": ["AddBatchHead", "AddBatchLine", "GetHead", "GetLine", "ChgHead", "Confirm"], "category": "Sales", "avgCallsPerDay": 450, "status": "Active" },
+    { "miName": "MMS200MI", "description": "Stock Balance Interface", "transactions": ["GetItmWhsBal", "LstItmWhsBal", "GetItmWhsLoc"], "category": "Inventory", "avgCallsPerDay": 2200, "status": "Active" },
+    { "miName": "CRS610MI", "description": "Customer Interface", "transactions": ["AddCustomer", "ChgBasicData", "GetBasicData", "LstByNumber"], "category": "MasterData", "avgCallsPerDay": 180, "status": "Active" },
+    { "miName": "MMS001MI", "description": "Item Interface", "transactions": ["AddItm", "ChgItm", "GetItm", "LstItm", "AddItmWhs"], "category": "MasterData", "avgCallsPerDay": 320, "status": "Active" },
+    { "miName": "PPS200MI", "description": "Purchase Order Interface", "transactions": ["AddBatchHead", "AddBatchLine", "GetHead", "GetLine"], "category": "Purchasing", "avgCallsPerDay": 150, "status": "Active" },
+    { "miName": "GLS200MI", "description": "General Ledger Interface", "transactions": ["AddJournalEntry", "GetJournalEntry", "LstJournalHd"], "category": "Finance", "avgCallsPerDay": 600, "status": "Active" },
+    { "miName": "CRS620MI", "description": "Supplier Interface", "transactions": ["AddSupplier", "ChgBasicData", "GetBasicData"], "category": "MasterData", "avgCallsPerDay": 80, "status": "Active" },
+    { "miName": "PPS330MI", "description": "Shop Floor Interface", "transactions": ["RptOperation", "GetOperation", "LstOperByMO"], "category": "Manufacturing", "avgCallsPerDay": 890, "status": "Active" },
+    { "miName": "MWS410MI", "description": "Stock Transaction Interface", "transactions": ["AddTransfer", "AddReceipt", "AddIssue"], "category": "Inventory", "avgCallsPerDay": 1100, "status": "Active" },
+    { "miName": "ARS100MI", "description": "AR Transaction Interface", "transactions": ["AddPayment", "GetInvoice", "LstInvoice"], "category": "Finance", "avgCallsPerDay": 200, "status": "Active" },
+    { "miName": "APS380MI", "description": "AP Transaction Interface", "transactions": ["AddInvoice", "AddPayment", "MatchInvoice"], "category": "Finance", "avgCallsPerDay": 250, "status": "Active" },
+    { "miName": "MMS235MI", "description": "Lot Master Interface", "transactions": ["AddLotMaster", "GetLotMaster", "LstLotMaster"], "category": "Inventory", "avgCallsPerDay": 400, "status": "Active" }
+  ],
+  "fileInterfaces": [
+    { "interfaceId": "FILE-001", "name": "Daily Bank Statement Import", "direction": "Inbound", "format": "CSV", "frequency": "Daily", "sourcePath": "/import/bank/", "program": "ARS100", "status": "Active", "avgRecordsPerFile": 250 },
+    { "interfaceId": "FILE-002", "name": "Supplier Price List Import", "direction": "Inbound", "format": "XML", "frequency": "Weekly", "sourcePath": "/import/pricing/", "program": "PPS200", "status": "Active", "avgRecordsPerFile": 5000 },
+    { "interfaceId": "FILE-003", "name": "GL Export to Consolidation", "direction": "Outbound", "format": "CSV", "frequency": "Monthly", "targetPath": "/export/gl/", "program": "GLS200", "status": "Active", "avgRecordsPerFile": 15000 },
+    { "interfaceId": "FILE-004", "name": "Inventory Snapshot Export", "direction": "Outbound", "format": "XML", "frequency": "Daily", "targetPath": "/export/inventory/", "program": "MMS200", "status": "Active", "avgRecordsPerFile": 12500 },
+    { "interfaceId": "FILE-005", "name": "Customer EDI Order Import", "direction": "Inbound", "format": "EDIFACT", "frequency": "Continuous", "sourcePath": "/import/edi/", "program": "OIS100", "status": "Active", "avgRecordsPerFile": 50 }
+  ],
+  "summary": {
+    "totalIONConnections": 4,
+    "totalMIPrograms": 12,
+    "totalFileInterfaces": 5,
+    "totalDailyMessages": 7350,
+    "totalDailyAPICalls": 6820,
+    "inboundInterfaces": 3,
+    "outboundInterfaces": 2,
+    "extractedAt": "2024-01-15T10:40:00Z"
+  }
+}

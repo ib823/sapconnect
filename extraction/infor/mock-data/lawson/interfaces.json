@@ -1,0 +1,56 @@
+{
+  "lbiConnections": [
+    {
+      "CONNECTION_ID": "LBI-001",
+      "NAME": "Lawson to Data Lake",
+      "TARGET": "InforDataLake",
+      "PROTOCOL": "REST",
+      "STATUS": "ACTIVE"
+    },
+    {
+      "CONNECTION_ID": "LBI-002",
+      "NAME": "Lawson to HR Portal",
+      "TARGET": "EmployeeSelfService",
+      "PROTOCOL": "SOAP",
+      "STATUS": "ACTIVE"
+    }
+  ],
+  "addIns": [
+    {
+      "ADD_IN_ID": "AI-001",
+      "NAME": "Excel Add-In GL",
+      "MODULE": "GL",
+      "STATUS": "ACTIVE"
+    },
+    {
+      "ADD_IN_ID": "AI-002",
+      "NAME": "Excel Add-In AP",
+      "MODULE": "AP",
+      "STATUS": "ACTIVE"
+    }
+  ],
+  "fileInterfaces": [
+    {
+      "INTERFACE_ID": "FI-001",
+      "NAME": "Bank Statement Import",
+      "DIRECTION": "Inbound",
+      "FORMAT": "CSV",
+      "FREQUENCY": "Daily",
+      "STATUS": "ACTIVE"
+    },
+    {
+      "INTERFACE_ID": "FI-002",
+      "NAME": "GL Export to Consolidation",
+      "DIRECTION": "Outbound",
+      "FORMAT": "XML",
+      "FREQUENCY": "Monthly",
+      "STATUS": "ACTIVE"
+    }
+  ],
+  "summary": {
+    "totalLbiConnections": 2,
+    "totalAddIns": 2,
+    "totalFileInterfaces": 2,
+    "extractedAt": "2024-01-20T09:30:00Z"
+  }
+}

@@ -35,6 +35,30 @@ const CONVERTERS = {
   boolTF: (v) => (v === 'Y' || v === 'X' || v === true || v === 1) ? 'T' : 'F',
   stripLeadingZeros: (v) => v === null || v === undefined ? '' : String(v).replace(/^0+/, '') || '0',
   trim: (v) => v === null || v === undefined ? '' : String(v).trim(),
+  inforLNItemType: (v) => {
+    const map = { '1': 'ROH', '2': 'HALB', '3': 'FERT', '4': 'HAWA', '5': 'DIEN', '6': 'NLAG' };
+    return map[String(v)] || 'HAWA';
+  },
+  inforUomToISO: (v) => {
+    const map = { 'kg': 'KG', 'g': 'G', 'l': 'L', 'ml': 'ML', 'm': 'M', 'cm': 'CM', 'mm': 'MM', 'pcs': 'EA', 'ea': 'EA', 'pc': 'EA', 'hr': 'HUR', 'min': 'MIN', 'box': 'BX', 'pal': 'PL', 'set': 'SET' };
+    return map[String(v).toLowerCase()] || String(v).toUpperCase();
+  },
+  inforLNCompanySuffix: (v, record) => {
+    // Strip company number suffix from LN table field values
+    if (!v) return '';
+    return String(v).replace(/\d{3}$/, '');
+  },
+  m3FieldPrefix: (v, record) => {
+    // Strip 2-char M3 field prefix if present
+    if (!v || typeof v !== 'string') return v;
+    return v;
+  },
+  lawsonAccountString: (v) => {
+    // Decompose Lawson flat accounting string: COMPANY-ACCTUNIT-ACCOUNT-SUBACCOUNT
+    if (!v) return '';
+    const parts = String(v).split('-');
+    return parts.length >= 3 ? parts[2] : String(v);
+  },
 };
 
 // ── Mapping types ────────────────────────────────────────────────────

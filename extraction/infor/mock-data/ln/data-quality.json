@@ -1,0 +1,151 @@
+{
+  "tableProfiles": [
+    {
+      "table": "tcibd001",
+      "description": "Items",
+      "totalRecords": 45230,
+      "completeness": {
+        "overall": 87.3,
+        "byField": {
+          "t$item": { "filled": 100.0, "nullPct": 0.0 },
+          "t$dsca": { "filled": 99.8, "nullPct": 0.2 },
+          "t$citg": { "filled": 98.5, "nullPct": 1.5 },
+          "t$csig": { "filled": 72.1, "nullPct": 27.9 },
+          "t$cuni": { "filled": 99.2, "nullPct": 0.8 },
+          "t$wght": { "filled": 65.4, "nullPct": 34.6 },
+          "t$volu": { "filled": 58.2, "nullPct": 41.8 },
+          "t$ctyp": { "filled": 95.6, "nullPct": 4.4 }
+        }
+      },
+      "duplicates": {
+        "count": 127,
+        "percentage": 0.28,
+        "checkFields": ["t$dsca", "t$citg"]
+      },
+      "dataIssues": [
+        { "issue": "Missing weight for shippable items", "count": 3421, "severity": "high" },
+        { "issue": "Missing item sub-group", "count": 12618, "severity": "medium" },
+        { "issue": "Missing volume for warehouse items", "count": 8945, "severity": "medium" }
+      ]
+    },
+    {
+      "table": "tccom100",
+      "description": "Business Partners",
+      "totalRecords": 18750,
+      "completeness": {
+        "overall": 82.6,
+        "byField": {
+          "t$bpid": { "filled": 100.0, "nullPct": 0.0 },
+          "t$nama": { "filled": 100.0, "nullPct": 0.0 },
+          "t$namc": { "filled": 98.1, "nullPct": 1.9 },
+          "t$ccty": { "filled": 96.3, "nullPct": 3.7 },
+          "t$pstc": { "filled": 78.9, "nullPct": 21.1 },
+          "t$telp": { "filled": 62.4, "nullPct": 37.6 },
+          "t$emal": { "filled": 55.8, "nullPct": 44.2 },
+          "t$txnb": { "filled": 71.2, "nullPct": 28.8 }
+        }
+      },
+      "duplicates": {
+        "count": 342,
+        "percentage": 1.82,
+        "checkFields": ["t$nama", "t$ccty", "t$pstc"]
+      },
+      "dataIssues": [
+        { "issue": "Missing email address", "count": 8288, "severity": "medium" },
+        { "issue": "Potential duplicate business partners", "count": 342, "severity": "high" },
+        { "issue": "Missing tax number for active vendors", "count": 2156, "severity": "high" },
+        { "issue": "Missing postal code", "count": 3953, "severity": "low" }
+      ]
+    },
+    {
+      "table": "tfgld100",
+      "description": "General Ledger Accounts",
+      "totalRecords": 2840,
+      "completeness": {
+        "overall": 94.1,
+        "byField": {
+          "t$leac": { "filled": 100.0, "nullPct": 0.0 },
+          "t$desc": { "filled": 100.0, "nullPct": 0.0 },
+          "t$type": { "filled": 100.0, "nullPct": 0.0 },
+          "t$dbcr": { "filled": 99.5, "nullPct": 0.5 },
+          "t$dimn": { "filled": 88.7, "nullPct": 11.3 },
+          "t$curc": { "filled": 82.4, "nullPct": 17.6 }
+        }
+      },
+      "duplicates": {
+        "count": 0,
+        "percentage": 0.0,
+        "checkFields": ["t$leac"]
+      },
+      "dataIssues": [
+        { "issue": "Missing dimension assignment", "count": 321, "severity": "medium" },
+        { "issue": "Missing currency control setting", "count": 500, "severity": "low" }
+      ]
+    },
+    {
+      "table": "tdsls400",
+      "description": "Sales Orders",
+      "totalRecords": 128450,
+      "completeness": {
+        "overall": 91.5,
+        "byField": {
+          "t$ession": { "filled": 100.0, "nullPct": 0.0 },
+          "t$bpid": { "filled": 100.0, "nullPct": 0.0 },
+          "t$odat": { "filled": 100.0, "nullPct": 0.0 },
+          "t$ddat": { "filled": 94.2, "nullPct": 5.8 },
+          "t$cprj": { "filled": 45.6, "nullPct": 54.4 },
+          "t$dlrm": { "filled": 98.8, "nullPct": 1.2 },
+          "t$ccur": { "filled": 100.0, "nullPct": 0.0 }
+        }
+      },
+      "duplicates": {
+        "count": 15,
+        "percentage": 0.01,
+        "checkFields": ["t$bpid", "t$odat", "t$dlrm"]
+      },
+      "dataIssues": [
+        { "issue": "Missing delivery date", "count": 7450, "severity": "high" },
+        { "issue": "Missing project reference", "count": 69898, "severity": "low" }
+      ]
+    },
+    {
+      "table": "tdpur400",
+      "description": "Purchase Orders",
+      "totalRecords": 87620,
+      "completeness": {
+        "overall": 89.8,
+        "byField": {
+          "t$ession": { "filled": 100.0, "nullPct": 0.0 },
+          "t$bpid": { "filled": 100.0, "nullPct": 0.0 },
+          "t$odat": { "filled": 100.0, "nullPct": 0.0 },
+          "t$ddat": { "filled": 92.1, "nullPct": 7.9 },
+          "t$cprj": { "filled": 38.2, "nullPct": 61.8 },
+          "t$ccur": { "filled": 100.0, "nullPct": 0.0 },
+          "t$buyer": { "filled": 85.4, "nullPct": 14.6 }
+        }
+      },
+      "duplicates": {
+        "count": 23,
+        "percentage": 0.03,
+        "checkFields": ["t$bpid", "t$odat"]
+      },
+      "dataIssues": [
+        { "issue": "Missing delivery date", "count": 6924, "severity": "high" },
+        { "issue": "Missing buyer assignment", "count": 12795, "severity": "medium" },
+        { "issue": "Missing project reference", "count": 54152, "severity": "low" }
+      ]
+    }
+  ],
+  "overallSummary": {
+    "tablesProfiled": 5,
+    "totalRecords": 282890,
+    "averageCompleteness": 89.06,
+    "totalDuplicates": 507,
+    "totalDataIssues": 14,
+    "highSeverityIssues": 5,
+    "mediumSeverityIssues": 5,
+    "lowSeverityIssues": 4,
+    "qualityScore": "B+",
+    "extractedAt": "2024-01-15T10:55:00Z"
+  }
+}

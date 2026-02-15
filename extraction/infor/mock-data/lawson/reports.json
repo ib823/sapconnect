@@ -1,0 +1,46 @@
+{
+  "reports": [
+    {
+      "REPORT_ID": "GL40.1",
+      "NAME": "Trial Balance",
+      "MODULE": "GL",
+      "FREQUENCY": "Monthly",
+      "STATUS": "ACTIVE"
+    },
+    {
+      "REPORT_ID": "AP20.1",
+      "NAME": "AP Aging",
+      "MODULE": "AP",
+      "FREQUENCY": "Weekly",
+      "STATUS": "ACTIVE"
+    },
+    {
+      "REPORT_ID": "AR20.1",
+      "NAME": "AR Aging",
+      "MODULE": "AR",
+      "FREQUENCY": "Weekly",
+      "STATUS": "ACTIVE"
+    },
+    {
+      "REPORT_ID": "HR10.1",
+      "NAME": "Employee Roster",
+      "MODULE": "HR",
+      "FREQUENCY": "Monthly",
+      "STATUS": "ACTIVE"
+    }
+  ],
+  "customReports": [
+    {
+      "REPORT_ID": "CRR-001",
+      "NAME": "Executive Dashboard",
+      "BASE_REPORT": "GL40.1",
+      "CREATED_BY": "LADMIN",
+      "STATUS": "ACTIVE"
+    }
+  ],
+  "summary": {
+    "totalReports": 4,
+    "totalCustomReports": 1,
+    "extractedAt": "2024-01-20T09:40:00Z"
+  }
+}

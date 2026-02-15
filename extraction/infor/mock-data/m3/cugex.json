@@ -1,0 +1,64 @@
+{
+  "cugexRecords": [
+    {
+      "FILE": "MITMAS",
+      "PK01": "FG-1001",
+      "PK02": "",
+      "A030": "Custom field value 1",
+      "A130": "Extended data A",
+      "N096": 42.5,
+      "D096": "20240101"
+    },
+    {
+      "FILE": "CIDMAS",
+      "PK01": "C10001",
+      "PK02": "",
+      "A030": "Customer custom 1",
+      "A130": "Extended customer data",
+      "N096": 100,
+      "D096": "20230601"
+    },
+    {
+      "FILE": "OOHEAD",
+      "PK01": "1001001",
+      "PK02": "",
+      "A030": "Order custom field",
+      "A130": "",
+      "N096": 0,
+      "D096": "20240110"
+    }
+  ],
+  "cugexDefinitions": [
+    {
+      "FILE": "MITMAS",
+      "FLDI": "A030",
+      "DESC": "Item Compliance Code",
+      "TYPE": "A",
+      "LENGTH": 30
+    },
+    {
+      "FILE": "MITMAS",
+      "FLDI": "A130",
+      "DESC": "Extended Item Data",
+      "TYPE": "A",
+      "LENGTH": 30
+    },
+    {
+      "FILE": "CIDMAS",
+      "FLDI": "A030",
+      "DESC": "Customer Risk Rating",
+      "TYPE": "A",
+      "LENGTH": 30
+    }
+  ],
+  "summary": {
+    "totalCugexRecords": 3,
+    "totalDefinitions": 3,
+    "tablesWithCugex": [
+      "MITMAS",
+      "CIDMAS",
+      "OOHEAD"
+    ],
+    "extractedAt": "2024-01-15T11:25:00Z"
+  }
+}

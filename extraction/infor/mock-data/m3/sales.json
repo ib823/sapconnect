@@ -1,0 +1,41 @@
+{
+  "orderHeaders": [
+    {
+      "OAORNO": "1001001",
+      "OACUNO": "C10001",
+      "OAORDT": "20240110",
+      "OAORTP": "NO",
+      "OAORST": "33",
+      "OARLDT": "20240210"
+    },
+    {
+      "OAORNO": "1001002",
+      "OACUNO": "C10002",
+      "OAORDT": "20240115",
+      "OAORTP": "NO",
+      "OAORST": "22",
+      "OARLDT": "20240215"
+    }
+  ],
+  "orderLines": [
+    {
+      "OAORNO": "1001001",
+      "OBPONR": 10,
+      "OBITNO": "FG-1001",
+      "OBQTNO": 100,
+      "OBNEPR": 25
+    },
+    {
+      "OAORNO": "1001002",
+      "OBPONR": 10,
+      "OBITNO": "FG-1002",
+      "OBQTNO": 50,
+      "OBNEPR": 40
+    }
+  ],
+  "summary": {
+    "totalOrders": 2,
+    "totalLines": 2,
+    "extractedAt": "2024-01-15T11:05:00Z"
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "ionConnections": [
+    {
+      "t$cnid": "ION001",
+      "t$name": "LN-to-CloudSuite",
+      "t$type": "ION API Gateway",
+      "t$prot": "HTTPS",
+      "t$host": "mingle-ionapi.inforcloudsuite.com",
+      "t$port": 443,
+      "t$auth": "OAuth2",
+      "t$stat": "Active",
+      "t$lact": "2024-01-15T06:00:00Z"
+    },
+    {
+      "t$cnid": "ION002",
+      "t$name": "LN-to-DataLake",
+      "t$type": "ION Data Lake",
+      "t$prot": "HTTPS",
+      "t$host": "datalake.inforcloudsuite.com",
+      "t$port": 443,
+      "t$auth": "OAuth2",
+      "t$stat": "Active",
+      "t$lact": "2024-01-15T02:00:00Z"
+    },
+    {
+      "t$cnid": "ION003",
+      "t$name": "LN-to-MinglePortal",
+      "t$type": "ION Messaging",
+      "t$prot": "HTTPS",
+      "t$host": "mingle.inforcloudsuite.com",
+      "t$port": 443,
+      "t$auth": "OAuth2",
+      "t$stat": "Active",
+      "t$lact": "2024-01-14T23:00:00Z"
+    },
+    {
+      "t$cnid": "ION004",
+      "t$name": "LN-to-Salesforce",
+      "t$type": "ION Connect",
+      "t$prot": "HTTPS",
+      "t$host": "api.salesforce.com",
+      "t$port": 443,
+      "t$auth": "OAuth2",
+      "t$stat": "Active",
+      "t$lact": "2024-01-15T07:00:00Z"
+    },
+    {
+      "t$cnid": "ION005",
+      "t$name": "LN-to-BankGateway",
+      "t$type": "ION Connect",
+      "t$prot": "SFTP",
+      "t$host": "sftp.bankgateway.com",
+      "t$port": 22,
+      "t$auth": "Certificate",
+      "t$stat": "Active",
+      "t$lact": "2024-01-15T06:30:00Z"
+    }
+  ],
+  "bodMappings": [
+    { "t$bdid": "BOD001", "t$noun": "SalesOrder", "t$verb": "Sync", "t$src": "LN", "t$tgt": "CloudSuite", "t$frmt": "XML", "t$freq": "Real-time", "t$actv": true },
+    { "t$bdid": "BOD002", "t$noun": "PurchaseOrder", "t$verb": "Sync", "t$src": "LN", "t$tgt": "CloudSuite", "t$frmt": "XML", "t$freq": "Real-time", "t$actv": true },
+    { "t$bdid": "BOD003", "t$noun": "ReceiveDelivery", "t$verb": "Sync", "t$src": "LN", "t$tgt": "CloudSuite", "t$frmt": "XML", "t$freq": "Real-time", "t$actv": true },
+    { "t$bdid": "BOD004", "t$noun": "Invoice", "t$verb": "Process", "t$src": "LN", "t$tgt": "CloudSuite", "t$frmt": "XML", "t$freq": "Batch-Hourly", "t$actv": true },
+    { "t$bdid": "BOD005", "t$noun": "JournalEntry", "t$verb": "Post", "t$src": "LN", "t$tgt": "DataLake", "t$frmt": "JSON", "t$freq": "Batch-Daily", "t$actv": true },
+    { "t$bdid": "BOD006", "t$noun": "ItemMaster", "t$verb": "Sync", "t$src": "LN", "t$tgt": "CloudSuite", "t$frmt": "XML", "t$freq": "Real-time", "t$actv": true },
+    { "t$bdid": "BOD007", "t$noun": "CustomerPartyMaster", "t$verb": "Sync", "t$src": "Salesforce", "t$tgt": "LN", "t$frmt": "JSON", "t$freq": "Real-time", "t$actv": true },
+    { "t$bdid": "BOD008", "t$noun": "BankStatement", "t$verb": "Load", "t$src": "BankGateway", "t$tgt": "LN", "t$frmt": "CAMT.053", "t$freq": "Batch-Daily", "t$actv": true }
+  ],
+  "mecMaps": [
+    {
+      "t$mcid": "MEC001",
+      "t$name": "SO-Header-Map",
+      "t$desc": "Sales order header field mapping to CloudSuite",
+      "t$src": "tdisg600",
+      "t$tgt": "CSOrderHeader",
+      "t$nfld": 28,
+      "t$actv": true
+    },
+    {
+      "t$mcid": "MEC002",
+      "t$name": "PO-Header-Map",
+      "t$desc": "Purchase order header field mapping to CloudSuite",
+      "t$src": "tdpur400",
+      "t$tgt": "CSPOHeader",
+      "t$nfld": 24,
+      "t$actv": true
+    },
+    {
+      "t$mcid": "MEC003",
+      "t$name": "BP-Customer-Map",
+      "t$desc": "Business partner to Salesforce account mapping",
+      "t$src": "tccom100",
+      "t$tgt": "SFAccount",
+      "t$nfld": 35,
+      "t$actv": true
+    }
+  ],
+  "ediPartners": [
+    { "t$edid": "EDI001", "t$bpid": "BP100045", "t$name": "Acme Supplies Inc", "t$msgs": ["850", "855", "856", "810"], "t$prot": "AS2", "t$stat": "Active" },
+    { "t$edid": "EDI002", "t$bpid": "BP100078", "t$name": "Global Parts Co", "t$msgs": ["850", "856", "810"], "t$prot": "AS2", "t$stat": "Active" },
+    { "t$edid": "EDI003", "t$bpid": "BP200012", "t$name": "Euro Components AG", "t$msgs": ["ORDERS", "DESADV", "INVOIC"], "t$prot": "SFTP", "t$stat": "Active" },
+    { "t$edid": "EDI004", "t$bpid": "BP300005", "t$name": "Pacific Distributors Pte Ltd", "t$msgs": ["850", "810"], "t$prot": "AS2", "t$stat": "Inactive" }
+  ],
+  "fileInterfaces": [
+    { "t$flid": "FI001", "t$name": "Daily Bank Statement Import", "t$type": "Inbound", "t$frmt": "MT940", "t$path": "/interfaces/bank/inbound/", "t$freq": "Daily", "t$actv": true },
+    { "t$flid": "FI002", "t$name": "AP Payment File Export", "t$type": "Outbound", "t$frmt": "ACH/NACHA", "t$path": "/interfaces/payment/outbound/", "t$freq": "Daily", "t$actv": true },
+    { "t$flid": "FI003", "t$name": "GL Trial Balance Export", "t$type": "Outbound", "t$frmt": "CSV", "t$path": "/interfaces/gl/outbound/", "t$freq": "Monthly", "t$actv": true },
+    { "t$flid": "FI004", "t$name": "Item Master Bulk Load", "t$type": "Inbound", "t$frmt": "CSV", "t$path": "/interfaces/item/inbound/", "t$freq": "On-demand", "t$actv": true },
+    { "t$flid": "FI005", "t$name": "Inventory Snapshot Export", "t$type": "Outbound", "t$frmt": "CSV", "t$path": "/interfaces/inventory/outbound/", "t$freq": "Weekly", "t$actv": true },
+    { "t$flid": "FI006", "t$name": "Tax Reporting Export", "t$type": "Outbound", "t$frmt": "XML", "t$path": "/interfaces/tax/outbound/", "t$freq": "Quarterly", "t$actv": true }
+  ],
+  "summary": {
+    "totalIONConnections": 5,
+    "activeIONConnections": 5,
+    "totalBODMappings": 8,
+    "activeBODMappings": 8,
+    "totalMECMaps": 3,
+    "totalEDIPartners": 4,
+    "activeEDIPartners": 3,
+    "totalFileInterfaces": 6,
+    "activeFileInterfaces": 6,
+    "integrationProtocols": ["HTTPS", "SFTP", "AS2"],
+    "dataFormats": ["XML", "JSON", "CAMT.053", "MT940", "ACH/NACHA", "CSV"],
+    "extractedAt": "2024-01-15T11:10:00Z"
+  }
+}

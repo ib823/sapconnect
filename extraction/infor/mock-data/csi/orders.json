@@ -1,0 +1,52 @@
+{
+  "orderHeaders": [
+    { "CoNum": "CO-001000", "CustNum": "C000100", "OrderDate": "2025-11-15", "DueDate": "2025-12-15", "Stat": "O", "Type": "R", "CurrCode": "USD", "Slsman": "DM01", "OrigOrderAmt": 14250.00, "TermsCode": "NET30", "Whse": "MAIN" },
+    { "CoNum": "CO-001001", "CustNum": "C000101", "OrderDate": "2025-11-18", "DueDate": "2025-12-18", "Stat": "O", "Type": "R", "CurrCode": "USD", "Slsman": "DM01", "OrigOrderAmt": 28500.00, "TermsCode": "NET30", "Whse": "MAIN" },
+    { "CoNum": "CO-001002", "CustNum": "C000102", "OrderDate": "2025-11-20", "DueDate": "2026-01-04", "Stat": "O", "Type": "R", "CurrCode": "USD", "Slsman": "JB02", "OrigOrderAmt": 6225.00, "TermsCode": "NET45", "Whse": "MAIN" },
+    { "CoNum": "CO-001003", "CustNum": "C000104", "OrderDate": "2025-12-01", "DueDate": "2026-01-15", "Stat": "P", "Type": "R", "CurrCode": "USD", "Slsman": "DM01", "OrigOrderAmt": 57000.00, "TermsCode": "NET60", "Whse": "MAIN" },
+    { "CoNum": "CO-001004", "CustNum": "C000103", "OrderDate": "2025-12-05", "DueDate": "2026-01-05", "Stat": "O", "Type": "R", "CurrCode": "CAD", "Slsman": "JB02", "OrigOrderAmt": 8750.00, "TermsCode": "NET30", "Whse": "MAIN" },
+    { "CoNum": "CO-001005", "CustNum": "C000107", "OrderDate": "2025-12-08", "DueDate": "2026-02-08", "Stat": "O", "Type": "R", "CurrCode": "EUR", "Slsman": "JB02", "OrigOrderAmt": 24800.00, "TermsCode": "NET60", "Whse": "MAIN" },
+    { "CoNum": "CO-001006", "CustNum": "C000105", "OrderDate": "2025-12-10", "DueDate": "2026-01-10", "Stat": "C", "Type": "R", "CurrCode": "USD", "Slsman": "RW03", "OrigOrderAmt": 3780.00, "TermsCode": "NET30", "Whse": "MAIN" },
+    { "CoNum": "CO-001007", "CustNum": "C000100", "OrderDate": "2025-12-12", "DueDate": "2026-01-12", "Stat": "O", "Type": "B", "CurrCode": "USD", "Slsman": "DM01", "OrigOrderAmt": 34200.00, "TermsCode": "NET30", "Whse": "MAIN" },
+    { "CoNum": "CO-001008", "CustNum": "C000110", "OrderDate": "2025-12-15", "DueDate": "2026-02-15", "Stat": "O", "Type": "R", "CurrCode": "GBP", "Slsman": "JB02", "OrigOrderAmt": 18900.00, "TermsCode": "NET45", "Whse": "WEST" },
+    { "CoNum": "CO-001009", "CustNum": "C000109", "OrderDate": "2025-12-18", "DueDate": "2026-01-18", "Stat": "P", "Type": "R", "CurrCode": "USD", "Slsman": "RW03", "OrigOrderAmt": 5625.00, "TermsCode": "NET30", "Whse": "MAIN" }
+  ],
+  "orderLines": [
+    { "CoNum": "CO-001000", "CoLine": 1, "CoRelease": 0, "Item": "FG-4001", "Description": "Hydraulic Power Unit 15HP", "QtyOrdered": 5, "QtyShipped": 2, "Price": 2850.00, "Disc": 0, "DueDate": "2025-12-15" },
+    { "CoNum": "CO-001001", "CoLine": 1, "CoRelease": 0, "Item": "FG-4001", "Description": "Hydraulic Power Unit 15HP", "QtyOrdered": 10, "QtyShipped": 0, "Price": 2850.00, "Disc": 0, "DueDate": "2025-12-18" },
+    { "CoNum": "CO-001001", "CoLine": 2, "CoRelease": 0, "Item": "SVC-6001", "Description": "Field Service - Hydraulic", "QtyOrdered": 0, "QtyShipped": 0, "Price": 125.00, "Disc": 0, "DueDate": "2025-12-18" },
+    { "CoNum": "CO-001002", "CoLine": 1, "CoRelease": 0, "Item": "FG-4002", "Description": "Linear Actuator 500mm Stroke", "QtyOrdered": 5, "QtyShipped": 0, "Price": 1245.00, "Disc": 0, "DueDate": "2026-01-04" },
+    { "CoNum": "CO-001003", "CoLine": 1, "CoRelease": 0, "Item": "FG-4001", "Description": "Hydraulic Power Unit 15HP", "QtyOrdered": 20, "QtyShipped": 0, "Price": 2850.00, "Disc": 0, "DueDate": "2026-01-15" },
+    { "CoNum": "CO-001003", "CoLine": 2, "CoRelease": 0, "Item": "ASM-1001", "Description": "Hydraulic Cylinder Assembly", "QtyOrdered": 10, "QtyShipped": 0, "Price": 485.50, "Disc": 5.0, "DueDate": "2026-01-15" },
+    { "CoNum": "CO-001003", "CoLine": 3, "CoRelease": 0, "Item": "CMP-3002", "Description": "Hydraulic Seal Kit", "QtyOrdered": 40, "QtyShipped": 0, "Price": 24.80, "Disc": 0, "DueDate": "2026-01-15" },
+    { "CoNum": "CO-001004", "CoLine": 1, "CoRelease": 0, "Item": "FG-4004", "Description": "Conveyor Drive Unit", "QtyOrdered": 3, "QtyShipped": 0, "Price": 1890.00, "Disc": 0, "DueDate": "2026-01-05" },
+    { "CoNum": "CO-001004", "CoLine": 2, "CoRelease": 0, "Item": "ASM-1002", "Description": "Pneumatic Actuator Kit", "QtyOrdered": 5, "QtyShipped": 0, "Price": 312.75, "Disc": 0, "DueDate": "2026-01-05" },
+    { "CoNum": "CO-001004", "CoLine": 3, "CoRelease": 0, "Item": "SVC-6002", "Description": "Field Service - Electrical", "QtyOrdered": 10, "QtyShipped": 0, "Price": 135.00, "Disc": 0, "DueDate": "2026-01-10" },
+    { "CoNum": "CO-001005", "CoLine": 1, "CoRelease": 0, "Item": "FG-4003", "Description": "Control Panel Assembly", "QtyOrdered": 8, "QtyShipped": 0, "Price": 3100.00, "Disc": 0, "DueDate": "2026-02-08" },
+    { "CoNum": "CO-001006", "CoLine": 1, "CoRelease": 0, "Item": "FG-4002", "Description": "Linear Actuator 500mm Stroke", "QtyOrdered": 2, "QtyShipped": 2, "Price": 1245.00, "Disc": 0, "DueDate": "2026-01-10" },
+    { "CoNum": "CO-001006", "CoLine": 2, "CoRelease": 0, "Item": "CMP-3005", "Description": "Solenoid Valve 24V DC", "QtyOrdered": 4, "QtyShipped": 4, "Price": 156.00, "Disc": 0, "DueDate": "2026-01-10" },
+    { "CoNum": "CO-001006", "CoLine": 3, "CoRelease": 0, "Item": "CMP-3001", "Description": "Bearing Assembly SKF 6205", "QtyOrdered": 20, "QtyShipped": 20, "Price": 18.45, "Disc": 10.0, "DueDate": "2026-01-10" },
+    { "CoNum": "CO-001007", "CoLine": 1, "CoRelease": 0, "Item": "FG-4001", "Description": "Hydraulic Power Unit 15HP", "QtyOrdered": 12, "QtyShipped": 0, "Price": 2850.00, "Disc": 0, "DueDate": "2026-01-12" },
+    { "CoNum": "CO-001008", "CoLine": 1, "CoRelease": 0, "Item": "FG-4003", "Description": "Control Panel Assembly", "QtyOrdered": 4, "QtyShipped": 0, "Price": 3100.00, "Disc": 0, "DueDate": "2026-02-15" },
+    { "CoNum": "CO-001008", "CoLine": 2, "CoRelease": 0, "Item": "FG-4004", "Description": "Conveyor Drive Unit", "QtyOrdered": 3, "QtyShipped": 0, "Price": 1890.00, "Disc": 5.0, "DueDate": "2026-02-15" },
+    { "CoNum": "CO-001009", "CoLine": 1, "CoRelease": 0, "Item": "ASM-1001", "Description": "Hydraulic Cylinder Assembly", "QtyOrdered": 5, "QtyShipped": 0, "Price": 485.50, "Disc": 0, "DueDate": "2026-01-18" },
+    { "CoNum": "CO-001009", "CoLine": 2, "CoRelease": 0, "Item": "CMP-3002", "Description": "Hydraulic Seal Kit", "QtyOrdered": 20, "QtyShipped": 0, "Price": 24.80, "Disc": 0, "DueDate": "2026-01-18" },
+    { "CoNum": "CO-001000", "CoLine": 2, "CoRelease": 0, "Item": "CMP-3005", "Description": "Solenoid Valve 24V DC", "QtyOrdered": 10, "QtyShipped": 5, "Price": 156.00, "Disc": 0, "DueDate": "2025-12-15" },
+    { "CoNum": "CO-001001", "CoLine": 3, "CoRelease": 0, "Item": "CMP-3001", "Description": "Bearing Assembly SKF 6205", "QtyOrdered": 50, "QtyShipped": 0, "Price": 18.45, "Disc": 0, "DueDate": "2025-12-18" },
+    { "CoNum": "CO-001005", "CoLine": 2, "CoRelease": 0, "Item": "ASM-1002", "Description": "Pneumatic Actuator Kit", "QtyOrdered": 12, "QtyShipped": 0, "Price": 312.75, "Disc": 0, "DueDate": "2026-02-08" },
+    { "CoNum": "CO-001007", "CoLine": 2, "CoRelease": 0, "Item": "CMP-3002", "Description": "Hydraulic Seal Kit", "QtyOrdered": 100, "QtyShipped": 0, "Price": 24.80, "Disc": 5.0, "DueDate": "2026-01-12" },
+    { "CoNum": "CO-001008", "CoLine": 3, "CoRelease": 0, "Item": "CMP-3005", "Description": "Solenoid Valve 24V DC", "QtyOrdered": 8, "QtyShipped": 0, "Price": 156.00, "Disc": 0, "DueDate": "2026-02-15" },
+    { "CoNum": "CO-001009", "CoLine": 3, "CoRelease": 0, "Item": "SVC-6001", "Description": "Field Service - Hydraulic", "QtyOrdered": 16, "QtyShipped": 0, "Price": 125.00, "Disc": 0, "DueDate": "2026-01-20" }
+  ],
+  "analysis": {
+    "totalOrders": 10,
+    "openOrders": 7,
+    "closedOrders": 1,
+    "plannedOrders": 2,
+    "totalLines": 25,
+    "orderTypes": { "R": 9, "B": 1 },
+    "currencies": { "USD": 6, "CAD": 1, "EUR": 1, "GBP": 1 },
+    "totalOrderValue": 202030.00,
+    "avgOrderValue": 20203.00
+  }
+}

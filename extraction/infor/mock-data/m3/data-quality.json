@@ -1,0 +1,99 @@
+{
+  "tables": [
+    {
+      "table": "MITMAS",
+      "description": "Item Master",
+      "totalRecords": 12500,
+      "completeness": {
+        "MMITNO": { "populated": 12500, "nullCount": 0, "completeness": 100.0 },
+        "MMITDS": { "populated": 12480, "nullCount": 20, "completeness": 99.84 },
+        "MMUNMS": { "populated": 12500, "nullCount": 0, "completeness": 100.0 },
+        "MMITTY": { "populated": 12500, "nullCount": 0, "completeness": 100.0 },
+        "MMITGR": { "populated": 12300, "nullCount": 200, "completeness": 98.40 },
+        "MMSTAT": { "populated": 12500, "nullCount": 0, "completeness": 100.0 },
+        "MMNEWE": { "populated": 11800, "nullCount": 700, "completeness": 94.40 },
+        "MMGRWE": { "populated": 10500, "nullCount": 2000, "completeness": 84.00 }
+      },
+      "duplicates": { "byMMITNO": 0, "byMMITDS": 45 },
+      "overallScore": 94.58
+    },
+    {
+      "table": "CIDMAS",
+      "description": "Customer Master",
+      "totalRecords": 3200,
+      "completeness": {
+        "OKCUNO": { "populated": 3200, "nullCount": 0, "completeness": 100.0 },
+        "OKCUNM": { "populated": 3200, "nullCount": 0, "completeness": 100.0 },
+        "OKYRNO": { "populated": 2900, "nullCount": 300, "completeness": 90.63 },
+        "OKCUTP": { "populated": 3200, "nullCount": 0, "completeness": 100.0 },
+        "OKCUCL": { "populated": 3050, "nullCount": 150, "completeness": 95.31 },
+        "OKPHNO": { "populated": 2800, "nullCount": 400, "completeness": 87.50 },
+        "OKEMAL": { "populated": 2600, "nullCount": 600, "completeness": 81.25 }
+      },
+      "duplicates": { "byOKCUNO": 0, "byOKCUNM": 12 },
+      "overallScore": 93.53
+    },
+    {
+      "table": "OOHEAD",
+      "description": "Customer Order Header",
+      "totalRecords": 45000,
+      "completeness": {
+        "OAORNO": { "populated": 45000, "nullCount": 0, "completeness": 100.0 },
+        "OACUNO": { "populated": 45000, "nullCount": 0, "completeness": 100.0 },
+        "OAORDT": { "populated": 45000, "nullCount": 0, "completeness": 100.0 },
+        "OAORTP": { "populated": 45000, "nullCount": 0, "completeness": 100.0 },
+        "OAORST": { "populated": 45000, "nullCount": 0, "completeness": 100.0 },
+        "OARLDT": { "populated": 44200, "nullCount": 800, "completeness": 98.22 },
+        "OATEPY": { "populated": 43500, "nullCount": 1500, "completeness": 96.67 }
+      },
+      "duplicates": { "byOAORNO": 0 },
+      "overallScore": 99.27
+    },
+    {
+      "table": "FSLEDG",
+      "description": "Financial Subledger",
+      "totalRecords": 280000,
+      "completeness": {
+        "ESYEA4": { "populated": 280000, "nullCount": 0, "completeness": 100.0 },
+        "ESJRNO": { "populated": 280000, "nullCount": 0, "completeness": 100.0 },
+        "ESVONO": { "populated": 278500, "nullCount": 1500, "completeness": 99.46 },
+        "ESAIT1": { "populated": 280000, "nullCount": 0, "completeness": 100.0 },
+        "ESACAM": { "populated": 280000, "nullCount": 0, "completeness": 100.0 },
+        "ESCUAM": { "populated": 265000, "nullCount": 15000, "completeness": 94.64 },
+        "ESACDT": { "populated": 280000, "nullCount": 0, "completeness": 100.0 }
+      },
+      "duplicates": { "byCompositeKey": 0 },
+      "overallScore": 99.16
+    },
+    {
+      "table": "MPHEAD",
+      "description": "Purchase Order Header",
+      "totalRecords": 18000,
+      "completeness": {
+        "IAPUNO": { "populated": 18000, "nullCount": 0, "completeness": 100.0 },
+        "IASUNO": { "populated": 18000, "nullCount": 0, "completeness": 100.0 },
+        "IAORDT": { "populated": 18000, "nullCount": 0, "completeness": 100.0 },
+        "IAPUSL": { "populated": 18000, "nullCount": 0, "completeness": 100.0 },
+        "IADWDT": { "populated": 17200, "nullCount": 800, "completeness": 95.56 },
+        "IATEPY": { "populated": 16800, "nullCount": 1200, "completeness": 93.33 },
+        "IAFACI": { "populated": 18000, "nullCount": 0, "completeness": 100.0 }
+      },
+      "duplicates": { "byIAPUNO": 0 },
+      "overallScore": 98.41
+    }
+  ],
+  "crossTableIntegrity": [
+    { "source": "OOHEAD.OACUNO", "target": "CIDMAS.OKCUNO", "orphanCount": 3, "description": "Orders referencing non-existent customers" },
+    { "source": "OOLINE.OBITNO", "target": "MITMAS.MMITNO", "orphanCount": 8, "description": "Order lines referencing non-existent items" },
+    { "source": "MPLINE.IBITNO", "target": "MITMAS.MMITNO", "orphanCount": 2, "description": "PO lines referencing non-existent items" },
+    { "source": "MITFAC.M9ITNO", "target": "MITMAS.MMITNO", "orphanCount": 15, "description": "Item/facility records with no item master" }
+  ],
+  "summary": {
+    "tablesAnalyzed": 5,
+    "totalRecords": 358700,
+    "averageCompletenessScore": 96.99,
+    "totalOrphanRecords": 28,
+    "totalDuplicates": 57,
+    "extractedAt": "2024-01-15T10:25:00Z"
+  }
+}

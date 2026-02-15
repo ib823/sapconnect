@@ -1,0 +1,46 @@
+{
+  "journalEntries": [
+    {
+      "ESYEA4": "2024",
+      "ESJRNO": 1001,
+      "ESVONO": "JE001",
+      "ESAIT1": "4000",
+      "ESACAM": 15000,
+      "ESCUAM": 15000,
+      "ESACDT": "20240110"
+    },
+    {
+      "ESYEA4": "2024",
+      "ESJRNO": 1002,
+      "ESVONO": "JE002",
+      "ESAIT1": "5000",
+      "ESACAM": -8500,
+      "ESCUAM": -8500,
+      "ESACDT": "20240115"
+    }
+  ],
+  "arTransactions": [
+    {
+      "ARAINO": "AR001",
+      "ARCUNO": "C10001",
+      "ARACAM": 15000,
+      "ARDUDT": "20240210",
+      "ARSTAT": "20"
+    }
+  ],
+  "apTransactions": [
+    {
+      "APAINO": "AP001",
+      "APSUNO": "S10001",
+      "APACAM": 8500,
+      "APDUDT": "20240210",
+      "APSTAT": "20"
+    }
+  ],
+  "summary": {
+    "totalJournalEntries": 2,
+    "totalARTransactions": 1,
+    "totalAPTransactions": 1,
+    "extractedAt": "2024-01-15T11:00:00Z"
+  }
+}

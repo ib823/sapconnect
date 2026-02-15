@@ -1,0 +1,58 @@
+{
+  "poHeaders": [
+    {
+      "IAPUNO": "PO-100001",
+      "IASUNO": "S10001",
+      "IAORDT": "20240108",
+      "IAPUSL": "20",
+      "IADWDT": "20240208",
+      "IATEPY": "01",
+      "IAFACI": "F01"
+    },
+    {
+      "IAPUNO": "PO-100002",
+      "IASUNO": "S10002",
+      "IAORDT": "20240112",
+      "IAPUSL": "15",
+      "IADWDT": "20240212",
+      "IATEPY": "01",
+      "IAFACI": "F01"
+    }
+  ],
+  "poLines": [
+    {
+      "IAPUNO": "PO-100001",
+      "IBPONR": 10,
+      "IBITNO": "RM-2001",
+      "IBQTNO": 500,
+      "IBNEPR": 10
+    },
+    {
+      "IAPUNO": "PO-100002",
+      "IBPONR": 10,
+      "IBITNO": "RM-2001",
+      "IBQTNO": 300,
+      "IBNEPR": 10.5
+    }
+  ],
+  "suppliers": [
+    {
+      "IDSUNO": "S10001",
+      "IDSUNM": "Steel Supply Corp",
+      "IDSUST": "20",
+      "IDCSCD": "US"
+    },
+    {
+      "IDSUNO": "S10002",
+      "IDSUNM": "Materials Inc",
+      "IDSUST": "20",
+      "IDCSCD": "US"
+    }
+  ],
+  "summary": {
+    "totalPOs": 2,
+    "totalLines": 2,
+    "totalSuppliers": 2,
+    "extractedAt": "2024-01-15T11:10:00Z"
+  }
+}

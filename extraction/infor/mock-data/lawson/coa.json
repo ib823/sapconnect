@@ -1,0 +1,72 @@
+{
+  "glAccounts": [
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "1000", "SUB_ACCOUNT": "00", "TITLE": "Cash in Bank - Operating", "ACCT_TYPE": "AS", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "CASH" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "1010", "SUB_ACCOUNT": "00", "TITLE": "Cash in Bank - Payroll", "ACCT_TYPE": "AS", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "CASH" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "1100", "SUB_ACCOUNT": "00", "TITLE": "Accounts Receivable - Trade", "ACCT_TYPE": "AS", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "AR" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "1110", "SUB_ACCOUNT": "00", "TITLE": "Accounts Receivable - Other", "ACCT_TYPE": "AS", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "AR" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "1200", "SUB_ACCOUNT": "00", "TITLE": "Inventory - Raw Materials", "ACCT_TYPE": "AS", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "INV" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "1210", "SUB_ACCOUNT": "00", "TITLE": "Inventory - Finished Goods", "ACCT_TYPE": "AS", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "INV" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "1300", "SUB_ACCOUNT": "00", "TITLE": "Prepaid Expenses", "ACCT_TYPE": "AS", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "PREP" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "1500", "SUB_ACCOUNT": "00", "TITLE": "Property Plant & Equipment", "ACCT_TYPE": "AS", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "FA" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "1510", "SUB_ACCOUNT": "00", "TITLE": "Accumulated Depreciation", "ACCT_TYPE": "AS", "NORMAL_BALANCE": "C", "STATUS": "ACTIVE", "ACCT_GROUP": "FA" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "1600", "SUB_ACCOUNT": "00", "TITLE": "Intangible Assets", "ACCT_TYPE": "AS", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "IA" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "2000", "SUB_ACCOUNT": "00", "TITLE": "Accounts Payable - Trade", "ACCT_TYPE": "LI", "NORMAL_BALANCE": "C", "STATUS": "ACTIVE", "ACCT_GROUP": "AP" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "2010", "SUB_ACCOUNT": "00", "TITLE": "Accounts Payable - Other", "ACCT_TYPE": "LI", "NORMAL_BALANCE": "C", "STATUS": "ACTIVE", "ACCT_GROUP": "AP" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "2100", "SUB_ACCOUNT": "00", "TITLE": "Accrued Liabilities", "ACCT_TYPE": "LI", "NORMAL_BALANCE": "C", "STATUS": "ACTIVE", "ACCT_GROUP": "ACCR" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "2200", "SUB_ACCOUNT": "00", "TITLE": "Payroll Taxes Payable", "ACCT_TYPE": "LI", "NORMAL_BALANCE": "C", "STATUS": "ACTIVE", "ACCT_GROUP": "TAX" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "2300", "SUB_ACCOUNT": "00", "TITLE": "Benefits Payable", "ACCT_TYPE": "LI", "NORMAL_BALANCE": "C", "STATUS": "ACTIVE", "ACCT_GROUP": "BEN" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "2500", "SUB_ACCOUNT": "00", "TITLE": "Long-term Debt", "ACCT_TYPE": "LI", "NORMAL_BALANCE": "C", "STATUS": "ACTIVE", "ACCT_GROUP": "DEBT" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "3000", "SUB_ACCOUNT": "00", "TITLE": "Retained Earnings", "ACCT_TYPE": "EQ", "NORMAL_BALANCE": "C", "STATUS": "ACTIVE", "ACCT_GROUP": "EQ" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "3100", "SUB_ACCOUNT": "00", "TITLE": "Common Stock", "ACCT_TYPE": "EQ", "NORMAL_BALANCE": "C", "STATUS": "ACTIVE", "ACCT_GROUP": "EQ" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "4000", "SUB_ACCOUNT": "00", "TITLE": "Revenue - Services", "ACCT_TYPE": "RE", "NORMAL_BALANCE": "C", "STATUS": "ACTIVE", "ACCT_GROUP": "REV" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "4010", "SUB_ACCOUNT": "00", "TITLE": "Revenue - Products", "ACCT_TYPE": "RE", "NORMAL_BALANCE": "C", "STATUS": "ACTIVE", "ACCT_GROUP": "REV" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "4100", "SUB_ACCOUNT": "00", "TITLE": "Revenue - Patient Services", "ACCT_TYPE": "RE", "NORMAL_BALANCE": "C", "STATUS": "ACTIVE", "ACCT_GROUP": "REV" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "5000", "SUB_ACCOUNT": "00", "TITLE": "Cost of Goods Sold", "ACCT_TYPE": "EX", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "COGS" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "5100", "SUB_ACCOUNT": "00", "TITLE": "Direct Labor", "ACCT_TYPE": "EX", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "LABOR" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "6000", "SUB_ACCOUNT": "00", "TITLE": "Salaries & Wages", "ACCT_TYPE": "EX", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "SALARY" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "6100", "SUB_ACCOUNT": "00", "TITLE": "Employee Benefits", "ACCT_TYPE": "EX", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "BENEFIT" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "6200", "SUB_ACCOUNT": "00", "TITLE": "Supplies Expense", "ACCT_TYPE": "EX", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "SUPPLY" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "6300", "SUB_ACCOUNT": "00", "TITLE": "Depreciation Expense", "ACCT_TYPE": "EX", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "DEPR" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "6400", "SUB_ACCOUNT": "00", "TITLE": "Professional Fees", "ACCT_TYPE": "EX", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "PROF" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "7000", "SUB_ACCOUNT": "00", "TITLE": "Interest Expense", "ACCT_TYPE": "EX", "NORMAL_BALANCE": "D", "STATUS": "ACTIVE", "ACCT_GROUP": "INT" },
+    { "COMPANY": "1", "ACCT_UNIT": "HQ", "ACCOUNT": "8000", "SUB_ACCOUNT": "00", "TITLE": "Other Income", "ACCT_TYPE": "RE", "NORMAL_BALANCE": "C", "STATUS": "ACTIVE", "ACCT_GROUP": "OTHER" }
+  ],
+  "accountingStringStructure": {
+    "segments": [
+      { "segment": "COMPANY", "length": 4, "position": 1, "description": "Company number", "required": true },
+      { "segment": "ACCT_UNIT", "length": 10, "position": 2, "description": "Accounting unit (cost center equivalent)", "required": true },
+      { "segment": "ACCOUNT", "length": 10, "position": 3, "description": "GL account number", "required": true },
+      { "segment": "SUB_ACCOUNT", "length": 10, "position": 4, "description": "Sub-account for detail tracking", "required": false }
+    ],
+    "separator": "-",
+    "concatenatedExamples": [
+      { "raw": "1-HQ-1000-00", "company": "1", "acctUnit": "HQ", "account": "1000", "subAccount": "00", "description": "Cash in Bank - Operating at HQ" },
+      { "raw": "1-HOSP-4100-00", "company": "1", "acctUnit": "HOSP", "account": "4100", "subAccount": "00", "description": "Patient Services Revenue at Hospital" },
+      { "raw": "2-EMEA-6000-00", "company": "2", "acctUnit": "EMEA", "account": "6000", "subAccount": "00", "description": "Salaries at EMEA" }
+    ]
+  },
+  "accountTypes": [
+    { "code": "AS", "description": "Asset" },
+    { "code": "LI", "description": "Liability" },
+    { "code": "EQ", "description": "Equity" },
+    { "code": "RE", "description": "Revenue" },
+    { "code": "EX", "description": "Expense" }
+  ],
+  "accountGroups": [
+    { "group": "CASH", "description": "Cash and Cash Equivalents", "accountRange": "1000-1099" },
+    { "group": "AR", "description": "Accounts Receivable", "accountRange": "1100-1199" },
+    { "group": "INV", "description": "Inventory", "accountRange": "1200-1299" },
+    { "group": "FA", "description": "Fixed Assets", "accountRange": "1500-1599" },
+    { "group": "AP", "description": "Accounts Payable", "accountRange": "2000-2099" },
+    { "group": "REV", "description": "Revenue", "accountRange": "4000-4999" },
+    { "group": "COGS", "description": "Cost of Goods Sold", "accountRange": "5000-5099" },
+    { "group": "SALARY", "description": "Salaries and Wages", "accountRange": "6000-6099" }
+  ],
+  "summary": {
+    "totalGLAccounts": 30,
+    "accountsByType": { "AS": 10, "LI": 6, "EQ": 2, "RE": 4, "EX": 8 },
+    "activeAccounts": 30,
+    "accountingStringFormat": "COMPANY-ACCT_UNIT-ACCOUNT-SUB_ACCOUNT",
+    "extractedAt": "2024-01-20T08:10:00Z"
+  }
+}

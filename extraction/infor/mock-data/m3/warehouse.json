@@ -1,0 +1,53 @@
+{
+  "warehouses": [
+    { "MHWHLO": "WH100", "MHWHNM": "Atlanta Main Warehouse", "MHWHTY": "10", "MHFACI": "F01", "MHCONO": 100, "MHCSCD": "US" },
+    { "MHWHLO": "WH110", "MHWHNM": "Dallas Distribution Center", "MHWHTY": "20", "MHFACI": "F02", "MHCONO": 100, "MHCSCD": "US" },
+    { "MHWHLO": "WH200", "MHWHNM": "Stuttgart Production WH", "MHWHTY": "10", "MHFACI": "F10", "MHCONO": 200, "MHCSCD": "DE" },
+    { "MHWHLO": "WH210", "MHWHNM": "Munich Parts Warehouse", "MHWHTY": "10", "MHFACI": "F11", "MHCONO": 200, "MHCSCD": "DE" }
+  ],
+  "locations": [
+    { "MLWHLO": "WH100", "MLWHSL": "A01-01-01", "MLSLDS": "Receiving Dock A", "MLSLTP": "RCV", "MLCONO": 100 },
+    { "MLWHLO": "WH100", "MLWHSL": "A01-01-02", "MLSLDS": "Receiving Dock B", "MLSLTP": "RCV", "MLCONO": 100 },
+    { "MLWHLO": "WH100", "MLWHSL": "B01-01-01", "MLSLDS": "Raw Material Zone 1", "MLSLTP": "STK", "MLCONO": 100 },
+    { "MLWHLO": "WH100", "MLWHSL": "B01-02-01", "MLSLDS": "Raw Material Zone 2", "MLSLTP": "STK", "MLCONO": 100 },
+    { "MLWHLO": "WH100", "MLWHSL": "C01-01-01", "MLSLDS": "Finished Goods Zone 1", "MLSLTP": "STK", "MLCONO": 100 },
+    { "MLWHLO": "WH100", "MLWHSL": "C01-02-01", "MLSLDS": "Finished Goods Zone 2", "MLSLTP": "STK", "MLCONO": 100 },
+    { "MLWHLO": "WH100", "MLWHSL": "D01-01-01", "MLSLDS": "Shipping Dock", "MLSLTP": "SHP", "MLCONO": 100 },
+    { "MLWHLO": "WH100", "MLWHSL": "Q01-01-01", "MLSLDS": "QC Inspection Area", "MLSLTP": "QUA", "MLCONO": 100 },
+    { "MLWHLO": "WH110", "MLWHSL": "A01-01-01", "MLSLDS": "Dallas Receiving", "MLSLTP": "RCV", "MLCONO": 100 },
+    { "MLWHLO": "WH110", "MLWHSL": "B01-01-01", "MLSLDS": "Dallas Storage Zone 1", "MLSLTP": "STK", "MLCONO": 100 },
+    { "MLWHLO": "WH110", "MLWHSL": "C01-01-01", "MLSLDS": "Dallas Shipping", "MLSLTP": "SHP", "MLCONO": 100 },
+    { "MLWHLO": "WH200", "MLWHSL": "A01-01-01", "MLSLDS": "Stuttgart Receiving", "MLSLTP": "RCV", "MLCONO": 200 },
+    { "MLWHLO": "WH200", "MLWHSL": "B01-01-01", "MLSLDS": "Stuttgart Raw Material", "MLSLTP": "STK", "MLCONO": 200 },
+    { "MLWHLO": "WH200", "MLWHSL": "C01-01-01", "MLSLDS": "Stuttgart Finished Goods", "MLSLTP": "STK", "MLCONO": 200 },
+    { "MLWHLO": "WH210", "MLWHSL": "A01-01-01", "MLSLDS": "Munich Parts Storage", "MLSLTP": "STK", "MLCONO": 200 }
+  ],
+  "inventoryRecords": [
+    { "MBITNO": "FG-1001", "MBWHLO": "WH100", "MBWHSL": "C01-01-01", "MBSTQT": 45, "MBALQT": 33, "MBUNIT": "EA", "MBCONO": 100, "MBBANO": "" },
+    { "MBITNO": "FG-1002", "MBWHLO": "WH100", "MBWHSL": "C01-01-01", "MBSTQT": 18, "MBALQT": 13, "MBUNIT": "EA", "MBCONO": 100, "MBBANO": "" },
+    { "MBITNO": "FG-1003", "MBWHLO": "WH100", "MBWHSL": "C01-02-01", "MBSTQT": 5, "MBALQT": 3, "MBUNIT": "EA", "MBCONO": 100, "MBBANO": "" },
+    { "MBITNO": "FG-1005", "MBWHLO": "WH100", "MBWHSL": "C01-02-01", "MBSTQT": 480, "MBALQT": 435, "MBUNIT": "EA", "MBCONO": 100, "MBBANO": "" },
+    { "MBITNO": "RM-1001", "MBWHLO": "WH100", "MBWHSL": "B01-01-01", "MBSTQT": 3500, "MBALQT": 2700, "MBUNIT": "KG", "MBCONO": 100, "MBBANO": "LOT-2401" },
+    { "MBITNO": "RM-1002", "MBWHLO": "WH100", "MBWHSL": "B01-01-01", "MBSTQT": 1200, "MBALQT": 900, "MBUNIT": "KG", "MBCONO": 100, "MBBANO": "LOT-2402" },
+    { "MBITNO": "RM-1003", "MBWHLO": "WH100", "MBWHSL": "B01-02-01", "MBSTQT": 8000, "MBALQT": 6500, "MBUNIT": "M", "MBCONO": 100, "MBBANO": "LOT-2403" },
+    { "MBITNO": "RM-1004", "MBWHLO": "WH100", "MBWHSL": "B01-02-01", "MBSTQT": 750, "MBALQT": 600, "MBUNIT": "KG", "MBCONO": 100, "MBBANO": "" },
+    { "MBITNO": "CP-2001", "MBWHLO": "WH100", "MBWHSL": "B01-01-01", "MBSTQT": 85, "MBALQT": 65, "MBUNIT": "EA", "MBCONO": 100, "MBBANO": "" },
+    { "MBITNO": "CP-2004", "MBWHLO": "WH100", "MBWHSL": "B01-02-01", "MBSTQT": 320, "MBALQT": 280, "MBUNIT": "SET", "MBCONO": 100, "MBBANO": "" },
+    { "MBITNO": "SP-3001", "MBWHLO": "WH100", "MBWHSL": "C01-01-01", "MBSTQT": 25, "MBALQT": 20, "MBUNIT": "EA", "MBCONO": 100, "MBBANO": "" },
+    { "MBITNO": "FG-1001", "MBWHLO": "WH110", "MBWHSL": "B01-01-01", "MBSTQT": 12, "MBALQT": 10, "MBUNIT": "EA", "MBCONO": 100, "MBBANO": "" },
+    { "MBITNO": "FG-1004", "MBWHLO": "WH110", "MBWHSL": "B01-01-01", "MBSTQT": 3, "MBALQT": 2, "MBUNIT": "EA", "MBCONO": 100, "MBBANO": "" },
+    { "MBITNO": "FG-2001", "MBWHLO": "WH200", "MBWHSL": "C01-01-01", "MBSTQT": 28, "MBALQT": 18, "MBUNIT": "ST", "MBCONO": 200, "MBBANO": "" },
+    { "MBITNO": "FG-2002", "MBWHLO": "WH200", "MBWHSL": "C01-01-01", "MBSTQT": 8, "MBALQT": 5, "MBUNIT": "ST", "MBCONO": 200, "MBBANO": "" },
+    { "MBITNO": "RM-1001", "MBWHLO": "WH200", "MBWHSL": "B01-01-01", "MBSTQT": 2800, "MBALQT": 2200, "MBUNIT": "KG", "MBCONO": 200, "MBBANO": "LOT-EU01" },
+    { "MBITNO": "CP-2001", "MBWHLO": "WH200", "MBWHSL": "B01-01-01", "MBSTQT": 40, "MBALQT": 30, "MBUNIT": "EA", "MBCONO": 200, "MBBANO": "" },
+    { "MBITNO": "CP-2004", "MBWHLO": "WH210", "MBWHSL": "A01-01-01", "MBSTQT": 150, "MBALQT": 120, "MBUNIT": "SET", "MBCONO": 200, "MBBANO": "" },
+    { "MBITNO": "RM-1002", "MBWHLO": "WH200", "MBWHSL": "B01-01-01", "MBSTQT": 600, "MBALQT": 500, "MBUNIT": "KG", "MBCONO": 200, "MBBANO": "LOT-EU02" },
+    { "MBITNO": "CP-2002", "MBWHLO": "WH200", "MBWHSL": "B01-01-01", "MBSTQT": 55, "MBALQT": 45, "MBUNIT": "EA", "MBCONO": 200, "MBBANO": "" }
+  ],
+  "summary": {
+    "totalWarehouses": 4,
+    "totalLocations": 15,
+    "totalInventoryRecords": 20,
+    "extractedAt": "2024-01-15T11:20:00Z"
+  }
+}

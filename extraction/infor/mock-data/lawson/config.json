@@ -1,0 +1,113 @@
+{
+  "companies": [
+    {
+      "COMPANY": "1",
+      "COMPANY_NAME": "Acme Healthcare Systems",
+      "CURRENCY": "USD",
+      "COUNTRY": "US",
+      "STATE": "MN",
+      "FISCAL_YEAR_END": "1231",
+      "ACCOUNTING_METHOD": "ACCRUAL",
+      "STATUS": "ACTIVE"
+    },
+    {
+      "COMPANY": "2",
+      "COMPANY_NAME": "Acme European Operations",
+      "CURRENCY": "EUR",
+      "COUNTRY": "DE",
+      "STATE": "",
+      "FISCAL_YEAR_END": "1231",
+      "ACCOUNTING_METHOD": "ACCRUAL",
+      "STATUS": "ACTIVE"
+    }
+  ],
+  "processLevels": [
+    {
+      "COMPANY": "1",
+      "PROCESS_LEVEL": "100",
+      "DESCRIPTION": "Corporate Headquarters",
+      "PARENT_LEVEL": "",
+      "LEVEL_TYPE": "CORPORATE",
+      "STATUS": "ACTIVE"
+    },
+    {
+      "COMPANY": "1",
+      "PROCESS_LEVEL": "200",
+      "DESCRIPTION": "Hospital Operations",
+      "PARENT_LEVEL": "100",
+      "LEVEL_TYPE": "DIVISION",
+      "STATUS": "ACTIVE"
+    },
+    {
+      "COMPANY": "1",
+      "PROCESS_LEVEL": "300",
+      "DESCRIPTION": "Clinic Network",
+      "PARENT_LEVEL": "100",
+      "LEVEL_TYPE": "DIVISION",
+      "STATUS": "ACTIVE"
+    }
+  ],
+  "accountingUnits": [
+    {
+      "COMPANY": "1",
+      "ACCT_UNIT": "HQ",
+      "DESCRIPTION": "Headquarters Accounting Unit",
+      "PROCESS_LEVEL": "100",
+      "STATUS": "ACTIVE"
+    },
+    {
+      "COMPANY": "1",
+      "ACCT_UNIT": "HOSP",
+      "DESCRIPTION": "Hospital Accounting Unit",
+      "PROCESS_LEVEL": "200",
+      "STATUS": "ACTIVE"
+    },
+    {
+      "COMPANY": "1",
+      "ACCT_UNIT": "CLIN",
+      "DESCRIPTION": "Clinic Accounting Unit",
+      "PROCESS_LEVEL": "300",
+      "STATUS": "ACTIVE"
+    },
+    {
+      "COMPANY": "2",
+      "ACCT_UNIT": "EMEA",
+      "DESCRIPTION": "EMEA Accounting Unit",
+      "PROCESS_LEVEL": "",
+      "STATUS": "ACTIVE"
+    }
+  ],
+  "systemParameters": [
+    { "PARAMETER": "GL_POST_AUTO", "VALUE": "Y", "DESCRIPTION": "Automatic GL posting enabled" },
+    { "PARAMETER": "MULTI_COMPANY", "VALUE": "Y", "DESCRIPTION": "Multi-company mode enabled" },
+    { "PARAMETER": "CURRENCY_TOLERANCE", "VALUE": "0.01", "DESCRIPTION": "Currency rounding tolerance" },
+    { "PARAMETER": "ACCT_STRING_FORMAT", "VALUE": "CO-AU-ACCT-SUB", "DESCRIPTION": "Accounting string structure (Company-AcctUnit-Account-SubAccount)" },
+    { "PARAMETER": "FISCAL_CALENDAR", "VALUE": "STANDARD", "DESCRIPTION": "Standard 12-period calendar" },
+    { "PARAMETER": "LANDMARK_VERSION", "VALUE": "12.0.4", "DESCRIPTION": "Landmark Technology Platform version" },
+    { "PARAMETER": "DATABASE_TYPE", "VALUE": "ORACLE", "DESCRIPTION": "Underlying database engine" },
+    { "PARAMETER": "SSO_ENABLED", "VALUE": "Y", "DESCRIPTION": "Single sign-on enabled" },
+    { "PARAMETER": "AUDIT_TRAIL", "VALUE": "Y", "DESCRIPTION": "Full audit trail enabled" },
+    { "PARAMETER": "LAWSON_VERSION", "VALUE": "10.0.11", "DESCRIPTION": "Lawson application version" }
+  ],
+  "accountingStringStructure": {
+    "segments": [
+      { "segment": "COMPANY", "length": 4, "position": 1, "description": "Company number" },
+      { "segment": "ACCT_UNIT", "length": 10, "position": 2, "description": "Accounting unit" },
+      { "segment": "ACCOUNT", "length": 10, "position": 3, "description": "GL account number" },
+      { "segment": "SUB_ACCOUNT", "length": 10, "position": 4, "description": "Sub-account" }
+    ],
+    "separator": "-",
+    "example": "1-HQ-1000-00",
+    "totalLength": 38
+  },
+  "summary": {
+    "totalCompanies": 2,
+    "totalProcessLevels": 3,
+    "totalAccountingUnits": 4,
+    "totalSystemParameters": 10,
+    "lawsonVersion": "10.0.11",
+    "landmarkVersion": "12.0.4",
+    "accountingStringFormat": "CO-AU-ACCT-SUB",
+    "extractedAt": "2024-01-20T08:00:00Z"
+  }
+}

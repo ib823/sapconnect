@@ -1,0 +1,49 @@
+{
+  "stockBalances": [
+    {
+      "Item": "ASM-1001",
+      "Whse": "MAIN",
+      "QtyOnHand": 23,
+      "QtyAllocated": 8,
+      "QtyOnOrder": 10,
+      "Loc": "A-01-01"
+    },
+    {
+      "Item": "RAW-2001",
+      "Whse": "MAIN",
+      "QtyOnHand": 156,
+      "QtyAllocated": 40,
+      "QtyOnOrder": 100,
+      "Loc": "B-02-03"
+    },
+    {
+      "Item": "FG-4001",
+      "Whse": "MAIN",
+      "QtyOnHand": 4,
+      "QtyAllocated": 2,
+      "QtyOnOrder": 5,
+      "Loc": "C-01-01"
+    }
+  ],
+  "lotRecords": [
+    {
+      "Item": "RAW-2001",
+      "Lot": "L001",
+      "Whse": "MAIN",
+      "QtyOnHand": 80,
+      "ExpirationDate": "2025-06-30"
+    },
+    {
+      "Item": "RAW-2001",
+      "Lot": "L002",
+      "Whse": "MAIN",
+      "QtyOnHand": 76,
+      "ExpirationDate": "2025-09-30"
+    }
+  ],
+  "summary": {
+    "totalStockBalances": 3,
+    "totalLotRecords": 2,
+    "extractedAt": "2024-01-15T12:00:00Z"
+  }
+}

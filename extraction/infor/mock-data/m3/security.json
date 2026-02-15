@@ -1,0 +1,75 @@
+{
+  "users": [
+    { "JBUSER": "JSMITH", "JBUSNA": "John Smith", "JBDEPT": "SALES", "JBUSTP": "Standard", "JBEMAL": "jsmith@company.com", "JBSTAT": "Active", "JBLDAT": "20240115", "JBLLTM": "08:15:00" },
+    { "JBUSER": "MJONES", "JBUSNA": "Mary Jones", "JBDEPT": "SALES", "JBUSTP": "Standard", "JBEMAL": "mjones@company.com", "JBSTAT": "Active", "JBLDAT": "20240115", "JBLLTM": "09:30:00" },
+    { "JBUSER": "ALEE", "JBUSNA": "Andrew Lee", "JBDEPT": "PURCHASING", "JBUSTP": "Standard", "JBEMAL": "alee@company.com", "JBSTAT": "Active", "JBLDAT": "20240114", "JBLLTM": "07:45:00" },
+    { "JBUSER": "BWILSON", "JBUSNA": "Beth Wilson", "JBDEPT": "PRODUCTION", "JBUSTP": "Standard", "JBEMAL": "bwilson@company.com", "JBSTAT": "Active", "JBLDAT": "20240115", "JBLLTM": "06:55:00" },
+    { "JBUSER": "CGARCIA", "JBUSNA": "Carlos Garcia", "JBDEPT": "PLANNING", "JBUSTP": "Standard", "JBEMAL": "cgarcia@company.com", "JBSTAT": "Active", "JBLDAT": "20240115", "JBLLTM": "07:00:00" },
+    { "JBUSER": "DKUMAR", "JBUSNA": "Deepak Kumar", "JBDEPT": "SALES", "JBUSTP": "Standard", "JBEMAL": "dkumar@company.com", "JBSTAT": "Active", "JBLDAT": "20240115", "JBLLTM": "09:00:00" },
+    { "JBUSER": "EFINANCE", "JBUSNA": "Emily Finance", "JBDEPT": "FINANCE", "JBUSTP": "Standard", "JBEMAL": "efinance@company.com", "JBSTAT": "Active", "JBLDAT": "20240115", "JBLLTM": "08:00:00" },
+    { "JBUSER": "MGMTUSER", "JBUSNA": "Management User", "JBDEPT": "MGMT", "JBUSTP": "Admin", "JBEMAL": "mgmt@company.com", "JBSTAT": "Active", "JBLDAT": "20240115", "JBLLTM": "10:00:00" },
+    { "JBUSER": "WHUSER1", "JBUSNA": "Warehouse Operator 1", "JBDEPT": "WAREHOUSE", "JBUSTP": "Standard", "JBEMAL": "whuser1@company.com", "JBSTAT": "Active", "JBLDAT": "20240115", "JBLLTM": "06:00:00" },
+    { "JBUSER": "WHUSER2", "JBUSNA": "Warehouse Operator 2", "JBDEPT": "WAREHOUSE", "JBUSTP": "Standard", "JBEMAL": "whuser2@company.com", "JBSTAT": "Active", "JBLDAT": "20240112", "JBLLTM": "06:00:00" },
+    { "JBUSER": "SHOPFLR1", "JBUSNA": "Shop Floor Op 1", "JBDEPT": "PRODUCTION", "JBUSTP": "Standard", "JBEMAL": "shopflr1@company.com", "JBSTAT": "Active", "JBLDAT": "20240115", "JBLLTM": "05:55:00" },
+    { "JBUSER": "OLDUSER1", "JBUSNA": "Former Employee", "JBDEPT": "SALES", "JBUSTP": "Standard", "JBEMAL": "old1@company.com", "JBSTAT": "Inactive", "JBLDAT": "20230801", "JBLLTM": "14:00:00" }
+  ],
+  "roles": [
+    { "roleId": "M3_SALES_ORDER", "description": "Sales Order Processing", "programs": ["OIS100", "OIS300", "OIS180", "OIS600", "CRS610"], "userCount": 3 },
+    { "roleId": "M3_PURCHASING", "description": "Purchase Order Management", "programs": ["PPS200", "PPS250", "PPS270", "APS380", "CRS620"], "userCount": 1 },
+    { "roleId": "M3_PRODUCTION", "description": "Manufacturing Execution", "programs": ["PPS200", "PPS300", "PPS330", "PPS100"], "userCount": 2 },
+    { "roleId": "M3_PLANNING", "description": "Material & Production Planning", "programs": ["APS100", "APS200", "APS300", "MMS001"], "userCount": 1 },
+    { "roleId": "M3_FINANCE", "description": "Financial Management", "programs": ["GLS200", "ARS100", "APS380", "CRS610", "CRS620"], "userCount": 1 },
+    { "roleId": "M3_ADMIN", "description": "System Administration", "programs": ["MNS100", "MNS150", "MNS200", "SES400", "SES410", "CRS610", "CRS620", "MMS001", "GLS200"], "userCount": 1 }
+  ],
+  "functionAccess": [
+    { "JBUSER": "JSMITH", "roleId": "M3_SALES_ORDER", "program": "OIS100", "accessLevel": "Full", "grantedDate": "20220301" },
+    { "JBUSER": "JSMITH", "roleId": "M3_SALES_ORDER", "program": "OIS300", "accessLevel": "Full", "grantedDate": "20220301" },
+    { "JBUSER": "JSMITH", "roleId": "M3_SALES_ORDER", "program": "CRS610", "accessLevel": "Read", "grantedDate": "20220301" },
+    { "JBUSER": "MJONES", "roleId": "M3_SALES_ORDER", "program": "OIS100", "accessLevel": "Full", "grantedDate": "20220401" },
+    { "JBUSER": "MJONES", "roleId": "M3_SALES_ORDER", "program": "OIS300", "accessLevel": "Full", "grantedDate": "20220401" },
+    { "JBUSER": "MJONES", "roleId": "M3_SALES_ORDER", "program": "OIS600", "accessLevel": "Full", "grantedDate": "20220401" },
+    { "JBUSER": "DKUMAR", "roleId": "M3_SALES_ORDER", "program": "OIS100", "accessLevel": "Full", "grantedDate": "20220601" },
+    { "JBUSER": "DKUMAR", "roleId": "M3_SALES_ORDER", "program": "OIS600", "accessLevel": "Full", "grantedDate": "20220601" },
+    { "JBUSER": "ALEE", "roleId": "M3_PURCHASING", "program": "PPS200", "accessLevel": "Full", "grantedDate": "20220301" },
+    { "JBUSER": "ALEE", "roleId": "M3_PURCHASING", "program": "PPS250", "accessLevel": "Full", "grantedDate": "20220301" },
+    { "JBUSER": "ALEE", "roleId": "M3_PURCHASING", "program": "APS380", "accessLevel": "Read", "grantedDate": "20220301" },
+    { "JBUSER": "BWILSON", "roleId": "M3_PRODUCTION", "program": "PPS200", "accessLevel": "Full", "grantedDate": "20220501" },
+    { "JBUSER": "BWILSON", "roleId": "M3_PRODUCTION", "program": "PPS330", "accessLevel": "Full", "grantedDate": "20220501" },
+    { "JBUSER": "CGARCIA", "roleId": "M3_PLANNING", "program": "APS100", "accessLevel": "Full", "grantedDate": "20220601" },
+    { "JBUSER": "CGARCIA", "roleId": "M3_PLANNING", "program": "MMS001", "accessLevel": "Read", "grantedDate": "20220601" },
+    { "JBUSER": "EFINANCE", "roleId": "M3_FINANCE", "program": "GLS200", "accessLevel": "Full", "grantedDate": "20220301" },
+    { "JBUSER": "EFINANCE", "roleId": "M3_FINANCE", "program": "ARS100", "accessLevel": "Full", "grantedDate": "20220301" },
+    { "JBUSER": "EFINANCE", "roleId": "M3_FINANCE", "program": "APS380", "accessLevel": "Full", "grantedDate": "20220301" },
+    { "JBUSER": "MGMTUSER", "roleId": "M3_ADMIN", "program": "MNS100", "accessLevel": "Full", "grantedDate": "20180101" },
+    { "JBUSER": "MGMTUSER", "roleId": "M3_ADMIN", "program": "MNS150", "accessLevel": "Full", "grantedDate": "20180101" }
+  ],
+  "sodViolations": [
+    {
+      "user": "EFINANCE",
+      "violation": "AP Invoice Entry + AP Payment Processing",
+      "roles": ["M3_FINANCE"],
+      "programs": ["APS380", "APS380"],
+      "risk": "High",
+      "description": "User can both enter and approve AP invoices and process payments, creating fraud risk"
+    },
+    {
+      "user": "MGMTUSER",
+      "violation": "User Administration + Financial Posting",
+      "roles": ["M3_ADMIN"],
+      "programs": ["MNS150", "GLS200"],
+      "risk": "Critical",
+      "description": "Admin user has access to user management and financial posting, violating segregation of duties"
+    }
+  ],
+  "summary": {
+    "totalUsers": 12,
+    "activeUsers": 11,
+    "inactiveUsers": 1,
+    "totalRoles": 6,
+    "totalFunctionAccessRules": 20,
+    "sodViolations": 2,
+    "criticalViolations": 1,
+    "highRiskViolations": 1,
+    "extractedAt": "2024-01-15T10:35:00Z"
+  }
+}

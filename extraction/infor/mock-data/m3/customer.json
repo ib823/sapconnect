@@ -1,0 +1,36 @@
+{
+  "customers": [
+    {
+      "OKCUNO": "C10001",
+      "OKCUNM": "ABC Corp",
+      "OKCUTP": "01",
+      "OKSTAT": "20",
+      "OKCUCL": "A",
+      "OKPHNO": "555-1234",
+      "OKEMAL": "abc@example.com"
+    },
+    {
+      "OKCUNO": "C10002",
+      "OKCUNM": "DEF Inc",
+      "OKCUTP": "01",
+      "OKSTAT": "20",
+      "OKCUCL": "B",
+      "OKPHNO": "555-5678",
+      "OKEMAL": "def@example.com"
+    }
+  ],
+  "customerAddresses": [
+    {
+      "OKCUNO": "C10001",
+      "OAADTP": "01",
+      "OAADID": "MAIN",
+      "OACONM": "ABC Corp HQ",
+      "OACTY3": "NYC"
+    }
+  ],
+  "summary": {
+    "totalCustomers": 2,
+    "totalAddresses": 1,
+    "extractedAt": "2024-01-15T10:55:00Z"
+  }
+}

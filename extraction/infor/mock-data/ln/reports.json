@@ -1,0 +1,95 @@
+{
+  "reports": [
+    { "t$rpid": "RPT001", "t$code": "tfgld5500m000", "t$name": "Trial Balance Report", "t$modn": "Finance", "t$type": "Financial", "t$frmt": "PDF", "t$freq": "Monthly", "t$cust": false, "t$actv": true },
+    { "t$rpid": "RPT002", "t$code": "tfgld5510m000", "t$name": "Balance Sheet", "t$modn": "Finance", "t$type": "Financial", "t$frmt": "PDF", "t$freq": "Monthly", "t$cust": false, "t$actv": true },
+    { "t$rpid": "RPT003", "t$code": "tfgld5520m000", "t$name": "Profit and Loss Statement", "t$modn": "Finance", "t$type": "Financial", "t$frmt": "PDF", "t$freq": "Monthly", "t$cust": false, "t$actv": true },
+    { "t$rpid": "RPT004", "t$code": "tfacp2500m000", "t$name": "Aged Payables Report", "t$modn": "Finance", "t$type": "Operational", "t$frmt": "PDF", "t$freq": "Weekly", "t$cust": false, "t$actv": true },
+    { "t$rpid": "RPT005", "t$code": "tfacr2500m000", "t$name": "Aged Receivables Report", "t$modn": "Finance", "t$type": "Operational", "t$frmt": "PDF", "t$freq": "Weekly", "t$cust": false, "t$actv": true },
+    { "t$rpid": "RPT006", "t$code": "tdisg6500m000", "t$name": "Sales Order Status Report", "t$modn": "Sales", "t$type": "Operational", "t$frmt": "PDF", "t$freq": "Daily", "t$cust": false, "t$actv": true },
+    { "t$rpid": "RPT007", "t$code": "tdpur4500m000", "t$name": "Purchase Order Status Report", "t$modn": "Procurement", "t$type": "Operational", "t$frmt": "PDF", "t$freq": "Daily", "t$cust": false, "t$actv": true },
+    { "t$rpid": "RPT008", "t$code": "whwmd5500m000", "t$name": "Inventory Valuation Report", "t$modn": "Warehousing", "t$type": "Financial", "t$frmt": "PDF", "t$freq": "Monthly", "t$cust": false, "t$actv": true },
+    { "t$rpid": "RPT009", "t$code": "tipcs5500m000", "t$name": "Production Order Status Report", "t$modn": "Manufacturing", "t$type": "Operational", "t$frmt": "PDF", "t$freq": "Daily", "t$cust": false, "t$actv": true },
+    { "t$rpid": "RPT010", "t$code": "xtfgld5550m100", "t$name": "Custom Management Dashboard", "t$modn": "Finance", "t$type": "Executive", "t$frmt": "PDF", "t$freq": "Weekly", "t$cust": true, "t$actv": true },
+    { "t$rpid": "RPT011", "t$code": "xtdisg6510m100", "t$name": "Custom Sales Pipeline Report", "t$modn": "Sales", "t$type": "Analytical", "t$frmt": "XLSX", "t$freq": "Weekly", "t$cust": true, "t$actv": true },
+    { "t$rpid": "RPT012", "t$code": "xtdpur4510m100", "t$name": "Custom Vendor Performance Report", "t$modn": "Procurement", "t$type": "Analytical", "t$frmt": "XLSX", "t$freq": "Monthly", "t$cust": true, "t$actv": true },
+    { "t$rpid": "RPT013", "t$code": "xwhwmd5510m100", "t$name": "Custom Inventory Aging Report", "t$modn": "Warehousing", "t$type": "Analytical", "t$frmt": "XLSX", "t$freq": "Weekly", "t$cust": true, "t$actv": true },
+    { "t$rpid": "RPT014", "t$code": "tfcmg5500m000", "t$name": "Cash Flow Forecast", "t$modn": "Finance", "t$type": "Financial", "t$frmt": "PDF", "t$freq": "Weekly", "t$cust": false, "t$actv": true },
+    { "t$rpid": "RPT015", "t$code": "xtfgld5560m100", "t$name": "Custom Intercompany Reconciliation", "t$modn": "Finance", "t$type": "Financial", "t$frmt": "XLSX", "t$freq": "Monthly", "t$cust": true, "t$actv": true }
+  ],
+  "batchJobs": [
+    { "t$jbid": "JOB001", "t$name": "Daily GL Posting", "t$sess": "tfgld0210s000", "t$schd": "0 6 * * *", "t$freq": "Daily", "t$cpnb": 100, "t$actv": true, "t$lrun": "2024-01-15T06:00:00Z", "t$stat": "Success", "t$durn": 45 },
+    { "t$jbid": "JOB002", "t$name": "AP Payment Run", "t$sess": "tfcmg1100s000", "t$schd": "0 7 * * 1-5", "t$freq": "Weekdays", "t$cpnb": 100, "t$actv": true, "t$lrun": "2024-01-15T07:00:00Z", "t$stat": "Success", "t$durn": 120 },
+    { "t$jbid": "JOB003", "t$name": "Bank Statement Import", "t$sess": "tfcmg3100s000", "t$schd": "0 5 * * *", "t$freq": "Daily", "t$cpnb": 100, "t$actv": true, "t$lrun": "2024-01-15T05:00:00Z", "t$stat": "Success", "t$durn": 15 },
+    { "t$jbid": "JOB004", "t$name": "MRP Run", "t$sess": "cprpd1100m000", "t$schd": "0 2 * * *", "t$freq": "Daily", "t$cpnb": 100, "t$actv": true, "t$lrun": "2024-01-15T02:00:00Z", "t$stat": "Success", "t$durn": 380 },
+    { "t$jbid": "JOB005", "t$name": "ION BOD Sync", "t$sess": "bdbod0100s000", "t$schd": "*/15 * * * *", "t$freq": "Every 15 min", "t$cpnb": 100, "t$actv": true, "t$lrun": "2024-01-15T09:45:00Z", "t$stat": "Success", "t$durn": 8 },
+    { "t$jbid": "JOB006", "t$name": "Currency Revaluation", "t$sess": "tfgld4100s000", "t$schd": "0 22 L * *", "t$freq": "Month-end", "t$cpnb": 100, "t$actv": true, "t$lrun": "2024-01-31T22:00:00Z", "t$stat": "Success", "t$durn": 60 },
+    { "t$jbid": "JOB007", "t$name": "Inventory Snapshot", "t$sess": "whwmd4500s000", "t$schd": "0 23 * * *", "t$freq": "Daily", "t$cpnb": 100, "t$actv": true, "t$lrun": "2024-01-15T23:00:00Z", "t$stat": "Success", "t$durn": 90 },
+    { "t$jbid": "JOB008", "t$name": "Dunning Letter Generation", "t$sess": "tfacr4100s000", "t$schd": "0 8 1 * *", "t$freq": "Monthly", "t$cpnb": 100, "t$actv": true, "t$lrun": "2024-01-01T08:00:00Z", "t$stat": "Success", "t$durn": 25 },
+    { "t$jbid": "JOB009", "t$name": "Data Lake Export", "t$sess": "bddlk0100s000", "t$schd": "0 1 * * *", "t$freq": "Daily", "t$cpnb": 100, "t$actv": true, "t$lrun": "2024-01-15T01:00:00Z", "t$stat": "Success", "t$durn": 200 },
+    { "t$jbid": "JOB010", "t$name": "Intercompany Elimination", "t$sess": "tfgld5100m000", "t$schd": "0 20 L * *", "t$freq": "Month-end", "t$cpnb": 100, "t$actv": true, "t$lrun": "2024-01-31T20:00:00Z", "t$stat": "Success", "t$durn": 35 }
+  ],
+  "businessRules": [
+    {
+      "t$brid": "BR001",
+      "t$name": "PO Approval Threshold",
+      "t$desc": "Purchase orders above $10,000 require manager approval",
+      "t$modn": "Procurement",
+      "t$type": "Approval",
+      "t$cond": "PO Amount > 10000 USD",
+      "t$actn": "Route to manager for approval",
+      "t$actv": true
+    },
+    {
+      "t$brid": "BR002",
+      "t$name": "SO Credit Check",
+      "t$desc": "Sales orders trigger credit check for amounts above $5,000",
+      "t$modn": "Sales",
+      "t$type": "Validation",
+      "t$cond": "SO Amount > 5000 USD",
+      "t$actn": "Block SO until credit approved",
+      "t$actv": true
+    },
+    {
+      "t$brid": "BR003",
+      "t$name": "3-Way Match",
+      "t$desc": "Invoice must match PO and GR within 2% tolerance",
+      "t$modn": "Finance",
+      "t$type": "Matching",
+      "t$cond": "Invoice vs PO vs GR variance > 2%",
+      "t$actn": "Hold invoice for review",
+      "t$actv": true
+    },
+    {
+      "t$brid": "BR004",
+      "t$name": "Inventory Reorder Point",
+      "t$desc": "Auto-generate purchase requisition when stock below reorder level",
+      "t$modn": "Warehousing",
+      "t$type": "Automation",
+      "t$cond": "Available Stock < Reorder Point",
+      "t$actn": "Create purchase requisition",
+      "t$actv": true
+    },
+    {
+      "t$brid": "BR005",
+      "t$name": "Intercompany Markup",
+      "t$desc": "Apply 5% markup on all intercompany sales transactions",
+      "t$modn": "Finance",
+      "t$type": "Pricing",
+      "t$cond": "Transaction type = Intercompany",
+      "t$actn": "Apply 5% markup to cost price",
+      "t$actv": true
+    }
+  ],
+  "summary": {
+    "totalReports": 15,
+    "standardReports": 10,
+    "customReports": 5,
+    "totalBatchJobs": 10,
+    "activeBatchJobs": 10,
+    "totalBusinessRules": 5,
+    "activeBusinessRules": 5,
+    "reportFormats": ["PDF", "XLSX"],
+    "jobFrequencies": ["Every 15 min", "Daily", "Weekdays", "Weekly", "Monthly", "Month-end"],
+    "extractedAt": "2024-01-15T11:15:00Z"
+  }
+}

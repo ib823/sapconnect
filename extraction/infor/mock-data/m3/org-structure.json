@@ -1,0 +1,189 @@
+{
+  "companies": [
+    {
+      "CCCONO": 100,
+      "CCCONM": "Global Manufacturing Inc",
+      "CCCSCD": "US",
+      "CCCOCU": "USD",
+      "CCSTAT": "20",
+      "CCRGDT": "20180101"
+    },
+    {
+      "CCCONO": 200,
+      "CCCONM": "European Operations GmbH",
+      "CCCSCD": "DE",
+      "CCCOCU": "EUR",
+      "CCSTAT": "20",
+      "CCRGDT": "20190301"
+    }
+  ],
+  "divisions": [
+    {
+      "CCDIVI": "100",
+      "CCCONO": 100,
+      "CCDIVN": "North America Division",
+      "CCCSCD": "US",
+      "CCTEPY": "01"
+    },
+    {
+      "CCDIVI": "110",
+      "CCCONO": 100,
+      "CCDIVN": "West Coast Operations",
+      "CCCSCD": "US",
+      "CCTEPY": "01"
+    },
+    {
+      "CCDIVI": "200",
+      "CCCONO": 200,
+      "CCDIVN": "Central Europe Division",
+      "CCCSCD": "DE",
+      "CCTEPY": "01"
+    }
+  ],
+  "facilities": [
+    {
+      "CFFACI": "F01",
+      "CFCONO": 100,
+      "CFDIVI": "100",
+      "CFFACN": "Atlanta Manufacturing",
+      "CFCSCD": "US",
+      "CFSTAT": "20"
+    },
+    {
+      "CFFACI": "F02",
+      "CFCONO": 100,
+      "CFDIVI": "100",
+      "CFFACN": "Dallas Distribution",
+      "CFCSCD": "US",
+      "CFSTAT": "20"
+    },
+    {
+      "CFFACI": "F10",
+      "CFCONO": 200,
+      "CFDIVI": "200",
+      "CFFACN": "Stuttgart Plant",
+      "CFCSCD": "DE",
+      "CFSTAT": "20"
+    },
+    {
+      "CFFACI": "F11",
+      "CFCONO": 200,
+      "CFDIVI": "200",
+      "CFFACN": "Munich Assembly",
+      "CFCSCD": "DE",
+      "CFSTAT": "20"
+    }
+  ],
+  "warehouses": [
+    {
+      "MHWHLO": "WH100",
+      "MHCONO": 100,
+      "MHFACI": "F01",
+      "MHWHNM": "Atlanta Main Warehouse",
+      "MHWHTY": "10"
+    },
+    {
+      "MHWHLO": "WH110",
+      "MHCONO": 100,
+      "MHFACI": "F02",
+      "MHWHNM": "Dallas Distribution Center",
+      "MHWHTY": "20"
+    },
+    {
+      "MHWHLO": "WH120",
+      "MHCONO": 100,
+      "MHFACI": "F01",
+      "MHWHNM": "Atlanta Finished Goods",
+      "MHWHTY": "30"
+    },
+    {
+      "MHWHLO": "WH200",
+      "MHCONO": 200,
+      "MHFACI": "F10",
+      "MHWHNM": "Stuttgart Production WH",
+      "MHWHTY": "10"
+    },
+    {
+      "MHWHLO": "WH210",
+      "MHCONO": 200,
+      "MHFACI": "F11",
+      "MHWHNM": "Munich Parts Warehouse",
+      "MHWHTY": "10"
+    },
+    {
+      "MHWHLO": "WH220",
+      "MHCONO": 200,
+      "MHFACI": "F10",
+      "MHWHNM": "Stuttgart Shipping Dock",
+      "MHWHTY": "40"
+    }
+  ],
+  "hierarchy": [
+    {
+      "level": "Company",
+      "code": "100",
+      "name": "Global Manufacturing Inc",
+      "children": [
+        {
+          "level": "Division",
+          "code": "100",
+          "name": "North America Division",
+          "children": [
+            {
+              "level": "Facility",
+              "code": "F01",
+              "name": "Atlanta Manufacturing",
+              "warehouses": ["WH100", "WH120"]
+            },
+            {
+              "level": "Facility",
+              "code": "F02",
+              "name": "Dallas Distribution",
+              "warehouses": ["WH110"]
+            }
+          ]
+        },
+        {
+          "level": "Division",
+          "code": "110",
+          "name": "West Coast Operations",
+          "children": []
+        }
+      ]
+    },
+    {
+      "level": "Company",
+      "code": "200",
+      "name": "European Operations GmbH",
+      "children": [
+        {
+          "level": "Division",
+          "code": "200",
+          "name": "Central Europe Division",
+          "children": [
+            {
+              "level": "Facility",
+              "code": "F10",
+              "name": "Stuttgart Plant",
+              "warehouses": ["WH200", "WH220"]
+            },
+            {
+              "level": "Facility",
+              "code": "F11",
+              "name": "Munich Assembly",
+              "warehouses": ["WH210"]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "totalCompanies": 2,
+    "totalDivisions": 3,
+    "totalFacilities": 4,
+    "totalWarehouses": 6,
+    "maxDepth": 4,
+    "extractedAt": "2024-01-15T10:05:00Z"
+  }
+}

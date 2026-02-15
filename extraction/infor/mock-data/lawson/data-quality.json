@@ -1,0 +1,127 @@
+{
+  "tableProfiles": [
+    {
+      "table": "APMASTER",
+      "description": "Vendor Master",
+      "totalRecords": 12,
+      "completeness": {
+        "VENDOR": { "filled": 12, "total": 12, "percent": 100.0 },
+        "VENDOR_NAME": { "filled": 12, "total": 12, "percent": 100.0 },
+        "TAX_ID": { "filled": 12, "total": 12, "percent": 100.0 },
+        "ADDRESS_1": { "filled": 12, "total": 12, "percent": 100.0 },
+        "PAYMENT_TERMS": { "filled": 12, "total": 12, "percent": 100.0 },
+        "EMAIL": { "filled": 8, "total": 12, "percent": 66.7 },
+        "PHONE": { "filled": 10, "total": 12, "percent": 83.3 }
+      },
+      "duplicates": { "byName": 0, "byTaxId": 0 },
+      "overallScore": 92.4
+    },
+    {
+      "table": "ARMASTER",
+      "description": "Customer Master",
+      "totalRecords": 10,
+      "completeness": {
+        "CUSTOMER": { "filled": 10, "total": 10, "percent": 100.0 },
+        "CUSTOMER_NAME": { "filled": 10, "total": 10, "percent": 100.0 },
+        "TAX_ID": { "filled": 9, "total": 10, "percent": 90.0 },
+        "ADDRESS_1": { "filled": 9, "total": 10, "percent": 90.0 },
+        "CREDIT_LIMIT": { "filled": 9, "total": 10, "percent": 90.0 }
+      },
+      "duplicates": { "byName": 0, "byTaxId": 0 },
+      "overallScore": 94.0
+    },
+    {
+      "table": "GLMASTER",
+      "description": "GL Account Master",
+      "totalRecords": 30,
+      "completeness": {
+        "ACCOUNT": { "filled": 30, "total": 30, "percent": 100.0 },
+        "TITLE": { "filled": 30, "total": 30, "percent": 100.0 },
+        "ACCT_TYPE": { "filled": 30, "total": 30, "percent": 100.0 },
+        "ACCT_GROUP": { "filled": 30, "total": 30, "percent": 100.0 },
+        "NORMAL_BALANCE": { "filled": 30, "total": 30, "percent": 100.0 }
+      },
+      "duplicates": { "byAccount": 0 },
+      "overallScore": 100.0
+    },
+    {
+      "table": "EMPLOYEE",
+      "description": "Employee Master",
+      "totalRecords": 30,
+      "completeness": {
+        "EMPLOYEE": { "filled": 30, "total": 30, "percent": 100.0 },
+        "EMPLOYEE_NAME": { "filled": 30, "total": 30, "percent": 100.0 },
+        "HIRE_DATE": { "filled": 30, "total": 30, "percent": 100.0 },
+        "DEPARTMENT": { "filled": 30, "total": 30, "percent": 100.0 },
+        "SUPERVISOR": { "filled": 26, "total": 30, "percent": 86.7 },
+        "EMAIL": { "filled": 25, "total": 30, "percent": 83.3 }
+      },
+      "duplicates": { "byName": 0 },
+      "overallScore": 94.3
+    },
+    {
+      "table": "ICITEM",
+      "description": "Item Master",
+      "totalRecords": 20,
+      "completeness": {
+        "ITEM": { "filled": 20, "total": 20, "percent": 100.0 },
+        "DESCRIPTION": { "filled": 20, "total": 20, "percent": 100.0 },
+        "UM": { "filled": 20, "total": 20, "percent": 100.0 },
+        "PRODUCT_CODE": { "filled": 20, "total": 20, "percent": 100.0 },
+        "STANDARD_COST": { "filled": 20, "total": 20, "percent": 100.0 }
+      },
+      "duplicates": { "byItem": 0, "byDescription": 0 },
+      "overallScore": 100.0
+    },
+    {
+      "table": "GLDETAIL",
+      "description": "GL Journal Detail",
+      "totalRecords": 25,
+      "completeness": {
+        "JOURNAL_ID": { "filled": 25, "total": 25, "percent": 100.0 },
+        "ACCT_STRING": { "filled": 25, "total": 25, "percent": 100.0 },
+        "AMOUNT": { "filled": 25, "total": 25, "percent": 100.0 },
+        "DESCRIPTION": { "filled": 25, "total": 25, "percent": 100.0 }
+      },
+      "duplicates": { "byJournalId": 0 },
+      "overallScore": 100.0
+    }
+  ],
+  "accountingStringAnalysis": {
+    "totalAccountingStrings": 85,
+    "validStrings": 82,
+    "invalidStrings": 3,
+    "invalidExamples": [
+      { "rawString": "1-CLIN-6200-00", "issue": "CLIN accounting unit referenced but only 4 units defined", "source": "APINVOICE", "count": 1 },
+      { "rawString": "1--6000-00", "issue": "Empty accounting unit segment", "source": "GLDETAIL", "count": 1 },
+      { "rawString": "3-HQ-1000-00", "issue": "Company 3 not defined in system", "source": "GLDETAIL", "count": 1 }
+    ],
+    "decompositionRules": [
+      { "rule": "Split on separator '-'", "status": "VERIFIED" },
+      { "rule": "Validate COMPANY against COMPANY master", "status": "VERIFIED" },
+      { "rule": "Validate ACCT_UNIT against accounting unit master", "status": "3 failures found" },
+      { "rule": "Validate ACCOUNT against GLMASTER", "status": "VERIFIED" },
+      { "rule": "Validate SUB_ACCOUNT format (2-digit numeric)", "status": "VERIFIED" }
+    ]
+  },
+  "crossTableIntegrity": [
+    { "check": "AP Invoices reference valid vendors", "source": "APINVOICE", "target": "APMASTER", "total": 20, "valid": 20, "invalid": 0, "status": "PASS" },
+    { "check": "AR Invoices reference valid customers", "source": "ARINVOICE", "target": "ARMASTER", "total": 15, "valid": 15, "invalid": 0, "status": "PASS" },
+    { "check": "GL entries reference valid accounts", "source": "GLDETAIL", "target": "GLMASTER", "total": 50, "valid": 48, "invalid": 2, "status": "WARNING" },
+    { "check": "Employees reference valid positions", "source": "EMPLOYEE", "target": "POSITION", "total": 30, "valid": 28, "invalid": 2, "status": "WARNING" },
+    { "check": "Stock balances reference valid items", "source": "ICSTOCKBAL", "target": "ICITEM", "total": 10, "valid": 10, "invalid": 0, "status": "PASS" },
+    { "check": "Stock balances reference valid locations", "source": "ICSTOCKBAL", "target": "ICLOCATION", "total": 10, "valid": 10, "invalid": 0, "status": "PASS" }
+  ],
+  "summary": {
+    "tablesProfiled": 6,
+    "averageCompletenessScore": 96.8,
+    "highestScore": { "table": "GLMASTER", "score": 100.0 },
+    "lowestScore": { "table": "APMASTER", "score": 92.4 },
+    "totalIntegrityChecks": 6,
+    "passedChecks": 4,
+    "warningChecks": 2,
+    "failedChecks": 0,
+    "accountingStringValidity": 96.5,
+    "extractedAt": "2024-01-20T09:50:00Z"
+  }
+}

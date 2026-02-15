@@ -1,0 +1,108 @@
+{
+  "companies": [
+    {
+      "t$cpnb": 100,
+      "t$cpds": "Global Manufacturing Corp",
+      "t$ccur": "USD",
+      "t$clng": "2",
+      "t$ccty": "US",
+      "t$cgrp": "MAIN"
+    },
+    {
+      "t$cpnb": 200,
+      "t$cpds": "European Operations GmbH",
+      "t$ccur": "EUR",
+      "t$clng": "3",
+      "t$ccty": "DE",
+      "t$cgrp": "MAIN"
+    },
+    {
+      "t$cpnb": 300,
+      "t$cpds": "Asia Pacific Trading Ltd",
+      "t$ccur": "SGD",
+      "t$clng": "2",
+      "t$ccty": "SG",
+      "t$cgrp": "APAC"
+    }
+  ],
+  "logisticCompanies": [
+    {
+      "t$lgnb": 100,
+      "t$lgds": "US Logistics Hub",
+      "t$cpnb": 100,
+      "t$stwh": "WH100",
+      "t$dfwh": "WH101"
+    },
+    {
+      "t$lgnb": 110,
+      "t$lgds": "US Distribution Center",
+      "t$cpnb": 100,
+      "t$stwh": "WH110",
+      "t$dfwh": "WH111"
+    },
+    {
+      "t$lgnb": 200,
+      "t$lgds": "DE Manufacturing Plant",
+      "t$cpnb": 200,
+      "t$stwh": "WH200",
+      "t$dfwh": "WH201"
+    },
+    {
+      "t$lgnb": 300,
+      "t$lgds": "SG Regional Warehouse",
+      "t$cpnb": 300,
+      "t$stwh": "WH300",
+      "t$dfwh": "WH301"
+    }
+  ],
+  "companyParameters": [
+    {
+      "t$cpnb": 100,
+      "t$parm": "AUTOJNL",
+      "t$pval": "1",
+      "t$pdsc": "Automatic journal posting enabled"
+    },
+    {
+      "t$cpnb": 100,
+      "t$parm": "CURRTOL",
+      "t$pval": "0.01",
+      "t$pdsc": "Currency rounding tolerance"
+    },
+    {
+      "t$cpnb": 200,
+      "t$parm": "AUTOJNL",
+      "t$pval": "1",
+      "t$pdsc": "Automatic journal posting enabled"
+    },
+    {
+      "t$cpnb": 300,
+      "t$parm": "AUTOJNL",
+      "t$pval": "0",
+      "t$pdsc": "Automatic journal posting disabled"
+    }
+  ],
+  "generalParameters": {
+    "t$base": "MAIN",
+    "t$clng": "2",
+    "t$dfrm": "MDY",
+    "t$decm": ".",
+    "t$thsm": ",",
+    "t$ccur": "USD",
+    "t$rptc": "USD",
+    "t$fyer": 2024,
+    "t$fprd": 12,
+    "t$sprd": 4,
+    "t$mcmp": true,
+    "t$mlgc": true,
+    "t$mwhs": true
+  },
+  "summary": {
+    "totalFinancialCompanies": 3,
+    "totalLogisticCompanies": 4,
+    "baseCurrency": "USD",
+    "reportingCurrency": "USD",
+    "multiCompanyEnabled": true,
+    "multiLogisticCompanyEnabled": true,
+    "extractedAt": "2024-01-15T10:30:00Z"
+  }
+}

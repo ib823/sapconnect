@@ -1,0 +1,67 @@
+{
+  "reports": [
+    {
+      "reportId": "OIS630",
+      "name": "Customer Order Report",
+      "module": "OIS",
+      "frequency": "Daily",
+      "format": "PDF",
+      "status": "Active"
+    },
+    {
+      "reportId": "PPS910",
+      "name": "Manufacturing Order Status",
+      "module": "PPS",
+      "frequency": "Daily",
+      "format": "PDF",
+      "status": "Active"
+    },
+    {
+      "reportId": "ARS200",
+      "name": "AR Aging Report",
+      "module": "ARS",
+      "frequency": "Weekly",
+      "format": "Excel",
+      "status": "Active"
+    },
+    {
+      "reportId": "GLS300",
+      "name": "General Ledger Report",
+      "module": "GLS",
+      "frequency": "Monthly",
+      "format": "PDF",
+      "status": "Active"
+    },
+    {
+      "reportId": "MMS300",
+      "name": "Inventory Valuation",
+      "module": "MMS",
+      "frequency": "Monthly",
+      "format": "Excel",
+      "status": "Active"
+    }
+  ],
+  "customReports": [
+    {
+      "reportId": "CRP001",
+      "name": "Custom Sales Dashboard",
+      "basedOn": "OIS630",
+      "createdBy": "JSMITH",
+      "createdDate": "20230101",
+      "status": "Active"
+    },
+    {
+      "reportId": "CRP002",
+      "name": "Executive KPI Summary",
+      "basedOn": "GLS300",
+      "createdBy": "EFINANCE",
+      "createdDate": "20230301",
+      "status": "Active"
+    }
+  ],
+  "summary": {
+    "totalReports": 5,
+    "customReports": 2,
+    "extractedAt": "2024-01-15T10:45:00Z"
+  }
+}
