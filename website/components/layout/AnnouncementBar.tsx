@@ -16,8 +16,8 @@ export default function AnnouncementBar() {
       }}
     >
       <p className="m-0 text-center text-xs sm:text-sm">
-        <span className="font-medium">4,591 tests passing</span>
-        {' -- SEN is production-ready. '}
+        <span className="font-medium">Now supporting Infor LN, M3, CloudSuite, and Lawson.</span>
+        {' 6,180 tests passing. '}
         <a
           href="https://github.com/ib823/sapconnect"
           target="_blank"

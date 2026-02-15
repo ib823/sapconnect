@@ -11,9 +11,9 @@ interface RoleContent {
 const roles: RoleContent[] = [
   {
     label: 'CEO',
-    heading: 'Accelerate your SAP transformation',
+    heading: 'Accelerate your ERP transformation',
     points: [
-      'Reduce migration timelines from 12-18 months to weeks, freeing capital for strategic initiatives.',
+      'Migrate from any ERP -- SAP ECC, Infor LN, M3, CloudSuite, Lawson -- to S/4HANA in weeks, not years.',
       'Eliminate vendor lock-in with an open-source platform you fully own and control.',
       'Present board-ready audit trails that demonstrate governance at every stage.',
     ],
@@ -22,17 +22,17 @@ const roles: RoleContent[] = [
     label: 'CFO',
     heading: 'Reduce cost and financial risk',
     points: [
-      'Cut project costs by 40% through automation of repetitive migration tasks.',
-      'De-risk go-live with 4,910 automated tests validating every operation.',
+      'Cut project costs by 40% through automation of repetitive migration tasks across any source ERP.',
+      'De-risk go-live with 6,180 automated tests validating every operation.',
       'Accelerate time-to-value with projects completing in weeks, not months.',
     ],
   },
   {
     label: 'CIO',
-    heading: 'Enterprise architecture, zero lock-in',
+    heading: 'Universal connectivity, zero lock-in',
     points: [
-      'Connect via RFC, OData, or ADT REST with automatic retry and pooling.',
-      '43 MCP tools give AI agents safe, audited access to SAP operations.',
+      'Connect to SAP via RFC, OData, or ADT REST -- and to Infor via ION, MI, IDO, or Landmark APIs.',
+      '58 MCP tools give AI agents safe, audited access to multi-ERP operations.',
       'Deploy anywhere: on-premises, BTP, AWS, Azure, or GCP. Apache 2.0 licensed.',
     ],
   },
@@ -40,9 +40,9 @@ const roles: RoleContent[] = [
     label: 'Program Lead',
     heading: 'Predictable timelines, full visibility',
     points: [
-      '8-phase migration lifecycle with automated milestones and go/no-go gates.',
+      'Canonical data model with 14 entities maps any source ERP to S/4HANA at the field level.',
       '874 rules scan 21 modules in minutes, replacing weeks of manual review.',
-      '42 pre-built migration objects with 1,600+ field mappings, ready to use.',
+      '10 industry-specific compliance packages ensure regulatory requirements are met from day one.',
     ],
   },
 ];

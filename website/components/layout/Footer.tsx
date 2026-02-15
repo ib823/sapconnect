@@ -19,8 +19,8 @@ export default function Footer() {
               className="text-sm leading-relaxed m-0"
               style={{ color: 'var(--color-text-secondary)' }}
             >
-              Open-source platform automating SAP migrations
-              from assessment through cutover.
+              Open-source platform migrating any ERP to SAP S/4HANA
+              through a canonical data model.
             </p>
           </div>
 

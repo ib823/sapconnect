@@ -1,17 +1,19 @@
 import type { Metadata } from 'next';
 import Button from '@/components/ui/Button';
 import RoleTabs from '@/components/sections/RoleTabs';
+import SourceERPFlow from '@/components/marketing/SourceERPFlow';
+import IndustryGrid from '@/components/marketing/IndustryGrid';
 import { SITE } from '@/lib/site-config';
 
 export const metadata: Metadata = {
-  title: 'SAP migrations. Weeks, not months.',
+  title: 'Any ERP. One platform. Zero guesswork.',
 };
 
 export default function HomePage() {
   return (
     <>
       {/* ------------------------------------------------------------------ */}
-      {/* Section A: Hero                                                     */}
+      {/* Section 1: Hero                                                     */}
       {/* ------------------------------------------------------------------ */}
       <section className="py-32 lg:py-40" style={{ backgroundColor: 'var(--color-bg)' }}>
         <div className="container-site max-w-3xl text-center">
@@ -22,9 +24,9 @@ export default function HomePage() {
               color: 'var(--color-text-primary)',
             }}
           >
-            SAP migrations.
+            Any ERP. One platform.
             <br />
-            Weeks, not months.
+            Zero guesswork.
           </h1>
           <p
             className="text-xl m-0 mb-10 mx-auto max-w-xl"
@@ -33,8 +35,9 @@ export default function HomePage() {
               lineHeight: 'var(--leading-body)',
             }}
           >
-            Open-source platform that automates assessment, migration, and
-            testing for SAP implementations.
+            SEN forensically extracts your source system, maps every field
+            through a canonical model, and validates the migration — so
+            nothing gets lost in translation.
           </p>
           <div className="flex flex-col items-center gap-4">
             <Button href="/solution" variant="primary">
@@ -54,55 +57,63 @@ export default function HomePage() {
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section B: Three proof points                                       */}
+      {/* Section 2: The Problem                                              */}
       {/* ------------------------------------------------------------------ */}
       <section
         className="py-24 lg:py-28"
         style={{ backgroundColor: 'var(--color-surface)' }}
       >
-        <div className="container-site">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-20">
+        <div className="container-site max-w-4xl">
+          <h2
+            className="text-3xl lg:text-4xl font-semibold m-0 mb-4 text-center"
+            style={{ color: 'var(--color-text-primary)' }}
+          >
+            ERP migrations fail because they start blind.
+          </h2>
+          <p
+            className="text-lg m-0 mb-16 text-center max-w-xl mx-auto"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            Three problems account for most migration failures.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
             {[
               {
-                number: '4,910',
-                label: 'tests',
-                sentence:
-                  'Every operation is validated before it touches your system.',
+                headline: 'Undiscovered customizations',
+                description:
+                  'Hidden modifications surface during cutover — when the cost to fix them is highest.',
               },
               {
-                number: '42',
-                label: 'objects',
-                sentence:
-                  'Pre-built migration paths for every major SAP business object.',
+                headline: 'Unmapped fields',
+                description:
+                  'Data falls through the cracks between systems. Fields exist in the source with no home in the target.',
               },
               {
-                number: '874',
-                label: 'rules',
-                sentence:
-                  'Automated compatibility scanning across 21 SAP modules.',
+                headline: 'Untested transforms',
+                description:
+                  'What looked right in dev breaks in production. Without automated validation, defects hide until go-live.',
               },
             ].map((item) => (
-              <div key={item.label} className="text-center">
-                <p
-                  className="text-5xl lg:text-6xl font-semibold m-0 mb-2 tabular-nums"
+              <div
+                key={item.headline}
+                className="px-6 py-6 rounded-xl border"
+                style={{ borderColor: 'var(--color-border)' }}
+              >
+                <h3
+                  className="text-base font-semibold m-0 mb-3"
                   style={{ color: 'var(--color-text-primary)' }}
                 >
-                  {item.number}
-                </p>
+                  {item.headline}
+                </h3>
                 <p
-                  className="text-sm font-medium uppercase tracking-widest m-0 mb-4"
-                  style={{ color: 'var(--color-brand)' }}
-                >
-                  {item.label}
-                </p>
-                <p
-                  className="text-base m-0 max-w-xs mx-auto"
+                  className="text-sm m-0"
                   style={{
                     color: 'var(--color-text-secondary)',
                     lineHeight: 'var(--leading-body)',
                   }}
                 >
-                  {item.sentence}
+                  {item.description}
                 </p>
               </div>
             ))}
@@ -111,81 +122,144 @@ export default function HomePage() {
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section C: Before / After                                           */}
+      {/* Section 3: Three Pillars                                            */}
       {/* ------------------------------------------------------------------ */}
       <section
         className="py-24 lg:py-28"
         style={{ backgroundColor: 'var(--color-bg)' }}
       >
         <div className="container-site max-w-4xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
-            {/* Without */}
-            <div>
-              <h2
-                className="text-2xl font-semibold m-0 mb-8"
-                style={{ color: 'var(--color-text-primary)' }}
-              >
-                Without SEN
-              </h2>
-              <div className="flex flex-col gap-6">
-                {[
-                  '6-18 month timelines with constant schedule risk.',
-                  'Manual spreadsheets and consultant guesswork.',
-                  'Defects discovered late, at the highest cost to fix.',
-                ].map((point) => (
-                  <p
-                    key={point}
-                    className="text-base m-0 pl-5"
-                    style={{
-                      color: 'var(--color-text-secondary)',
-                      lineHeight: 'var(--leading-body)',
-                      borderLeft: '2px solid var(--color-border)',
-                    }}
-                  >
-                    {point}
-                  </p>
-                ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-20">
+            {[
+              {
+                pillar: 'Understand',
+                description:
+                  '7-dimension forensic extraction. Every configuration, customization, interface, and data quality issue — discovered automatically.',
+              },
+              {
+                pillar: 'Migrate',
+                description:
+                  'Field-level mapping through 14 canonical entities. Source-agnostic. Every field has a home.',
+              },
+              {
+                pillar: 'Validate',
+                description:
+                  '6,180 automated tests. Extract-Transform-Load-Validate. Every record verified before it touches your target system.',
+              },
+            ].map((item) => (
+              <div key={item.pillar} className="text-center">
+                <p
+                  className="text-sm font-semibold uppercase tracking-widest m-0 mb-4"
+                  style={{ color: 'var(--color-brand)' }}
+                >
+                  {item.pillar}
+                </p>
+                <p
+                  className="text-base m-0"
+                  style={{
+                    color: 'var(--color-text-secondary)',
+                    lineHeight: 'var(--leading-body)',
+                  }}
+                >
+                  {item.description}
+                </p>
               </div>
-            </div>
-
-            {/* With */}
-            <div>
-              <h2
-                className="text-2xl font-semibold m-0 mb-8"
-                style={{ color: 'var(--color-text-primary)' }}
-              >
-                With SEN
-              </h2>
-              <div className="flex flex-col gap-6">
-                {[
-                  'Weeks, not months. Automation at every phase.',
-                  'Code-driven execution with full audit trail.',
-                  'Continuous validation from day one through cutover.',
-                ].map((point) => (
-                  <p
-                    key={point}
-                    className="text-base m-0 pl-5"
-                    style={{
-                      color: 'var(--color-text-secondary)',
-                      lineHeight: 'var(--leading-body)',
-                      borderLeft: '2px solid var(--color-border)',
-                    }}
-                  >
-                    {point}
-                  </p>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section D: Role tabs                                                */}
+      {/* Section 4: Universal Architecture                                   */}
       {/* ------------------------------------------------------------------ */}
       <section
         className="py-24 lg:py-28"
         style={{ backgroundColor: 'var(--color-surface)' }}
+      >
+        <div className="container-site">
+          <h2
+            className="text-3xl lg:text-4xl font-semibold m-0 mb-4 text-center"
+            style={{ color: 'var(--color-text-primary)' }}
+          >
+            Add a source connector once. Unlock every migration object.
+          </h2>
+          <p
+            className="text-lg m-0 mb-16 text-center max-w-2xl mx-auto"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            N source systems + M migration objects = N+M effort, not N x M.
+            The canonical data model is the universal translator.
+          </p>
+          <SourceERPFlow />
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Section 5: Industry Intelligence                                    */}
+      {/* ------------------------------------------------------------------ */}
+      <section
+        id="industries"
+        className="py-24 lg:py-28"
+        style={{ backgroundColor: 'var(--color-bg)' }}
+      >
+        <div className="container-site">
+          <h2
+            className="text-3xl lg:text-4xl font-semibold m-0 mb-4 text-center"
+            style={{ color: 'var(--color-text-primary)' }}
+          >
+            Your industry. Your compliance. Built in.
+          </h2>
+          <p
+            className="text-lg m-0 mb-16 text-center max-w-xl mx-auto"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            10 industry verticals with pre-built compliance mappings and
+            regulatory requirements.
+          </p>
+          <IndustryGrid />
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Section 6: Proof Points                                             */}
+      {/* ------------------------------------------------------------------ */}
+      <section
+        className="py-24 lg:py-28"
+        style={{ backgroundColor: 'var(--color-surface)' }}
+      >
+        <div className="container-site max-w-3xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-16">
+            {[
+              { number: '6,180', label: 'tests' },
+              { number: '58', label: 'MCP tools' },
+              { number: '14', label: 'canonical entities' },
+              { number: '10', label: 'industries' },
+            ].map((item) => (
+              <div key={item.label} className="text-center">
+                <p
+                  className="text-4xl lg:text-5xl font-semibold m-0 mb-2 tabular-nums"
+                  style={{ color: 'var(--color-text-primary)' }}
+                >
+                  {item.number}
+                </p>
+                <p
+                  className="text-sm font-medium uppercase tracking-widest m-0"
+                  style={{ color: 'var(--color-brand)' }}
+                >
+                  {item.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Section 7: Role Tabs                                                */}
+      {/* ------------------------------------------------------------------ */}
+      <section
+        className="py-24 lg:py-28"
+        style={{ backgroundColor: 'var(--color-bg)' }}
       >
         <div className="container-site max-w-3xl">
           <h2
@@ -206,7 +280,7 @@ export default function HomePage() {
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section E: CTA                                                      */}
+      {/* Section 8: CTA                                                      */}
       {/* ------------------------------------------------------------------ */}
       <section
         className="py-24 lg:py-32"
@@ -219,11 +293,11 @@ export default function HomePage() {
             className="text-3xl lg:text-4xl font-semibold m-0 mb-4 text-white"
             style={{ lineHeight: 'var(--leading-heading)' }}
           >
-            Start your migration today
+            Start your migration assessment
           </h2>
           <p className="text-lg m-0 mb-10 text-white/80">
-            Install SEN, connect your system, and run your first
-            assessment in under 10 minutes. No license required.
+            Install SEN, connect your source system, and run your first
+            forensic extraction in under 10 minutes. No license required.
           </p>
           <Button
             href="/docs"

@@ -10,17 +10,21 @@ export const metadata: Metadata = {
 
 const openSourceFeatures = [
   'Full source code access',
-  'All 11 capabilities included',
+  'Multi-source ERP support (SAP, Infor)',
+  'All 14 canonical entities included',
   'Mock and live mode',
   'Self-hosted deployment',
   'Community support via GitHub',
   'Apache 2.0 license',
-  '4,591 automated tests',
+  '6,180 automated tests',
+  '58 MCP tools',
   'No usage limits',
 ];
 
 const enterpriseFeatures = [
   'Everything in Open Source',
+  'Infor LN/M3/CSI/Lawson support',
+  'Industry compliance packages (10 verticals)',
   'Custom deployment assistance',
   'Dedicated support engineer',
   'SLA-backed response times',
@@ -59,7 +63,7 @@ export default function PricingPage() {
               Free
             </p>
             <p className="mb-6 text-[var(--font-size-body-s)] leading-relaxed text-[var(--color-text-secondary)]">
-              Self-hosted. Full platform. Community support.
+              Self-hosted. Full platform. Multi-ERP support. Community support.
             </p>
             <ul className="m-0 mb-8 flex flex-1 list-none flex-col gap-3 p-0">
               {openSourceFeatures.map((feature) => (

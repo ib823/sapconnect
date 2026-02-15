@@ -1,21 +1,30 @@
 import type { Metadata } from 'next';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
+import SourceERPFlow from '@/components/marketing/SourceERPFlow';
+import SecurityTiers from '@/components/marketing/SecurityTiers';
 
 export const metadata: Metadata = {
   title: 'Platform | SEN',
   description:
-    'Open source. Self-hosted. Enterprise grade. Apache 2.0 licensed, deploy anywhere, full test coverage.',
+    'Open source. Self-hosted. Enterprise grade. Universal ERP connectivity with N+M canonical architecture.',
 };
 
-const phases = [
-  { step: 1, label: 'Assess', color: 'var(--color-brand)' },
-  { step: 2, label: 'Remediate', color: 'var(--color-brand)' },
-  { step: 3, label: 'Profile', color: 'var(--color-brand)' },
-  { step: 4, label: 'Configure', color: 'var(--color-brand)' },
-  { step: 5, label: 'Provision', color: 'var(--color-brand)' },
-  { step: 6, label: 'Test', color: 'var(--color-brand)' },
-  { step: 7, label: 'Cutover', color: 'var(--color-brand)' },
+const canonicalEntities = [
+  { name: 'Material', description: 'Items, products, SKUs across all source systems' },
+  { name: 'Customer', description: 'Customer master with addresses, contacts, credit' },
+  { name: 'Vendor', description: 'Supplier master with procurement data' },
+  { name: 'BOM', description: 'Bills of material and product structures' },
+  { name: 'Routing', description: 'Production operations and work center assignments' },
+  { name: 'GL Account', description: 'Chart of accounts and financial structure' },
+  { name: 'Cost Center', description: 'Organizational cost allocation units' },
+  { name: 'Profit Center', description: 'Profitability analysis segments' },
+  { name: 'Sales Order', description: 'Order-to-cash document structures' },
+  { name: 'Purchase Order', description: 'Procure-to-pay document structures' },
+  { name: 'Work Order', description: 'Production and maintenance orders' },
+  { name: 'Inventory', description: 'Stock levels, movements, valuations' },
+  { name: 'Price List', description: 'Pricing conditions, discounts, surcharges' },
+  { name: 'Employee', description: 'HR master records and organizational assignments' },
 ];
 
 const differentiators = [
@@ -32,12 +41,12 @@ const differentiators = [
   {
     title: 'Self-hosted',
     description:
-      'Install behind your firewall. SAP credentials never leave your network.',
+      'Install behind your firewall. ERP credentials never leave your network.',
   },
   {
     title: 'Full test coverage',
     description:
-      '4,910 automated tests covering extraction, migration, security, and AI safety.',
+      '6,180 automated tests covering extraction, migration, security, and AI safety.',
   },
 ];
 
@@ -76,6 +85,14 @@ const techStack = [
   {
     name: 'OData V2 and V4',
     description: 'Full OData client with CSRF handling, batch requests, and automatic pagination.',
+  },
+  {
+    name: 'Infor ION API',
+    description: 'OAuth2-based API gateway for CloudSuite, M3, and Lawson connectivity.',
+  },
+  {
+    name: 'Infor MI Programs',
+    description: 'M3-native API protocol for direct transaction and data access.',
   },
   {
     name: 'ADT REST',
@@ -118,89 +135,146 @@ export default function PlatformPage() {
               lineHeight: 'var(--leading-body)',
             }}
           >
-            Apache 2.0 licensed. Deploy anywhere. Full test coverage.
+            Apache 2.0 licensed. Deploy anywhere. Universal ERP connectivity.
           </p>
         </div>
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section B: Architecture lifecycle                                   */}
+      {/* Section B: N+M Architecture                                         */}
       {/* ------------------------------------------------------------------ */}
-      <section aria-labelledby="architecture-heading" className="pb-24 lg:pb-28">
+      <section
+        aria-labelledby="architecture-heading"
+        className="py-24 lg:py-28"
+        style={{ backgroundColor: 'var(--color-surface)' }}
+      >
         <div className="container-site">
           <h2
             id="architecture-heading"
-            className="mb-12 text-center text-2xl font-semibold"
+            className="mb-4 text-center text-3xl lg:text-4xl font-semibold"
             style={{ color: 'var(--color-text-primary)' }}
           >
-            Migration lifecycle
+            N+M Architecture
           </h2>
+          <p
+            className="text-lg m-0 mb-16 text-center max-w-2xl mx-auto"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            N source systems and M migration objects scale as N+M, not N x M.
+            Add a source connector once; every migration object works automatically.
+          </p>
+          <SourceERPFlow />
+        </div>
+      </section>
 
-          {/* Desktop flow */}
-          <div className="hidden md:block">
-            <div className="relative flex items-center justify-between">
-              {phases.map((phase) => (
-                <div key={phase.label} className="relative z-10 flex flex-col items-center">
-                  <div
-                    className="flex h-12 w-12 items-center justify-center rounded-full text-sm font-bold text-white"
-                    style={{ backgroundColor: phase.color }}
-                  >
-                    {phase.step}
-                  </div>
-                  <span
-                    className="mt-3 text-sm font-medium"
-                    style={{ color: 'var(--color-text-primary)' }}
-                  >
-                    {phase.label}
-                  </span>
-                </div>
-              ))}
+      {/* ------------------------------------------------------------------ */}
+      {/* Section C: Canonical Data Model                                     */}
+      {/* ------------------------------------------------------------------ */}
+      <section
+        aria-labelledby="canonical-heading"
+        className="py-24 lg:py-28"
+      >
+        <div className="container-site">
+          <h2
+            id="canonical-heading"
+            className="mb-4 text-center text-3xl lg:text-4xl font-semibold"
+            style={{ color: 'var(--color-text-primary)' }}
+          >
+            14 Canonical Entities
+          </h2>
+          <p
+            className="text-lg m-0 mb-16 text-center max-w-2xl mx-auto"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            OAGIS-aligned entities that serve as the universal translator between
+            any source ERP and SAP S/4HANA.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-w-5xl mx-auto">
+            {canonicalEntities.map((entity) => (
               <div
-                className="absolute left-6 right-6 top-6 h-[2px] -z-0"
-                style={{ backgroundColor: 'var(--color-border)' }}
-                aria-hidden="true"
-              />
-            </div>
-          </div>
-
-          {/* Mobile flow */}
-          <div className="md:hidden overflow-x-auto pb-4 -mx-6 px-6">
-            <div className="flex gap-3" style={{ minWidth: 'max-content' }}>
-              {phases.map((phase, i) => (
-                <div key={phase.label} className="flex items-center gap-3">
-                  <div className="flex flex-col items-center">
-                    <div
-                      className="flex h-10 w-10 items-center justify-center rounded-full text-xs font-bold text-white"
-                      style={{ backgroundColor: phase.color }}
-                    >
-                      {phase.step}
-                    </div>
-                    <span
-                      className="mt-1 text-xs font-medium"
-                      style={{ color: 'var(--color-text-primary)' }}
-                    >
-                      {phase.label}
-                    </span>
-                  </div>
-                  {i < phases.length - 1 && (
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" className="mb-4">
-                      <path d="M7 4L13 10L7 16" stroke="var(--color-border)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  )}
-                </div>
-              ))}
-            </div>
+                key={entity.name}
+                className="px-4 py-4 rounded-xl border"
+                style={{ borderColor: 'var(--color-border)' }}
+              >
+                <p
+                  className="text-sm font-semibold m-0 mb-1"
+                  style={{ color: 'var(--color-text-primary)' }}
+                >
+                  {entity.name}
+                </p>
+                <p
+                  className="text-xs m-0"
+                  style={{ color: 'var(--color-text-tertiary)' }}
+                >
+                  {entity.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section C: Differentiators                                          */}
+      {/* Section D: Infor Protocols                                          */}
+      {/* ------------------------------------------------------------------ */}
+      <section
+        aria-labelledby="infor-heading"
+        className="py-24 lg:py-28"
+        style={{ backgroundColor: 'var(--color-surface)' }}
+      >
+        <div className="container-site">
+          <h2
+            id="infor-heading"
+            className="mb-4 text-center text-3xl lg:text-4xl font-semibold"
+            style={{ color: 'var(--color-text-primary)' }}
+          >
+            Infor Connectivity
+          </h2>
+          <p
+            className="text-lg m-0 mb-16 text-center max-w-xl mx-auto"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            Four protocols cover the full Infor product family.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            {[
+              { name: 'ION API Gateway', description: 'OAuth2 REST for CloudSuite Industrial and Lawson.' },
+              { name: 'M3 MI Programs', description: 'Native M3 API protocol for transactions and data.' },
+              { name: 'IDO REST', description: 'SyteLine/CSI object model via RESTful interface.' },
+              { name: 'Landmark REST', description: 'Lawson-native API for HR, finance, and supply chain.' },
+            ].map((protocol) => (
+              <div
+                key={protocol.name}
+                className="text-center px-5 py-6 rounded-2xl border"
+                style={{ borderColor: 'var(--color-border)' }}
+              >
+                <p
+                  className="text-base font-semibold m-0 mb-2"
+                  style={{ color: 'var(--color-text-primary)' }}
+                >
+                  {protocol.name}
+                </p>
+                <p
+                  className="text-sm m-0"
+                  style={{
+                    color: 'var(--color-text-secondary)',
+                    lineHeight: 'var(--leading-body)',
+                  }}
+                >
+                  {protocol.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Section E: Differentiators                                          */}
       {/* ------------------------------------------------------------------ */}
       <section
         aria-labelledby="differentiators-heading"
         className="py-24 lg:py-28"
-        style={{ backgroundColor: 'var(--color-surface)' }}
       >
         <div className="container-site">
           <h2
@@ -232,15 +306,44 @@ export default function PlatformPage() {
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section D: Security overview                                        */}
+      {/* Section F: 4-Tier Security                                          */}
       {/* ------------------------------------------------------------------ */}
       <section
         aria-labelledby="security-heading"
         className="py-24 lg:py-28"
+        style={{ backgroundColor: 'var(--color-surface)' }}
       >
         <div className="container-site">
           <h2
             id="security-heading"
+            className="mb-4 text-center text-3xl lg:text-4xl font-semibold"
+            style={{ color: 'var(--color-text-primary)' }}
+          >
+            4-Tier Security Model
+          </h2>
+          <p
+            className="text-lg m-0 mb-16 text-center max-w-xl mx-auto"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            Every operation is classified by risk level. Controls escalate
+            from auto-approved reads to dual-approval production changes.
+          </p>
+          <div className="max-w-3xl mx-auto">
+            <SecurityTiers />
+          </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Section G: Defense in depth                                         */}
+      {/* ------------------------------------------------------------------ */}
+      <section
+        aria-labelledby="defense-heading"
+        className="py-24 lg:py-28"
+      >
+        <div className="container-site">
+          <h2
+            id="defense-heading"
             className="mb-4 text-center text-3xl lg:text-4xl font-semibold"
             style={{ color: 'var(--color-text-primary)' }}
           >
@@ -251,7 +354,7 @@ export default function PlatformPage() {
             style={{ color: 'var(--color-text-secondary)' }}
           >
             Multi-layer security controls protect every operation before it
-            reaches your SAP system.
+            reaches your ERP system.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
             {securityFeatures.map((feature) => (
@@ -283,7 +386,7 @@ export default function PlatformPage() {
       </section>
 
       {/* ------------------------------------------------------------------ */}
-      {/* Section E: Tech stack                                               */}
+      {/* Section H: Tech stack                                               */}
       {/* ------------------------------------------------------------------ */}
       <section
         aria-labelledby="tech-heading"
@@ -298,7 +401,7 @@ export default function PlatformPage() {
           >
             Technology stack
           </h2>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {techStack.map((tech) => (
               <Card key={tech.name}>
                 <h3
