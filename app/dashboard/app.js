@@ -4,7 +4,7 @@
  * Hash-based routing, lazy page loading, global error handling, toast notifications.
  */
 
-/* global ApiClient, OverviewPage, MigrationPage, ProcessMiningPage */
+/* global ApiClient, OverviewPage, ExtractionPage, MigrationPage, ProcessMiningPage */
 
 const DashboardApp = {
   api: new ApiClient(),
@@ -13,6 +13,7 @@ const DashboardApp = {
 
   pages: {
     overview: OverviewPage,
+    extraction: ExtractionPage,
     migration: MigrationPage,
     'process-mining': ProcessMiningPage,
   },

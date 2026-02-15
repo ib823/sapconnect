@@ -15,9 +15,9 @@ describe('SafetyGates', () => {
   // ─────────────────────────────────────────────────────────────────────────
 
   describe('gate registration', () => {
-    it('should register all 6 built-in gates', () => {
+    it('should register all 7 built-in gates', () => {
       const status = gates.getGateStatus();
-      expect(status).toHaveLength(6);
+      expect(status).toHaveLength(7);
       const names = status.map(g => g.name);
       expect(names).toContain('syntax-check');
       expect(names).toContain('atc-check');
@@ -25,6 +25,7 @@ describe('SafetyGates', () => {
       expect(names).toContain('transport-required');
       expect(names).toContain('human-approval');
       expect(names).toContain('unit-test-coverage');
+      expect(names).toContain('live-mode-audit');
     });
 
     it('should register custom gates', () => {
@@ -32,7 +33,7 @@ describe('SafetyGates', () => {
         status: 'passed', message: 'OK', details: {},
       }), { priority: 100 });
       const status = gates.getGateStatus();
-      expect(status).toHaveLength(7);
+      expect(status).toHaveLength(8);
       expect(status.find(g => g.name === 'custom-gate')).toBeDefined();
     });
 
@@ -93,7 +94,7 @@ describe('SafetyGates', () => {
     it('should create audit trail on validation', async () => {
       const artifact = { type: 'program', name: 'Z_AUDIT_TEST', transport: 'DEVK900001' };
       await gates.validateArtifact(artifact);
-      const log = gates.getAuditLog();
+      const log = gates.getAuditLog({ artifactName: 'Z_AUDIT_TEST' });
       expect(log.length).toBeGreaterThan(0);
       expect(log[0].artifactName).toBe('Z_AUDIT_TEST');
     });

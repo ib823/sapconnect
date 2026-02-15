@@ -210,6 +210,117 @@ class DependencyGraph {
       circularDependencies: this.detectCircularDependencies(),
     };
   }
+
+  // ── Selective Migration ──────────────────────────────────────
+
+  /**
+   * Select a subset of objects and resolve all required dependencies.
+   * @param {string[]} selectedIds — Objects the user wants to migrate
+   * @returns {string[]} — Full set including transitive dependencies, in execution order
+   */
+  selectSubset(selectedIds) {
+    const required = new Set();
+
+    const collectDeps = (id) => {
+      if (required.has(id)) return;
+      required.add(id);
+      for (const dep of this.getDependencies(id)) {
+        collectDeps(dep);
+      }
+    };
+
+    for (const id of selectedIds) {
+      collectDeps(id);
+    }
+
+    const allRequired = Array.from(required);
+    return this.getExecutionOrder(allRequired);
+  }
+
+  /**
+   * Select all objects belonging to a module.
+   * Module is inferred from object ID prefix or provided module map.
+   * @param {string} moduleCode — e.g. 'FI', 'MM', 'SD'
+   * @param {object} [moduleMap] — { objectId: moduleCode } mapping
+   * @returns {string[]} — Full set including cross-module dependencies, in order
+   */
+  selectModule(moduleCode, moduleMap = {}) {
+    // Default module mapping from object ID convention
+    const defaultModules = {
+      GL_BALANCE: 'FI', GL_ACCOUNT_MASTER: 'FI', FI_CONFIG: 'FI',
+      CUSTOMER_OPEN_ITEM: 'FI', VENDOR_OPEN_ITEM: 'FI',
+      COST_CENTER: 'CO', COST_ELEMENT: 'CO', PROFIT_CENTER: 'CO',
+      PROFIT_SEGMENT: 'CO', CO_CONFIG: 'CO', INTERNAL_ORDER: 'CO',
+      WBS_ELEMENT: 'PS',
+      MATERIAL_MASTER: 'MM', PURCHASE_ORDER: 'MM', BATCH_MASTER: 'MM',
+      SOURCE_LIST: 'MM', MM_CONFIG: 'MM', PURCHASE_CONTRACT: 'MM',
+      SCHEDULING_AGREEMENT: 'MM',
+      SALES_ORDER: 'SD', PRICING_CONDITION: 'SD', SD_CONFIG: 'SD',
+      FIXED_ASSET: 'AA', ASSET_ACQUISITION: 'AA',
+      BUSINESS_PARTNER: 'BP', BANK_MASTER: 'BP',
+      EMPLOYEE_MASTER: 'HR',
+      EQUIPMENT_MASTER: 'PM', FUNCTIONAL_LOCATION: 'PM',
+      WORK_CENTER: 'PP', MAINTENANCE_ORDER: 'PM',
+      PRODUCTION_ORDER: 'PP', BOM_ROUTING: 'PP', INSPECTION_PLAN: 'QM',
+      WAREHOUSE_STRUCTURE: 'WM',
+      RFC_DESTINATION: 'BASIS', IDOC_CONFIG: 'BASIS',
+      WEB_SERVICE: 'BASIS', BATCH_JOB: 'BASIS',
+      TRANSPORT_ROUTE: 'BASIS', BW_EXTRACTOR: 'BW',
+      TRADE_COMPLIANCE: 'GTS',
+    };
+
+    const effectiveMap = { ...defaultModules, ...moduleMap };
+    const moduleIds = Object.entries(effectiveMap)
+      .filter(([, mod]) => mod === moduleCode)
+      .map(([id]) => id)
+      .filter(id => id in this.dependencies);
+
+    return this.selectSubset(moduleIds);
+  }
+
+  /**
+   * Impact analysis: what objects would be affected if we skip this object?
+   * @param {string} objectId
+   * @returns {string[]} — All objects that depend (transitively) on objectId
+   */
+  getImpact(objectId) {
+    const impacted = new Set();
+
+    const collectReverse = (id) => {
+      for (const [candidate, deps] of Object.entries(this.dependencies)) {
+        if (deps.includes(id) && !impacted.has(candidate)) {
+          impacted.add(candidate);
+          collectReverse(candidate);
+        }
+      }
+    };
+
+    collectReverse(objectId);
+    return Array.from(impacted);
+  }
+
+  /**
+   * Get statistics about the dependency graph.
+   * @returns {object}
+   */
+  getStats() {
+    const ids = Object.keys(this.dependencies);
+    const edgeCount = Object.values(this.dependencies)
+      .reduce((sum, deps) => sum + deps.length, 0);
+
+    const roots = ids.filter(id => this.dependencies[id].length === 0);
+    const leaves = ids.filter(id => {
+      return !Object.values(this.dependencies).some(deps => deps.includes(id));
+    });
+
+    return {
+      totalNodes: ids.length,
+      totalEdges: edgeCount,
+      roots,
+      leaves,
+      cycles: this.detectCircularDependencies().length,
+    };
+  }
 }
 
 module.exports = { DependencyGraph, DEPENDENCIES };

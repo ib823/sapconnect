@@ -23,7 +23,7 @@ const { loadConfig, validateConfig } = require('./lib/config');
 const Logger = require('./lib/logger');
 
 // Security
-const { securityHeaders, cors, RateLimiter, AuditLogger, ApiKeyAuth } = require('./lib/security');
+const { securityHeaders, cors, RateLimiter, AuditLogger, ApiKeyAuth, XsuaaAuth } = require('./lib/security');
 
 // Monitoring
 const { HealthCheck, MetricsCollector, RequestContext } = require('./lib/monitoring');
@@ -58,6 +58,9 @@ const { createCloudRouter } = require('./extraction/cloud-api');
 
 // Extraction registry (for platform summary)
 const ExtractorRegistry = require('./extraction/extractor-registry');
+
+// Progress bus (SSE streaming)
+const { ProgressBus } = require('./lib/progress-bus');
 
 // Process mining config (for platform summary)
 const { getAllProcessIds } = require('./extraction/process-mining/sap-table-config');
@@ -102,9 +105,18 @@ function createApp(configOverrides = {}) {
   const auditLogger = new AuditLogger({ store: 'memory' });
   app.use(auditLogger.middleware());
 
-  // ── API Key Auth ───────────────────────────────────────────
-  const apiKeyAuth = new ApiKeyAuth({ apiKey: config.apiKey });
-  app.use(apiKeyAuth.middleware());
+  // ── Authentication ───────────────────────────────────────────
+  const authStrategy = process.env.AUTH_STRATEGY || config.authStrategy || 'apikey';
+  let apiKeyAuth = null;
+  if (authStrategy === 'xsuaa') {
+    const xsuaaAuth = new XsuaaAuth();
+    app.use(xsuaaAuth.middleware());
+    log.info('Authentication: XSUAA (SAP BTP)');
+  } else {
+    apiKeyAuth = new ApiKeyAuth({ apiKey: config.apiKey });
+    app.use(apiKeyAuth.middleware());
+    log.info(`Authentication: API Key (${apiKeyAuth.isEnabled() ? 'enabled' : 'dev mode'})`);
+  }
 
   // ── Monitoring middleware ──────────────────────────────────
   const requestContext = new RequestContext();
@@ -224,6 +236,26 @@ function createApp(configOverrides = {}) {
     });
   });
 
+  // ── Progress Bus (SSE) ────────────────────────────────────
+  const progressBus = new ProgressBus();
+  forensicState.progressBus = progressBus;
+
+  // SSE stream endpoint
+  app.get('/api/events', (req, res) => {
+    const replayCount = req.query.replay ? parseInt(req.query.replay, 10) : 20;
+    progressBus.connectSSE(res, { replayCount });
+  });
+
+  // Event history (REST fallback for non-SSE clients)
+  app.get('/api/events/history', (req, res) => {
+    const count = req.query.count ? parseInt(req.query.count, 10) : 50;
+    const type = req.query.type || null;
+    res.json({
+      events: progressBus.getHistory(count, type),
+      clients: progressBus.clientCount,
+    });
+  });
+
   // ── Info endpoint ──────────────────────────────────────────
   app.get('/api/info', (_req, res) => {
     res.json({
@@ -255,6 +287,7 @@ function createApp(configOverrides = {}) {
   app._signavio = true;
   app._testing = true;
   app._cloud = true;
+  app._progressBus = progressBus;
 
   return app;
 }

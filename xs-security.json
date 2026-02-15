@@ -1,0 +1,52 @@
+{
+  "xsappname": "sapconnect",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Read",
+      "description": "Read access to SAP Connect APIs"
+    },
+    {
+      "name": "$XSAPPNAME.Write",
+      "description": "Write access to SAP Connect APIs (migration, extraction)"
+    },
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Administrative access (configuration, user management)"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Viewer",
+      "description": "View migration status and reports",
+      "scope-references": ["$XSAPPNAME.Read"]
+    },
+    {
+      "name": "Operator",
+      "description": "Run migrations and extractions",
+      "scope-references": ["$XSAPPNAME.Read", "$XSAPPNAME.Write"]
+    },
+    {
+      "name": "Administrator",
+      "description": "Full administrative access",
+      "scope-references": ["$XSAPPNAME.Read", "$XSAPPNAME.Write", "$XSAPPNAME.Admin"]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "SAP Connect Viewer",
+      "description": "Read-only access to SAP Connect",
+      "role-template-references": ["$XSAPPNAME.Viewer"]
+    },
+    {
+      "name": "SAP Connect Operator",
+      "description": "Operator access to SAP Connect",
+      "role-template-references": ["$XSAPPNAME.Operator"]
+    },
+    {
+      "name": "SAP Connect Administrator",
+      "description": "Full administrative access to SAP Connect",
+      "role-template-references": ["$XSAPPNAME.Administrator"]
+    }
+  ]
+}

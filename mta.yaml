@@ -1,0 +1,53 @@
+_schema-version: "3.1"
+ID: sapconnect
+version: 1.0.0
+description: SAP Connect — Unified SAP Migration & Implementation Platform
+
+parameters:
+  enable-parallel-deployments: true
+
+modules:
+  # ── Application Server ──────────────────────────────────────
+  - name: sapconnect-srv
+    type: nodejs
+    path: .
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 512M
+      disk-quota: 1024M
+      command: node server.js
+    properties:
+      AUTH_STRATEGY: xsuaa
+      NODE_ENV: production
+    requires:
+      - name: sapconnect-uaa
+      - name: sapconnect-db
+    provides:
+      - name: sapconnect-srv-api
+        properties:
+          srv-url: ${default-url}
+
+  # ── Database Deployer ───────────────────────────────────────
+  - name: sapconnect-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 256M
+    requires:
+      - name: sapconnect-db
+
+resources:
+  # ── XSUAA Service ───────────────────────────────────────────
+  - name: sapconnect-uaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: xs-security.json
+
+  # ── HDI Container (HANA Cloud) ──────────────────────────────
+  - name: sapconnect-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service-plan: hdi-shared
