@@ -3,9 +3,9 @@ import Button from '@/components/ui/Button';
 import ROICalculator from '@/components/sections/ROICalculator';
 
 export const metadata: Metadata = {
-  title: 'Solution | SAP Connect',
+  title: 'Solution | SEN',
   description:
-    'From assessment to cutover, automated. SAP Connect covers every phase of the migration lifecycle in a single platform.',
+    'From assessment to cutover, automated. SEN covers every phase of the migration lifecycle in a single platform.',
 };
 
 const phases = [
@@ -85,7 +85,7 @@ export default function SolutionPage() {
               lineHeight: 'var(--leading-body)',
             }}
           >
-            SAP Connect covers every phase of the migration lifecycle in a
+            SEN covers every phase of the migration lifecycle in a
             single platform.
           </p>
           <Button href="/platform" variant="primary">
@@ -206,7 +206,7 @@ export default function SolutionPage() {
             className="text-3xl lg:text-4xl font-semibold m-0 mb-16 text-center"
             style={{ color: 'var(--color-text-primary)' }}
           >
-            Why organizations choose SAP Connect
+            Why organizations choose SEN
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16 lg:gap-20">
@@ -329,7 +329,7 @@ export default function SolutionPage() {
             Start your migration today
           </h2>
           <p className="text-lg m-0 mb-10 text-white/80">
-            Install SAP Connect, connect your system, and run your first
+            Install SEN, connect your system, and run your first
             assessment in under 10 minutes. No license required.
           </p>
           <Button

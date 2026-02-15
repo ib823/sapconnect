@@ -14,8 +14,8 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | SAP Connect',
-    default: 'SAP Connect',
+    template: '%s | SEN',
+    default: 'SEN',
   },
   description: SITE.description,
 };

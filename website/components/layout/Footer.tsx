@@ -19,7 +19,7 @@ export default function Footer() {
               className="text-sm leading-relaxed m-0"
               style={{ color: 'var(--color-text-secondary)' }}
             >
-              Open-source platform automating the SAP implementation lifecycle
+              Open-source platform automating SAP migrations
               from assessment through cutover.
             </p>
           </div>
@@ -64,13 +64,13 @@ export default function Footer() {
             className="text-xs m-0"
             style={{ color: 'var(--color-text-tertiary)' }}
           >
-            &copy; {year} SAP Connect. Apache 2.0 Licensed.
+            &copy; {year} SEN. Apache 2.0 Licensed.
           </p>
           <p
             className="text-xs m-0 text-center sm:text-right"
             style={{ color: 'var(--color-text-tertiary)' }}
           >
-            SAP Connect is an independent project. Not affiliated with SAP SE.
+            SEN is an independent project. Not affiliated with SAP SE.
           </p>
         </div>
       </div>

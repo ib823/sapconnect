@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import Card from '@/components/ui/Card';
 
 export const metadata: Metadata = {
-  title: 'About | SAP Connect',
+  title: 'About | SEN',
   description:
-    'About SAP Connect: why it exists, open source philosophy, and the Apache 2.0 license.',
+    'About SEN: why it exists, open source philosophy, and the Apache 2.0 license.',
 };
 
 export default function AboutPage() {
@@ -20,7 +20,7 @@ export default function AboutPage() {
               color: 'var(--color-text-primary)',
             }}
           >
-            About SAP Connect
+            About SEN
           </h1>
 
           {/* Origin story */}
@@ -30,7 +30,7 @@ export default function AboutPage() {
               className="mb-4 text-2xl font-semibold"
               style={{ color: 'var(--color-text-primary)' }}
             >
-              Why SAP Connect exists
+              Why SEN exists
             </h2>
             <p
               className="mb-6 text-base leading-relaxed"
@@ -45,7 +45,7 @@ export default function AboutPage() {
               className="mb-6 text-base leading-relaxed"
               style={{ color: 'var(--color-text-secondary)' }}
             >
-              SAP Connect automates these tasks. Instead of spreadsheets and
+              SEN automates these tasks. Instead of spreadsheets and
               consultant guesswork, it provides a programmatic framework that
               scans, maps, transforms, loads, validates, and tests -- all through
               code that can be version-controlled and reproduced.
@@ -101,7 +101,7 @@ export default function AboutPage() {
               className="mb-6 text-base leading-relaxed"
               style={{ color: 'var(--color-text-secondary)' }}
             >
-              Built on Node.js, SAP Connect connects through three protocols:
+              Built on Node.js, SEN connects through three protocols:
               RFC for direct ABAP function calls, OData V2/V4 for service-based
               access, and ADT REST for development tool operations.
             </p>
@@ -129,7 +129,7 @@ export default function AboutPage() {
                 className="m-0 text-base leading-relaxed"
                 style={{ color: 'var(--color-text-secondary)' }}
               >
-                SAP Connect is released under the{' '}
+                SEN is released under the{' '}
                 <a
                   href="https://www.apache.org/licenses/LICENSE-2.0"
                   className="font-medium underline underline-offset-4"
@@ -140,7 +140,7 @@ export default function AboutPage() {
                   Apache License 2.0
                 </a>
                 . Free to use, modify, and distribute for any purpose, including
-                commercial use. SAP Connect is an independent open source project
+                commercial use. SEN is an independent open source project
                 and is not affiliated with SAP SE.
               </p>
             </Card>

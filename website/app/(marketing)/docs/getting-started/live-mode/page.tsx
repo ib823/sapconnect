@@ -3,9 +3,9 @@ import Card from '@/components/ui/Card';
 import { CodeBlock } from '@/components/ui/CodeBlock';
 
 export const metadata: Metadata = {
-  title: 'Getting Started (Live Mode) | SAP Connect',
+  title: 'Getting Started (Live Mode) | SEN',
   description:
-    'Connect SAP Connect to a real SAP system via RFC, OData, or ADT. Configure credentials, connection pooling, and run your first live extraction.',
+    'Connect SEN to a real SAP system via RFC, OData, or ADT. Configure credentials, connection pooling, and run your first live extraction.',
 };
 
 export default function LiveModePage() {
@@ -43,7 +43,7 @@ export default function LiveModePage() {
             Getting started with Live Mode
           </h1>
           <p className="mb-10 text-[var(--font-size-body-l)] leading-relaxed text-[var(--color-text-secondary)]">
-            Live mode connects SAP Connect to a real SAP system. You can use
+            Live mode connects SEN to a real SAP system. You can use
             RFC for on-premise ABAP systems, OData for any SAP system, or ADT
             REST for development operations.
           </p>
@@ -234,7 +234,7 @@ export SAP_PASSWORD="YOUR_SAP_PASSWORD"
           <Card>
             <p className="m-0 text-[var(--font-size-body-m)] leading-relaxed text-[var(--color-text-secondary)]">
               <strong className="text-[var(--color-text-primary)]">RFC SDK is optional.</strong>{' '}
-              If node-rfc is not installed, SAP Connect automatically falls back
+              If node-rfc is not installed, SEN automatically falls back
               to OData and ADT REST APIs. This is the recommended approach for
               SAP Cloud environments where RFC is not available.
             </p>

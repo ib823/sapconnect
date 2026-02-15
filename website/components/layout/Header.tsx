@@ -49,7 +49,7 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center w-9 h-9 rounded-lg transition-colors hover:bg-[var(--color-surface)]"
-            aria-label="SAP Connect on GitHub"
+            aria-label="SEN on GitHub"
           >
             <svg
               width="20"

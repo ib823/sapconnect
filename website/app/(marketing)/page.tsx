@@ -125,7 +125,7 @@ export default function HomePage() {
                 className="text-2xl font-semibold m-0 mb-8"
                 style={{ color: 'var(--color-text-primary)' }}
               >
-                Without SAP Connect
+                Without SEN
               </h2>
               <div className="flex flex-col gap-6">
                 {[
@@ -154,7 +154,7 @@ export default function HomePage() {
                 className="text-2xl font-semibold m-0 mb-8"
                 style={{ color: 'var(--color-text-primary)' }}
               >
-                With SAP Connect
+                With SEN
               </h2>
               <div className="flex flex-col gap-6">
                 {[
@@ -199,7 +199,7 @@ export default function HomePage() {
             style={{ color: 'var(--color-text-secondary)' }}
           >
             Whether you own the budget, the architecture, or the delivery
-            plan, SAP Connect gives you the data you need.
+            plan, SEN gives you the data you need.
           </p>
           <RoleTabs />
         </div>
@@ -222,7 +222,7 @@ export default function HomePage() {
             Start your migration today
           </h2>
           <p className="text-lg m-0 mb-10 text-white/80">
-            Install SAP Connect, connect your system, and run your first
+            Install SEN, connect your system, and run your first
             assessment in under 10 minutes. No license required.
           </p>
           <Button

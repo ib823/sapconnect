@@ -3,9 +3,9 @@ import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 
 export const metadata: Metadata = {
-  title: 'Pricing | SAP Connect',
+  title: 'Pricing | SEN',
   description:
-    'SAP Connect is free and open source under the Apache 2.0 license. Enterprise support is available for organizations that need dedicated assistance.',
+    'SEN is free and open source under the Apache 2.0 license. Enterprise support is available for organizations that need dedicated assistance.',
 };
 
 const openSourceFeatures = [
@@ -42,7 +42,7 @@ export default function PricingPage() {
             Free and open source
           </h1>
           <p className="text-[var(--font-size-body-l)] leading-relaxed text-[var(--color-text-secondary)]">
-            SAP Connect is licensed under Apache 2.0. You can use it, modify
+            SEN is licensed under Apache 2.0. You can use it, modify
             it, and distribute it freely. The entire platform is available at
             no cost, with no feature gates, no usage limits, and no telemetry.
           </p>
@@ -152,7 +152,7 @@ export default function PricingPage() {
               Apache 2.0 License
             </h3>
             <p className="m-0 text-[var(--font-size-body-m)] leading-relaxed text-[var(--color-text-secondary)]">
-              The Apache 2.0 license allows you to use SAP Connect for any
+              The Apache 2.0 license allows you to use SEN for any
               purpose, including commercial use, without paying license fees.
               You can modify the source code, create derivative works, and
               distribute them under your own terms. The license includes an

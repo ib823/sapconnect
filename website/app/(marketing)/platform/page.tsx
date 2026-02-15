@@ -3,7 +3,7 @@ import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 
 export const metadata: Metadata = {
-  title: 'Platform | SAP Connect',
+  title: 'Platform | SEN',
   description:
     'Open source. Self-hosted. Enterprise grade. Apache 2.0 licensed, deploy anywhere, full test coverage.',
 };

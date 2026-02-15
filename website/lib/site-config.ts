@@ -1,5 +1,5 @@
 export const SITE = {
-  name: 'SAP Connect',
+  name: 'SEN',
   tagline: 'Enterprise SAP Migration Platform',
   description: 'Open-source platform replacing 6-month SAP migration timelines with automated, code-driven execution.',
   repo: 'https://github.com/ib823/sapconnect',

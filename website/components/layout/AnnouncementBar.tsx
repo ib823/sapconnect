@@ -17,7 +17,7 @@ export default function AnnouncementBar() {
     >
       <p className="m-0 text-center text-xs sm:text-sm">
         <span className="font-medium">4,591 tests passing</span>
-        {' -- SAP Connect is production-ready. '}
+        {' -- SEN is production-ready. '}
         <a
           href="https://github.com/ib823/sapconnect"
           target="_blank"

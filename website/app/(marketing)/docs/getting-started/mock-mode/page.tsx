@@ -3,9 +3,9 @@ import Card from '@/components/ui/Card';
 import { CodeBlock } from '@/components/ui/CodeBlock';
 
 export const metadata: Metadata = {
-  title: 'Getting Started (Mock Mode) | SAP Connect',
+  title: 'Getting Started (Mock Mode) | SEN',
   description:
-    'Run SAP Connect locally with simulated data. No SAP system required. Explore extraction, migration, and process mining in minutes.',
+    'Run SEN locally with simulated data. No SAP system required. Explore extraction, migration, and process mining in minutes.',
 };
 
 export default function MockModePage() {
@@ -43,7 +43,7 @@ export default function MockModePage() {
             Getting started with Mock Mode
           </h1>
           <p className="mb-10 text-[var(--font-size-body-l)] leading-relaxed text-[var(--color-text-secondary)]">
-            Mock mode lets you explore every SAP Connect capability using
+            Mock mode lets you explore every SEN capability using
             simulated data. No SAP system, no RFC SDK, no credentials required.
             This is the fastest way to evaluate the platform.
           </p>

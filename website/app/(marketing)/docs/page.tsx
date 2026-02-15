@@ -2,22 +2,22 @@ import type { Metadata } from 'next';
 import Card from '@/components/ui/Card';
 
 export const metadata: Metadata = {
-  title: 'Documentation | SAP Connect',
+  title: 'Documentation | SEN',
   description:
-    'SAP Connect documentation: getting started guides, architecture overview, integration patterns, Clean Core guide, API reference, and demo scripts.',
+    'SEN documentation: getting started guides, architecture overview, integration patterns, Clean Core guide, API reference, and demo scripts.',
 };
 
 const docSections = [
   {
     title: 'Getting Started (Mock Mode)',
     description:
-      'Run SAP Connect locally with simulated data. No SAP system required. Explore all extraction, migration, and process mining capabilities in minutes.',
+      'Run SEN locally with simulated data. No SAP system required. Explore all extraction, migration, and process mining capabilities in minutes.',
     href: '/docs/getting-started/mock-mode',
   },
   {
     title: 'Getting Started (Live Mode)',
     description:
-      'Connect SAP Connect to a real SAP system via RFC, OData, or ADT. Configure credentials, set up connection pooling, and run your first live extraction.',
+      'Connect SEN to a real SAP system via RFC, OData, or ADT. Configure credentials, set up connection pooling, and run your first live extraction.',
     href: '/docs/getting-started/live-mode',
   },
   {
@@ -30,7 +30,7 @@ const docSections = [
   {
     title: 'Integration Patterns',
     description:
-      'Learn how SAP Connect integrates via RFC (direct, load-balanced, SAP Router), OData (V2 and V4 with CSRF), and ADT REST APIs.',
+      'Learn how SEN integrates via RFC (direct, load-balanced, SAP Router), OData (V2 and V4 with CSRF), and ADT REST APIs.',
     href: 'https://github.com/ib823/sapconnect/blob/main/README.md#connectivity',
     external: true,
   },
@@ -68,7 +68,7 @@ export default function DocsPage() {
             Documentation
           </h1>
           <p className="text-[var(--font-size-body-l)] leading-relaxed text-[var(--color-text-secondary)]">
-            Everything you need to evaluate, install, and operate SAP Connect.
+            Everything you need to evaluate, install, and operate SEN.
             Start with mock mode to explore without an SAP system, then connect
             live when you are ready.
           </p>

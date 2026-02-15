@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Card from '@/components/ui/Card';
 
 export const metadata: Metadata = {
-  title: 'Security | SAP Connect',
+  title: 'Security | SEN',
   description:
     'Enterprise-grade security for SAP operations: input validation, audit logging, CSRF protection, transport safety, API key authentication, and XSUAA integration.',
 };
