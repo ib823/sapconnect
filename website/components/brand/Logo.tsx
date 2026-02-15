@@ -51,11 +51,11 @@ function SenMark({ size, showText }: { size: number; showText?: boolean }) {
     );
   }
 
-  // Icon only: ⋈ mark (horizontal)
+  // Icon only: hourglass (⋈ rotated 90°) — same symbol that replaces E in wordmark
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M3 4L16 16L3 28Z" stroke={c} strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
-      <path d="M29 4L16 16L29 28Z" stroke={c} strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
+      <path d="M6 4L16 16L26 4Z" stroke={c} strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
+      <path d="M6 28L16 16L26 28Z" stroke={c} strokeWidth="2.5" strokeLinejoin="round" fill="none"/>
     </svg>
   );
 }

@@ -15,9 +15,17 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: {
     template: '%s | SEN',
-    default: 'SEN',
+    default: 'SEN — Universal ERP Migration Platform',
   },
   description: SITE.description,
+  icons: {
+    icon: '/icon.svg',
+    apple: '/apple-icon.png',
+  },
+  openGraph: {
+    siteName: 'SEN',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
