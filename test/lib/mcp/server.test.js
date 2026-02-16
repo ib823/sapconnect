@@ -20,7 +20,7 @@ describe('McpServer', () => {
         id: 1, method: 'initialize', params: { clientInfo: { name: 'test' } },
       });
       expect(result.result.protocolVersion).toBeDefined();
-      expect(result.result.serverInfo.name).toBe('sapconnect-mcp');
+      expect(result.result.serverInfo.name).toBe('sen-mcp-server');
     });
 
     it('should route tools/list method', async () => {
@@ -91,7 +91,7 @@ describe('McpServer', () => {
       const result = await server._handleInitialize({ clientInfo: { name: 'test-client' } });
       expect(result.capabilities.tools).toBeDefined();
       expect(result.capabilities.resources).toBeDefined();
-      expect(result.serverInfo.name).toBe('sapconnect-mcp');
+      expect(result.serverInfo.name).toBe('sen-mcp-server');
       expect(result.serverInfo.version).toBe('1.0.0');
       expect(result.protocolVersion).toBe('2024-11-05');
     });

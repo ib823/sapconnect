@@ -1,106 +1,127 @@
-SAP Connect
-Copyright 2024-2026 SAP Connect Contributors
+================================================================================
+SEN — SAP Enterprise Navigator
+Copyright 2024-2026 SEN Contributors
+================================================================================
 
 This product is licensed under the Apache License, Version 2.0.
 See the LICENSE file for the full license text.
 
 ================================================================================
-ORIGINAL WORK
+IMPORTANT: SAP LICENSING REQUIREMENTS
 ================================================================================
 
-SAP Connect is an original work. All platform architecture, migration engine
-logic, forensic extraction framework, process mining algorithms, greenfield
-automation, AI orchestration, MCP server implementation, cloud module
-integrations, testing automation engine, and associated test suites are original
-creations.
+This software is an independent, open-source tool that connects to SAP systems
+via SAP's publicly documented and released APIs (OData V2, OData V4, RFC, ADT
+REST). This software is NOT an SAP product, is NOT affiliated with SAP SE, and
+is NOT endorsed or certified by SAP SE unless explicitly stated otherwise.
 
-================================================================================
-THIRD-PARTY OPEN SOURCE COMPONENTS
-================================================================================
+MANDATORY LICENSING REQUIREMENT: Users of this software MUST hold valid SAP
+software licenses, including appropriate Named User licenses, for ALL SAP
+systems accessed through this tool. This requirement applies to every individual
+who uses this software to connect to, read from, or write to any SAP system.
 
-This software incorporates or depends on open source components, each governed
-by their own respective licenses. Key dependencies include:
+This software does NOT:
+  - Grant, imply, or substitute for any SAP software license
+  - Modify, copy, reverse-engineer, or redistribute any SAP proprietary software
+  - Provide access to SAP systems without proper authentication and authorization
+  - Bypass, circumvent, or weaken any SAP security mechanism
+  - Create indirect access for unlicensed users (all users must be SAP Named Users)
 
-  - SAP Cloud Application Programming Model (@sap/cds) — SAP Developer License
-    https://cap.cloud.sap
-  - SAP XSSEC (@sap/xssec) — SAP Developer License
-  - Express.js (express) — MIT License
-    Copyright (c) TJ Holowaychuk and contributors
-  - Passport.js (passport) — MIT License
-    Copyright (c) Jared Hanson
-  - Vitest (vitest) — MIT License
-    Copyright (c) Anthony Fu and Vitest contributors
-  - ESLint (eslint) — MIT License
-    Copyright OpenJS Foundation and contributors
-  - Prettier (prettier) — MIT License
-    Copyright (c) James Long and contributors
-  - SQLite for CAP (@cap-js/sqlite) — Apache License 2.0
-  - PostgreSQL for CAP (@cap-js/postgres) — Apache License 2.0
+This software DOES:
+  - Call SAP's publicly documented APIs using standard HTTP/RFC protocols
+  - Require explicit authentication credentials for every SAP connection
+  - Enforce human confirmation (safety gates) before any write operation
+  - Maintain complete audit trails of all operations performed
+  - Operate exclusively on behalf of authenticated, licensed SAP Named Users
 
-Optional dependencies (not required for core operation):
-  - node-rfc — Apache License 2.0
-    Copyright (c) SAP SE
-  - abap-adt-api — MIT License
-
-A complete listing of all dependency licenses can be generated with:
-  npx license-checker --summary
+Users are solely responsible for ensuring their use of this software complies
+with their SAP license agreements, including but not limited to Named User
+requirements, indirect/digital access terms, and any usage restrictions
+specific to their SAP contract.
 
 ================================================================================
 TRADEMARK NOTICES
 ================================================================================
 
-This software is an independent, community-driven tool. It is NOT an official
-SAP product and is not endorsed by, affiliated with, or sponsored by SAP SE
-or any of its subsidiaries.
+SAP, SAP S/4HANA, SAP HANA, SAP Business Technology Platform (BTP), SAP Fiori,
+SAP Cloud ALM, RISE with SAP, and SAP Joule are trademarks or registered
+trademarks of SAP SE in Germany and in other countries.
 
-The following trademarks are the property of their respective owners and are
-used in this software solely for identification and interoperability purposes:
+SAP Signavio is a trademark of Signavio GmbH, an SAP company.
+SAP SuccessFactors is a trademark of SuccessFactors, Inc., an SAP company.
+SAP Ariba is a trademark of Ariba, Inc., an SAP company.
+SAP Concur is a trademark of Concur Technologies, Inc., an SAP company.
+SAP Analytics Cloud (SAC) is a trademark of SAP SE.
 
-  SAP, SAP S/4HANA, SAP BTP (Business Technology Platform), SAP CAP (Cloud
-  Application Programming Model), SAP Fiori, SAP Cloud ALM, ABAP, SAP GUI,
-  SAP NetWeaver, and SAP ERP are trademarks or registered trademarks of
-  SAP SE or its affiliates in Germany and other countries.
+ABAP, BAPI, IDoc, RFC (Remote Function Call), BPMN, OData, Fiori Elements,
+CDS (Core Data Services), BTP, XSUAA, Cloud Foundry, and other SAP-specific
+technical terms are trademarks or proprietary designations of SAP SE.
 
-  SAP Signavio is a trademark of Signavio GmbH, an SAP company.
-
-  SAP SuccessFactors is a trademark of SuccessFactors, Inc., an SAP company.
-
-  SAP Ariba is a trademark of Ariba, Inc., an SAP company.
-
-  SAP Concur is a trademark of Concur Technologies, Inc., an SAP company.
-
-  SAP Analytics Cloud (SAC) is a trademark of SAP SE.
-
-  BAPI, IDoc, RFC (Remote Function Call), BPMN, and other SAP-specific
-  technical terms are trademarks or proprietary designations of SAP SE.
-
-  Node.js is a trademark of the OpenJS Foundation.
-
-  Docker is a trademark of Docker, Inc.
-
-  GitHub is a trademark of GitHub, Inc.
-
-  PostgreSQL is a trademark of the PostgreSQL Community Association of Canada.
+Node.js is a trademark of the OpenJS Foundation.
+Docker is a trademark of Docker, Inc.
+GitHub is a trademark of GitHub, Inc.
+PostgreSQL is a trademark of the PostgreSQL Community Association of Canada.
 
 All other trademarks mentioned in this software are the property of their
-respective owners.
+respective owners. Use of these trademarks does not imply endorsement.
+
+The use of SAP trademarks in this software is solely for the purpose of
+identifying compatibility and interoperability, constituting nominative fair
+use under applicable trademark law.
 
 ================================================================================
-DISCLAIMER
+INDEPENDENT DEVELOPMENT NOTICE
 ================================================================================
 
-THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. THE AUTHOR
-MAKES NO REPRESENTATIONS OR WARRANTIES REGARDING THE ACCURACY, COMPLETENESS,
-OR SUITABILITY OF THIS SOFTWARE FOR ANY PARTICULAR PURPOSE.
+All assessment rules, transformation logic, field mappings, and migration
+patterns in this software were independently developed by the SEN Contributors.
 
-This software interacts with SAP systems via publicly documented APIs (OData,
-RFC, ADT REST). Users are solely responsible for ensuring compliance with their
-own SAP licensing agreements, data protection regulations, and organizational
-policies when using this software with SAP systems.
+Where rules reference SAP Simplification Items, SAP Notes, or public SAP
+documentation, these references are to publicly available materials provided
+by SAP SE for the benefit of its customer and partner ecosystem. No proprietary
+SAP source code, confidential documentation, or trade secrets were used in the
+development of this software.
 
-The inclusion of API client implementations for SAP cloud products (SuccessFactors,
-Ariba, Concur, Analytics Cloud, Signavio) does not imply any license to those
-products. Users must hold valid licenses from SAP SE to access those services.
+The assessment rules implement pattern-matching logic based on publicly
+documented SAP system behaviors. They are functional works of authorship, not
+copies or derivatives of SAP materials.
+
+================================================================================
+API USAGE DECLARATION
+================================================================================
+
+This software interacts with SAP systems exclusively through:
+
+1. OData V2/V4 APIs — SAP's published RESTful data protocol
+2. RFC (Remote Function Call) — SAP's published remote procedure call protocol
+3. ADT REST APIs — SAP's published ABAP Development Tools HTTP interface
+4. OAuth 2.0 — Standard authentication protocol for SAP cloud services
+
+All APIs used are publicly documented on SAP's API Business Hub
+(api.sap.com) or in official SAP documentation. This software does not
+access any undocumented, internal, or restricted SAP interfaces.
+
+For SAP S/4HANA Public Cloud connections, this software exclusively uses
+SAP-released APIs consistent with SAP's Clean Core strategy.
+
+================================================================================
+DISCLAIMER OF WARRANTY
+================================================================================
+
+THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING
+FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+
+This software interacts with enterprise SAP systems that may contain
+business-critical data. Users accept full responsibility for:
+  - Validating all operations in non-production environments before production use
+  - Maintaining proper backups before executing write operations
+  - Reviewing and approving all write operations through the safety gate mechanism
+  - Ensuring compliance with their organization's change management policies
 
 ================================================================================
 ATTRIBUTION REQUIREMENT
@@ -108,5 +129,4 @@ ATTRIBUTION REQUIREMENT
 
 As required by Section 4(d) of the Apache License 2.0, any redistribution or
 derivative work must include this NOTICE file. Attribution to the original
-authors must be preserved in all copies or substantial portions of the
-software.
+authors must be preserved in all copies or substantial portions of the software.

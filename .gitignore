@@ -14,11 +14,27 @@ out/
 # SAP / runtime
 *.db
 *.sqlite
-default-env.json
-.env
 connection.properties
 .migration-checkpoints/
 .sapconnect-checkpoints/
+
+# SAP credentials — NEVER commit
+.env
+.env.*
+!.env.template
+!.env.example
+!.env.sample
+default-env.json
+!default-env.json.template
+clients/*/credentials*
+clients/*/.env
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
 
 # Logs
 *.log

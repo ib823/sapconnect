@@ -5,8 +5,15 @@
   "engines": {
     "node": ">=20.0.0"
   },
-  "repository": "https://github.com/ib823/sapconnect",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ib823/sapconnect.git"
+  },
   "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ib823/sapconnect/issues"
+  },
+  "homepage": "https://senplatform.com",
   "author": "SEN Contributors",
   "bin": {
     "sen-mcp": "./bin/sen-mcp.js"

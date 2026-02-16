@@ -1,3 +1,5 @@
+// Copyright 2024-2026 SEN Contributors
+// SPDX-License-Identifier: Apache-2.0
 // Stubbed SAP S/4HANA Business Partner API
 // In production, this would be imported via `cds import` from the SAP API Business Hub
 // This stub shows the integration pattern and key entities

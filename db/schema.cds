@@ -1,3 +1,5 @@
+// Copyright 2024-2026 SEN Contributors
+// SPDX-License-Identifier: Apache-2.0
 namespace sapconnect;
 
 using { cuid, managed, sap.common.CodeList } from '@sap/cds/common';

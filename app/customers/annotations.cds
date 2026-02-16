@@ -1,3 +1,5 @@
+// Copyright 2024-2026 SEN Contributors
+// SPDX-License-Identifier: Apache-2.0
 using CustomerService as service from '../../srv/customer-service';
 
 // --- Customers List Report ---

@@ -26,6 +26,12 @@ export const FOOTER_LINKS = {
     { label: 'About', href: '/about' },
     { label: 'GitHub', href: 'https://github.com/ib823/sapconnect' },
   ],
+  Legal: [
+    { label: 'Terms of Use', href: '/legal/terms' },
+    { label: 'Privacy Policy', href: '/legal/privacy' },
+    { label: 'License (Apache 2.0)', href: 'https://github.com/ib823/sapconnect/blob/main/LICENSE' },
+    { label: 'SAP Compliance', href: 'https://github.com/ib823/sapconnect/blob/main/docs/sap-licensing-compliance.md' },
+  ],
 } as const;
 
 export const STATS = {

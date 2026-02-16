@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 # S⋈N
 
 Universal ERP migration platform. Any ERP to SAP S/4HANA.
@@ -237,10 +239,24 @@ npm run docker:build # Build Docker image
 - [API Discovery](discovery/README.md)
 - [AI Agent](agent/README.md)
 
-## License
+## Legal & Compliance
 
-Copyright 2024-2026 SEN Contributors
+### License
 
-Licensed under the [Apache License, Version 2.0](LICENSE). You may use, modify, and distribute this software under the terms of the license. Attribution to the original author must be preserved. See the [NOTICE](NOTICE) file for third-party acknowledgments and trademark notices.
+SEN is licensed under the [Apache License 2.0](LICENSE). See the [NOTICE](NOTICE) file for trademark acknowledgments and compliance requirements.
 
-This is an independent, community-driven project. It is **not** an official SAP product. SAP, S/4HANA, SuccessFactors, Ariba, Concur, Signavio, Analytics Cloud, and all related trademarks are the property of SAP SE.
+### SAP Licensing
+
+**SEN requires all users to hold valid SAP Named User licenses for any SAP system accessed through this tool.** SEN is a client application that calls SAP's published APIs on behalf of authenticated users — it does not grant, substitute, or extend SAP software licenses.
+
+SEN interacts with SAP systems exclusively through publicly documented APIs (OData V2/V4, RFC, ADT REST) — the same interfaces used by SAP GUI, Eclipse ADT, and standard integration middleware. SEN does not modify, copy, or redistribute SAP software.
+
+For detailed compliance guidance, see [SAP Licensing Compliance Guide](docs/sap-licensing-compliance.md).
+
+### Trademarks
+
+SAP, SAP S/4HANA, and other SAP product names are trademarks of SAP SE. SEN is an independent open-source project and is not affiliated with, endorsed by, or certified by SAP SE unless explicitly stated. All trademarks are used under nominative fair use.
+
+### Security
+
+To report security vulnerabilities, see [SECURITY.md](SECURITY.md).
