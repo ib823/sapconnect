@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Card from '@/components/ui/Card';
 
 export const metadata: Metadata = {
-  title: 'Documentation | SEN',
+  title: 'Documentation',
   description:
     'SEN documentation: getting started guides, architecture overview, integration patterns, Clean Core guide, API reference, and demo scripts.',
 };

@@ -21,7 +21,7 @@ type ButtonProps = AsButton | AsAnchor;
 
 const variantStyles: Record<Variant, string> = {
   primary:
-    'bg-[var(--color-brand)] text-white hover:bg-[var(--color-brand-hover)] border border-transparent',
+    'bg-[var(--color-brand)] text-[var(--color-brand-contrast)] hover:bg-[var(--color-brand-hover)] hover:text-[var(--color-brand-contrast)] border border-transparent',
   secondary:
     'bg-transparent text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-[var(--color-brand)] hover:text-[var(--color-brand)]',
 };

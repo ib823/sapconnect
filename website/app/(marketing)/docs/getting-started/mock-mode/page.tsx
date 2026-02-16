@@ -3,7 +3,7 @@ import Card from '@/components/ui/Card';
 import { CodeBlock } from '@/components/ui/CodeBlock';
 
 export const metadata: Metadata = {
-  title: 'Getting Started (Mock Mode) | SEN',
+  title: 'Getting Started (Mock Mode)',
   description:
     'Run SEN locally with simulated data. No SAP system required. Explore extraction, migration, and process mining in minutes.',
 };

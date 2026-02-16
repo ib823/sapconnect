@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 export const metadata = {
-  title: 'Terms of Use | SEN',
+  title: 'Terms of Use',
   description: 'SEN Terms of Use — SAP Enterprise Navigator',
 };
 

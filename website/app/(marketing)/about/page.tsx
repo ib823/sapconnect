@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Card from '@/components/ui/Card';
 
 export const metadata: Metadata = {
-  title: 'About | SEN',
+  title: 'About',
   description:
     'About SEN: universal ERP migration platform, open source philosophy, and the Apache 2.0 license.',
 };

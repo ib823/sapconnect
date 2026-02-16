@@ -5,7 +5,7 @@ import SourceERPFlow from '@/components/marketing/SourceERPFlow';
 import SecurityTiers from '@/components/marketing/SecurityTiers';
 
 export const metadata: Metadata = {
-  title: 'Platform | SEN',
+  title: 'Platform',
   description:
     'Open source. Self-hosted. Enterprise grade. Universal ERP connectivity with N+M canonical architecture.',
 };

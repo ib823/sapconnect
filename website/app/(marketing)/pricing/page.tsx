@@ -3,7 +3,7 @@ import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 
 export const metadata: Metadata = {
-  title: 'Pricing | SEN',
+  title: 'Pricing',
   description:
     'SEN is free and open source under the Apache 2.0 license. Enterprise support is available for organizations that need dedicated assistance.',
 };

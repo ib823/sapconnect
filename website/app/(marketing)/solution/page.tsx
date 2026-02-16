@@ -4,7 +4,7 @@ import FieldMappingDemo from '@/components/marketing/FieldMappingDemo';
 import IndustryGrid from '@/components/marketing/IndustryGrid';
 
 export const metadata: Metadata = {
-  title: 'Solution | SEN',
+  title: 'Solution',
   description:
     'From forensic discovery to validated migration. Three phases, one platform, any source ERP.',
 };

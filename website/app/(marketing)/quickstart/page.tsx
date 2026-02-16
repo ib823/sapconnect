@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button';
 import { SITE } from '@/lib/site-config';
 
 export const metadata: Metadata = {
-  title: 'Quick Start | SEN',
+  title: 'Quick Start',
   description:
     'Get SEN running in 60 seconds. No SAP system required. One-click Codespace, local install, or Docker.',
 };

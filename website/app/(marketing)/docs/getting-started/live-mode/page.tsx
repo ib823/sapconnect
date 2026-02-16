@@ -3,7 +3,7 @@ import Card from '@/components/ui/Card';
 import { CodeBlock } from '@/components/ui/CodeBlock';
 
 export const metadata: Metadata = {
-  title: 'Getting Started (Live Mode) | SEN',
+  title: 'Getting Started (Live Mode)',
   description:
     'Connect SEN to a real SAP system via RFC, OData, or ADT. Configure credentials, connection pooling, and run your first live extraction.',
 };

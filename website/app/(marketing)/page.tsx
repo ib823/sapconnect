@@ -15,8 +15,11 @@ export default function HomePage() {
       {/* ------------------------------------------------------------------ */}
       {/* Section 1: Hero                                                     */}
       {/* ------------------------------------------------------------------ */}
-      <section className="py-32 lg:py-40" style={{ backgroundColor: 'var(--color-bg)' }}>
-        <div className="container-site max-w-3xl text-center">
+      <section
+        className="min-h-[calc(100svh-116px)] py-20 lg:py-24 flex items-center"
+        style={{ backgroundColor: 'var(--color-bg)' }}
+      >
+        <div className="container-site max-w-3xl text-center w-full">
           <h1
             className="text-5xl lg:text-6xl font-semibold tracking-tighter m-0 mb-6"
             style={{
@@ -263,13 +266,13 @@ export default function HomePage() {
       >
         <div className="container-site max-w-3xl">
           <h2
-            className="text-3xl lg:text-4xl font-semibold m-0 mb-4"
+            className="text-3xl lg:text-4xl font-semibold m-0 mb-4 text-center"
             style={{ color: 'var(--color-text-primary)' }}
           >
             Built for every stakeholder
           </h2>
           <p
-            className="text-lg m-0 mb-12"
+            className="text-lg m-0 mb-12 text-center max-w-2xl mx-auto"
             style={{ color: 'var(--color-text-secondary)' }}
           >
             Whether you own the budget, the architecture, or the delivery

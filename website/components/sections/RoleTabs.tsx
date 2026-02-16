@@ -55,7 +55,7 @@ export default function RoleTabs() {
     <div>
       {/* Tab buttons */}
       <div
-        className="flex gap-1 p-1 rounded-xl w-fit mb-8"
+        className="flex flex-wrap justify-center gap-1 p-1 rounded-xl w-full sm:w-fit mb-8 mx-auto"
         role="tablist"
         aria-label="Select audience"
         style={{ backgroundColor: 'var(--color-surface)' }}
@@ -66,9 +66,9 @@ export default function RoleTabs() {
             role="tab"
             aria-selected={i === activeIndex}
             onClick={() => setActiveIndex(i)}
-            className={`px-5 py-2.5 text-sm font-medium rounded-lg border-0 cursor-pointer transition-all ${
+            className={`px-5 py-2.5 text-sm font-medium rounded-lg border-0 cursor-pointer transition-all min-w-[120px] ${
               i === activeIndex
-                ? 'bg-[var(--color-brand)] text-white shadow-sm'
+                ? 'bg-[var(--color-brand)] text-[var(--color-brand-contrast)] shadow-sm'
                 : 'bg-transparent text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
             }`}
           >

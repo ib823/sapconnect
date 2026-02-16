@@ -18,24 +18,20 @@ export default function Header() {
         backgroundColor: 'color-mix(in srgb, var(--color-bg) 85%, transparent)',
       }}
     >
-      <div className="container-site flex items-center justify-between w-full">
+      <div className="container-site w-full md:grid md:grid-cols-[1fr_auto_1fr] md:items-center flex items-center justify-between">
         {/* Logo */}
-        <Logo showText />
+        <Logo showText className="md:justify-self-start" />
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
+        <nav
+          className="hidden md:flex items-center gap-6 justify-self-center"
+          aria-label="Main navigation"
+        >
           {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium no-underline transition-colors"
-              style={{ color: 'var(--color-text-secondary)' }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = 'var(--color-text-primary)')
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = 'var(--color-text-secondary)')
-              }
+              className="text-sm font-medium no-underline transition-colors text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] focus-visible:text-[var(--color-text-primary)]"
             >
               {item.label}
             </a>
@@ -43,7 +39,7 @@ export default function Header() {
         </nav>
 
         {/* Desktop right side */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-4 justify-self-end">
           <a
             href={SITE.repo}
             target="_blank"
@@ -62,7 +58,11 @@ export default function Header() {
               <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
             </svg>
           </a>
-          <Button href="/quickstart" variant="primary">
+          <Button
+            href="/quickstart"
+            variant="primary"
+            className="font-semibold text-[#1d1d1f] hover:text-[#1d1d1f]"
+          >
             Get started
           </Button>
         </div>
@@ -140,7 +140,11 @@ export default function Header() {
               GitHub
             </a>
           </div>
-          <Button href="/docs" variant="primary" className="w-full">
+          <Button
+            href="/docs"
+            variant="primary"
+            className="w-full font-semibold text-[#1d1d1f] hover:text-[#1d1d1f]"
+          >
             Get started
           </Button>
         </div>

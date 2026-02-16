@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 export const metadata = {
-  title: 'Privacy Policy | SEN',
+  title: 'Privacy Policy',
   description: 'SEN Privacy Policy — SAP Enterprise Navigator',
 };
 

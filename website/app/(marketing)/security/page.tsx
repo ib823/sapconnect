@@ -3,7 +3,7 @@ import Card from '@/components/ui/Card';
 import SecurityTiers from '@/components/marketing/SecurityTiers';
 
 export const metadata: Metadata = {
-  title: 'Security | SEN',
+  title: 'Security',
   description:
     'Enterprise-grade security for ERP operations: 4-tier approval model, input validation, audit logging, CSRF protection, transport safety, and XSUAA integration.',
 };

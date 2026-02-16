@@ -14,7 +14,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | SEN',
+    template: '%s',
     default: 'SEN — Universal ERP Migration Platform',
   },
   description: SITE.description,
