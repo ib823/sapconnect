@@ -8,6 +8,9 @@
   "repository": "https://github.com/ib823/sapconnect",
   "license": "Apache-2.0",
   "author": "SEN Contributors",
+  "bin": {
+    "sen-mcp": "./bin/sen-mcp.js"
+  },
   "dependencies": {
     "@sap/cds": "^8",
     "@sap/xssec": "^4",
@@ -44,6 +47,7 @@
     "test-migrate": "node migration/test-migrate.js",
     "cutover": "node migration/cutover.js",
     "forensic-extract": "node extraction/forensic-extract.js",
+    "mcp": "node bin/sen-mcp.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
