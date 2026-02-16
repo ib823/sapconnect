@@ -11,6 +11,7 @@ export const NAV_ITEMS = [
   { label: 'Industries', href: '/solution#industries' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Docs', href: '/docs' },
+  { label: 'Quick Start', href: '/quickstart' },
 ] as const;
 
 export const FOOTER_LINKS = {
@@ -22,6 +23,7 @@ export const FOOTER_LINKS = {
     { label: 'Pricing', href: '/pricing' },
   ],
   Resources: [
+    { label: 'Quick Start', href: '/quickstart' },
     { label: 'Documentation', href: '/docs' },
     { label: 'About', href: '/about' },
     { label: 'GitHub', href: 'https://github.com/ib823/sapconnect' },
