@@ -13,7 +13,7 @@ const cds = require('@sap/cds');
 module.exports = class CustomerService extends cds.ApplicationService {
 
   init() {
-    const { Customers, Projects } = this.entities;
+    const { Projects } = this.entities;
 
     // --- Event handlers ---
 

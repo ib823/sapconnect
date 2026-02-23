@@ -195,7 +195,7 @@ async function runReport(flags) {
   }
 }
 
-async function runGaps(flags) {
+async function runGaps(_flags) {
   const outputDir = path.resolve('.sapconnect-output');
   const jsonPath = path.join(outputDir, 'forensic-report.json');
 
@@ -208,7 +208,7 @@ async function runGaps(flags) {
   console.log(JSON.stringify(data.gapAnalysis, null, 2));
 }
 
-async function runCoverage(flags) {
+async function runCoverage(_flags) {
   const outputDir = path.resolve('.sapconnect-output');
   const jsonPath = path.join(outputDir, 'forensic-report.json');
 

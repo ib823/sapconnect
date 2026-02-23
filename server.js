@@ -112,7 +112,11 @@ function createApp(configOverrides = {}) {
   });
   app.use(rateLimiter.middleware());
 
-  const auditLogger = new AuditLogger({ store: 'memory' });
+  const auditStore = config.isProduction ? 'file' : 'memory';
+  const auditLogger = new AuditLogger({
+    store: auditStore,
+    filePath: auditStore === 'file' ? (process.env.AUDIT_LOG_PATH || '/var/log/sapconnect/audit.jsonl') : null,
+  });
   app.use(auditLogger.middleware());
 
   // ── Authentication ───────────────────────────────────────────

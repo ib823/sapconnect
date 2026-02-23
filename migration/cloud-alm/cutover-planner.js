@@ -169,7 +169,7 @@ class CutoverPlanner {
   /**
    * Generate go/no-go checklist
    */
-  _generateChecklist(config, results) {
+  _generateChecklist(_config, _results) {
     const items = [
       { id: 'CHK-001', category: 'Data', item: 'All migration objects completed successfully', mandatory: true },
       { id: 'CHK-002', category: 'Data', item: 'Record count reconciliation passed', mandatory: true },
@@ -194,7 +194,7 @@ class CutoverPlanner {
   /**
    * Generate rollback plan
    */
-  _generateRollbackPlan(config) {
+  _generateRollbackPlan(_config) {
     return {
       triggerCriteria: [
         'Critical business process failure that cannot be resolved within 4 hours',

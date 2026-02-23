@@ -18,13 +18,15 @@ Status legend: **VERIFIED / EVIDENCE-PARTIAL / BLOCKED**.
 
 ### Lockfiles
 - `website/pnpm-lock.yaml` exists.
-- Root lockfile evidence was not fully enumerated in this pass.
-- Status: **EVIDENCE-PARTIAL**.
+- Root `package-lock.json` exists. **VERIFIED**.
 
 ## 2) Supply chain controls found
 
 - Dockerfile uses multi-stage build and non-root runtime user. **VERIFIED**.
-- No GitHub Actions workflow files found in `.github/workflows` from repository scan command. **EVIDENCE-PARTIAL** (CI may exist externally).
+- GitHub Actions CI pipeline exists in `.github/workflows/ci.yml` with lint, test (Node 20/22 matrix), security audit (`npm audit --audit-level=high/critical`), license checking (`license-checker --failOn GPL-3.0;AGPL-3.0;SSPL-1.0;BSL-1.1`), SPDX header verification, and Docker build jobs. **VERIFIED**.
+- GitHub Actions release pipeline exists in `.github/workflows/release.yml` for tag-based Docker image publishing. **VERIFIED**.
+
+> **Correction (2026-02-23):** The original audit incorrectly stated no CI workflows were found. Both `ci.yml` and `release.yml` exist under `.github/workflows/`.
 
 ## 3) Vulnerability scanning evidence
 

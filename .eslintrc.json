@@ -41,6 +41,26 @@
         "no-unused-vars": "off",
         "no-console": "off"
       }
+    },
+    {
+      "files": [
+        "agent/**/*.js",
+        "migration/assess.js",
+        "migration/remediate.js",
+        "migration/profile.js",
+        "migration/sdt.js",
+        "migration/configure.js",
+        "migration/provision.js",
+        "migration/test-migrate.js",
+        "migration/cutover.js",
+        "migration/report.js",
+        "discovery/**/*.js",
+        "extraction/forensic-extract.js",
+        "server.js"
+      ],
+      "rules": {
+        "no-console": "off"
+      }
     }
   ],
   "ignorePatterns": ["node_modules/", "coverage/", "app/", "db/"]

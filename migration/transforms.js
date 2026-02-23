@@ -20,7 +20,7 @@ const TRANSFORMS = {
   'SIMPL-FIN-001': {
     id: 'SIMPL-FIN-001',
     description: 'Replace BSEG access with ACDOCA / CDS views',
-    apply(source, finding) {
+    apply(source, _finding) {
       const changes = [];
       let result = source;
 
@@ -69,7 +69,7 @@ const TRANSFORMS = {
   'SIMPL-FIN-002': {
     id: 'SIMPL-FIN-002',
     description: 'Replace customer/vendor line item tables with ACDOCA',
-    apply(source, finding) {
+    apply(source, _finding) {
       const changes = [];
       let result = source;
       const mapping = {
@@ -103,7 +103,7 @@ const TRANSFORMS = {
   'SIMPL-FIN-003': {
     id: 'SIMPL-FIN-003',
     description: 'Replace GL line item tables with ACDOCA',
-    apply(source, finding) {
+    apply(source, _finding) {
       const changes = [];
       let result = source;
 
@@ -123,7 +123,7 @@ const TRANSFORMS = {
   'SIMPL-FIN-004': {
     id: 'SIMPL-FIN-004',
     description: 'Replace cost element tables with GL account master',
-    apply(source, finding) {
+    apply(source, _finding) {
       const changes = [];
       let result = source;
 
@@ -144,7 +144,7 @@ const TRANSFORMS = {
   'SIMPL-BP-001': {
     id: 'SIMPL-BP-001',
     description: 'Replace customer master tables with Business Partner',
-    apply(source, finding) {
+    apply(source, _finding) {
       const changes = [];
       let result = source;
       const mapping = { kna1: 'but000', knb1: 'but020', knvv: 'but050' };
@@ -165,7 +165,7 @@ const TRANSFORMS = {
   'SIMPL-BP-002': {
     id: 'SIMPL-BP-002',
     description: 'Replace vendor master tables with Business Partner',
-    apply(source, finding) {
+    apply(source, _finding) {
       const changes = [];
       let result = source;
       const mapping = { lfa1: 'but000', lfb1: 'but020', lfbk: 'but100' };
@@ -186,7 +186,7 @@ const TRANSFORMS = {
   'SIMPL-BP-003': {
     id: 'SIMPL-BP-003',
     description: 'Flag deprecated customer/vendor BAPIs for manual review',
-    apply(source, finding) {
+    apply(source, _finding) {
       const changes = [];
       let result = source;
 
@@ -208,7 +208,7 @@ const TRANSFORMS = {
   'SIMPL-ABAP-001': {
     id: 'SIMPL-ABAP-001',
     description: 'Replace OCCURS with TYPE TABLE OF',
-    apply(source, finding) {
+    apply(source, _finding) {
       const changes = [];
       let result = source;
 
@@ -229,7 +229,7 @@ const TRANSFORMS = {
   'SIMPL-ABAP-002': {
     id: 'SIMPL-ABAP-002',
     description: 'Flag BDC CALL TRANSACTION for manual BAPI replacement',
-    apply(source, finding) {
+    apply(source, _finding) {
       const changes = [];
       let result = source;
 
@@ -250,7 +250,7 @@ const TRANSFORMS = {
   'SIMPL-FUNC-002': {
     id: 'SIMPL-FUNC-002',
     description: 'Flag NAST-based output management for BRF+ migration',
-    apply(source, finding) {
+    apply(source, _finding) {
       const changes = [];
       let result = source;
 
@@ -270,7 +270,7 @@ const TRANSFORMS = {
   'SIMPL-FUNC-003': {
     id: 'SIMPL-FUNC-003',
     description: 'Flag WM tables for EWM migration',
-    apply(source, finding) {
+    apply(source, _finding) {
       const changes = [];
       let result = source;
 
@@ -300,7 +300,7 @@ const TRANSFORMS = {
   'SIMPL-FUNC-001': {
     id: 'SIMPL-FUNC-001',
     description: 'Flag classic credit management for FSCM migration',
-    apply(source, finding) {
+    apply(source, _finding) {
       const changes = [];
       let result = source;
 
@@ -317,7 +317,7 @@ const TRANSFORMS = {
   'SIMPL-MM-001': {
     id: 'SIMPL-MM-001',
     description: 'Replace hardcoded MATNR length 18 with TYPE matnr',
-    apply(source, finding) {
+    apply(source, _finding) {
       const changes = [];
       let result = source;
 
@@ -366,7 +366,7 @@ function hasTransform(ruleId) {
 TRANSFORMS['SIMPL-ABAP-005'] = {
   id: 'SIMPL-ABAP-005',
   description: 'Remove WITH HEADER LINE from declarations',
-  apply(source, finding) {
+  apply(source, _finding) {
     const changes = [];
     let result = source;
     result = result.replace(/\s+WITH\s+HEADER\s+LINE/gi, (match) => {
@@ -381,7 +381,7 @@ TRANSFORMS['SIMPL-ABAP-005'] = {
 TRANSFORMS['SIMPL-ABAP-006'] = {
   id: 'SIMPL-ABAP-006',
   description: 'Replace RANGES with TYPE RANGE OF',
-  apply(source, finding) {
+  apply(source, _finding) {
     const changes = [];
     let result = source;
     result = result.replace(
@@ -400,7 +400,7 @@ TRANSFORMS['SIMPL-ABAP-006'] = {
 TRANSFORMS['SIMPL-ABAP-004'] = {
   id: 'SIMPL-ABAP-004',
   description: 'Flag SELECT * for manual column specification',
-  apply(source, finding) {
+  apply(source, _finding) {
     const changes = [];
     let result = source;
     result = result.replace(
@@ -419,7 +419,7 @@ TRANSFORMS['SIMPL-ABAP-004'] = {
 TRANSFORMS['SIMPL-ABAP-015'] = {
   id: 'SIMPL-ABAP-015',
   description: 'Flag TABLES declarations for removal',
-  apply(source, finding) {
+  apply(source, _finding) {
     const changes = [];
     let result = source;
     result = result.replace(

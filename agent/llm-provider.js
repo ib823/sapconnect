@@ -67,7 +67,7 @@ class LLMProvider {
    * @param {object} [options] — Additional options (temperature, etc.)
    * @returns {Promise<LLMResponse>}
    */
-  async complete(messages, tools, options) {
+  async complete(_messages, _tools, _options) {
     throw new Error('LLMProvider.complete() must be implemented by subclass');
   }
 

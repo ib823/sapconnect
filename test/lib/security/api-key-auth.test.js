@@ -80,7 +80,7 @@ describe('ApiKeyAuth', () => {
     it('should return 401 when no API key provided', () => {
       mw(mockReq, mockRes, nextFn);
       expect(mockRes.status).toHaveBeenCalledWith(401);
-      expect(mockRes.json).toHaveBeenCalledWith({ error: 'API key required' });
+      expect(mockRes.json).toHaveBeenCalledWith({ error: 'API key required. Use X-API-Key header.' });
       expect(nextFn).not.toHaveBeenCalled();
     });
 
@@ -99,17 +99,11 @@ describe('ApiKeyAuth', () => {
       expect(mockReq.user).toEqual({ type: 'api-key', authenticated: true });
     });
 
-    it('should accept API key from query parameter', () => {
+    it('should reject API key from query parameter (header-only enforcement)', () => {
       mockReq.query.apiKey = 'valid-key-123';
       mw(mockReq, mockRes, nextFn);
-      expect(nextFn).toHaveBeenCalled();
-      expect(mockReq.user).toEqual({ type: 'api-key', authenticated: true });
-    });
-
-    it('should return 403 for invalid query parameter key', () => {
-      mockReq.query.apiKey = 'nope';
-      mw(mockReq, mockRes, nextFn);
-      expect(mockRes.status).toHaveBeenCalledWith(403);
+      expect(mockRes.status).toHaveBeenCalledWith(401);
+      expect(nextFn).not.toHaveBeenCalled();
     });
   });
 

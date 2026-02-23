@@ -132,13 +132,77 @@ function getToolsForRole(allowedNames) {
 }
 
 /**
- * Execute a tool call by delegating to the SAP gateway
+ * Validate tool input against its JSON schema definition.
+ * Returns null if valid, or an error string describing the violation.
+ * @param {string} toolName - Name of the tool
+ * @param {object} toolInput - Input parameters to validate
+ * @returns {string|null} Error message or null if valid
+ */
+function validateToolInput(toolName, toolInput) {
+  const tool = TOOL_MAP[toolName];
+  if (!tool) return `Unknown tool: ${toolName}`;
+
+  const schema = tool.input_schema;
+  if (!schema) return null; // No schema defined — allow
+
+  if (typeof toolInput !== 'object' || toolInput === null) {
+    return `Tool input must be an object, got ${typeof toolInput}`;
+  }
+
+  const errors = [];
+
+  // Check required fields
+  if (Array.isArray(schema.required)) {
+    for (const field of schema.required) {
+      if (toolInput[field] === undefined || toolInput[field] === null) {
+        errors.push(`Missing required field: ${field}`);
+      }
+    }
+  }
+
+  // Validate each provided property against schema
+  if (schema.properties) {
+    for (const [key, value] of Object.entries(toolInput)) {
+      const propSchema = schema.properties[key];
+      if (!propSchema) {
+        errors.push(`Unexpected field: ${key}`);
+        continue;
+      }
+      // Type check
+      if (propSchema.type === 'string' && typeof value !== 'string') {
+        errors.push(`Field ${key}: expected string, got ${typeof value}`);
+      } else if (propSchema.type === 'boolean' && typeof value !== 'boolean') {
+        errors.push(`Field ${key}: expected boolean, got ${typeof value}`);
+      }
+      // Enum check
+      if (propSchema.enum && typeof value === 'string' && !propSchema.enum.includes(value)) {
+        errors.push(`Field ${key}: value '${value}' not in allowed values [${propSchema.enum.join(', ')}]`);
+      }
+      // String length guard — reject excessively long inputs
+      if (propSchema.type === 'string' && typeof value === 'string' && value.length > 100000) {
+        errors.push(`Field ${key}: value exceeds maximum length (100000 chars)`);
+      }
+    }
+  }
+
+  return errors.length > 0 ? errors.join('; ') : null;
+}
+
+/**
+ * Execute a tool call by delegating to the SAP gateway.
+ * Validates input against the tool's schema before execution (fail-closed).
  * @param {string} toolName - Name of the tool to execute
  * @param {object} toolInput - Input parameters for the tool
  * @param {object} gateway - SapGateway instance
  * @returns {Promise<object>} Tool execution result
  */
 async function executeTool(toolName, toolInput, gateway) {
+  // Validate input against tool schema — fail-closed on invalid input
+  const validationError = validateToolInput(toolName, toolInput);
+  if (validationError) {
+    return { error: `Tool input validation failed: ${validationError}` };
+  }
+
   switch (toolName) {
     case 'read_abap_source':
       return gateway.readAbapSource(toolInput.object_name, toolInput.object_type);
@@ -166,4 +230,5 @@ module.exports = {
   TOOL_MAP,
   getToolsForRole,
   executeTool,
+  validateToolInput,
 };

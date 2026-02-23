@@ -20,6 +20,7 @@ const {
   buildToolResultMessage,
   buildAssistantToolUseMessage,
 } = require('./context-builder');
+const { redactMessages } = require('./redaction');
 const Logger = require('../lib/logger');
 
 /** Write tools that require safety gate checks before execution */
@@ -301,8 +302,14 @@ class Orchestrator {
       // Compress context if approaching budget
       const compressed = compressContext(messages, this.contextBudget);
 
+      // Redact sensitive data before sending to external LLM provider
+      const sanitized = redactMessages(compressed, {
+        agent: agent.name,
+        provider: provider.constructor?.name || 'unknown',
+      });
+
       // Call LLM
-      const response = await provider.complete(compressed, tools);
+      const response = await provider.complete(sanitized, tools);
 
       // Track token usage
       agentUsage.inputTokens += response.usage.inputTokens;

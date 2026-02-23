@@ -227,7 +227,7 @@ describe('tools', () => {
 
     it('should return error object for unknown tool', async () => {
       const result = await executeTool('nonexistent_tool', {}, gateway);
-      expect(result).toEqual({ error: 'Unknown tool: nonexistent_tool' });
+      expect(result).toEqual({ error: 'Tool input validation failed: Unknown tool: nonexistent_tool' });
     });
 
     it('should not call any gateway method for unknown tool', async () => {

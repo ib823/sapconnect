@@ -32,14 +32,22 @@
 - Auth middleware (API key/XSUAA) on `/api/*`: **VERIFIED**.
 - Rate limiter + audit logger middleware: **VERIFIED**.
 - Max-iteration cap in orchestrator tool loop (`maxIterations` default 25): **VERIFIED**.
-- Fine-grained authorization policy (RBAC/ABAC) across all routes: **BLOCKED**.
-- Data-classification-driven redaction policy: **BLOCKED**.
+- XSUAA scope-based RBAC in `lib/security/xsuaa-auth.js` — Read/Write/Admin scopes with `requireScope()` middleware: **VERIFIED**.
+- Tier-based operation classification in `lib/security/tier-manager.js` — 4 tiers with escalating approval requirements: **VERIFIED**.
+- Multi-step approval gate in `lib/security/approval-gate.js` — prevents self-approval, enforces multi-approver thresholds for production operations: **VERIFIED**.
+- Safety gates for LLM write tools (`write_abap_source`, `activate_object`) in orchestrator: **VERIFIED**.
+- JSON schema validation on LLM tool inputs (fail-closed): **VERIFIED** (added 2026-02-23).
+- Data redaction pipeline before LLM provider calls with per-call audit logging: **VERIFIED** (added 2026-02-23).
+- CORS origin allowlist with wildcard+credentials guard: **VERIFIED** (fixed 2026-02-23).
+- Production auth enforcement (fail-fast when API_KEY missing in production): **VERIFIED** (added 2026-02-23).
+
+> **Correction (2026-02-23):** The original audit marked RBAC as "BLOCKED" — this was inaccurate. XSUAA scope-based RBAC, tier-manager, and approval-gate controls already existed. The redaction policy has now been implemented.
 
 ## Priority control improvements
 
-1. Enforce strict origin allowlist + credential policy.
-2. Remove query-string auth secret usage.
+1. ~~Enforce strict origin allowlist + credential policy.~~ **DONE** (2026-02-23).
+2. ~~Remove query-string auth secret usage.~~ **DONE** (2026-02-23).
 3. Add explicit route-level authorization matrix and tests.
-4. Build outbound data-loss guardrails for LLM provider calls.
+4. ~~Build outbound data-loss guardrails for LLM provider calls.~~ **DONE** (2026-02-23).
 5. Add signed SBOM + provenance attestations in CI.
 

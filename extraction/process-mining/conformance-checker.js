@@ -160,7 +160,7 @@ class ConformanceChecker {
     const deviations = [];
 
     // Token position tracks where we are in the model
-    let currentPositions = new Set(); // Activities whose tokens are available
+    const currentPositions = new Set(); // Activities whose tokens are available
 
     // Process each event
     for (let i = 0; i < activities.length; i++) {

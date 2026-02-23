@@ -34,7 +34,7 @@ const express = require('express');
 const Logger = require('../../lib/logger');
 
 const { ProcessIntelligenceEngine } = require('./process-intelligence-engine');
-const { EventLog, Event, Trace } = require('./event-log');
+const { EventLog, Event, Trace: _Trace } = require('./event-log');
 const { HeuristicMiner } = require('./heuristic-miner');
 const { ConformanceChecker } = require('./conformance-checker');
 const { PerformanceAnalyzer } = require('./performance-analyzer');
@@ -251,7 +251,7 @@ function _reconstructEventLog(body) {
  * Generate a synthetic demo event log for a given SAP process.
  * Creates realistic traces with typical activities.
  */
-function _generateDemoEventLog(processId, config) {
+function _generateDemoEventLog(processId, _config) {
   const log = new EventLog(`demo-${processId}`);
   const activities = _getDemoActivities(processId);
   const resources = ['USER_A', 'USER_B', 'USER_C', 'SYSTEM', 'MANAGER'];

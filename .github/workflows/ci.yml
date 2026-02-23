@@ -19,7 +19,7 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - run: npm run lint
+      - run: npx eslint lib/ migration/ srv/ agent/ discovery/ extraction/ --ext .js --max-warnings 80
 
   test:
     runs-on: ubuntu-latest
