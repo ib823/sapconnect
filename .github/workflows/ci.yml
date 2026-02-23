@@ -53,6 +53,7 @@ jobs:
       - name: Audit production dependencies
         run: npm audit --omit=dev --audit-level=high || true
       - name: Audit all dependencies (informational)
+        continue-on-error: true
         run: npm audit --audit-level=critical
       - run: npx license-checker --failOn "GPL-3.0;AGPL-3.0"
 
