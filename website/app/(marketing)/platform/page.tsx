@@ -46,7 +46,7 @@ const differentiators = [
   {
     title: 'Full test coverage',
     description:
-      '6,180 automated tests covering extraction, migration, security, and AI safety.',
+      '6,318 automated tests covering extraction, migration, security, and AI safety.',
   },
 ];
 
@@ -70,6 +70,16 @@ const securityFeatures = [
     title: 'XSUAA Authentication',
     description:
       'JWT token validation with scope-based access control for production deployments.',
+  },
+  {
+    title: 'LLM Data Redaction',
+    description:
+      'Credentials, tokens, and PII are stripped from prompts before reaching external LLM providers.',
+  },
+  {
+    title: 'LLM Tool Validation',
+    description:
+      'AI agent tool inputs are validated against JSON Schema. Invalid payloads are rejected before execution.',
   },
 ];
 

@@ -102,8 +102,8 @@ export default function AboutPage() {
             </h2>
             <div className="grid grid-cols-2 gap-6">
               {[
-                { number: '6,180', label: 'automated tests' },
-                { number: '58', label: 'MCP tools' },
+                { number: '6,318', label: 'automated tests' },
+                { number: '108', label: 'MCP tools' },
                 { number: '14', label: 'canonical entities' },
                 { number: '10', label: 'industry verticals' },
                 { number: '4', label: 'Infor products supported' },

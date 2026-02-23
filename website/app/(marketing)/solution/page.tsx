@@ -72,7 +72,7 @@ export default function SolutionPage() {
                 title: 'ETLV Validation',
                 description:
                   'Extract-Transform-Load-Validate pipeline with six-point reconciliation. Record counts, field-level checksums, referential integrity, business rule validation, and regression testing.',
-                metric: '6,180 tests',
+                metric: '6,318 tests',
               },
             ].map((item) => (
               <div key={item.title}>
@@ -271,7 +271,7 @@ export default function SolutionPage() {
                   { dim: 'Forensic depth', sen: '7 dimensions, automated', manual: 'Manual interviews', etl: 'Not included' },
                   { dim: 'Field-level mapping', sen: 'Canonical model, 14 entities', manual: 'Spreadsheet-based', etl: 'Column mapping only' },
                   { dim: 'Industry compliance', sen: '10 verticals built-in', manual: 'Consultant knowledge', etl: 'Not included' },
-                  { dim: 'Automated testing', sen: '6,180 tests', manual: 'Manual test scripts', etl: 'Row counts only' },
+                  { dim: 'Automated testing', sen: '6,318 tests', manual: 'Manual test scripts', etl: 'Row counts only' },
                   { dim: 'Multi-ERP support', sen: 'SAP, Infor (4 products)', manual: 'Varies by firm', etl: 'Any-to-any' },
                 ].map((row) => (
                   <tr key={row.dim}>

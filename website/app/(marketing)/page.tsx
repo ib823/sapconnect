@@ -147,7 +147,7 @@ export default function HomePage() {
               {
                 pillar: 'Validate',
                 description:
-                  '6,180 automated tests. Extract-Transform-Load-Validate. Every record verified before it touches your target system.',
+                  '6,318 automated tests. Extract-Transform-Load-Validate. Every record verified before it touches your target system.',
               },
             ].map((item) => (
               <div key={item.pillar} className="text-center">
@@ -233,8 +233,8 @@ export default function HomePage() {
         <div className="container-site max-w-3xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-16">
             {[
-              { number: '6,180', label: 'tests' },
-              { number: '58', label: 'MCP tools' },
+              { number: '6,318', label: 'tests' },
+              { number: '108', label: 'MCP tools' },
               { number: '14', label: 'canonical entities' },
               { number: '10', label: 'industries' },
             ].map((item) => (

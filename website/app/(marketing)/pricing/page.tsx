@@ -16,8 +16,8 @@ const openSourceFeatures = [
   'Self-hosted deployment',
   'Community support via GitHub',
   'Apache 2.0 license',
-  '6,180 automated tests',
-  '58 MCP tools',
+  '6,318 automated tests',
+  '108 MCP tools',
   'No usage limits',
 ];
 

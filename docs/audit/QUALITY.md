@@ -4,8 +4,8 @@ Status legend: **VERIFIED / EVIDENCE-PARTIAL / BLOCKED**.
 
 ## Check execution evidence
 
-- ✅ `npm run lint` completed with **0 errors** and **252 warnings**. **VERIFIED**.
-- ✅ `npm test` completed with **387 passed test files**, **6319 passed tests**, **2 skipped files**, **25 skipped tests**. **VERIFIED**.
+- ✅ `npm run lint` completed with **0 errors** and **252 warnings** (pre-remediation). After security remediation (commit `a04a126`), reduced to **75 warnings**. **VERIFIED**.
+- ✅ `npm test` completed with **387 passed test files**, **6,318 passed tests**, **2 skipped files**, **25 skipped tests**. **VERIFIED**.
 
 ## Findings (prioritized)
 
@@ -13,7 +13,7 @@ Status legend: **VERIFIED / EVIDENCE-PARTIAL / BLOCKED**.
 - Severity: **Medium**
 - Status: **VERIFIED**
 - Evidence:
-  - `npm run lint` output reports `✖ 252 problems (0 errors, 252 warnings)`.
+  - `npm run lint` output originally reported `✖ 252 problems (0 errors, 252 warnings)`. After security remediation, reduced to 75 warnings.
 - Risk:
   - Warning-heavy baseline hides newly introduced regressions and reduces signal quality of CI quality gates.
 - Mitigation:

@@ -77,7 +77,7 @@ npm run assess
 npm test
 ```
 
-> "We have 4,910 automated tests across 251 files covering every component: extraction, migration, process mining, security, AI safety, connectivity, and more."
+> "We have 6,318 automated tests across 387 files covering every component: extraction, migration, process mining, security, AI safety, connectivity, and more."
 
 **Highlight:**
 - Zero test failures
@@ -124,7 +124,7 @@ npm run discover
 
 ## Closing (1 min)
 
-> "To summarize: SEN gives us a complete development environment for SAP extensions and migrations that follows Clean Core principles, runs anywhere via Codespaces, supports multiple clients, and is backed by 4,910 automated tests. Everything we've built here deploys to SAP BTP when ready for production."
+> "To summarize: SEN gives us a complete development environment for SAP extensions and migrations that follows Clean Core principles, runs anywhere via Codespaces, supports multiple clients, and is backed by 6,318 automated tests. Everything we've built here deploys to SAP BTP when ready for production."
 
 ## FAQ Responses
 

@@ -322,12 +322,12 @@ export default function QuickStartPage() {
                 <TerminalLine
                   comment="Execute full migration"
                   command="npm test"
-                  hint="6,300+ tests validate everything"
+                  hint="6,318 tests validate everything"
                 />
                 <TerminalLine
                   comment="Start MCP server for AI"
                   command="npm run mcp"
-                  hint="58 SAP tools for Claude, GPT, etc."
+                  hint="108 SAP tools for Claude, GPT, etc."
                 />
               </div>
             </div>

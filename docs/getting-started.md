@@ -54,7 +54,7 @@ Try these URLs:
 ### 3. Run the Full Test Suite
 
 ```bash
-# Run all 4,910 tests across 251 files
+# Run all 6,318 tests across 387 files
 npm test
 
 # Run a specific test file
@@ -121,7 +121,7 @@ sapconnect/
 │   ├── security/    Input validation, rate limiting, audit, XSUAA
 │   ├── monitoring/  Health checks, metrics, request context
 │   ├── greenfield/  BDC engine, BAPI catalog, transport
-│   ├── mcp/         MCP server (43 SAP tools)
+│   ├── mcp/         MCP server (108 SAP tools)
 │   └── ai/          Safety gates, audit trail
 ├── discovery/       API Discovery CLI tool
 ├── clients/         Per-client configuration templates

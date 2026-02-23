@@ -23,8 +23,13 @@ SEN implements defense-in-depth security:
 - **Authorization**: Operations respect SAP's own authorization model. SEN does not bypass SAP authorization checks.
 - **Safety Gates**: All write operations (transport creation, ABAP writes, BDC execution, BAPI calls, SDT loads) require explicit human confirmation before execution.
 - **Audit Trail**: Every operation is logged with timestamp, user, operation type, target system, and result.
-- **Input Validation**: All user inputs are validated and sanitized before use in API calls.
+- **Input Validation**: All user inputs and AI agent tool-call payloads are validated against JSON schemas and sanitized before use in API calls. Invalid tool inputs are rejected before execution (fail-closed).
 - **Rate Limiting**: API calls to SAP systems are rate-limited to prevent abuse.
+- **LLM Data Redaction**: A pattern-based redaction pipeline removes credentials, tokens, and PII from prompts before they are sent to external LLM providers. Every redaction event is audit-logged per call.
+- **LLM Tool Validation**: All AI agent tool inputs are validated against JSON Schema definitions. Invalid inputs are rejected before execution (fail-closed).
+- **Production Auth Guard**: The API server fails fast on startup if no authentication mechanism is configured in production mode.
+- **CORS Origin Allowlist**: CORS is enforced via a strict origin allowlist. Requests from unlisted origins are rejected.
+- **Content Security Policy**: CSP headers are hardened with no unsafe-inline or unsafe-eval directives.
 - **No Credential Storage**: SEN does not persist SAP credentials. Credentials are provided per-session via environment variables or secure credential stores.
 - **Transport Safety**: All ABAP modifications are routed through SAP's transport management system.
 

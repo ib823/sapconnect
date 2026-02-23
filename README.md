@@ -10,7 +10,7 @@ Replaces 6-month migration timelines with automated, code-driven execution. Ever
 
 ```mermaid
 graph TB
-    subgraph "Migration Engine (874 rules, 42 objects, 52 processes, 43 MCP tools)"
+    subgraph "Migration Engine (874 rules, 42 objects, 52 processes, 108 MCP tools)"
         ASSESS[Phase 1: Assess<br/>874 custom code rules<br/>21 SAP modules]
         REMED[Phase 2: Remediate<br/>Auto-fix suggestions<br/>per rule]
         PROFILE[Phase 3: Profile<br/>Data quality analysis<br/>Fuzzy duplicate detection]
@@ -22,7 +22,7 @@ graph TB
     end
 
     subgraph "Enterprise Infrastructure"
-        SEC[Security Layer<br/>Input validation, Rate limiting<br/>Audit logging, CORS, Headers<br/>XSUAA Authentication]
+        SEC[Security Layer<br/>Input validation, Rate limiting<br/>Audit logging, CORS, Headers<br/>XSUAA Authentication<br/>LLM redaction, Tool validation]
         MON[Monitoring<br/>Health checks, Metrics<br/>Prometheus export<br/>Real-time SSE dashboard]
         CICD[CI/CD<br/>GitHub Actions, Docker<br/>Multi-node matrix]
         PERSIST[Persistence<br/>SQLite dev, HANA Cloud prod<br/>Checkpoint/Resume]
@@ -39,7 +39,7 @@ graph TB
         SIG[Signavio<br/>BPMN parser<br/>Process-to-config]
         TESTENG[Testing Engine<br/>AI test generation<br/>31 templates<br/>Live test harness]
         CLOUD[Cloud Modules<br/>SF, Ariba, Concur, SAC]
-        MCP[MCP Server<br/>43 SAP tools<br/>JSON-RPC 2.0]
+        MCP[MCP Server<br/>108 SAP tools<br/>JSON-RPC 2.0]
     end
 
     subgraph "Connectivity"
@@ -58,7 +58,7 @@ graph TB
 1. Click **Code > Codespaces > New codespace** on this repository
 2. Wait for setup to complete (installs SAP tools automatically)
 3. Run `npm run watch` -- server starts on port 4004
-4. Run `npm test` -- 4,910 tests across 251 files
+4. Run `npm test` -- 6,318 tests across 387 files
 
 ### Local Development
 ```bash
@@ -80,7 +80,7 @@ docker compose up
 ### Run Migration Assessment
 ```bash
 npm run assess                    # Scan custom code against 874 rules
-npm test                          # Run full test suite (4,910 tests)
+npm test                          # Run full test suite (6,318 tests)
 npm run lint                      # ESLint code quality check
 node -e "
   const R = require('./migration/objects/registry');
@@ -103,7 +103,7 @@ node -e "
 | **Dashboard API** | 8 REST endpoints + SSE | Summary, object detail, rules analysis, reconciliation, real-time progress streaming |
 | **Cloud ALM** | 5 project templates | Greenfield, brownfield (core/full), selective data, landscape consolidation |
 | **Cutover Planner** | Critical path + rollback | Dependency-aware task scheduling, 15-item go/no-go checklist, 8-step rollback plan |
-| **Security** | 6 modules | Input validation, rate limiting, audit logging, security headers, CORS, XSUAA authentication |
+| **Security** | 11 modules | Input validation, rate limiting, audit logging, security headers, CORS, XSUAA authentication, LLM data redaction, LLM tool validation, production auth guard, API key auth, CSP hardening |
 | **Monitoring** | 4 modules + SSE | Health/readiness probes, Prometheus metrics, request correlation IDs, real-time event streaming |
 | **Live Connectivity** | 42 service mappings | OData V2/V4 with CSRF, batch, retry, pagination; RFC pool + table reader |
 | **Connection Manager** | Multi-source profiles | Named connection profiles with health checks and system landscape coordination |
@@ -117,14 +117,14 @@ node -e "
 | **CAP Backend** | OData V4 | Customer service with draft support, business partner API |
 | **Fiori Elements** | List Report + Object Page | Auto-generated UI from annotations |
 | **API Discovery** | Scanner CLI | Discovers released APIs, events, and extension points |
-| **AI Agent** | Live execution | Multi-agent orchestrator with tool-use loops, multi-provider LLM abstraction, safety gates |
+| **AI Agent** | Live execution | Multi-agent orchestrator with tool-use loops, multi-provider LLM abstraction, safety gates, tool input validation, data redaction |
 | **Signavio** | BPMN 2.0 parser | Process model import, SAP config mapping, complexity analysis |
 | **Testing Engine** | 31 templates, 6 modules | AI test generation from NL/config/BPMN, multi-format reporting |
 | **SuccessFactors** | OData V2, 13 entity sets | CRUD, batch, effective dating, CSRF, metadata |
 | **Ariba** | Procurement APIs | POs, requisitions, contracts, suppliers, reporting |
 | **Concur** | REST V4 + SCIM 2.0 | Expenses, travel, user provisioning, list management |
 | **SAC** | Analytics Cloud | Models, stories, data import, dimensions, planning |
-| **MCP Server** | 43 tools, 4 resources | SAP tools for AI assistants via JSON-RPC 2.0 |
+| **MCP Server** | 108 tools, 4 resources | SAP tools for AI assistants via JSON-RPC 2.0 |
 
 ## 8-Phase Migration Methodology
 
@@ -164,7 +164,7 @@ node -e "
 - **Rate Limiting** -- Sliding window rate limiter with per-IP tracking and Retry-After headers
 - **Audit Logging** -- Immutable audit trail with query/filter/stats, file or memory storage
 - **Security Headers** -- OWASP headers (CSP, HSTS, X-Frame-Options, etc.)
-- **CORS** -- Configurable origin whitelist with preflight support
+- **CORS** -- Strict origin allowlist with preflight support
 - **XSUAA Authentication** -- JWT-based authentication with scope-based access control for SAP BTP deployments
 
 ### Monitoring & Observability
@@ -200,7 +200,7 @@ npm run watch        # Start CAP server with live reload
 npm run discover     # Run API Discovery in mock mode
 npm run agent        # Run AI Agent workflow in mock mode
 npm run assess       # Run migration assessment
-npm test             # Run 4,910 tests across 251 files
+npm test             # Run 6,318 tests across 387 files
 npm run lint         # Run ESLint
 npm run format       # Run Prettier
 npm run docker:build # Build Docker image
@@ -221,7 +221,7 @@ npm run docker:build # Build Docker image
 - **SAP CAP (Node.js)** -- Backend framework
 - **SAP Fiori Elements / UI5** -- Frontend
 - **SQLite in-memory / HANA Cloud** -- Local and production database
-- **vitest** -- Test framework (4,910 tests, 251 files)
+- **vitest** -- Test framework (6,318 tests, 387 files)
 - **ESLint + Prettier** -- Code quality
 - **Docker** -- Containerization
 - **GitHub Actions** -- CI/CD

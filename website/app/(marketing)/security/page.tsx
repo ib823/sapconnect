@@ -5,7 +5,7 @@ import SecurityTiers from '@/components/marketing/SecurityTiers';
 export const metadata: Metadata = {
   title: 'Security',
   description:
-    'Enterprise-grade security for ERP operations: 4-tier approval model, input validation, audit logging, CSRF protection, transport safety, and XSUAA integration.',
+    'Enterprise-grade security for ERP and AI operations: 4-tier approval model, input validation, audit logging, CSRF protection, transport safety, XSUAA integration, LLM data redaction, and tool input validation.',
 };
 
 const tierExamples = [
@@ -39,12 +39,27 @@ const securityFeatures = [
   {
     title: 'API Key Authentication',
     description:
-      'Keys hashed with bcrypt, configurable scopes (read, write, admin), rotatable without downtime. Failed attempts are rate-limited and logged.',
+      'Header-only key enforcement (no query parameter fallback). Keys hashed with bcrypt, configurable scopes (read, write, admin), rotatable without downtime. Failed attempts are rate-limited and logged.',
   },
   {
     title: 'XSUAA Authentication',
     description:
       'Native SAP Authorization and Trust Management integration with JWT validation, scope-based access control, and automatic token refresh.',
+  },
+  {
+    title: 'LLM Data Redaction',
+    description:
+      'Pattern-based redaction of credentials, tokens, and PII before prompts are sent to external LLM providers. Every redaction event is audit-logged per call for full traceability.',
+  },
+  {
+    title: 'LLM Tool Validation',
+    description:
+      'JSON Schema enforcement on all AI agent tool inputs. Invalid inputs are rejected before execution (fail-closed), preventing malformed or malicious payloads from reaching SAP systems.',
+  },
+  {
+    title: 'Production Auth Guard',
+    description:
+      'The API server fails fast on startup if no authentication mechanism is configured in production mode. Eliminates the risk of accidentally deploying an unauthenticated service.',
   },
 ];
 

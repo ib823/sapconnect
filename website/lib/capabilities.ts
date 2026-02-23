@@ -461,10 +461,10 @@ console.log(\`Integration configured: \${result.flowsCreated} flows\`);`,
     id: 'ai-tooling',
     title: 'AI Tooling',
     summary:
-      'MCP server exposing 43 SAP-aware tools for AI agents, enabling natural language interaction with SAP systems through a multi-agent architecture with live execution support.',
+      'MCP server exposing 108 SAP-aware tools for AI agents, enabling natural language interaction with SAP systems through a multi-agent architecture with live execution support.',
     icon: 'AI',
     stats: {
-      mcpTools: 43,
+      mcpTools: 108,
       agents: 5,
       safetyGates: 'All writes',
     },
@@ -472,7 +472,7 @@ console.log(\`Integration configured: \${result.flowsCreated} flows\`);`,
     problem:
       'AI assistants lack SAP domain knowledge and safe system access. Generic LLM integrations risk executing destructive operations without proper validation, transport management, or audit trails.',
     whatItAutomates:
-      'Provides a Model Context Protocol (MCP) server with 58 tools spanning system discovery, data queries, configuration reading, code analysis, and guided write operations. A multi-agent architecture (5 specialized agents) handles complex multi-step SAP tasks with built-in safety gates. Supports live agent execution with tool-use loops and multi-provider LLM abstraction.',
+      'Provides a Model Context Protocol (MCP) server with 108 tools spanning system discovery, data queries, configuration reading, code analysis, and guided write operations. A multi-agent architecture (5 specialized agents) handles complex multi-step SAP tasks with built-in safety gates. Supports live agent execution with tool-use loops and multi-provider LLM abstraction.',
     inputs: [
       'Natural language instructions from AI assistant',
       'SAP system connection configuration',
@@ -489,7 +489,7 @@ console.log(\`Integration configured: \${result.flowsCreated} flows\`);`,
     validationLogic:
       'All write operations require explicit safety gate approval. Transport management is never bypassed. Each tool validates input parameters against SAP data dictionary types. Rate limiting prevents runaway agent loops. Audit trail captures every tool invocation with full input/output.',
     evidence:
-      '58 MCP tools with comprehensive test coverage. Multi-agent orchestration tested with 50+ scenario scripts. Safety gates validated with adversarial prompts attempting to bypass transport management and authorization checks.',
+      '108 MCP tools with comprehensive test coverage. Multi-agent orchestration tested with 50+ scenario scripts. Safety gates validated with adversarial prompts attempting to bypass transport management and authorization checks.',
     apiMapping:
       'MCP protocol (JSON-RPC over stdio/SSE). Tools map to RFC, OData, and ADT operations internally. Agent-to-agent communication via structured message passing. Safety gates implemented as middleware in the tool execution pipeline.',
     runbookSnippet: `const { MCPServer } = require('./lib/mcp/server');
@@ -501,7 +501,7 @@ const server = new MCPServer({
   safety: { mode: 'guided-writes', requireTransport: true }
 });
 await server.start();
-// AI assistant now has access to 43 SAP tools via MCP protocol`,
+// AI assistant now has access to 108 SAP tools via MCP protocol`,
   },
 ];
 

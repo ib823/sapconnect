@@ -23,7 +23,7 @@ const roles: RoleContent[] = [
     heading: 'Reduce cost and financial risk',
     points: [
       'Cut project costs by 40% through automation of repetitive migration tasks across any source ERP.',
-      'De-risk go-live with 6,180 automated tests validating every operation.',
+      'De-risk go-live with 6,318 automated tests validating every operation.',
       'Accelerate time-to-value with projects completing in weeks, not months.',
     ],
   },
@@ -32,7 +32,7 @@ const roles: RoleContent[] = [
     heading: 'Universal connectivity, zero lock-in',
     points: [
       'Connect to SAP via RFC, OData, or ADT REST -- and to Infor via ION, MI, IDO, or Landmark APIs.',
-      '58 MCP tools give AI agents safe, audited access to multi-ERP operations.',
+      '108 MCP tools give AI agents safe, audited access to multi-ERP operations.',
       'Deploy anywhere: on-premises, BTP, AWS, Azure, or GCP. Apache 2.0 licensed.',
     ],
   },

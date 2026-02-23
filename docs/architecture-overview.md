@@ -20,7 +20,7 @@ graph TB
     subgraph "Engine Layer"
         EXTRACT[Extraction Engine<br/>35 extractors, process mining]
         MIGRATE[Migration Framework<br/>42 objects, 881 transform rules]
-        AGENT[AI Agent Orchestrator<br/>5 agents, 43 MCP tools]
+        AGENT[AI Agent Orchestrator<br/>5 agents, 108 MCP tools]
     end
 
     subgraph "Connectivity Layer"
@@ -105,7 +105,7 @@ Multi-agent SAP development assistant:
 
 - **5 specialized agents** with tool-use execution loops
 - **Multi-provider LLM abstraction** (OpenAI, Anthropic, Azure)
-- **43 MCP tools** for safe SAP operations
+- **108 MCP tools** for safe SAP operations
 - **Safety gates** enforcing transport management on all writes
 
 ### Fiori Elements Frontend (`app/`)
@@ -128,13 +128,18 @@ Three complementary SAP connectivity protocols:
 
 ### Security (`lib/security/`)
 
-Defense-in-depth security controls:
+Defense-in-depth security controls (11 modules):
 
 - **Input validation** -- JSON Schema-based with SAP-specific rules
 - **Rate limiting** -- Sliding window per client and endpoint
 - **Audit logging** -- Immutable trail with SHA-256 hash chain
 - **XSUAA authentication** -- JWT-based with scope-based access control
 - **CORS and security headers** -- OWASP-compliant defaults
+- **LLM data redaction** -- Pattern-based removal of credentials, tokens, and PII before external LLM calls with per-call audit logging
+- **LLM tool validation** -- JSON Schema enforcement on all AI agent tool inputs; invalid inputs rejected before execution
+- **Production auth guard** -- API server fails fast on startup if no authentication is configured in production mode
+- **API key authentication** -- Header-only key validation with bcrypt hashing and configurable scopes
+- **CSP hardening** -- Content Security Policy with no unsafe-inline or unsafe-eval directives
 
 ### Persistence (`lib/persistence.js`)
 
