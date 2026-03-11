@@ -14,6 +14,7 @@ class MockJWTStrategy {
 function createMockPassport(authenticateResult) {
   const passport = {
     use: vi.fn(),
+    initialize: vi.fn().mockReturnValue((_req, _res, next) => next()),
     authenticate: vi.fn().mockReturnValue((req, res, next) => {
       const { err, user, info } = authenticateResult;
       const callback = passport.authenticate.mock.calls[0]?.[2];
@@ -101,6 +102,7 @@ describe('XsuaaAuth', () => {
       mw(req, res, next);
 
       expect(next).toHaveBeenCalled();
+      expect(mockPassport.initialize).toHaveBeenCalled();
       expect(req.user).toBeDefined();
       expect(req.user.type).toBe('xsuaa');
       expect(req.user.authenticated).toBe(true);
@@ -255,6 +257,30 @@ describe('XsuaaAuth', () => {
       }
     });
 
+
+    it('should parse credentials directly from VCAP_SERVICES', () => {
+      const origVcap = process.env.VCAP_SERVICES;
+      delete process.env.XSUAA_CREDENTIALS;
+      process.env.VCAP_SERVICES = JSON.stringify({
+        xsuaa: [
+          {
+            name: 'sapconnect-xsuaa',
+            label: 'xsuaa',
+            credentials: { clientid: 'vcap-cid', clientsecret: 'vcap-sec' },
+          },
+        ],
+      });
+      XsuaaAuth._loadXsenv = () => { throw new Error('not available'); };
+
+      try {
+        const auth = new XsuaaAuth();
+        const creds = auth._getCredentials();
+        expect(creds.clientid).toBe('vcap-cid');
+      } finally {
+        if (origVcap) process.env.VCAP_SERVICES = origVcap;
+        else delete process.env.VCAP_SERVICES;
+      }
+    });
     it('should throw when no credentials found', () => {
       delete process.env.XSUAA_CREDENTIALS;
       XsuaaAuth._loadXsenv = () => { throw new Error('not available'); };

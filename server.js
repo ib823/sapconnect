@@ -29,6 +29,8 @@
  */
 
 const express = require('express');
+const os = require('os');
+const path = require('path');
 const { loadConfig, validateConfig } = require('./lib/config');
 const Logger = require('./lib/logger');
 
@@ -75,6 +77,37 @@ const { ProgressBus } = require('./lib/progress-bus');
 // Process mining config (for platform summary)
 const { getAllProcessIds } = require('./extraction/process-mining/sap-table-config');
 
+const MUTATING_METHODS = ['POST', 'PUT', 'PATCH', 'DELETE'];
+
+function methodScopedGuard(methods, middleware) {
+  const allowedMethods = new Set(methods.map((method) => method.toUpperCase()));
+
+  return (req, res, next) => {
+    if (!allowedMethods.has(req.method.toUpperCase())) {
+      return next();
+    }
+    return middleware(req, res, next);
+  };
+}
+
+function applyXsuaaAuthorizationPolicies(app, xsuaaAuth) {
+  if (!xsuaaAuth) return;
+
+  const requireWrite = xsuaaAuth.requireScope('write');
+  const requireAdmin = xsuaaAuth.requireScope('admin');
+
+  // Audit data contains sensitive operational history and should stay admin-only.
+  app.use('/api/audit', methodScopedGuard(['GET'], requireAdmin));
+
+  // Mutating and execution-triggering routes require write scope.
+  app.use('/api/dashboard/run', methodScopedGuard(['POST'], requireWrite));
+  app.use('/api/migration/plan', methodScopedGuard(['POST'], requireWrite));
+  app.use('/api/process-mining', methodScopedGuard(['POST'], requireWrite));
+  app.use('/api/testing', methodScopedGuard(MUTATING_METHODS, requireWrite));
+  app.use('/api/signavio', methodScopedGuard(MUTATING_METHODS, requireWrite));
+  app.use('/api/cloud', methodScopedGuard(MUTATING_METHODS, requireWrite));
+}
+
 /**
  * Create and configure the Express app.
  * Exported for testing — call `createApp()` then `app.listen()`.
@@ -113,26 +146,27 @@ function createApp(configOverrides = {}) {
   app.use(rateLimiter.middleware());
 
   const auditStore = config.isProduction ? 'file' : 'memory';
+  const defaultAuditPath = path.join(os.tmpdir(), 'sapconnect', 'audit.jsonl');
   const auditLogger = new AuditLogger({
     store: auditStore,
-    filePath: auditStore === 'file' ? (process.env.AUDIT_LOG_PATH || '/var/log/sapconnect/audit.jsonl') : null,
+    filePath: auditStore === 'file' ? (config.auditLogPath || defaultAuditPath) : null,
   });
   app.use(auditLogger.middleware());
 
   // ── Authentication ───────────────────────────────────────────
-  const authStrategy = process.env.AUTH_STRATEGY || config.authStrategy || 'apikey';
+  const authStrategy = config.authStrategy || 'apikey';
   let apiKeyAuth = null;
+  let xsuaaAuth = null;
   if (authStrategy === 'xsuaa') {
-    const xsuaaAuth = new XsuaaAuth();
+    xsuaaAuth = new XsuaaAuth();
     app.use(xsuaaAuth.middleware());
+    applyXsuaaAuthorizationPolicies(app, xsuaaAuth);
     log.info('Authentication: XSUAA (SAP BTP)');
   } else {
     apiKeyAuth = new ApiKeyAuth({ apiKey: config.apiKey });
     app.use(apiKeyAuth.middleware());
     log.info(`Authentication: API Key (${apiKeyAuth.isEnabled() ? 'enabled' : 'dev mode'})`);
   }
-
-  // ── Monitoring middleware ──────────────────────────────────
   const requestContext = new RequestContext();
   app.use(requestContext.middleware());
 
@@ -296,6 +330,8 @@ function createApp(configOverrides = {}) {
   app._forensicState = forensicState;
   app._processMining = true;
   app._apiKeyAuth = apiKeyAuth;
+  app._xsuaaAuth = xsuaaAuth;
+  app._authStrategy = authStrategy;
   app._migrationPlan = true;
   app._export = true;
   app._signavio = true;
@@ -345,7 +381,10 @@ function installCrashHandlers(log, server) {
 if (require.main === module) {
   const app = createApp();
   const log = new Logger('server');
-  const port = app._config.port === 4004 ? 4005 : app._config.port; // avoid collision with CAP
+  const explicitApiPort = process.env.API_PORT ? parseInt(process.env.API_PORT, 10) : null;
+  const port = Number.isInteger(explicitApiPort)
+    ? explicitApiPort
+    : app._config.port === 4004 ? 4005 : app._config.port; // avoid collision with CAP
   const server = app.listen(port, app._config.host, () => {
     console.log(`SEN Migration API running at http://${app._config.host}:${port}`);
     console.log(`  Health:      http://localhost:${port}/health`);

@@ -1,7 +1,7 @@
 {
   "name": "sapconnect",
   "version": "1.0.0",
-  "description": "SEN — Universal ERP Migration Platform",
+  "description": "SEN - Universal ERP Migration Platform",
   "engines": {
     "node": ">=20.0.0"
   },
@@ -41,6 +41,7 @@
   "scripts": {
     "start": "cds-serve",
     "start:api": "node server.js",
+    "start:all": "node scripts/start-services.js",
     "watch": "cds watch",
     "demo": "cds watch --profile demo",
     "discover": "node discovery/discover.js",

@@ -58,7 +58,7 @@ graph TB
 1. Click **Code > Codespaces > New codespace** on this repository
 2. Wait for setup to complete (installs SAP tools automatically)
 3. Run `npm run watch` -- server starts on port 4004
-4. Run `npm test` -- 6,318 tests across 387 files
+4. Run `npm test` to execute the Vitest suite
 
 ### Local Development
 ```bash
@@ -72,7 +72,7 @@ npm run watch
 ### Docker
 ```bash
 docker build -t sapconnect .
-docker run -p 4004:4004 sapconnect
+docker run -p 4004:4004 -p 4005:4005 sapconnect
 # Or with docker compose:
 docker compose up
 ```
@@ -80,7 +80,7 @@ docker compose up
 ### Run Migration Assessment
 ```bash
 npm run assess                    # Scan custom code against 874 rules
-npm test                          # Run full test suite (6,318 tests)
+npm test                          # Run the Vitest suite
 npm run lint                      # ESLint code quality check
 node -e "
   const R = require('./migration/objects/registry');
@@ -200,7 +200,7 @@ npm run watch        # Start CAP server with live reload
 npm run discover     # Run API Discovery in mock mode
 npm run agent        # Run AI Agent workflow in mock mode
 npm run assess       # Run migration assessment
-npm test             # Run 6,318 tests across 387 files
+npm test             # Run the Vitest suite
 npm run lint         # Run ESLint
 npm run format       # Run Prettier
 npm run docker:build # Build Docker image
@@ -221,7 +221,7 @@ npm run docker:build # Build Docker image
 - **SAP CAP (Node.js)** -- Backend framework
 - **SAP Fiori Elements / UI5** -- Frontend
 - **SQLite in-memory / HANA Cloud** -- Local and production database
-- **vitest** -- Test framework (6,318 tests, 387 files)
+- **vitest** -- Test framework for the automated suite
 - **ESLint + Prettier** -- Code quality
 - **Docker** -- Containerization
 - **GitHub Actions** -- CI/CD
