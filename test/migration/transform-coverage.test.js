@@ -161,10 +161,10 @@ describe('FM Replacement Transforms', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 
 describe('ABAP Modernization Transforms', () => {
-  describe('SIMPL-ABAP-010: MOVE-CORRESPONDING → CORRESPONDING', () => {
+  describe('SIMPL-ABAP-011: MOVE-CORRESPONDING → CORRESPONDING', () => {
     it('should replace simple MOVE-CORRESPONDING', () => {
       const source = 'MOVE-CORRESPONDING ls_source TO ls_target.';
-      const result = applyTransform('SIMPL-ABAP-010', source);
+      const result = applyTransform('SIMPL-ABAP-011', source);
       expect(result.source).toContain('ls_target = CORRESPONDING #( ls_source )');
       expect(result.changes).toHaveLength(1);
     });
@@ -174,7 +174,7 @@ describe('ABAP Modernization Transforms', () => {
         'MOVE-CORRESPONDING ls_a TO ls_b.',
         'MOVE-CORRESPONDING ls_c TO ls_d.',
       ].join('\n');
-      const result = applyTransform('SIMPL-ABAP-010', source);
+      const result = applyTransform('SIMPL-ABAP-011', source);
       expect(result.source).toContain('ls_b = CORRESPONDING #( ls_a )');
       expect(result.source).toContain('ls_d = CORRESPONDING #( ls_c )');
       expect(result.changes).toHaveLength(2);
@@ -182,31 +182,31 @@ describe('ABAP Modernization Transforms', () => {
 
     it('should not modify source without MOVE-CORRESPONDING', () => {
       const source = 'ls_target = ls_source.';
-      const result = applyTransform('SIMPL-ABAP-010', source);
+      const result = applyTransform('SIMPL-ABAP-011', source);
       expect(result.source).toBe(source);
       expect(result.changes).toHaveLength(0);
     });
   });
 
-  describe('SIMPL-ABAP-011: CREATE OBJECT → NEW', () => {
+  describe('SIMPL-ABAP-020: CREATE OBJECT → NEW', () => {
     it('should replace CREATE OBJECT TYPE', () => {
       const source = 'CREATE OBJECT lo_instance TYPE zcl_myclass.';
-      const result = applyTransform('SIMPL-ABAP-011', source);
+      const result = applyTransform('SIMPL-ABAP-020', source);
       expect(result.source).toContain('lo_instance = NEW zcl_myclass( )');
       expect(result.changes).toHaveLength(1);
     });
 
     it('should be case-insensitive', () => {
       const source = 'create object lo_obj type zcl_class.';
-      const result = applyTransform('SIMPL-ABAP-011', source);
+      const result = applyTransform('SIMPL-ABAP-020', source);
       expect(result.source).toContain('lo_obj = NEW zcl_class( )');
     });
   });
 
-  describe('SIMPL-ABAP-012: CALL METHOD → functional', () => {
+  describe('SIMPL-ABAP-021: CALL METHOD → functional', () => {
     it('should replace CALL METHOD with functional style', () => {
       const source = 'CALL METHOD lo_obj->process_data.';
-      const result = applyTransform('SIMPL-ABAP-012', source);
+      const result = applyTransform('SIMPL-ABAP-021', source);
       expect(result.source).toContain('lo_obj->process_data(');
       expect(result.changes).toHaveLength(1);
     });
@@ -216,17 +216,17 @@ describe('ABAP Modernization Transforms', () => {
         'CALL METHOD lo_a->method_one.',
         'CALL METHOD lo_b->method_two.',
       ].join('\n');
-      const result = applyTransform('SIMPL-ABAP-012', source);
+      const result = applyTransform('SIMPL-ABAP-021', source);
       expect(result.source).toContain('lo_a->method_one(');
       expect(result.source).toContain('lo_b->method_two(');
       expect(result.changes).toHaveLength(2);
     });
   });
 
-  describe('SIMPL-ABAP-013: READ TABLE flagging', () => {
+  describe('SIMPL-ABAP-014: READ TABLE flagging', () => {
     it('should add TODO comment for READ TABLE WITH KEY', () => {
       const source = '  READ TABLE lt_data WITH KEY matnr = lv_mat.';
-      const result = applyTransform('SIMPL-ABAP-013', source);
+      const result = applyTransform('SIMPL-ABAP-014', source);
       expect(result.source).toContain('TODO(S/4): Consider table expression syntax');
       expect(result.source).toContain('READ TABLE lt_data WITH KEY');
       expect(result.changes).toHaveLength(1);
@@ -235,23 +235,23 @@ describe('ABAP Modernization Transforms', () => {
 
     it('should not flag READ TABLE without WITH KEY', () => {
       const source = 'READ TABLE lt_data INDEX 1 INTO ls_data.';
-      const result = applyTransform('SIMPL-ABAP-013', source);
+      const result = applyTransform('SIMPL-ABAP-014', source);
       expect(result.source).not.toContain('TODO');
       expect(result.changes).toHaveLength(0);
     });
   });
 
-  describe('SIMPL-ABAP-014: TRANSLATE → to_upper/to_lower', () => {
+  describe('SIMPL-ABAP-017: TRANSLATE → to_upper/to_lower', () => {
     it('should replace TRANSLATE TO UPPER CASE', () => {
       const source = 'TRANSLATE lv_text TO UPPER CASE.';
-      const result = applyTransform('SIMPL-ABAP-014', source);
+      const result = applyTransform('SIMPL-ABAP-017', source);
       expect(result.source).toContain('lv_text = to_upper( lv_text )');
       expect(result.changes).toHaveLength(1);
     });
 
     it('should replace TRANSLATE TO LOWER CASE', () => {
       const source = 'TRANSLATE lv_text TO LOWER CASE.';
-      const result = applyTransform('SIMPL-ABAP-014', source);
+      const result = applyTransform('SIMPL-ABAP-017', source);
       expect(result.source).toContain('lv_text = to_lower( lv_text )');
       expect(result.changes).toHaveLength(1);
     });
@@ -261,7 +261,7 @@ describe('ABAP Modernization Transforms', () => {
         'TRANSLATE lv_name TO UPPER CASE.',
         'TRANSLATE lv_desc TO LOWER CASE.',
       ].join('\n');
-      const result = applyTransform('SIMPL-ABAP-014', source);
+      const result = applyTransform('SIMPL-ABAP-017', source);
       expect(result.source).toContain('to_upper( lv_name )');
       expect(result.source).toContain('to_lower( lv_desc )');
       expect(result.changes).toHaveLength(2);
@@ -462,10 +462,10 @@ describe('Multi-transform pipeline', () => {
       'SIMPL-ABAP-015', // TABLES flagging
       'SIMPL-ABAP-005', // HEADER LINE removal
       'SIMPL-TBL-KONV', // KONV → PRCD_ELEMENTS
-      'SIMPL-ABAP-010', // MOVE-CORRESPONDING
-      'SIMPL-ABAP-011', // CREATE OBJECT → NEW
-      'SIMPL-ABAP-012', // CALL METHOD → functional
-      'SIMPL-ABAP-014', // TRANSLATE → to_upper
+      'SIMPL-ABAP-011', // MOVE-CORRESPONDING
+      'SIMPL-ABAP-020', // CREATE OBJECT → NEW
+      'SIMPL-ABAP-021', // CALL METHOD → functional
+      'SIMPL-ABAP-017', // TRANSLATE → to_upper
       'SIMPL-FM-BAPI_PO_CREATE1', // PO FM
       'SIMPL-FIN-010',  // BSEG fields
       'SIMPL-FIN-011',  // KNA1/LFA1 fields
