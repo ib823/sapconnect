@@ -15,6 +15,11 @@
  * Pattern-based regex transforms that work without AI.
  */
 
+const { RULE_TO_TRANSFORM, buildCrossReference, isInitialized } = require('./transforms/cross-reference');
+const abapSyntaxTransforms = require('./transforms/abap-syntax');
+const moduleFiSdMmCoTransforms = require('./transforms/module-fi-sd-mm-co');
+const moduleRemainingTransforms = require('./transforms/module-remaining');
+
 const TRANSFORMS = {
   // ── Finance: BSEG -> ACDOCA ──────────────────────────────────────
   'SIMPL-FIN-001': {
@@ -340,7 +345,20 @@ const TRANSFORMS = {
  * @returns {object|null} Transform object with .apply(source, finding)
  */
 function getTransform(ruleId) {
-  return TRANSFORMS[ruleId] || null;
+  // Direct match first
+  if (TRANSFORMS[ruleId]) return TRANSFORMS[ruleId];
+
+  // Lazy-init cross-reference (avoids circular dependency with rules/index.js)
+  if (!isInitialized()) {
+    const { getAllRules } = require('./rules');
+    buildCrossReference(getAllRules(), TABLE_RENAMES, FM_REPLACEMENTS);
+  }
+
+  // Cross-reference lookup: maps rule IDs to auto-generated transform IDs
+  const mappedId = RULE_TO_TRANSFORM[ruleId];
+  if (mappedId && TRANSFORMS[mappedId]) return TRANSFORMS[mappedId];
+
+  return null;
 }
 
 /**
@@ -357,7 +375,9 @@ function getAllTransforms() {
  * @returns {boolean}
  */
 function hasTransform(ruleId) {
-  return ruleId in TRANSFORMS;
+  if (ruleId in TRANSFORMS) return true;
+  // Check cross-reference
+  return getTransform(ruleId) !== null;
 }
 
 // ── New transforms for expanded rules ────────────────────────────
@@ -579,9 +599,9 @@ for (const [oldFM, newApi] of Object.entries(FM_REPLACEMENTS)) {
 
 // ── ABAP Syntax Modernization ───────────────────────────────────────────────
 
-// MOVE-CORRESPONDING → CORRESPONDING operator
-TRANSFORMS['SIMPL-ABAP-010'] = {
-  id: 'SIMPL-ABAP-010',
+// MOVE-CORRESPONDING → CORRESPONDING operator (Rule SIMPL-ABAP-011)
+TRANSFORMS['SIMPL-ABAP-011'] = {
+  id: 'SIMPL-ABAP-011',
   description: 'Replace MOVE-CORRESPONDING with inline CORRESPONDING',
   apply(source) {
     const changes = [];
@@ -598,9 +618,9 @@ TRANSFORMS['SIMPL-ABAP-010'] = {
   },
 };
 
-// CREATE OBJECT → NEW
-TRANSFORMS['SIMPL-ABAP-011'] = {
-  id: 'SIMPL-ABAP-011',
+// CREATE OBJECT → NEW (Rule SIMPL-ABAP-020)
+TRANSFORMS['SIMPL-ABAP-020'] = {
+  id: 'SIMPL-ABAP-020',
   description: 'Replace CREATE OBJECT with NEW operator',
   apply(source) {
     const changes = [];
@@ -617,9 +637,9 @@ TRANSFORMS['SIMPL-ABAP-011'] = {
   },
 };
 
-// CALL METHOD → functional style
-TRANSFORMS['SIMPL-ABAP-012'] = {
-  id: 'SIMPL-ABAP-012',
+// CALL METHOD → functional style (Rule SIMPL-ABAP-021)
+TRANSFORMS['SIMPL-ABAP-021'] = {
+  id: 'SIMPL-ABAP-021',
   description: 'Replace CALL METHOD with functional call style',
   apply(source) {
     const changes = [];
@@ -636,9 +656,9 @@ TRANSFORMS['SIMPL-ABAP-012'] = {
   },
 };
 
-// READ TABLE ... WITH KEY → line_exists / table expression
-TRANSFORMS['SIMPL-ABAP-013'] = {
-  id: 'SIMPL-ABAP-013',
+// READ TABLE ... WITH KEY → line_exists / table expression (Rule SIMPL-ABAP-014)
+TRANSFORMS['SIMPL-ABAP-014'] = {
+  id: 'SIMPL-ABAP-014',
   description: 'Flag READ TABLE for table expression conversion',
   apply(source) {
     const changes = [];
@@ -654,9 +674,9 @@ TRANSFORMS['SIMPL-ABAP-013'] = {
   },
 };
 
-// TRANSLATE → to_upper/to_lower
-TRANSFORMS['SIMPL-ABAP-014'] = {
-  id: 'SIMPL-ABAP-014',
+// TRANSLATE → to_upper/to_lower (Rule SIMPL-ABAP-017)
+TRANSFORMS['SIMPL-ABAP-017'] = {
+  id: 'SIMPL-ABAP-017',
   description: 'Replace TRANSLATE with to_upper/to_lower',
   apply(source) {
     const changes = [];
@@ -776,6 +796,20 @@ TRANSFORMS['SIMPL-FIN-012'] = {
 };
 
 // ══════════════════════════════════════════════════════════════════════════════
+// Merge Sub-Module Transforms
+// ══════════════════════════════════════════════════════════════════════════════
+
+// Merge sub-module transforms (only if not already defined inline)
+const subModules = [abapSyntaxTransforms, moduleFiSdMmCoTransforms, moduleRemainingTransforms];
+for (const subModule of subModules) {
+  for (const [id, transform] of Object.entries(subModule)) {
+    if (!TRANSFORMS[id]) {
+      TRANSFORMS[id] = transform;
+    }
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
 // Transform Statistics
 // ══════════════════════════════════════════════════════════════════════════════
 
@@ -793,4 +827,22 @@ function getTransformStats() {
   return { total: ids.length, byCategory: categories };
 }
 
-module.exports = { getTransform, getAllTransforms, hasTransform, getTransformStats };
+/**
+ * Get auto-fix coverage rate across all rules.
+ * @returns {{ total: number, covered: number, rate: number }}
+ */
+function getAutoFixRate() {
+  const { getAllRules } = require('./rules');
+  const rules = getAllRules();
+  let covered = 0;
+  for (const rule of rules) {
+    if (getTransform(rule.id)) covered++;
+  }
+  return {
+    total: rules.length,
+    covered,
+    rate: Math.round((covered / rules.length) * 100),
+  };
+}
+
+module.exports = { getTransform, getAllTransforms, hasTransform, getTransformStats, getAutoFixRate };

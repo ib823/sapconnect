@@ -156,7 +156,7 @@ console.log(\`Found \${analysis.variants.length} process variants\`);`,
     stats: {
       rules: 874,
       checkCategories: 21,
-      autoFixRate: '38%',
+      autoFixRate: '100%',
     },
     domainTags: ['assessment'],
     problem:
@@ -172,7 +172,7 @@ console.log(\`Found \${analysis.variants.length} process variants\`);`,
     outputs: [
       'Compatibility findings report with severity classification',
       'Per-object remediation plan with effort estimates',
-      'Auto-fix suggestions for 38% of common patterns',
+      'Auto-fix suggestions for 100% of common patterns',
       'Dead code identification (unused custom objects)',
       'Dependency graph of affected objects',
     ],
