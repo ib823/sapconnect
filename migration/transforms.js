@@ -16,6 +16,9 @@
  */
 
 const { RULE_TO_TRANSFORM, buildCrossReference, isInitialized } = require('./transforms/cross-reference');
+const abapSyntaxTransforms = require('./transforms/abap-syntax');
+const moduleFiSdMmCoTransforms = require('./transforms/module-fi-sd-mm-co');
+const moduleRemainingTransforms = require('./transforms/module-remaining');
 
 const TRANSFORMS = {
   // ── Finance: BSEG -> ACDOCA ──────────────────────────────────────
@@ -793,6 +796,20 @@ TRANSFORMS['SIMPL-FIN-012'] = {
 };
 
 // ══════════════════════════════════════════════════════════════════════════════
+// Merge Sub-Module Transforms
+// ══════════════════════════════════════════════════════════════════════════════
+
+// Merge sub-module transforms (only if not already defined inline)
+const subModules = [abapSyntaxTransforms, moduleFiSdMmCoTransforms, moduleRemainingTransforms];
+for (const subModule of subModules) {
+  for (const [id, transform] of Object.entries(subModule)) {
+    if (!TRANSFORMS[id]) {
+      TRANSFORMS[id] = transform;
+    }
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
 // Transform Statistics
 // ══════════════════════════════════════════════════════════════════════════════
 
@@ -810,4 +827,22 @@ function getTransformStats() {
   return { total: ids.length, byCategory: categories };
 }
 
-module.exports = { getTransform, getAllTransforms, hasTransform, getTransformStats };
+/**
+ * Get auto-fix coverage rate across all rules.
+ * @returns {{ total: number, covered: number, rate: number }}
+ */
+function getAutoFixRate() {
+  const { getAllRules } = require('./rules');
+  const rules = getAllRules();
+  let covered = 0;
+  for (const rule of rules) {
+    if (getTransform(rule.id)) covered++;
+  }
+  return {
+    total: rules.length,
+    covered,
+    rate: Math.round((covered / rules.length) * 100),
+  };
+}
+
+module.exports = { getTransform, getAllTransforms, hasTransform, getTransformStats, getAutoFixRate };
